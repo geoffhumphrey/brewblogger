@@ -1,0 +1,555 @@
+/* Red Theme (v1 Theme) */
+
+body { 
+font-size: 11px;
+margin:0;
+padding:0;
+line-height: 1.4; 
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+color: #000000; 
+font-size: 11px; 
+background-color: #716D6D;
+text-align: center;
+background-image: url(../images/Brilliant/bknd.png);
+background-repeat: repeat-x;
+}
+
+/* ***************************** Custom Theme Elements ***************************** */
+
+input, button, textarea, menu, select {
+border: 1px solid #9a9a9a;
+}
+
+input:focus {
+
+}
+
+/* ------------------ global link styles ------------------  */
+a:link 				{ color: #980609; text-decoration: none; }
+a:visited 			{ color: #980609; text-decoration: none; }
+a:hover 			{ color: #980609; text-decoration: none; }
+a:active 			{ color: #980609; text-decoration: none; }
+
+/* ------------------  layout divs ------------------  */
+#maincontainer {
+width: 760px;
+margin-top: 5px;
+margin-right: auto;
+margin-left: auto;
+border: 1px solid #000000;
+}
+
+#contentwrapper {
+padding: 5px;
+background-color:#ffffff;
+overflow: hidden;
+width: 750px;
+}
+
+/*
+#contentwrapperAdmin {
+float: left;
+width: 750px;
+padding: 8px 5px 5px 5px;
+background-position: top left;
+background-color: #FFFFFF;
+margin-top: 0px;
+}
+*/
+
+#contentcolumn { 		/* main content - holds procedure, recipe, mash, etc. */
+background-color:#ffffff;
+width: 500px;
+border-right: 245px solid #ffffff; /* The width and color of the right*/
+margin-right: -245px; 
+padding: 0;
+}
+
+#contentWide { 			/* if no sidebar content */
+background-color:#ffffff;
+width: 750px;
+}
+
+#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+background-color:#ffffff;
+width: 245px;
+padding: 0 0 0 5px;
+margin: 0;
+}
+
+/* ------------------  header elements ------------------  */
+#header {
+background-image:  url("../images/Red/header_bknd.jpg"); 
+background-repeat: no-repeat;
+height: 100px;
+background-position: bottom left;
+}
+
+.titleText {
+font-size: 20px; 
+color: #000000; 
+font-weight: bold;
+padding-left: 10px;
+padding-top: 30px;
+padding-bottom: 0px;
+}
+
+.quoteText {
+padding-left: 10px;
+font-size: 10px;
+font-style: italic;
+color: #000000; 
+}
+
+#subtitle {
+height: 50px;
+width: 500px;
+padding: 5px 0px 0px 3px;
+margin-top: 0px;
+margin-bottom: 0px;
+font-size: 18px;
+font-weight: bold;
+}
+
+#subtitleWide, #subtitleAdmin {
+height: 50px;
+width: 100%;
+padding: 5px 0px 0px 3px;
+margin-top: 0px;
+margin-bottom: 0px;
+font-size: 18px;
+font-weight: bold;
+}
+
+#breadcrumb {
+height: 25px;
+width: 500px;
+padding: 0px 0px 0px 3px;
+font-size: 9px;
+}
+
+#breadcrumbWide, #breadcrumbAdmin {
+height: 25px;
+width: 100%;
+padding: 0px 0px 0px 3px;
+font-size: 9px;
+}
+
+#paginate {
+text-align: right;
+padding: 8px 0px 0px 3px;
+font-size: 9px;
+}
+
+/* ------------------ main navigation ------------------ */
+#nav {
+background: #980609;
+margin-top: 0px;
+padding: 7px 10px 0px 10px;
+font-size: 9px;
+height: 20px;
+}
+
+#nav ul 
+{
+
+}
+
+#nav li
+{
+
+}
+
+
+
+#nav a:link 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:hover 		{ color: #F5ECE5; text-decoration: none; }
+#nav a:active 		{ color: #F5ECE5; text-decoration: none; }
+
+
+/* ------------------ drop-down menu elements ------------------ */
+#dropmenudiv			{ position: absolute; border: 1px solid #980609; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #C9725E; }
+#dropmenudiv a 			{ color: #980609; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #980609; padding: 1px 0; text-decoration: none; }
+#dropmenudiv a:hover	{ background-color: #980609; text-decoration: none; color: #ffffff; }
+
+
+/* ***************************** Theme-Specific Content Elements ***************************** */ 
+
+#dataWrapperInner {		 	/* for Typical CO2 Saturation and any other table within the main data table. */
+width: inherit;
+background-color: #efefef;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+font-size: 10px;
+}
+
+#help a:hover { 
+color: #FFFFFF;
+background: #E3B7AC; 
+text-decoration: none; 
+}
+
+#helpInline {						/* Use for Inline Help Popups */
+border-right: 1px solid #333333;
+border-bottom: 1px solid #333333;
+border-top: 1px solid #999999;
+border-left: 1px solid #999999;
+width: 10px;
+text-align: center;
+font-size: 9px;
+margin-right: 6px;
+}
+
+#helpInline a {
+color: #000000;
+background: #EFD9D2;
+width: 100%;
+display: block; 
+}
+
+#helpInline a:hover { 
+color: #FFFFFF;
+background: #E3B7AC; 
+text-decoration: none; 
+}
+
+/* ------------------ footer elements ------------------ */
+#footer {
+clear: left;
+width: 100%;
+background: #980609;
+padding: 5px 0px 5px 0px;
+text-align: center;
+font-size: 10px;
+color: #FFFFFF;
+}
+
+#footer a { 
+color: #FFFFFF; 
+}
+
+#footerInclude {
+font-size: 9px;
+margin-top: 5px;
+}
+
+
+/* ------------------ content display ------------------ */
+
+#headerContent {
+clear: left;
+width: 489px;
+height: 20px;
+background: #FCFAF8;
+padding: 5px 5px 5px 3px;
+text-align: left;
+border-bottom: 1px dashed #E3B7AC;
+font-size: 14px;
+color: #000000;
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+#headerContentAdmin {
+clear: left;
+width: 740px;
+height: 20px;
+background: #FCFAF8;
+padding: 5px 5px 5px 3px;
+text-align: left;
+border-bottom: 1px dashed #E3B7AC;
+font-size: 14px;
+color: #000000;
+font-weight: bold;
+margin-bottom: 15px;
+margin-top: 15px;
+}
+
+/* ------------------ tools and reference elements  ------------------ */
+
+#wideWrapper {  			/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #F5ECE5;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+}
+
+#referenceWrapper{
+text-align: left;
+margin-left: 5px;
+margin-top: 5px;
+}
+
+#wideWrapperReference   {  			/* Use for reviews, tools and reference pages */
+width:740px;
+text-align: left;
+background: #eeeeee;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+margin: 5px 0 5px 0;
+}
+
+#wideWrapperReview   {  			/* Use for reviews, tools and reference pages */
+width:493px;
+text-align: left;
+background: #eeeeee;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+}
+
+.carbonationTable { /* specialized style for carbonation tables */
+text-align: center;
+font-size: 9px;
+background: #FFFFFF;
+width: 100%;
+border-collapse: collapse;
+}
+
+#referenceHeader {
+background-color: #e3b7ac;
+width: 100%;
+font-weight: bold;
+padding: 2px 0 2px 1px;
+}
+
+/* ------------------ sidebar elements  ------------------ */
+
+#sidebarWrapper {
+width: 235px;
+background: #F5ECE5;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+margin-top: 5px;
+}
+
+#sidebarHeader {
+background: #E3B7AC;
+padding: 2px 2px 2px 4px;
+font-size: 11px;
+font-weight: bold;
+color: #000000;
+margin-bottom: 3px;
+}
+
+#sidebarHeaderSmall {			/* use for inner table div within dataTables */
+background: #E3B7AC;
+height: 15px;
+padding: 3px 3px 3px 3px;
+font-size: 11px;
+font-weight: bold;
+color: #000000;
+}
+
+#sidebarInnerWrapper {
+width: 100%;
+font-size: 10px;
+}
+
+/* ------------------ overall theme colors ------------------ */
+.ultra_lt	 		{ color: #F5ECE5; }
+.lt	 				{ color: #EFD9D2; }
+.mid		 		{ color: #E3B7AC; }
+.dk			 		{ color: #980609; }
+
+.bknd_white			{ background-color: #FFFFFF; }
+.bknd_ultra_lt		{ background-color: #F5ECE5; }
+.bknd_lt			{ background-color: #EFD9D2; }
+.bknd_mid			{ background-color: #E3B7AC; }
+.bknd_dk			{ background-color: #980609; }
+
+/* ultra light border styles */
+.bdr1_ultra_lt			{ border: 1px solid #F5ECE5; }
+.bdr1_ultra_lt_dashed 	{ border: 1px dashed #F5ECE5; }
+.bdr1_ultra_lt_dotted	{ border: 1px dotted #F5ECE5; }
+.bdr2_ultra_lt			{ border: 2px solid #F5ECE5; }
+.bdr2_ultra_lt_dashed 	{ border: 2px dashed #F5ECE5; }
+.bdr2_ultra_lt_dotted 	{ border: 2px dotted #F5ECE5; }
+.bdr1L_ultra_lt			{ border-left: 1px solid #F5ECE5; }
+.bdr1L_ultra_lt_dashed	{ border-left: 1px dashed #F5ECE5; }
+.bdr1L_ultra_lt_dotted	{ border-left: 1px dotted #F5ECE5; }
+.bdr1R_ultra_lt			{ border-right: 1px solid #F5ECE5; }
+.bdr1R_ultra_lt_dashed	{ border-right: 1px dashed #F5ECE5; }
+.bdr1R_ultra_lt_dotted	{ border-right: 1px dotted #F5ECE5; }
+.bdr1T_ultra_lt			{ border-top: 1px solid #F5ECE5; }
+.bdr1T_ultra_lt_dashed	{ border-top: 1px dashed #F5ECE5; }
+.bdr1T_ultra_lt_dotted	{ border-top: 1px dotted #F5ECE5; }
+.bdr1B_ultra_lt			{ border-bottom: 1px solid #F5ECE5; }
+.bdr1B_ultra_lt_dashed	{ border-bottom: 1px dashed #F5ECE5; }
+.bdr1B_ultra_lt_dotted	{ border-bottom: 1px dotted #F5ECE5; }
+
+/* light border styles */
+.bdr1_light				{ border: 1px solid #EFD9D2; }
+.bdr1_light_dashed 		{ border: 1px dashed #EFD9D2; }
+.bdr1_light_dotted		{ border: 1px dotted #EFD9D2; }
+.bdr2_light				{ border: 2px solid #EFD9D2; }
+.bdr2_light_dashed 		{ border: 2px dashed #EFD9D2; }
+.bdr2_light_dotted 		{ border: 2px dotted #EFD9D2; }
+.bdr1L_light			{ border-left: 1px solid #EFD9D2; }
+.bdr1L_light_dashed		{ border-left: 1px dashed #EFD9D2; }
+.bdr1L_light_dotted		{ border-left: 1px dotted #EFD9D2; }
+.bdr1R_light			{ border-right: 1px solid #EFD9D2; }
+.bdr1R_light_dashed		{ border-right: 1px dashed #EFD9D2; }
+.bdr1R_light_dotted		{ border-right: 1px dotted #EFD9D2; }
+.bdr1T_light			{ border-top: 1px solid #EFD9D2; }
+.bdr1T_light_dashed		{ border-top: 1px dashed #EFD9D2; }
+.bdr1T_light_dotted		{ border-top: 1px dotted #EFD9D2; }
+.bdr1B_light			{ border-bottom: 1px solid #EFD9D2; }
+.bdr1B_light_dashed		{ border-bottom: 1px dashed #EFD9D2; }
+.bdr1B_light_dotted		{ border-bottom: 1px dotted #EFD9D2; }
+
+/* midtone border styles */
+.bdr1_mid				{ border: 1px solid #E3B7AC; }
+.bdr1_mid_dashed 		{ border: 1px dashed #E3B7AC; }
+.bdr1_mid_dotted		{ border: 1px dotted #E3B7AC; }
+.bdr2_mid				{ border: 2px solid #E3B7AC; }
+.bdr2_mid_dashed 		{ border: 2px dashed #E3B7AC; }
+.bdr2_mid_dotted 		{ border: 2px dotted #E3B7AC; }
+.bdr1L_mid				{ border-left: 1px solid #E3B7AC; }
+.bdr1L_mid_dashed		{ border-left: 1px dashed #E3B7AC; }
+.bdr1L_mid_dotted		{ border-left: 1px dotted #E3B7AC; }
+.bdr1R_mid				{ border-right: 1px solid #E3B7AC; }
+.bdr1R_mid_dashed		{ border-right: 1px dashed #E3B7AC; }
+.bdr1R_mid_dotted		{ border-right: 1px dotted #E3B7AC; }
+.bdr1T_mid				{ border-top: 1px solid #E3B7AC; }
+.bdr1T_mid_dashed		{ border-top: 1px dashed #E3B7AC; }
+.bdr1T_mid_dotted		{ border-top: 1px dotted #E3B7AC; }
+.bdr1B_mid				{ border-bottom: 1px solid #E3B7AC; }
+.bdr1B_mid_dashed		{ border-bottom: 1px dashed #E3B7AC; }
+.bdr1B_mid_dotted		{ border-bottom: 1px dotted #E3B7AC; }
+
+/* dark border styles */
+.bdr1_dark				{ border: 1px solid #980609; }
+.bdr1_dark_dashed 		{ border: 1px dashed #980609; }
+.bdr1_dark_dotted		{ border: 1px dotted #980609; }
+.bdr2_dark				{ border: 2px solid #980609; }
+.bdr2_dark_dashed 		{ border: 2px dashed #980609; }
+.bdr2_dark_dotted 		{ border: 2px dotted #980609; }
+.bdr1L_dark				{ border-left: 1px solid #980609; }
+.bdr1L_dark_dashed		{ border-left: 1px dashed #980609; }
+.bdr1L_dark_dotted		{ border-left: 1px dotted #980609; }
+.bdr1R_dark				{ border-right: 1px solid #980609; }
+.bdr1R_dark_dashed		{ border-right: 1px dashed #980609; }
+.bdr1R_dark_dotted		{ border-right: 1px dotted #980609; }
+.bdr1T_dark				{ border-top: 1px solid #980609; }
+.bdr1T_dark_dashed		{ border-top: 1px dashed #980609; }
+.bdr1T_dark_dotted		{ border-top: 1px dotted #980609; }
+.bdr1B_dark				{ border-bottom: 1px solid #980609; }
+.bdr1B_dark_dashed		{ border-bottom: 1px dashed #980609; }
+.bdr1B_dark_dotted		{ border-bottom: 1px dotted #980609; }
+
+/* non-theme specific border styles */
+.bdr1_black				{ border: 1px solid #000000; }
+.bdr1_white				{ border: 1px solid #FFFFFF; }
+.bdr1_red				{ border: 1px solid #FF0000; }
+
+
+
+
+
+/* ------------------ error or caution colors ------------------ */
+.red		 		{ color: #FF0000 }
+.error              { padding-bottom: 10px; text-align: left; font-weight: bold; font-size: 12px; color: #FF0000; }
+
+#shadowbox {
+width: 250px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 235px;
+right: 235px;
+}
+
+#caution {
+top: -4px;
+left: -4px;
+background-color: #FFFAE5;
+border-top: 3px solid #FFcc00;
+border-left: 3px solid #FFcc00;
+border-right: 3px solid #E6B800;
+border-bottom: 3px solid #E6B800;
+padding: 10px 10px 10px 10px;
+text-align: justify;
+font-size: 10px;
+background-repeat: no-repeat;
+position: relative;
+}
+
+#moreInfoWrapper {  				/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #F5ECE5;
+border: 1px solid #980609;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#moreInfo a span {
+display: none;
+}
+
+#moreInfo a:hover span {
+display: block;
+position: absolute; 
+height: auto;
+padding: 5px; 
+z-index: 100;
+color: #000000;
+}
+
+#psiWrapper {
+width: 99%;
+background: #ffffff;
+border: 1px solid #E3B7AC;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+margin-right: 5px;
+}
+
+/* Calendar classes */
+
+.calendar 		{ border: 1px solid #adadad; border-collapse: collapse; color: #000000; width: 100%; font-size: 9px; }
+.tableContain 	{ color: #000000; font-size: 9px; }
+.none 			{ color: #000000; font-size: 9px;}
+.today 			{ border: 1px solid #adadad; color: #000000; background:#cfcfcf; font-size: 9px; padding: 2px;}
+.monthdays 		{ border: 1px solid #adadad; color: #000000; font-size: 9px; padding: 2px; height: 100px; } 
+.nonmonthdays 	{ border: 1px solid #adadad; color: #000000; background: #efefef; font-size: 9px; padding: 2px; height: 100px; } 
+.day 			{ vertical-align:top; height: 50px; font-size: 9px;}
+.header			{ border: 1px solid #adadad; color: #000000; background-color:#cfcfcf; padding: 2px; font-size: 9px; }
+.weekdays		{ border: 1px solid #adadad; background-color: #dddddd; color: #000000; font-size: 9px; padding: 2px; }
+.calInfo		{ padding-left: 2px; font-size: 9px; }
+
+/* Recipe Calculator Styles */
+hr { 
+color: #000000;
+height: 1px;
+width: 100%;
+}
+
+#calculate {
+width: 350px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 155px;
+right: 100px;
+z-index: 2;
+}
+
+#calculateInner {
+top: -4px;
+left: -4px;
+background-color: #F5ECE5;
+border-top: 3px solid #E3B7AC;
+border-left: 3px solid #E3B7AC;
+border-right: 3px solid #980609;
+border-bottom: 3px solid #980609;
+padding: 10px 10px 10px 10px;
+text-align: left;
+font-size: 10px;
+background-repeat: no-repeat;
+position: relative;
+}

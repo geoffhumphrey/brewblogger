@@ -1,0 +1,336 @@
+@charset "utf-8";
+/* CSS Document */
+
+#maincontainer {
+margin: 0 0 10px 0;
+padding: 0;
+text-align: left;
+}
+
+#contentwrapper {
+overflow: hidden;
+}
+
+#contentcolumn { 		
+float:left;
+}
+
+#contentWide { 			/* if no sidebar content */
+padding: 0;
+margin: 0;
+}
+
+#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+float:left;
+}
+
+#sidebarHeader {
+margin: 0;
+}
+
+#LeftAlign 	{ 
+float: left; 
+}
+
+#RightAlign { 
+float: right; 
+} 
+
+.left {							/* UNIVERSAL */	
+text-align: left;					
+}
+
+.right {						/* UNIVERSAL */	
+text-align: right;					
+}
+
+.center {						/* UNIVERSAL */	
+text-align: center;				
+}
+
+.submit 			{ font-family: inherit; font-size: 1em; }
+.radiobutton		{ border: none; padding-bottom: 2px;}
+.text_area			{ font-family: inherit; font-size: 1em; }
+
+/* ***************************** Universal Nav Elements ***************************** */
+
+#nav {
+margin-top: 0px;
+font-size: 90%;
+}
+#nav ul 
+{
+padding: 0;
+margin: 0;
+}
+
+#nav li
+{
+margin: 0;
+display: inline;
+list-style-type: none;
+padding: 0 15px 0 0;
+}
+
+
+/* ***************************** Data Display Elements ***************************** */
+
+#dataContainer {		 	/* container for main display of content - holds procedure, recipe, mash, etc. */
+width: 100%;
+margin-left: 0px;
+padding: 0px 0px 0px 0px;
+margin-bottom: 20px;
+}
+
+.data {						/* Use for display of most data with a preceding label (in conjunction with dataLabel element */
+padding: 2px 0px 3px 10px;
+}
+
+.dataHeading {			    /* use in conjunction with the .data class */
+font-weight: bold;
+padding: 10px 0px 3px 10px;
+white-space: nowrap;
+}
+
+.dataHeadingLeft {			 /* use in conjunction with the .data class  */
+font-weight: bold;
+padding: 10px 0px 3px 0px;
+white-space: nowrap;
+}
+
+.dataHeadingList {			 /* use in conjunction with the .dataList class  */
+font-weight: bold;
+padding: 10px 4px 6px 4px;
+white-space: nowrap;
+}
+
+.dataLeft {					/* use in conjunction with the .data class  */			
+padding: 2px 0px 3px 0px;
+}
+
+.dataLabel {			  	/* use in conjunction with the .data class  */
+font-weight: bold;
+white-space: nowrap;
+width: 5%;
+padding: 2px 0px 3px 10px;
+}
+
+.dataLabelLeft {			  	/* use in conjunction with the .data class  */
+font-weight: bold;
+white-space: nowrap;
+width: 5%;
+padding: 2px 0px 3px 0px;
+}
+
+.data_icon {				/* use in conjunction with the .data class  */	
+padding: 2px 0px 3px 0px;
+width: 1%;
+white-space: nowrap;
+}
+
+.dataMeas {					/* Use for Measurement data preferences */
+white-space: nowrap;
+width: 5%;
+}
+
+.dataList {					/* Use for Alternate Color Lists */
+padding: 6px 4px 6px 4px;
+}
+
+.dataListLeft {				/* Use for Alternate Color Lists */
+padding: 6px 4px 6px 0px;
+}
+
+.dataListLabel {
+padding: 6px 4px 6px 4px;
+font-weight: bold;
+width: 5%;
+white-space: nowrap;
+}
+
+.dataListLabelLeft {
+padding: 6px 4px 6px 0px;
+font-weight: bold;
+width: 5%;
+white-space: nowrap;
+}
+
+.data_icon_list {			/* Use for Alternate Color Lists */
+padding: 6px 4px 6px 4px;
+width: 1%;
+white-space: nowrap;
+}
+
+.dataLabelWide {		 /* data label if only one column layout */
+white-space: nowrap;
+font-weight: bold;
+padding-top: 2px;
+}
+
+.dataTable {			 /* for all data tables - procedure, etc. */
+width: 100%;
+border-collapse: collapse;
+border-style: none;
+border-width: 0px;
+margin: 0;
+}
+
+.listLeftAlign {		/* UNIVERSAL */
+width: 95%;
+text-align: left;
+font-size: inherit;
+padding: 2px 0 2px 0;
+}
+
+.listRightAlign {		/* UNIVERSAL */
+white-space: nowrap;
+text-align: right;
+font-size: inherit;
+padding: 2px 0 2px 0;
+}
+
+/* ***************************** Misc. Elements *****************************  */
+
+
+.colorTable {					/* Use for display of SRM color UNIVERSAL */
+width: 35px;
+border-collapse: collapse;
+border: 1px solid #000000;
+margin: 0;
+padding: 2px;
+text-align: center;
+font-size: inherit;
+}
+
+.colorTableRef {				/* Use for display of SRM color on Reference page UNIVERSAL  */
+width: 100%;
+height: auto;
+border-collapse: collapse;
+margin: 2px 0px 1px 0px;
+padding: 10px;
+text-align: center;
+}
+
+.colorTableRef2 {				/* UNIVERSAL */	
+height: 25px;
+padding: 10px;
+text-align: center;
+}
+
+.colorTableRef3 {				/* UNIVERSAL */	
+height: 25px;
+padding: 10px;
+text-align: center;
+color: #FFFFFF;
+}
+
+
+#colorDisplay {					/* UNIVERSAL */	
+float: right;
+position: absolute;
+margin-left: 75px;
+margin-top: 0px;
+}
+
+.calcButton 		{ margin: 0; border: 0; }
+
+.calcNav {
+margin: 1em 0 1em 0;
+text-align: center;
+font-size: .85em;
+}
+/* ***************************** Help Elements *****************************  */
+
+
+#help {						/* Use for Help/Info Popups UNIVERSAL */
+float: left;
+position: absolute;
+margin-left: -18px;
+width: 16px;
+text-align: center;
+font-size: 80%;
+}
+
+#helpInline {				/* Use for Inline Help/Info Popups UNIVERSAL */
+width: 16px;
+text-align: center;
+margin-right: 6px;
+}
+
+#icon {						/* Use for Icons UNIVERSAL */
+float: left;
+position: absolute;
+margin-top: 5px;
+margin-left: -18px;
+width: 16px;
+text-align: center;
+font-size: 80%;
+}
+
+#labelImageLarge {
+margin-top: 15px;
+margin-bottom: 10px;
+}
+
+.labelImage {			/* UNIVERSAL */
+width: 225px;
+border: 1px solid #000000;
+}
+
+/* ***************************** Error Elements *****************************  */
+
+.red { 					/* UNIVERSAL */
+color: #FF0000 
+}
+.error { 				/* UNIVERSAL */
+padding-bottom: 10px; 
+text-align: left; 
+font-weight: bold; 
+font-size: 1.1em; 
+color: #FF0000; 
+} 
+
+#hide {
+display: none;
+}
+
+.bdr1L_black { 
+border-left: 1px solid #050117; 
+}
+
+#quickEdit  { padding: 5px; width: 229px; }
+.quickEdit 	{ font-size: .9em; height: auto; margin: 2px 0px 2px 2px; }
+.quickEdit2 { font-size: .9em; font-weight: bold; margin: 4px 0px 2px 2px; }
+
+/* alternate text styles */
+.text_9 			{ font-size: 9px;  }
+.text_9_bold		{ font-size: 9px;  font-weight: bold; }
+.text_10			{ font-size: 10px; }
+.text_10_bold 		{ font-size: 10px; font-weight: bold; }
+.text_11			{ font-size: 11px; }
+.text_11_bold 		{ font-size: 11px; font-weight: bold; }
+.text_12	 		{ font-size: 12px; }
+.text_12_bold 		{ font-size: 12px; font-weight: bold; }
+.text_13	 		{ font-size: 13px; }
+.text_13_bold 		{ font-size: 13px; font-weight: bold; }
+.text_14	 		{ font-size: 14px; }
+.text_14_bold 		{ font-size: 14px; font-weight: bold; }
+.text_15	 		{ font-size: 15px; }
+.text_15_bold 		{ font-size: 15px; font-weight: bold; }
+.text_16			{ font-size: 16px; }
+.text_16_bold		{ font-size: 16px; font-weight: bold; }
+.text_18 			{ font-size: 18px; }
+.text_18_bold 		{ font-size: 18px; font-weight: bold; }
+.text_24 			{ font-size: 24px; }
+.text_24_bold 		{ font-size: 24px; font-weight: bold; }
+.text_white_10 		{ font-size: 10px; color: #ffffff; }
+.text_white_10_bold	{ font-size: 10px; color: #ffffff; font-weight: bold; }
+.text_white_11 		{ font-size: 11px; color: #ffffff; }
+.text_white_11_bold	{ font-size: 11px; color: #ffffff; font-weight: bold; }
+.text_white_12 		{ font-size: 12px; color: #ffffff; }
+.text_white_12_bold	{ font-size: 12px; color: #ffffff; font-weight: bold; }
+.text_white_14 		{ font-size: 14px; color: #ffffff; }
+.text_white_14_bold	{ font-size: 14px; color: #fefffe; font-weight: bold; }
+.text_white_18 		{ font-size: 18px; color: #ffffff; }
+.text_white_18_bold	{ font-size: 18px; color: #fefffe; font-weight: bold; }
+
