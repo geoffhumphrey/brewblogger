@@ -34,7 +34,7 @@ $imageSrc = "images/";
 	if ($section == "force_carb") include ('admin/tools/force_carb.php'); 
 	if ($section == "plato") include ('admin/tools/sg.php'); 
 	if ($section == "strike") include ('admin/tools/strike.php'); 
-        if ($section == "hyd") include ('admin/tools/hydrometer.php');
+    if ($section == "hyd") include ('admin/tools/hydrometer.php');
 	// if ($section == "recipe") include ('admin/tools/recipe_calculator.php'); 
 	?>   
   </td>
