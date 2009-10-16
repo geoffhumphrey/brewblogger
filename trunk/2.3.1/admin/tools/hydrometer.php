@@ -15,8 +15,64 @@ $temp = $_POST["temp"];
 $sg = $_POST["sg"];
 $units = $_POST["units"];
 ?>
+<?php if (($action == "default") || ($action == "entry")) { ?>
+<script type="text/javascript" language="JavaScript">
+<!-- Copyright 2003 Bontrager Connection, LLC
+// Code obtained from http://WillMaster.com/
+function CheckRequiredFields() {
+var errormessage = new String();
+// Put field checks below this point.
+if(WithoutContent(document.form1.sg.value))
+	{ errormessage += "\nSpecific Gravity."; }
+if(WithoutContent(document.form1.temp.value))
+	{ errormessage += "\nSample Temperature."; }
+if(WithoutContent(document.form1.calTemp.value))
+	{ errormessage += "\nCalibration Temperature."; }
+// Put field checks above this point.
+if(errormessage.length > 2) {
+	alert('To calculate properly, the following information is needed:\n' + errormessage);
+	return false;
+	}
+return true;
+} // end of function CheckRequiredFields()
 
-<form name="form1" method="post" action="?page=<?php echo $page; ?>&section=<?php echo $section; ?>&action=<?php if (($action == "default") || ($action == "entry")) echo "calculate"; if ($action == "calculate") echo "entry"; ?>">
+function WithoutContent(ss) {
+if(ss.length > 0) { return false; }
+return true;
+}
+
+function NoneWithContent(ss) {
+for(var i = 0; i < ss.length; i++) {
+	if(ss[i].value.length > 0) { return false; }
+	}
+return true;
+}
+
+function NoneWithCheck(ss) {
+for(var i = 0; i < ss.length; i++) {
+	if(ss[i].checked) { return false; }
+	}
+return true;
+}
+
+function WithoutCheck(ss) {
+if(ss.checked) { return false; }
+return true;
+}
+
+function WithoutSelectionValue(ss) {
+for(var i = 0; i < ss.length; i++) {
+	if(ss[i].selected) {
+		if(ss[i].value.length) { return false; }
+		}
+	}
+return true;
+}
+
+//-->
+</script>
+<?php } ?>
+<form name="form1" <?php if (($action == "default") || ($action == "entry")) echo "onSubmit=\"return CheckRequiredFields()\""; ?> method="post" action="?page=<?php echo $page; ?>&section=<?php echo $section; ?>&action=<?php if (($action == "default") || ($action == "entry")) echo "calculate"; if ($action == "calculate") echo "entry"; ?>">
 <div id="wideWrapper<?php if ($page == "tools") echo "Reference"; else echo "Calc"; ?>">
 <div id="referenceHeader">Hydrometer Correction Calculator</div>
 <?php if (($action == "default") || ($action == "entry")) { ?>
@@ -26,7 +82,7 @@ $units = $_POST["units"];
   <td colspan="2" class="data"><input name="sg" type="text" id="sg" size="5" value="<?php if ($action == "entry") echo $sg; ?>"></td>
   </tr>
 <tr>
-  <td class="dataLabelLeft">Temperature:</td>
+  <td class="dataLabelLeft">Temperature of Sample:</td>
   <td class="data" width="5%" nowrap="nowrap"><input name="temp" type="text" id="temp" size="5" value="<?php if ($action == "entry") echo $temp; ?>">&deg;</td>
   <td class="data"><select name="units2" id="units2">
     <option value="f" <?php if ($action == "default") echo "SELECTED"; if (($action == "entry") && ($units == "f")) echo "SELECTED"; ?>>Fahrenheit&nbsp;</option>
