@@ -47,7 +47,7 @@ $totalRows_news = mysql_num_rows($news);
 // Current BrewBlog */
 if ($page == "brewBlogCurrent") {
 mysql_select_db($database_brewing, $brewing);
-$query_log = "SELECT * FROM brewing ORDER BY brewDate DESC";
+$query_log = "SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' OR brewArchive='No' ORDER BY brewDate DESC";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
