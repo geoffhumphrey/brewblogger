@@ -2,143 +2,93 @@
 if ($amt != 0) $scale = $amt/$row_log['brewYield'];
 mysql_select_db($database_brewing, $brewing);
 
-$query_hops1 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops1']);
-$hops1 = mysql_query($query_hops1, $brewing) or die(mysql_error());
-$row_hops1 = mysql_fetch_assoc($hops1);
-$totalRows_hops1 = mysql_num_rows($hops1);
+for($i = 1; $i <= 9; ++$i) {
+    $query_hops = 'query_hops'.$i;
+    $hops = 'hops'.$i;
+    $row_hops = 'row_hops'.$i;
+    $totalRows_hops = 'totalRows_hops'.$i;
+    $$query_hops = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops'.$i]);
+    $$hops = mysql_query($$query_hops, $brewing) or die(mysql_error());
+    $$row_hops = mysql_fetch_assoc($$hops);
+    $$totalRows_hops = mysql_num_rows($$hops);
+}
 
-$query_hops2 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops2']);
-$hops2 = mysql_query($query_hops2, $brewing) or die(mysql_error());
-$row_hops2 = mysql_fetch_assoc($hops2);
-$totalRows_hops2 = mysql_num_rows($hops2);
-
-$query_hops3 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops3']);
-$hops3 = mysql_query($query_hops3, $brewing) or die(mysql_error());
-$row_hops3 = mysql_fetch_assoc($hops3);
-$totalRows_hops3 = mysql_num_rows($hops3);
-
-$query_hops4 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops4']);
-$hops4 = mysql_query($query_hops4, $brewing) or die(mysql_error());
-$row_hops4 = mysql_fetch_assoc($hops4);
-$totalRows_hops4 = mysql_num_rows($hops4);
-
-$query_hops5 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops5']);
-$hops5 = mysql_query($query_hops5, $brewing) or die(mysql_error());
-$row_hops5 = mysql_fetch_assoc($hops5);
-$totalRows_hops5 = mysql_num_rows($hops5);
-
-$query_hops6 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops6']);
-$hops6 = mysql_query($query_hops6, $brewing) or die(mysql_error());
-$row_hops6 = mysql_fetch_assoc($hops6);
-$totalRows_hops6 = mysql_num_rows($hops6);
-
-$query_hops7 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops7']);
-$hops7 = mysql_query($query_hops7, $brewing) or die(mysql_error());
-$row_hops7 = mysql_fetch_assoc($hops7);
-$totalRows_hops7 = mysql_num_rows($hops7);
-
-$query_hops8 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops8']);
-$hops8 = mysql_query($query_hops8, $brewing) or die(mysql_error());
-$row_hops8 = mysql_fetch_assoc($hops8);
-$totalRows_hops8 = mysql_num_rows($hops8);
-
-$query_hops9 = sprintf("SELECT * FROM hops WHERE hopsName='%s'", $row_log['brewHops9']);
-$hops9 = mysql_query($query_hops9, $brewing) or die(mysql_error());
-$row_hops9 = mysql_fetch_assoc($hops9);
-$totalRows_hops9 = mysql_num_rows($hops9);
-
-//Grain DB connect
-$query_malt1 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain1']);
-$malt1 = mysql_query($query_malt1, $brewing) or die(mysql_error());
-$row_malt1 = mysql_fetch_assoc($malt1);
-$totalRows_malt1 = mysql_num_rows($malt1);
-
-$query_malt2 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain2']);
-$malt2 = mysql_query($query_malt2, $brewing) or die(mysql_error());
-$row_malt2 = mysql_fetch_assoc($malt2);
-$totalRows_malt2 = mysql_num_rows($malt2);
-
-$query_malt3 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain3']);
-$malt3 = mysql_query($query_malt3, $brewing) or die(mysql_error());
-$row_malt3 = mysql_fetch_assoc($malt3);
-$totalRows_malt3 = mysql_num_rows($malt3);
-
-$query_malt4 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain4']);
-$malt4 = mysql_query($query_malt4, $brewing) or die(mysql_error());
-$row_malt4 = mysql_fetch_assoc($malt4);
-$totalRows_malt4 = mysql_num_rows($malt4);
-
-$query_malt5 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain5']);
-$malt5 = mysql_query($query_malt5, $brewing) or die(mysql_error());
-$row_malt5 = mysql_fetch_assoc($malt5);
-$totalRows_malt5 = mysql_num_rows($malt5);
-
-$query_malt6 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain6']);
-$malt6 = mysql_query($query_malt6, $brewing) or die(mysql_error());
-$row_malt6 = mysql_fetch_assoc($malt6);
-$totalRows_malt6 = mysql_num_rows($malt6);
-
-$query_malt7 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain7']);
-$malt7 = mysql_query($query_malt7, $brewing) or die(mysql_error());
-$row_malt7 = mysql_fetch_assoc($malt7);
-$totalRows_malt7 = mysql_num_rows($malt7);
-
-$query_malt8 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain8']);
-$malt8 = mysql_query($query_malt8, $brewing) or die(mysql_error());
-$row_malt8 = mysql_fetch_assoc($malt8);
-$totalRows_malt8 = mysql_num_rows($malt8);
-
-$query_malt9 = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain9']);
-$malt9 = mysql_query($query_malt9, $brewing) or die(mysql_error());
-$row_malt9 = mysql_fetch_assoc($malt9);
-$totalRows_malt9 = mysql_num_rows($malt9);
+for($i = 1; $i <= 9; ++$i) {
+    $query_malt = 'query_malt'.$i;
+    $malt = 'malt'.$i;
+    $row_malt = 'row_malt'.$i;
+    $totalRows_malt = 'totalRows_malt'.$i;
+    $$query_malt = sprintf("SELECT * FROM malt WHERE maltName='%s'", $row_log['brewGrain'.$i]);
+    $$malt = mysql_query($$query_malt, $brewing) or die(mysql_error());
+    $$row_malt = mysql_fetch_assoc($$malt);
+    $$totalRows_malt = mysql_num_rows($$malt);
+}
 
 //Grist percentage calculations
-$totalExtract = ($row_log['brewExtract1Weight'] + $row_log['brewExtract2Weight'] + $row_log['brewExtract3Weight']  + $row_log['brewExtract4Weight'] + $row_log['brewExtract5Weight']);
-$totalGrain = ($row_log['brewGrain1Weight'] + $row_log['brewGrain2Weight'] + $row_log['brewGrain3Weight'] + $row_log['brewGrain4Weight'] + $row_log['brewGrain5Weight'] + $row_log['brewGrain6Weight'] + $row_log['brewGrain7Weight'] + $row_log['brewGrain8Weight'] + $row_log['brewGrain9Weight']);
+$totalExtract = (
+    $row_log['brewExtract1Weight'] + 
+    $row_log['brewExtract2Weight'] + 
+    $row_log['brewExtract3Weight'] + 
+    $row_log['brewExtract4Weight'] + 
+    $row_log['brewExtract5Weight']
+);
+
+$totalGrain = (
+    $row_log['brewGrain1Weight'] + 
+    $row_log['brewGrain2Weight'] + 
+    $row_log['brewGrain3Weight'] + 
+    $row_log['brewGrain4Weight'] + 
+    $row_log['brewGrain5Weight'] + 
+    $row_log['brewGrain6Weight'] + 
+    $row_log['brewGrain7Weight'] + 
+    $row_log['brewGrain8Weight'] + 
+    $row_log['brewGrain9Weight']
+);
+
 $totalGrist = ($totalExtract + $totalGrain);
-if (($row_log['brewExtract1Weight'] != "0") && ($row_log['brewExtract1Weight'] != "")) { $extract1Per = (($row_log['brewExtract1Weight']/$totalGrist) * 100); }
-if (($row_log['brewExtract2Weight'] != "0") && ($row_log['brewExtract2Weight'] != "")) { $extract2Per = (($row_log['brewExtract2Weight']/$totalGrist) * 100); }
-if (($row_log['brewExtract3Weight'] != "0") && ($row_log['brewExtract3Weight'] != "")) { $extract3Per = (($row_log['brewExtract3Weight']/$totalGrist) * 100); }
-if (($row_log['brewExtract4Weight'] != "0") && ($row_log['brewExtract4Weight'] != "")) { $extract4Per = (($row_log['brewExtract4Weight']/$totalGrist) * 100); }
-if (($row_log['brewExtract5Weight'] != "0") && ($row_log['brewExtract5Weight'] != "")) { $extract5Per = (($row_log['brewExtract5Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain1Weight'] != "0") && ($row_log['brewGrain1Weight'] != "")) { $grain1Per = (($row_log['brewGrain1Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain1Weight'] != "0") && ($row_log['brewGrain2Weight'] != "")) { $grain2Per = (($row_log['brewGrain2Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain3Weight'] != "0") && ($row_log['brewGrain3Weight'] != "")) { $grain3Per = (($row_log['brewGrain3Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain4Weight'] != "0") && ($row_log['brewGrain4Weight'] != "")) { $grain4Per = (($row_log['brewGrain4Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain5Weight'] != "0") && ($row_log['brewGrain5Weight'] != "")) { $grain5Per = (($row_log['brewGrain5Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain6Weight'] != "0") && ($row_log['brewGrain6Weight'] != "")) { $grain6Per = (($row_log['brewGrain6Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain7Weight'] != "0") && ($row_log['brewGrain7Weight'] != "")) { $grain7Per = (($row_log['brewGrain7Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain8Weight'] != "0") && ($row_log['brewGrain8Weight'] != "")) { $grain8Per = (($row_log['brewGrain8Weight']/$totalGrist) * 100); }
-if (($row_log['brewGrain9Weight'] != "0") && ($row_log['brewGrain9Weight'] != "")) { $grain9Per = (($row_log['brewGrain9Weight']/$totalGrist) * 100); }
+
+for($i = 1; $i <= 5; ++$i) {
+    $extractPer = 'extract'.$i.'Per';
+    if (($row_log['brewExtract'.$i.'Weight'] != "0") && ($row_log['brewExtract'.$i.'Weight'] != "")) { 
+        $$extractPer = (($row_log['brewExtract'.$i.'Weight']/$totalGrist) * 100); 
+    }
+}
+
+for($i = 1; $i <= 9; ++$i) {
+    $grainPer = 'grain'.$i.'Per';
+    if (($row_log['brewGrain'.$i.'Weight'] != "0") && ($row_log['brewGrain'.$i.'Weight'] != "")) { 
+        $$grainPer = (($row_log['brewGrain'.$i.'Weight']/$totalGrist) * 100); 
+    }
+}
+
 if (($totalExtract !=0) && ($totalGrist !=0)) { $totalExtractPer = (($totalExtract/$totalGrist) * 100); }
+
 if (($totalGrain !=0) && ($totalGrist !=0)) { $totalGrainPer = (($totalGrain/$totalGrist) * 100); }
 
 //Hop percentage calculations
-$totalHops = ($row_log['brewHops1Weight'] + $row_log['brewHops2Weight'] + $row_log['brewHops3Weight'] + $row_log['brewHops4Weight'] + $row_log['brewHops5Weight'] + $row_log['brewHops6Weight'] + $row_log['brewHops7Weight'] + $row_log['brewHops8Weight'] + $row_log['brewHops9Weight']);
-if ($row_pref['measWeight1'] == "ounces") {
-$hop1Per = ($row_log['brewHops1Weight'] * $row_log['brewHops1IBU']);
-$hop2Per = ($row_log['brewHops2Weight'] * $row_log['brewHops2IBU']);
-$hop3Per = ($row_log['brewHops3Weight'] * $row_log['brewHops3IBU']);
-$hop4Per = ($row_log['brewHops4Weight'] * $row_log['brewHops4IBU']);
-$hop5Per = ($row_log['brewHops5Weight'] * $row_log['brewHops5IBU']);
-$hop6Per = ($row_log['brewHops6Weight'] * $row_log['brewHops6IBU']);
-$hop7Per = ($row_log['brewHops7Weight'] * $row_log['brewHops7IBU']);
-$hop8Per = ($row_log['brewHops8Weight'] * $row_log['brewHops8IBU']);
-$hop9Per = ($row_log['brewHops9Weight'] * $row_log['brewHops9IBU']);
-};
+$totalHops = (
+    $row_log['brewHops1Weight'] + 
+    $row_log['brewHops2Weight'] + 
+    $row_log['brewHops3Weight'] + 
+    $row_log['brewHops4Weight'] + 
+    $row_log['brewHops5Weight'] + 
+    $row_log['brewHops6Weight'] + 
+    $row_log['brewHops7Weight'] + 
+    $row_log['brewHops8Weight'] + 
+    $row_log['brewHops9Weight']
+);
+
+$weightMultiplier = 1;
 if ($row_pref['measWeight1'] == "grams") {
-$hop1Per = (($row_log['brewHops1Weight'] * 0.035) * $row_log['brewHops1IBU']);
-$hop2Per = (($row_log['brewHops2Weight'] * 0.035) * $row_log['brewHops2IBU']);
-$hop3Per = (($row_log['brewHops3Weight'] * 0.035) * $row_log['brewHops3IBU']);
-$hop4Per = (($row_log['brewHops4Weight'] * 0.035) * $row_log['brewHops4IBU']);
-$hop5Per = (($row_log['brewHops5Weight'] * 0.035) * $row_log['brewHops5IBU']);
-$hop6Per = (($row_log['brewHops6Weight'] * 0.035) * $row_log['brewHops6IBU']);
-$hop7Per = (($row_log['brewHops7Weight'] * 0.035) * $row_log['brewHops7IBU']);
-$hop8Per = (($row_log['brewHops8Weight'] * 0.035) * $row_log['brewHops8IBU']);
-$hop9Per = (($row_log['brewHops9Weight'] * 0.035) * $row_log['brewHops9IBU']);
+    $weightMultipler = 0.035;
 };
-$totalAAU = ($hop1Per + $hop2Per + $hop3Per + $hop4Per + $hop5Per + $hop6Per + $hop7Per + $hop8Per + $hop9Per);
+
+for($i = 1; $i <= 9; ++$i) {
+    $hopPer = 'hop'.$i.'Per';
+    $$hopPer = (($row_log['brewHops'.$i.'Weight'] * $weightMultiplier) * $row_log['brewHops'.$i.'IBU']);
+}
+
+$totalAAU = array_sum(array($hop1Per,$hop2Per,$hop3Per,$hop4Per,$hop5Per,$hop6Per,$hop7Per,$hop8Per,$hop9Per));
 ?>
 
 <div id="headerContent"><a name="recipe" id="recipe"></a>Recipe</div>
@@ -166,38 +116,14 @@ $totalAAU = ($hop1Per + $hop2Per + $hop3Per + $hop4Per + $hop5Per + $hop6Per + $
  <tr>
   <td colspan="3" class="dataHeadingLeft">Extracts</td>
  </tr>
- <tr>
-  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract1Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract1Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php echo $row_log['brewExtract1']; ?></td>
-  <td class="data"><?php if ($row_log['brewExtract1Weight'] != "") echo round ($extract1Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
- </tr>
- <?php if ($row_log['brewExtract2'] != "" ) {  ?>
- <tr>
-  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract2Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract2Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php echo $row_log['brewExtract2']; ?></td>
-  <td class="data"><?php if ($row_log['brewExtract2Weight'] != "") echo round ($extract2Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
- </tr>
- <?php }  ?>
- <?php if ($row_log['brewExtract3'] != "" ) {  ?>
- <tr>
-  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract3Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract3Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php echo $row_log['brewExtract3']; ?></td>
-  <td class="data"><?php if ($row_log['brewExtract3Weight'] != "") echo round ($extract3Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
- </tr>
- <?php }  ?>
- <?php if ($row_log['brewExtract4'] != "" ) {  ?>
- <tr>
-  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract4Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract4Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php echo $row_log['brewExtract4']; ?></td>
-  <td class="data"><?php if ($row_log['brewExtract4Weight'] != "") echo round ($extract4Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
- </tr>
- <?php }  ?>
+ <?php for($i = 1; $i <= 5; ++$i) { ?>
  <?php if ($row_log['brewExtract5'] != "" ) {  ?>
  <tr>
   <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract5Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract5Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
   <td class="data"><?php echo $row_log['brewExtract5']; ?></td>
   <td class="data"><?php if ($row_log['brewExtract5Weight'] != "") echo round ($extract5Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
  </tr>
+ <?php }  ?>
  <?php }  ?>
  <tr bgcolor="<?php if (($page == "recipePrint") || ($page == "logPrint")) echo "#dddddd"; elseif (checkmobile()) echo "#dddddd"; else echo $color1; ?>">
   <td class="dataLeft bdr1T_light_dashed"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format ($totalExtract, 2); if ($action == "scale") echo number_format (($totalExtract * $scale), 2); echo"&nbsp;".$row_pref['measWeight2']; ?></td>
