@@ -16,14 +16,14 @@
 <tr>
 	<td class="dataLabelLeft">Featured?</td>
     <td class="data" colspan="3">
-        <input type="radio" name="brewFeatured" value="Y" id="brewFeatured_0" <?php if (($action == "edit") && ($row_log['brewFeatured'] == "Y")) echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewFeatured" value="No" id="brewFeatured_1"  <?php if (($action == "add") || ($action == "importCalc") || ($action == "reuse") || ($action == "importRecipe") || ($action == "import") || (($action == "edit") && (($row_log['brewFeatured'] == "N") || ($row_log['brewFeatured'] == "")))) echo "checked"; ?> />No<br />
+        <input type="radio" name="brewFeatured" value="Y" id="brewFeatured_0" <?php if (($action == "edit") && ($row_log['brewFeatured'] == "Y")) echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewFeatured" value="N" id="brewFeatured_1"  <?php if (($action == "add") || ($action == "importCalc") || ($action == "reuse") || ($action == "importRecipe") || ($action == "import") || (($action == "edit") && (($row_log['brewFeatured'] == "N") || ($row_log['brewFeatured'] == "")))) echo "checked"; ?> />No<br />
         <em>Selecting "Yes" will place this <?php echo $msgName; ?> into the "Featured" list at the top of the <?php echo $dbName; ?> list display. </em>    </td>
 </tr>
 <?php } ?>
 <tr>
 	<td class="dataLabelLeft">Archive?</td>
     <td class="data" colspan="3">
-        <input type="radio" name="brewArchive" value="Y" id="brewArchive_0" <?php if (($action == "edit") && ($row_log['brewArchive'] == "Y")) echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewArchive" value="No" id="brewArchive_1"  <?php if (($action == "add") || ($action == "importCalc") || ($action == "reuse") || ($action == "importRecipe") || ($action == "import") || (($action == "edit") && (($row_log['brewArchive'] == "N") || ($row_log['brewArchive'] == "")))) echo "checked"; ?> />No
+        <input type="radio" name="brewArchive" value="Y" id="brewArchive_0" <?php if (($action == "edit") && ($row_log['brewArchive'] == "Y")) echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewArchive" value="N" id="brewArchive_1"  <?php if (($action == "add") || ($action == "importCalc") || ($action == "reuse") || ($action == "importRecipe") || ($action == "import") || (($action == "edit") && (($row_log['brewArchive'] == "N") || ($row_log['brewArchive'] == "")))) echo "checked"; ?> />No
     	&nbsp;<br />
     	<em>Selecting "Yes" will place this <?php echo $msgName; ?> into your archive list. It will not be displayed on the "public" areas of the site.</em>
     </td>
