@@ -1,14 +1,40 @@
 <?php 
+
+//image dir / SQL information and connect to MySQL server
 require_once ('Connections/config.php'); 
+
+//choose SQL table and set up functions to user authentication and
+//navbar configuration for login/logout links
 require ('includes/authentication_nav.inc.php');  session_start();
+
+//override various default settings with GET parameters, if they exist
 include ('includes/url_variables.inc.php');
+
+//set up brewers, recipes, brewlogs, themes, etc.
 include ('includes/db_connect_universal.inc.php');
+
+//i have no idea... needs more looking through
 include ('includes/db_connect_log.inc.php');
+
+//include function to check for mobile browsers
 include ('includes/check_mobile.inc.php');
+
+//do various abv calculations related to the currently viewed recipe (if any)
 include ('includes/abv.inc.php');
+
+//include various conversions functions, date functions and truncate functions
+//plus additional libs for 
+//    titles.inc.php - set up the navigation?
+//    messages.inc.php - tooltips and a few messages
+//    scrubber.inc.php - a few arrays for character replacement
 include ('includes/plug-ins.inc.php');
+
+//figure out SRM and a hex value for displaying beer color
 include ('includes/color.inc.php');
+
+//determine if club edition or personal edition is in use
 include ('includes/version.inc.php'); 
+
 $imageSrc = "images/";
 
 // -----------------------------------------------------------------------------------------------
