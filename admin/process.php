@@ -1106,7 +1106,8 @@ brewYeastProfile,
  
 brewFeatured, 
 brewBrewerID, 
-brewArchive)
+brewArchive,
+brewBoilTime)
 
 
 VALUES (
@@ -1126,7 +1127,7 @@ VALUES (
 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-%s, %s, %s, %s
+%s, %s, %s, %s, %s
 )",
 
 //164 rows
@@ -1293,7 +1294,8 @@ VALUES (
 					   GetSQLValueString($_POST['brewYeastProfile'], "text"),
 					   GetSQLValueString($_POST['brewFeatured'], "text"),
 					   GetSQLValueString($_POST['brewBrewerID'], "text"),
-					   GetSQLValueString($_POST['brewArchive'], "text")
+					   GetSQLValueString($_POST['brewArchive'], "text"),
+					   GetSQLValueString($_POST['brewBoilTime'], "text")
 					   );
 
   mysql_select_db($database_brewing, $brewing);
@@ -1489,7 +1491,8 @@ brewYeastProfile=%s,
  
 brewFeatured=%s, 
 brewBrewerID=%s, 
-brewArchive=%s
+brewArchive=%s,
+brewBoilTime=%s
 
 WHERE id='%s'",
 
@@ -1658,6 +1661,7 @@ WHERE id='%s'",
 					   GetSQLValueString($_POST['brewFeatured'], "text"),
 					   GetSQLValueString($_POST['brewBrewerID'], "text"),
 					   GetSQLValueString($_POST['brewArchive'], "text"),
+					   GetSQLValueString($_POST['brewBoilTime'], "text"),
                        GetSQLValueString($id, "int"));
 
   mysql_select_db($database_brewing, $brewing);
