@@ -60,6 +60,7 @@ $query_log = sprintf("SELECT * FROM brewing ORDER BY %s %s", $sort, $dir);
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
+if ($style != "all") $view == "all";
 }
 
 if (($row_pref['mode'] == "2") && ($filter != "all")) {
@@ -78,7 +79,6 @@ $query_log = sprintf("SELECT * FROM brewing WHERE id = '%s'", $id);
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
-
 }
 
 
@@ -91,27 +91,35 @@ elseif ($view == "all") $display = 9999999;
 $pg = (isset($_REQUEST['pg']) && ctype_digit($_REQUEST['pg'])) ?  $_REQUEST['pg'] : 1;
 $start = $display * $pg - $display;
 
-if ($row_pref['mode'] == "1") {
+if (($row_pref['mode'] == "1") || (($row_pref['mode'] == "2") && ($filter == "all"))) {
 mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM brewing");
+//$result = mysql_query("SELECT count(*) FROM brewing");
+$query_result = "SELECT count(*) FROM brewing";
+if ($style != "all") $query_result .= " WHERE brewStyle='$style'";
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-$log = mysql_query("SELECT * FROM brewing ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-}
+//$log = mysql_query("SELECT * FROM brewing ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
 
-if (($row_pref['mode'] == "2") && ($filter == "all")) {
-mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM brewing");
-$total = mysql_result($result, 0);
-$log = mysql_query("SELECT * FROM brewing ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+$query_log = "SELECT * FROM brewing";
+if ($style != "all") $query_log .= " WHERE brewStyle='$style'";
+$query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
+$log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 }
 
 if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM brewing WHERE brewBrewerID = '".$filter."'");
+//$result = mysql_query("SELECT count(*) FROM brewing WHERE brewBrewerID = '".$filter."'");
+$query_result = "SELECT count(*) FROM brewing WHERE brewBrewerID='$filter'";
+if ($style != "all") $query_result .= " WHERE brewStyle='$style'";
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-$log = mysql_query("SELECT * FROM brewing WHERE brewBrewerID = '".$filter."' ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+
+//$log = mysql_query("SELECT * FROM brewing WHERE brewBrewerID = '".$filter."' ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+$query_log = "SELECT * FROM brewing WHERE brewBrewerID='$filter'";
+if ($style != "all") $query_log .= " WHERE brewStyle='$style'";
+$query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
+$log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 }
 
@@ -173,7 +181,7 @@ if ($row_pref['mode'] == "1") {
 mysql_select_db($database_brewing, $brewing);
 $result = mysql_query("SELECT count(*) FROM brewing");
 $total = mysql_result($result, 0);
-$list = mysql_query("SELECT * FROM brewing ORDER BY brewDate DESC LIMIT $start, $display");
+$list = mysql_query("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' ORDER BY brewDate DESC LIMIT $start, $display");
 $row_list = mysql_fetch_assoc($list);
 }
 
@@ -181,7 +189,7 @@ if (($row_pref['mode'] == "2") && ($filter == "all")) {
 mysql_select_db($database_brewing, $brewing);
 $result = mysql_query("SELECT count(*) FROM brewing");
 $total = mysql_result($result, 0);
-$list = mysql_query("SELECT * FROM brewing ORDER BY brewDate DESC LIMIT $start, $display");
+$list = mysql_query("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' ORDER BY brewDate DESC LIMIT $start, $display");
 $row_list = mysql_fetch_assoc($list);
 }
 
@@ -287,19 +295,31 @@ $pg = (isset($_REQUEST['pg']) && ctype_digit($_REQUEST['pg'])) ?  $_REQUEST['pg'
 $start = $display * $pg - $display;
 
 if ($row_pref['mode'] == "1") {
+
 mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM recipes");
+$query_result = "SELECT count(*) FROM recipes";
+if ($style != "all") $query_result .= " WHERE brewStyle='$style'";
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-$recipeList = mysql_query("SELECT * FROM recipes ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+//$recipeList = mysql_query("SELECT * FROM recipes ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+$query_recipeList = "SELECT * FROM recipes";
+if ($style != "all") $query_recipeList.= " WHERE brewStyle='$style'";
+$query_recipeList .= " ORDER BY $sort $dir LIMIT $start, $display";
+$recipeList = mysql_query($query_recipeList, $brewing) or die(mysql_error());
 $row_recipeList = mysql_fetch_assoc($recipeList);
 }
 
 
 if (($row_pref['mode'] == "2") && ($filter == "all")) {
 mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM recipes");
+$query_result = "SELECT count(*) FROM recipes";
+if ($style != "all") $query_result .= " WHERE brewStyle='$style'";
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-$recipeList = mysql_query("SELECT * FROM recipes ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+$query_recipeList = "SELECT * FROM recipes";
+if ($style != "all") $query_recipeList.= " WHERE brewStyle='$style'";
+$query_recipeList .= " ORDER BY $sort $dir LIMIT $start, $display";
+$recipeList = mysql_query($query_recipeList, $brewing) or die(mysql_error());
 $row_recipeList = mysql_fetch_assoc($recipeList);
 }
 
@@ -581,12 +601,12 @@ $totalRows_members = mysql_num_rows($members);
 // Status - single user
 if ($row_pref['mode'] == "1") { 
 mysql_select_db($database_brewing, $brewing);
-$countStatus = "SELECT * FROM brewing WHERE brewStatus NOT LIKE '' ORDER BY brewStatus,brewName ASC";
+$countStatus = "SELECT * FROM brewing WHERE brewStatus NOT LIKE '' AND brewArchive NOT LIKE 'Y' ORDER BY brewStatus,brewName ASC";
 $query_count = mysql_query($countStatus, $brewing) or die(mysql_error());
 $total_status = mysql_num_rows($query_count);
 
 mysql_select_db($database_brewing, $brewing);
-$query_status = "SELECT * FROM brewing WHERE brewStatus NOT LIKE '' ORDER BY brewStatus,brewName ASC";
+$query_status = "SELECT * FROM brewing WHERE brewStatus NOT LIKE '' AND brewArchive NOT LIKE 'Y' ORDER BY brewStatus,brewName ASC";
 if ($total_status > 25) $query_status .= " LIMIT 25";
 $status = mysql_query($query_status, $brewing) or die(mysql_error());
 $row_status = mysql_fetch_assoc($status);
@@ -597,12 +617,12 @@ $totalRows_status = mysql_num_rows($status);
 // Status - multi-user
 if ($row_pref['mode'] == "2") { 
 mysql_select_db($database_brewing, $brewing);
-$countStatus = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "");
+$countStatus = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' AND brewArchive NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "", "Y");
 $query_count = mysql_query($countStatus, $brewing) or die(mysql_error());
 $total_status = mysql_num_rows($query_count);
 
 mysql_select_db($database_brewing, $brewing);
-if ($page == "profile") $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "");
+if ($page == "profile") $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' AND brewArchive NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "", "Y");
 else $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' ORDER BY brewStatus,brewName,brewDate DESC", $row_log['brewBrewerID'], "");
 if ($total_status > 25) $query_status .= " LIMIT 25";
 $status = mysql_query($query_status, $brewing) or die(mysql_error());

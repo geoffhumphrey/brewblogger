@@ -19,6 +19,11 @@ if (isset($_GET['filter'])) {
   	$filter = (get_magic_quotes_gpc()) ? $_GET['filter'] : addslashes($_GET['filter']);
 }
 
+$style = "all";
+if (isset($_GET['style'])) {
+  	$style = (get_magic_quotes_gpc()) ? $_GET['style'] : addslashes($_GET['style']);
+}
+
 $section = "default";
 if (isset($_GET['section'])) {
   	$section = (get_magic_quotes_gpc()) ? $_GET['section'] : addslashes($_GET['section']);
