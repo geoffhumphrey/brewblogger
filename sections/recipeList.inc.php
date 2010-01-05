@@ -1,9 +1,10 @@
 <?php 
-		mysql_select_db($database_brewing, $brewing);
+		/* mysql_select_db($database_brewing, $brewing);
 		$query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_recipeList['brewStyle']);
 		$styles = mysql_query($query_styles, $brewing) or die(mysql_error());
 		$row_styles = mysql_fetch_assoc($styles);
 		$totalRows_styles = mysql_num_rows($styles);
+		*/
 		?>
 		<div id="contentWide">
        <?php 
@@ -12,7 +13,7 @@
 		{ ?>
 		<table class="dataTable">
             <tr>
-			<td class="dataHeadingList">There are currently no recipes in the database <?php if ($filter != "all") echo "for this member"; ?>.<br><br></td>
+            	<td class="dataHeadingList">There are currently no recipes in the database <?php if ($filter != "all") echo "for this member"; ?>.<br><br></td>
 			</tr>
 		</table>
 		</div>
@@ -21,8 +22,11 @@
 		<?php if ($totalRows_featured > 0) { if (($row_pref['mode'] == "1") ||  (($row_pref['mode'] == "2") && ($filter == "all"))) { ?><div id="headerContentAdmin">All <?php echo $dbName; ?></div><?php } } ?>
 		<table class="dataTable">
         	<tr>
-			  <td colspan="9"><div id="paginate"><?php echo $total." ".$row_pref['menuRecipes']." Total"; if ($total > $display) echo "&nbsp;&nbsp;&nbsp;&#8226"; if ($view == "all") echo "&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;"; if ($total > $display) { echo "&nbsp;&nbsp;&nbsp;"; paginate($display, $pg, $total);  if ($view == "limited") { ?>&nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&view=all">Entire List of <?php if (($row_pref['mode'] == "2") && ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } } if  ($view == "all") { ?><a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&view=limited">Limited List of <?php if (($row_pref['mode'] == "2")&& ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } ?></div></td>
-			</tr>
+            <?php if ($style != "all") { ?>
+              <td><div id="breadcrumb">Filter: <?php echo $row_recipeList['brewStyle'];?> | <a href="<?php echo "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."?page=".$page."&filter=".$filter."&style=all&sort=".$sort."&dir=".$dir."&view=".$view."&pg=".$pg; ?>">See all styles</a></div></td>
+            <?php } ?>
+			  <td><div id="paginate"><?php echo $total." ".$row_pref['menuRecipes']." Total"; if ($total > $display) echo "&nbsp;&nbsp;&nbsp;&#8226"; if ($view == "all") echo "&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;"; if ($total > $display) { echo "&nbsp;&nbsp;&nbsp;"; paginate($display, $pg, $total);  if ($view == "limited") { ?>&nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&style=<?php echo $style; ?>&view=all">Entire List of <?php if (($row_pref['mode'] == "2") && ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } } if  (($view == "all") && ($total < $display)) { ?><a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&style=<?php echo $style; ?>&view=limited">Limited List of <?php if (($row_pref['mode'] == "2")&& ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } ?></div></td>
+              </tr>
         </table>
         <table class="dataTable">
             <tr>
@@ -66,7 +70,7 @@
               <?php if (!checkmobile())  { ?><td class="dataList"><a href="#" onclick="window.open('includes/output_beer_xml.inc.php?id=<?php echo $row_recipeList['id']; ?>&source=<?php echo $source; ?>&brewStyle=<?php echo $row_recipeList['brewStyle']; ?>','','height=5,width=5, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a></td><?php } ?>
               <td class="dataList"><a href="index.php?page=<?php echo $destination; ?>&filter=<?php echo $row_recipeList['brewBrewerID']; ?>&id=<?php echo $row_recipeList['id']; ?>"><?php echo $row_recipeList['brewName']; ?></a></td>
               <td class="dataList">
-			  <div id="moreInfo"><?php if (($totalRows_styles > 0) && (!checkmobile())) { ?><a href="#"><?php } echo $row_recipeList['brewStyle']; if (($totalRows_styles > 0) && (!checkmobile()))  { ?>
+			  <div id="moreInfo"><?php if (($totalRows_styles > 0) && (!checkmobile())) { ?><a href="<?php if ($style == "all") echo "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."?page=".$page."&filter=".$filter."&style=".$row_recipeList['brewStyle']."&sort=".$sort."&dir=".$dir."&view=".$view."&pg=1"; else echo "#"; ?>" title="Filter by style: <?php echo $row_recipeList['brewStyle']; ?>"><?php } echo $row_recipeList['brewStyle']; if (($totalRows_styles > 0) && (!checkmobile()))  { ?>
 			  <span>
 			  <div id="wideWrapper">
 			  <?php include ('reference/styles.inc.php'); ?>

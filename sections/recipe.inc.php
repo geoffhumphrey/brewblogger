@@ -1282,8 +1282,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
 </div>
 <?php } ?>
 
-<?php if ((($row_log['brewYeast'] != "") && ($row_log['brewYeastProfile'] == "")) || (($row_log['brewYeast'] == "") && ($row_log['brewYeastProfile'] != ""))) { ?><div id="headerContent">Yeast</div><?php } ?>
-
+<?php if ((($row_log['brewYeast'] != "") && ($row_log['brewYeastProfile'] == "")) || (($row_log['brewYeast'] == "") && ($row_log['brewYeastProfile'] != ""))) { ?><div id="help"><a href="sections/reference.inc.php?section=yeast&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Yeast Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div><div id="headerContent">Yeast</div><?php } ?>
 <?php if ($row_log['brewYeast'] != "") { // hide Yeast section if none listed (6) ?>
 <div id="dataContainer">
 <table class="dataTable">

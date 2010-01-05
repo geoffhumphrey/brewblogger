@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Yeast</div>
+<div id="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=yeast&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Yeast Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div>Yeast</div>
 <table>
 <?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewYeastProfile'] == "")) { ?>
 <?php if ($row_log['brewYeast'] != "") { ?>
