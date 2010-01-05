@@ -111,13 +111,13 @@ if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
 //$result = mysql_query("SELECT count(*) FROM brewing WHERE brewBrewerID = '".$filter."'");
 $query_result = "SELECT count(*) FROM brewing WHERE brewBrewerID='$filter'";
-if ($style != "all") $query_result .= " WHERE brewStyle='$style'";
+if ($style != "all") $query_result .= " AND brewStyle='$style'";
 $result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
 
 //$log = mysql_query("SELECT * FROM brewing WHERE brewBrewerID = '".$filter."' ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
 $query_log = "SELECT * FROM brewing WHERE brewBrewerID='$filter'";
-if ($style != "all") $query_log .= " WHERE brewStyle='$style'";
+if ($style != "all") $query_log .= " AND brewStyle='$style'";
 $query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
@@ -325,9 +325,14 @@ $row_recipeList = mysql_fetch_assoc($recipeList);
 
 if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
-$result = mysql_query("SELECT count(*) FROM recipes WHERE brewBrewerID = '$filter'");
+$query_result = "SELECT count(*) FROM recipes WHERE brewBrewerID='$filter'";
+if ($style != "all") $query_result .= " AND brewStyle='$style'";
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-$recipeList = mysql_query("SELECT * FROM recipes WHERE brewBrewerID = '$filter' ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
+$query_recipeList = "SELECT * FROM recipes WHERE brewBrewerID='$filter'";
+if ($style != "all") $query_recipeList.= " AND brewStyle='$style'";
+$query_recipeList .= " ORDER BY $sort $dir LIMIT $start, $display";
+$recipeList = mysql_query($query_recipeList, $brewing) or die(mysql_error());
 $row_recipeList = mysql_fetch_assoc($recipeList);
 }
 
