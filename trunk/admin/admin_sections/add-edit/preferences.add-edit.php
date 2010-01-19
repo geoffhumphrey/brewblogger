@@ -130,7 +130,7 @@
 	  <input name="waterDisplayMethod" type="radio" class="radiobutton" value="1" <?php if (!(strcmp("1", $row_log['waterDisplayMethod']))) {echo "CHECKED";} ?>> Yes&nbsp;
         <input name="waterDisplayMethod" type="radio" class="radiobutton" value="2" <?php if (!(strcmp("2", $row_log['waterDisplayMethod']))) {echo "CHECKED";} ?>> No
 	  </td>
-      <td class="data">"Yes" indicates that you would like to use BrewBlogger's water profiles database. You can add your local water profile to the database and resue it or emulate other famous brewing locations' profiles for your brews.</td>
+      <td class="data">"Yes" indicates that you would like to use BrewBlogger's water profiles database. You can add your local water profile to the database and  it or emulate other famous brewing locations' profiles for your brews.</td>
 </tr>
 <tr>
       <td class="dataLabelLeft">Manage Mash Profiles with BrewBlogger?</td>
@@ -138,7 +138,7 @@
 	  <input name="mashDisplayMethod" type="radio" class="radiobutton" value="1" <?php if (!(strcmp("1", $row_log['mashDisplayMethod']))) {echo "CHECKED";} ?>> Yes&nbsp;
       <input name="mashDisplayMethod" type="radio" class="radiobutton" value="2" <?php if (!(strcmp("2", $row_log['mashDisplayMethod']))) {echo "CHECKED";} ?>> No
 	  </td>
-      <td class="data">"Yes" indicates that you would like to use BrewBlogger's mash profiles database. You can add your own mash profiles to the database and resue any one for a BrewBlog.</td>
+      <td class="data">"Yes" indicates that you would like to use BrewBlogger's mash profiles database. You can add your own mash profiles to the database and  any one for a BrewBlog.</td>
 </tr>
 </table>
 <div id="headerContentAdmin">Menu Link Text</div>
