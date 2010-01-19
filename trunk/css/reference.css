@@ -103,5 +103,6 @@ white-space: nowrap;
 .bknd_ultra_lt		{ background-color: #dedede; }
 .calcButton 		{ margin: 0; border: 0; }
 .bdr1T_dark			{ border-top: 1px solid #aaaaaa; }
+.bdr1B_dark			{ border-top: 1px solid #aaaaaa; }
 .dataTable			{ font-size: 11px; width: 50%; } 
 .dk					{ font-weight: bold; }

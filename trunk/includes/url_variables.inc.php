@@ -79,4 +79,14 @@ if (is_numeric($_GET['id'])) {
 	$colname_log = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
 }
 
+$sort = "brewDate";
+if (isset($_GET['sort'])) {
+  $sort = (get_magic_quotes_gpc()) ? $_GET['sort'] : addslashes($_GET['sort']);
+}
+
+$dir = "DESC";
+if (isset($_GET['dir'])) {
+  $dir = (get_magic_quotes_gpc()) ? $_GET['dir'] : addslashes($_GET['dir']);
+}
+
 ?>
