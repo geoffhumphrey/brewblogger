@@ -7,7 +7,7 @@ $toolTip_money = "Enter the appropriate monetary symbol as well as the amount.";
 $toolTip_gravity = "Enter the Specific Gravity in 1.XXX format (e.g., 1.056 or 1.103). If using Plato, use the Plato to SG calculator.";
 $toolTip_images = "Enter only the image's COMPLETE file name, including the extension (e.g., brew1_ale.jpg).";
 $toolTip_URL = "Enter the ENTIRE website address (e.g., http://www.yahoo.com).";
-$toolTip_name = "DO NOT use an apostrophy (') as it will cause functionality to degrade.";
+$toolTip_name = "DO NOT use an apostrophe (') as it will cause functionality to degrade.";
 $toolTip_filename = "Names entered here must be exactly the same as the actual file name.";
 
 // ---------------------------- Messages ------------------------------------------------

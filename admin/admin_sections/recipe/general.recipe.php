@@ -19,7 +19,7 @@
         <input type="radio" name="brewFeatured" value="Y" id="brewFeatured_0" <?php if (($action == "edit") && ($row_log['brewFeatured'] == "Y")) echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewFeatured" value="N" id="brewFeatured_1"  <?php if (($action == "add") || ($action == "importCalc") || ($action == "reuse") || ($action == "importRecipe") || ($action == "import") || (($action == "edit") && (($row_log['brewFeatured'] == "N") || ($row_log['brewFeatured'] == "")))) echo "checked"; ?> />No<br />
         <em>Selecting "Yes" will place this <?php echo $msgName; ?> into the "Featured" list at the top of the <?php echo $dbName; ?> list display. </em>    </td>
 </tr>
-<?php } ?>
+<?php } else { ?><input type="hidden" name="brewFeatured" value="<?php echo $row_log['brewFeatured']; ?>" /><?php } ?>
 <tr>
 	<td class="dataLabelLeft">Archive?</td>
     <td class="data" colspan="3">
@@ -47,7 +47,7 @@
    <option value="Extract"<?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultMethod'] == "Extract")) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_log['brewMethod'], "Extract"))) {echo "SELECTED";} } if (($action == "add") && ($row_pref['brewerPrefMethod'] == "Extract")) echo "SELECTED"; ?>>Extract</option>
    <option value="Partial Mash"<?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultMethod'] == "Partial Mash")) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_log['brewMethod'], "Partial Mash"))) {echo "SELECTED";} } if (($action == "add") && ($row_pref['brewerPrefMethod'] == "Partial Mash")) echo "SELECTED";?>>Partial Mash</option>
    <option value="All Grain"<?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultMethod'] == "All Grain")) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_log['brewMethod'], "All Grain"))) {echo "SELECTED";} } if (($action == "add") && ($row_pref['brewerPrefMethod'] == "All Grain")) echo "SELECTED"; ?>>All Grain</option>
-   <option value="Other"<?php if ((($action == "add") || ($action == "importCalc")) || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_log['brewMethod'], "Other"))) {echo "SELECTED";} } if (($action == "add") && ($row_pref['brewerPrefMethod'] == "Other")) echo "SELECTED"; ?>>Other</option>
+   <option value="Other"<?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultMethod'] == "Other")) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_log['brewMethod'], "Other"))) {echo "SELECTED";} } if (($action == "add") && ($row_pref['brewerPrefMethod'] == "Other")) echo "SELECTED"; ?>>Other</option>
    </select>
    </td>
    <td class="dataLabel"><?php if ($dbTable != "recipes") echo "Conditioning:"; else echo "&nbsp;"; ?></td>
