@@ -14,5 +14,6 @@ $toolTip_filename = "Names entered here must be exactly the same as the actual f
 $msg1 = "The ".$msgName." has been added!";
 $msg2 = "The ".$msgName." has been updated!";
 $msg3 = "The ".$msgName." has been deleted!";
+$msg9 = "The ".$msgName."s have been updated!";
 
 ?>

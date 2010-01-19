@@ -3005,4 +3005,27 @@ if (($action == "edit") && ($dbTable == "sugar_type")) {
   $updateGoTo = "index.php?action=list&dbTable=sugar_type&confirm=true&msg=2";
   header(sprintf("Location: %s", $updateGoTo));
 }
+
+// --------------------------- If updating records en masse ------------------------------- //
+
+if ($action == "massUpdate") {
+
+
+foreach($_POST['id'] as $id)
+
+	{ 
+	if ($_POST['brewArchive'.$id] == "Y") $brewArchive = "Y"; else $brewArchive = "N";
+	if ($_POST['brewFeatured'.$id] == "Y") $brewFeatured = "Y"; else $brewFeatured = "N";
+	$updateSQL = "UPDATE $dbTable SET brewArchive='".$brewArchive."', brewFeatured='".$brewFeatured."' WHERE id='".$id."';"; 
+	mysql_select_db($database_brewing, $brewing);
+	$result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());	
+	//echo $updateSQL;
+	}  
+
+if($result1){ 
+	header("location: index.php?action=list&dbTable=".$dbTable."&filter=".$filter."&sort=".$sort."&dir=".$dir."&confirm=true&msg=9");  
+	}
+
+}
+
 ?>
