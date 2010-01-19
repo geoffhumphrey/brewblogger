@@ -93,14 +93,11 @@ $start = $display * $pg - $display;
 
 if (($row_pref['mode'] == "1") || (($row_pref['mode'] == "2") && ($filter == "all"))) {
 mysql_select_db($database_brewing, $brewing);
-//$result = mysql_query("SELECT count(*) FROM brewing");
 $query_result = "SELECT count(*) FROM brewing";
 if ($style != "all") $query_result .= " WHERE brewStyle='$style' AND"; else $query_result .= " WHERE";
 $query_result .= " NOT brewArchive='Y'";
 $result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
-//echo $query_result;
-//$log = mysql_query("SELECT * FROM brewing ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
 
 $query_log = "SELECT * FROM brewing";
 if ($style != "all") $query_log .= " WHERE brewStyle='$style' AND"; else $query_log .= " WHERE";
@@ -108,22 +105,19 @@ $query_log .= " NOT brewArchive='Y'";
 $query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
-//echo $query_log;
 }
 
 if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
-//$result = mysql_query("SELECT count(*) FROM brewing WHERE brewBrewerID = '".$filter."'");
 $query_result = "SELECT count(*) FROM brewing WHERE brewBrewerID='$filter'";
 if ($style != "all") $query_result .= " AND brewStyle='$style'";
 $query_result .= " AND NOT brewArchive='Y'";
-//$result = mysql_query($query_result, $brewing) or die(mysql_error());
+$result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
 
-//$log = mysql_query("SELECT * FROM brewing WHERE brewBrewerID = '".$filter."' ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
 $query_log = "SELECT * FROM brewing WHERE brewBrewerID='$filter'";
 if ($style != "all") $query_log .= " AND brewStyle='$style'";
-$query_log = " AND NOT brewArchive='Y'";
+$query_log .= " AND NOT brewArchive='Y'";
 $query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
@@ -336,13 +330,14 @@ $row_recipeList = mysql_fetch_assoc($recipeList);
 if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
 $query_result = "SELECT count(*) FROM recipes WHERE brewBrewerID='$filter'";
-if ($style != "all") $query_result .= " AND brewStyle='$style' AND";
-$query_result .= " NOT brewArchive='Y'";
+if ($style != "all") $query_result .= " AND brewStyle='$style'";
+$query_result .= " AND NOT brewArchive='Y'";
 $result = mysql_query($query_result, $brewing) or die(mysql_error());
 $total = mysql_result($result, 0);
+
 $query_recipeList = "SELECT * FROM recipes WHERE brewBrewerID='$filter'";
-if ($style != "all") $query_recipeList.= " AND brewStyle='$style' AND";
-$query_recipeList .= " NOT brewArchive='Y'";
+if ($style != "all") $query_recipeList.= " AND brewStyle='$style'";
+$query_recipeList .= " AND NOT brewArchive='Y'";
 $query_recipeList .= " ORDER BY $sort $dir LIMIT $start, $display";
 $recipeList = mysql_query($query_recipeList, $brewing) or die(mysql_error());
 $row_recipeList = mysql_fetch_assoc($recipeList);

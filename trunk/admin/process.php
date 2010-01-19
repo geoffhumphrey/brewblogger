@@ -2855,6 +2855,7 @@ if ((($action == "add") || ($action == "reuse")) && ($dbTable == "equip_profiles
   equipMashTunDeadspace,
   equipHopUtil,
   equipTypicalEfficiency,
+  equipTypicalWaterRatio,
   equipTopUp,
   equipTopUpKettle,
   equipBrewerID
@@ -2872,6 +2873,7 @@ if ((($action == "add") || ($action == "reuse")) && ($dbTable == "equip_profiles
   						GetSQLValueString($_POST['equipMashTunDeadspace'], "text"),
   						GetSQLValueString($_POST['equipHopUtil'], "text"),
   						GetSQLValueString($_POST['equipTypicalEfficiency'], "text"),
+						GetSQLValueString($_POST['equipTypicalWaterRatio'], "text"),
   						GetSQLValueString($_POST['equipTopUp'], "text"),
   						GetSQLValueString($_POST['equipTopUpKettle'], "text"),
   						GetSQLValueString($_POST['equipBrewerID'], "text")                   	   
@@ -2902,6 +2904,7 @@ if (($action == "edit") && ($dbTable == "equip_profiles")) {
   equipMashTunDeadspace=%s,
   equipHopUtil=%s,
   equipTypicalEfficiency=%s,
+  equipTypicalWaterRatio=%s,
   equipTopUp=%s,
   equipTopUpKettle=%s,
   equipBrewerID=%s
@@ -2919,6 +2922,7 @@ if (($action == "edit") && ($dbTable == "equip_profiles")) {
   						GetSQLValueString($_POST['equipMashTunDeadspace'], "text"),
   						GetSQLValueString($_POST['equipHopUtil'], "text"),
   						GetSQLValueString($_POST['equipTypicalEfficiency'], "text"),
+						GetSQLValueString($_POST['equipTypicalWaterRatio'], "text"),
   						GetSQLValueString($_POST['equipTopUp'], "text"),
   						GetSQLValueString($_POST['equipTopUpKettle'], "text"),
   						GetSQLValueString($_POST['equipBrewerID'], "text"),
