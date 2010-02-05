@@ -38,7 +38,7 @@ $row_prefs = mysql_fetch_assoc($prefs);
 
   // Check if the user hasn't logged in
   if (!isset($_SESSION["loginUsername"]))  { echo "<li><a href=\"index.php?page=login\">".$row_prefs['menuLogin']."</a></li>"; }
-  if (isset($_SESSION["loginUsername"]))   { echo "<li><a href=\"admin/index.php\"  onMouseover=\"dropdownmenu(this, event, menu13, '180px')\" onMouseout=\"delayhidemenu()\">Admin</a></li><li><a href=\"includes/logout.inc.php\">".$row_prefs['menuLogout']."</a></li>"; }
+  if (isset($_SESSION["loginUsername"]))   { echo "<li><div class=\"menuBar\"><a class=\"menuButton\" href=\"admin/index.php\" onclick=\"admin/index.php\" onmouseover=\"buttonMouseover(event, 'publicMenu2')\">Admin</a></div></li><li><a href=\"includes/logout.inc.php\">".$row_prefs['menuLogout']."</a></li>"; }
 }
 
 ?>

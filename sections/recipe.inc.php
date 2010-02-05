@@ -1015,42 +1015,42 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
   <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops6']; else { ?>
   <div id="moreInfo"><?php if ($totalRows_hops5 > 0) { ?><a href="#"><?php } echo $row_log['brewHops6']."<br>"; if ($totalRows_hops5 > 0) { ?><span>
   <div id="moreInfoWrapper">
-  <div id="referenceHeader"><?php echo $row_hops5['hopsName']; ?></div>
+  <div id="referenceHeader"><?php echo $row_hops6['hopsName']; ?></div>
  	<table class="dataTable">
-  	<?php if ($row_hops5['hopsGrown'] != "" ) {?>
+  	<?php if ($row_hops6['hopsGrown'] != "" ) {?>
   		<tr>
 			<td class="dataLabelLeft">Region:</td>
-			<td class="data"><?php echo $row_hops5['hopsGrown']; ?></td>
+			<td class="data"><?php echo $row_hops6['hopsGrown']; ?></td>
   		</tr>
   	<?php }?>
-  	<?php if ($row_hops5['hopsAAULow'] != "" ) {?>
+  	<?php if ($row_hops6['hopsAAULow'] != "" ) {?>
   		<tr>
   			<td class="dataLabelLeft">AAU Range:</td>
-			<td class="data"><?php { $AAUmin = ltrim ($row_hops5['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops5['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops6['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops6['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
   		</tr>
   	<?php }?>
-  	<?php if ($row_hops5['hopsInfo'] != "" ) {?>
+  	<?php if ($row_hops6['hopsInfo'] != "" ) {?>
    		<tr>
   			<td class="dataLabelLeft">Notes:</td>
-			<td class="data"><?php echo $row_hops5['hopsInfo']; ?></td>
+			<td class="data"><?php echo $row_hops6['hopsInfo']; ?></td>
   		</tr>
   	<?php }?>
-  	<?php if ($row_hops5['hopsUse'] != "" ) {?> 
+  	<?php if ($row_hops6['hopsUse'] != "" ) {?> 
   	<tr>
   			<td class="dataLabelLeft">Typical Use:</td>
-			<td class="data"><?php echo $row_hops5['hopsUse']; ?></td>
+			<td class="data"><?php echo $row_hops6['hopsUse']; ?></td>
   	</tr>
   	<?php }?>
-  	<?php if ($row_hops5['hopsSub'] != "" ) {?>
+  	<?php if ($row_hops6['hopsSub'] != "" ) {?>
   		<tr>
   			<td class="dataLabelLeft">Substitution:</td>
-			<td class="data"><?php echo $row_hops5['hopsSub']; ?></td>
+			<td class="data"><?php echo $row_hops6['hopsSub']; ?></td>
   		</tr>    
   	<?php }?>
-  		<?php if ($row_hops5['hopsExample'] != "" ) {?> 
+  		<?php if ($row_hops6['hopsExample'] != "" ) {?> 
   		<tr>
   			<td class="dataLabelLeft">Example:</td>
-			<td class="data"><?php echo $row_hops5['hopsExample']; ?></td>
+			<td class="data"><?php echo $row_hops6['hopsExample']; ?></td>
   		</tr>
   	<?php }?>
 	</table>

@@ -5,15 +5,15 @@ require_once ('Connections/config.php');
 
 //choose SQL table and set up functions to user authentication and
 //navbar configuration for login/logout links
-require ('includes/authentication_nav.inc.php');  session_start();
+require ('includes/authentication_nav.inc.php'); session_start();
 
 //override various default settings with GET parameters, if they exist
 include ('includes/url_variables.inc.php');
 
-//set up brewers, recipes, brewlogs, themes, etc.
+//set up brewers, themes, etc.
 include ('includes/db_connect_universal.inc.php');
 
-//i have no idea... needs more looking through
+//set up recipes, brewlogs, etc.
 include ('includes/db_connect_log.inc.php');
 
 //include function to check for mobile browsers
@@ -52,20 +52,20 @@ $imageSrc = "images/";
 <link rel="stylesheet" href="css/universal_elements.css" type="text/css">
 <?php 
 if (checkmobile()) {
-echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"css/mobile.css\">";
+echo "<link rel=\"stylesheet\" href=\"css/mobile.css\" type=\"text/css\" >";
 } else {
 echo "
+<script type=\"text/javascript\" src=\"js_includes/menu.js\"></script>
 <script type=\"text/javascript\" src=\"js_includes/jquery.js\"></script>
 <script type=\"text/javascript\" src=\"js_includes/thickbox.js\"></script>
 <script type=\"text/javascript\" src=\"js_includes/jump_menu.js\"></script>
 <link rel=\"stylesheet\" href=\"css/thickbox.css\" type=\"text/css\" media=\"screen\">
-";
-echo "<link rel=\"stylesheet\" href=\"css/".$row_pref['theme']."\" type=\"text/css\">";
+<link rel=\"stylesheet\" href=\"css/".$row_pref['theme']."\" type=\"text/css\">";
 } 
 ?>
 <?php if (checkmobile()) echo ""; else { if (($page == "reference") && ($section == "carbonation")) { 
 	if ($printBrowser == "IE") { ?>
-	<script language="JavaScript" type="text/JavaScript">
+<script language="JavaScript" type="text/JavaScript">
 <!-- 
 function popUp(URL) {
 day = new Date();
@@ -150,6 +150,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 		 if ($page == "about") { include ('sections/list.inc.php'); }
 		 if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) { 
 		 				if (checkmobile()) echo ""; else {
+						// Include printing, BeerXML buttons according to preferences
 						if ($row_pref['allowPrintLog'] == "Y") 		{ include ('sections/printLog.inc.php'); }
 						if ($row_pref['allowPrintRecipe'] == "Y") 	{ include ('sections/printRecipe.inc.php');  echo "&nbsp;"; }
 						if ($row_pref['allowPrintXML'] == "Y") 		{ include ('sections/printXML.inc.php'); }
@@ -157,6 +158,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 						if (($row_pref['mode'] == "2") && ($filter != "all")) echo "<div id=\"sidebarWrapper\"><span class=\"text_9\"><span class=\"data_icon\"><img src = \"".$imageSrc."calendar_view_month.png\" alt=\"Calendar\" border=\"0\" align=\"absmiddle\"></span><span class=\"data\"><a href=\"index.php?page=calendar&filter=".$filter."\">View ".$row_user2['realFirstName']."'s Brewing Calendar</a></span></span></div>";
 																	{ include ('sections/quick_edit.inc.php'); }
 						if (checkmobile()) echo ""; else {
+						// Include sidebar sections according to preferences
 						if ($row_pref['allowLabel'] == "Y") 		{ include ('sections/label.inc.php'); }
 						}
 						if ($row_pref['allowAwards'] == "Y") 		{ include ('sections/awards.inc.php'); }

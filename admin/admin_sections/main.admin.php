@@ -35,16 +35,16 @@
     <td class="data"><?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "1")) echo "<a href=\"index.php?action=list&dbTable=awards&filter=all\">Manage ".$row_pref['menuAwards']."</a><br><a href=\"?action=list&dbTable=awards&filter=".$loginUsername."\">Manage My ".$row_pref['menuAwards']."</a>"; else echo "<a href=\"?action=list&dbTable=awards\">Manage ".$row_pref['menuAwards']."</a>"; ?></td>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>medal_gold_add.png" align="absmiddle" /></td>
     <td class="data"><a href="index.php?action=add&dbTable=awards&assoc=brewing">Add <?php echo $row_pref['menuAwards']; ?></a></td>
-    <td class="data_icon">&nbsp;</td>
-    <td class="data">&nbsp;</td>
+    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
+    <td class="data"><a href="index.php?action=calculate">Recipe Calculator</a></td>
   </tr>
   <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>page_white_edit.png" align="absmiddle" /></td>
     <td class="data"><?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "1")) echo "<a href=\"index.php?action=list&dbTable=reviews&filter=all\">Manage Reviews</a><br><a href=\"?action=list&dbTable=reviews&filter=".$loginUsername."\">Manage My Reviews</a>"; else echo "<a href=\"?action=list&dbTable=reviews\">Manage Reviews</a>"; ?></td>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>page_white_add.png" align="absmiddle" /></td>
     <td class="data"><a href="index.php?action=add&dbTable=reviews">Add Reviews</a></td>
-    <td class="data_icon">&nbsp;</td>
-    <td class="data">&nbsp;</td>
+    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
+    <td class="data"><a href="index.php?action=chooseRecalc">Recalculate <?php echo $row_pref['menuBrewBlogs']; ?></a></td>
   </tr>
 </table>
 <div id="headerContentAdmin"><?php echo $row_pref['menuRecipes']; ?></div>

@@ -153,11 +153,49 @@ height: 25px;
 
 
 /* ------------------ drop-down menu elements ------------------ */
+div.menuBar, div.menuBar a.menuButton, div.menu, div.menu a.menuItem {
+}
+
+div.menuBar {
+}
+
+div.menuBar a.menuButton {
+}
+
+div.menuBar a.menuButton:hover {
+}
+
+div.menuBar a.menuButtonActive, div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #cb7b29;
+  border: 1px solid #985E25;
+}
+
+div.menu a.menuItem {
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  background-color: #FBC737;
+}
+
+div.menu a.menuItem span.menuItemText {
+}
+
+div.menu a.menuItem span.menuItemArrow {
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+}
+
+/* Legacy
 #dropmenudiv			{ position: absolute; border: 1px solid #985E25; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #cb7b29; }
 #dropmenudiv a 			{ color: #610800; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #985E25; padding: 1px 0; text-decoration: none; }
 #dropmenudiv a:hover	{ background-color: #fee39a; text-decoration: none; color: #000099; }
-
-
+*/
 
 
 /* ***************************** Theme-Specific Content Elements ***************************** */ 

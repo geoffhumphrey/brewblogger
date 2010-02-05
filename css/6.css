@@ -503,6 +503,81 @@ margin-right: 5px;
 
 
 /* ------------------ drop-down menu elements ------------------ */
+
+.ultra_lt	 		{ color: #dce4dd; }
+.lt	 				{ color: #C0CEC1; }
+.mid		 		{ color: #8A9E91; }
+.dk			 		{ color: #4c5b52; }
+
+div.menuBar,
+div.menuBar a.menuButton,
+div.menu,
+div.menu a.menuItem {
+  display: inline;
+}
+
+div.menuBar {
+  text-align: left;
+}
+
+div.menuBar a.menuButton {
+  background-color: transparent;
+  cursor: pointer;
+  left: 0px;
+  margin: 1px;
+  position: relative;
+  text-decoration: none;
+  top: 0px;
+  z-index: 100;
+}
+
+div.menuBar a.menuButton:hover {
+  background-color: transparent;
+}
+
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #354039; /* Ultra dark color */
+  border: 1px solid #8A9E91; /* Mid color */
+  position: absolute;
+  visibility: hidden;
+  z-index: 101;
+  margin: 0;
+}
+
+div.menu a.menuItem {
+  cursor: default;
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  cursor: pointer;
+  background-color: #8A9E91; /* Mid color */
+}
+
+div.menu a.menuItem span.menuItemText {
+
+}
+
+div.menu a.menuItem span.menuItemArrow {
+padding: 0 0 0 10px;
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+  margin: 5px;
+}
+
+/* Legacy */
+
 #dropmenudiv			{ position: absolute; border: 1px solid #4c5b52; border-bottom-width: 0;  line-height:15px; z-index:100; background-color: #8A9E91;}
 #dropmenudiv a 			{ color: #000000; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #4c5b52; padding: 1px 0; text-decoration: none; }
 #dropmenudiv a:hover	{ background-color: #4c5b52; text-decoration: none; }
