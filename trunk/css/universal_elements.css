@@ -83,47 +83,47 @@ margin-bottom: 20px;
 }
 
 .data {						/* Use for display of most data with a preceding label (in conjunction with dataLabel element */
-padding: 2px 0px 3px 10px;
+padding: 5px 0px 5px 10px;
 }
 
 .dataHeading {			    /* use in conjunction with the .data class */
 font-weight: bold;
-padding: 10px 0px 3px 10px;
+padding: 10px 0px 5px 10px;
 white-space: nowrap;
 }
 
 .dataHeadingLeft {			 /* use in conjunction with the .data class  */
 font-weight: bold;
-padding: 10px 0px 3px 0px;
+padding: 10px 0px 5px 0px;
 white-space: nowrap;
 }
 
 .dataHeadingList {			 /* use in conjunction with the .dataList class  */
 font-weight: bold;
-padding: 10px 4px 6px 4px;
+padding: 5px 3px 5px 3px;
 white-space: nowrap;
 }
 
 .dataLeft {					/* use in conjunction with the .data class  */			
-padding: 2px 0px 3px 0px;
+padding: 5px 0px 5px 0px;
 }
 
 .dataLabel {			  	/* use in conjunction with the .data class  */
 font-weight: bold;
 white-space: nowrap;
 width: 5%;
-padding: 2px 0px 3px 10px;
+padding: 5px 0px 5px 10px;
 }
 
 .dataLabelLeft {			  	/* use in conjunction with the .data class  */
 font-weight: bold;
 white-space: nowrap;
 width: 5%;
-padding: 2px 0px 3px 0px;
+padding: 5px 3px 5px 0px;
 }
 
 .data_icon {				/* use in conjunction with the .data class  */	
-padding: 2px 0px 3px 0px;
+padding: 5px 0px 5px 0px;
 width: 1%;
 white-space: nowrap;
 }
@@ -134,29 +134,29 @@ width: 5%;
 }
 
 .dataList {					/* Use for Alternate Color Lists */
-padding: 6px 4px 6px 4px;
+padding: 5px 3px 5px 3px;
 }
 
 .dataListLeft {				/* Use for Alternate Color Lists */
-padding: 6px 4px 6px 0px;
+padding: 5px 3px 5px 0px;
 }
 
 .dataListLabel {
-padding: 6px 4px 6px 4px;
+padding: 5px 3px 5px 3px;
 font-weight: bold;
 width: 5%;
 white-space: nowrap;
 }
 
 .dataListLabelLeft {
-padding: 6px 4px 6px 0px;
+padding: 5px 3px 5px 0px;
 font-weight: bold;
 width: 5%;
 white-space: nowrap;
 }
 
 .data_icon_list {			/* Use for Alternate Color Lists */
-padding: 6px 4px 6px 4px;
+padding: 5px 3px 5px 3px;
 width: 1%;
 white-space: nowrap;
 }
@@ -187,6 +187,71 @@ white-space: nowrap;
 text-align: right;
 font-size: inherit;
 padding: 2px 0 2px 0;
+}
+
+/* ------------------ drop-down menu elements ------------------ */
+
+div.menuBar,
+div.menuBar a.menuButton,
+div.menu,
+div.menu a.menuItem {
+  display: inline;
+}
+
+div.menuBar {
+  text-align: left;
+}
+
+div.menuBar a.menuButton {
+  background-color: transparent;
+  cursor: pointer;
+  left: 0px;
+  margin: 1px;
+  position: relative;
+  text-decoration: none;
+  top: 0px;
+  z-index: 200;
+}
+
+div.menuBar a.menuButton:hover {
+  background-color: transparent;
+}
+
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {
+
+}
+
+div.menu {
+  position: absolute;
+  visibility: hidden;
+  z-index: 201;
+  margin: 0;
+}
+
+div.menu a.menuItem {
+  cursor: default;
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  cursor: pointer;
+}
+
+div.menu a.menuItem span.menuItemText {
+
+}
+
+div.menu a.menuItem span.menuItemArrow {
+padding: 0 0 0 10px;
+}
+
+div.menu div.menuItemSep {
+  margin: 5px;
 }
 
 /* ***************************** Misc. Elements *****************************  */
@@ -252,9 +317,9 @@ font-size: 80%;
 }
 
 #helpInline {				/* Use for Inline Help/Info Popups UNIVERSAL */
-width: 16px;
-text-align: center;
-margin-right: 6px;
+width: 1%;
+white-space: nowrap;
+padding: 3px;
 }
 
 #icon {						/* Use for Icons UNIVERSAL */

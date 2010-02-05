@@ -26,6 +26,7 @@ if ($page == "delWithCon") echo "<meta http-equiv=\"refresh\" content=\"0\">"; /
 <link rel="stylesheet" type="text/css" href="../css/mobile.css">
 <?php } else { ?>
 <link href="../css/<?php echo $row_pref['theme']; ?>" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js_includes/menu.js"></script>
 <script type="text/javascript" src="../js_includes/jquery.js"></script>
 <script type="text/javascript" src="../js_includes/thickbox.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/thickbox.css" media="screen">

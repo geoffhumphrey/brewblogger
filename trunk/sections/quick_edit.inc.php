@@ -37,8 +37,7 @@
 	<tr>
 		<td class="dataLabelLeft">Feat.?</td>
     	<td class="data" colspan="3">
-        <input type="radio" name="brewFeatured" value="Y" id="brewFeatured_0" <?php if ($row_log['brewFeatured'] == "Y") echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewFeatured" value="No" id="brewFeatured_1"  <?php if (($row_log['brewFeatured'] == "N") || ($row_log['brewFeatured'] == "")) echo "checked"; ?> />No
-    	</td>
+        <input type="radio" name="brewFeatured" value="Y" id="brewFeatured_0" <?php if ($row_log['brewFeatured'] == "Y") echo "checked"; ?> />Yes&nbsp;<input type="radio" name="brewFeatured" value="No" id="brewFeatured_1"  <?php if (($row_log['brewFeatured'] == "N") || ($row_log['brewFeatured'] == "")) echo "checked"; ?> />No    	</td>
 	</tr>
 	<?php } ?>
    	<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) { ?>
@@ -55,14 +54,19 @@
      		<option value="Bottled" <?php if (!(strcmp($row_log['brewStatus'], "Bottled"))) {echo "SELECTED";}  ?>>Bottled</option>
      		<option value="Planned" <?php if (!(strcmp($row_log['brewStatus'], "Planned"))) {echo "SELECTED";} ?>>Planned</option>
             <option value="" <?php if (!(strcmp($row_log['brewStatus'], ""))) {echo "SELECTED";}  ?>>Gone</option>
-     	</select>
-        </td>
+     	</select>        </td>
         <td class="data"></td>
         <td class="data"></td>
 	</tr>
    	<tr>
    		<td class="dataLabelLeft">Batch:</td>
    		<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input name="brewBatchNum" type="text"  value="<?php echo $row_log['brewBatchNum']; ?>" size="15"></td>
+    	<td class="data"></td>
+        <td class="data"></td>
+    </tr>
+   	<tr>
+   		<td class="dataLabelLeft">Brew:</td>
+   		<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input name="brewDate" type="text" id="brewDate" value="<?php echo $row_log['brewDate']; ?>" size="15"  onfocus="showCalendarControl(this);"></td>
     	<td class="data"></td>
         <td class="data"></td>
     </tr>

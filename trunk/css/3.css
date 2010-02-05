@@ -162,14 +162,81 @@ height: 20px;
 }
 
 
-
 #nav a:link 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:hover 		{ color: #fff6dc; text-decoration: none; }
 #nav a:active 		{ color: #fff6dc; text-decoration: none; }
 
-
 /* ------------------ drop-down menu elements ------------------ */
+
+div.menuBar,
+div.menuBar a.menuButton,
+div.menu,
+div.menu a.menuItem {
+  display: inline;
+}
+
+div.menuBar {
+  text-align: left;
+}
+
+div.menuBar a.menuButton {
+  background-color: transparent;
+  cursor: pointer;
+  left: 0px;
+  margin: 1px;
+  position: relative;
+  text-decoration: none;
+  top: 0px;
+  z-index: 100;
+}
+
+div.menuBar a.menuButton:hover {
+  background-color: transparent;
+}
+
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #b76612;
+  border: 1px solid #e7a614;
+  position: absolute;
+  visibility: hidden;
+  z-index: 101;
+  margin: 0;
+}
+
+div.menu a.menuItem {
+  cursor: default;
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  cursor: pointer;
+  background-color: #874C0D;
+}
+
+div.menu a.menuItem span.menuItemText {
+
+}
+
+div.menu a.menuItem span.menuItemArrow {
+padding: 0 0 0 10px;
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+  margin: 5px;
+}
+
+/* Legacy */
 #dropmenudiv			{ position: absolute; border: 1px solid #b76612; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #e7a614; }
 #dropmenudiv a 			{ color: #000000; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #b76612; padding: 1px 0; text-decoration: none; }
 #dropmenudiv a:hover	{ background-color: #ffecbc; text-decoration: none; color: #b76612; }

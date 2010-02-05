@@ -169,6 +169,75 @@ height: 20px;
 
 
 /* ------------------ drop-down menu elements ------------------ */
+
+div.menuBar,
+div.menuBar a.menuButton,
+div.menu,
+div.menu a.menuItem {
+  display: inline;
+}
+
+div.menuBar {
+  text-align: left;
+}
+
+div.menuBar a.menuButton {
+  background-color: transparent;
+  cursor: pointer;
+  left: 0px;
+  margin: 1px;
+  position: relative;
+  text-decoration: none;
+  top: 0px;
+  z-index: 100;
+}
+
+div.menuBar a.menuButton:hover {
+  background-color: transparent;
+}
+
+div.menuBar a.menuButtonActive,
+div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #670405; /* Ultra dark color */
+  border: 1px solid #E3B7AC; /* Mid color */
+  position: absolute;
+  visibility: hidden;
+  z-index: 101;
+  margin: 0;
+}
+
+div.menu a.menuItem {
+  cursor: default;
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+  white-space: nowrap;
+
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  cursor: pointer;
+  background-color: #980609; /* Dark color */
+}
+
+div.menu a.menuItem span.menuItemText {
+
+}
+
+div.menu a.menuItem span.menuItemArrow {
+padding: 0 0 0 10px;
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+  margin: 5px;
+}
+
+/* Legacy */
 #dropmenudiv			{ position: absolute; border: 1px solid #980609; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #C9725E; }
 #dropmenudiv a 			{ color: #980609; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #980609; padding: 1px 0; text-decoration: none; }
 #dropmenudiv a:hover	{ background-color: #980609; text-decoration: none; color: #ffffff; }
@@ -190,29 +259,7 @@ background: #E3B7AC;
 text-decoration: none; 
 }
 
-#helpInline {						/* Use for Inline Help Popups */
-border-right: 1px solid #333333;
-border-bottom: 1px solid #333333;
-border-top: 1px solid #999999;
-border-left: 1px solid #999999;
-width: 10px;
-text-align: center;
-font-size: 9px;
-margin-right: 6px;
-}
 
-#helpInline a {
-color: #000000;
-background: #EFD9D2;
-width: 100%;
-display: block; 
-}
-
-#helpInline a:hover { 
-color: #FFFFFF;
-background: #E3B7AC; 
-text-decoration: none; 
-}
 
 /* ------------------ footer elements ------------------ */
 #footer {

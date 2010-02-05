@@ -1,5 +1,3 @@
-<?php  { ?>
-<script type="text/javascript" language="JavaScript">
 //<![CDATA[
 
 //*****************************************************************************
@@ -587,15 +585,5 @@ function getPageOffsetTop(el) {
   return y;
 }
 
+
 //]]>
-
-/***********************************************
-* AnyLink Drop Down Menu- ? Dynamic Drive (www.dynamicdrive.com)
-* This notice MUST stay intact for legal use
-* Visit http://www.dynamicdrive.com/ for full source code
-***********************************************/
-
-
-
-</script>
-<?php } ?>

@@ -198,10 +198,49 @@ height: 23px;
 
 
 /* ------------------ drop-down menu elements ------------------ */
+div.menuBar, div.menuBar a.menuButton, div.menu, div.menu a.menuItem {
+}
+
+div.menuBar {
+}
+
+div.menuBar a.menuButton {
+}
+
+div.menuBar a.menuButton:hover {
+}
+
+div.menuBar a.menuButtonActive, div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #666666;
+  border: 1px solid #d0d0d0;
+}
+
+div.menu a.menuItem {
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  background-color: #333333;
+}
+
+div.menu a.menuItem span.menuItemText {
+}
+
+div.menu a.menuItem span.menuItemArrow {
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+}
+
+/* Legacy
 #dropmenudiv			{ position: absolute; border: 1px solid #aaaaaa; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #bbbbbb; }
 #dropmenudiv a 			{ color: #bbbbbb; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #aaaaaa; padding: 1px 0; text-decoration: none; }
 #dropmenudiv a:hover	{ background-color: #aaaaaa; text-decoration: none; color: #005295; }
-
+*/
 
 
 
