@@ -210,7 +210,7 @@ div.menuBar a.menuButton {
   position: relative;
   text-decoration: none;
   top: 0px;
-  z-index: 200;
+  z-index: 100;
 }
 
 div.menuBar a.menuButton:hover {
@@ -225,7 +225,7 @@ div.menuBar a.menuButtonActive:hover {
 div.menu {
   position: absolute;
   visibility: hidden;
-  z-index: 201;
+  z-index: 100;
   margin: 0;
 }
 
