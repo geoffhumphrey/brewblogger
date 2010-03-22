@@ -99,12 +99,10 @@
 			} while ($row_recipeList = mysql_fetch_assoc($recipeList));
 			?>
             </table>
-            <?php if ($totalRows_recipeList > 10) { ?>
             <table class="dataTable">
         	<tr>
-			  <td><div id="paginate"><?php echo $total." ".$row_pref['menuRecipes']." Total"; if ($total > $display) echo "&nbsp;&nbsp;&nbsp;&#8226"; if ($view == "all") echo "&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;"; if ($total > $display) { echo "&nbsp;&nbsp;&nbsp;"; paginate($display, $pg, $total);  if ($view == "limited") { ?>&nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&view=all">Entire List of <?php if (($row_pref['mode'] == "2") && ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } } if  ($view == "all") { ?><a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&view=limited">Limited List of <?php if (($row_pref['mode'] == "2")&& ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } ?></div></td>
-			</tr>
-        	</table>
-            <?php } ?>
+			  <td><div id="paginate"><?php echo $total." ".$row_pref['menuRecipes']." Total"; if ($total > $display) echo "&nbsp;&nbsp;&nbsp;&#8226"; if ($view == "all") echo "&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;"; if ($total > $display) { echo "&nbsp;&nbsp;&nbsp;"; paginate($display, $pg, $total);  if ($view == "limited") { ?>&nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&style=<?php echo $style; ?>&view=all">Entire List of <?php if (($row_pref['mode'] == "2") && ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } } if  (($view == "all") && ($total < $display)) { ?><a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $filter; ?>&style=<?php echo $style; ?>&view=limited">Limited List of <?php if (($row_pref['mode'] == "2")&& ($filter != "all")) echo $row_user2['realFirstName']."'s "; echo $row_pref['menuRecipes']; ?></a><?php } ?></div></td>
+              </tr>
+        </table>
 		  </div>
 		<?php } ?>

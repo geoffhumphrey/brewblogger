@@ -87,16 +87,14 @@ class InputBeerXML {
         $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
         $sqlQuery = "INSERT INTO recipes ";
         $fields = "(brewName";
-        $values = " VALUES('" . $recipe->name . "'";
+        $values = " VALUES('" .  strtr($recipe->name, $html_string) . "'";
         $vf = array();
         $counter = array();
-		
-
-        //$vf["brewName"] = $this->strtr($recipe->name, $string);
+		//$vf["brewName"] = $this->strtr($recipe->name, $html_string);
         $vf["brewStyle"] = $recipe->style->name;
         $vf["brewSource"] = $recipe->brewer;
         $vf["brewYield"] = $this->convertUnit($recipe->batchSize, "volume");
-        $vf["brewNotes"] = strtr($recipe->notes, $string);
+        $vf["brewNotes"] = strtr($recipe->notes, $html_string);
         $vf["brewMethod"] = $recipe->type; 
         $counter["grain"] = 0;
         $counter["extract"] = 0;
@@ -106,7 +104,7 @@ class InputBeerXML {
                 case "Grain":
                     $counter["grain"]++;
                     if($counter["grain"] <= 9){
-                        $vf["brewGrain" . $counter["grain"]] = $fermentable->name;
+                        $vf["brewGrain" . $counter["grain"]] = strtr($fermentable->name, $html_string);
 						$vf["brewGrain" . $counter["grain"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); 
 						
 					}                    
@@ -114,28 +112,28 @@ class InputBeerXML {
                 case "Extract":
                     $counter["extract"]++;
                     if($counter["extract"] <= 5){
-                        $vf["brewExtract" . $counter["extract"]] = $fermentable->name;
+                        $vf["brewExtract" . $counter["extract"]] = strtr($fermentable->name, $html_string);
                         $vf["brewExtract" . $counter["extract"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); 
                     }
                     break;
                 case "Dry Extract":
                     $counter["extract"]++;
                     if($counter["extract"] <= 5){
-                        $vf["brewExtract" . $counter["extract"]] = $fermentable->name;
+                        $vf["brewExtract" . $counter["extract"]] = strtr($fermentable->name, $html_string);
                         $vf["brewExtract" . $counter["extract"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); ;
                     }
                     break;
                 case "Adjunct":
                     $counter["adjunct"]++;
                     if($counter["adjunct"] <= 9){
-                        $vf["brewAddition" . $counter["adjunct"]] = $fermentable->name;
+                        $vf["brewAddition" . $counter["adjunct"]] = strtr($fermentable->name, $html_string);
 						$vf["brewAddition" . $counter["adjunct"] . "Amt"] = $this->convertUnit($fermentable->amount,"weight"); 
 						}
                     break;
                 case "Sugar":
                     $counter["adjunct"]++;
                     if($counter["adjunct"] <= 9){
-                        $vf["brewAddition" . $counter["adjunct"]] = $fermentable->name;
+                        $vf["brewAddition" . $counter["adjunct"]] = strtr($fermentable->name, $html_string);
                         $vf["brewAddition" . $counter["adjunct"] . "Amt"]  = $this->convertUnit($fermentable->amount,"weight"); 
                     }
                     break;
@@ -148,7 +146,7 @@ class InputBeerXML {
         foreach($recipe->miscs->miscs as $misc){
             $counter["misc"]++;
             if($counter["misc"] <= 4){
-                $vf["brewMisc" . $counter["misc"] . "Name"] = $misc->name;
+                $vf["brewMisc" . $counter["misc"] . "Name"] = strtr($misc->name, $html_string);
                 $vf["brewMisc" . $counter["misc"] . "Type"] = $misc->type;  // BeerXML differntiates between liquid and volume - BB 2.2 does not - item for future release
                 $vf["brewMisc" . $counter["misc"] . "Use"] = $misc->useFor;
                 $vf["brewMisc" . $counter["misc"] . "Time"] = round($misc->time, 0);
@@ -160,7 +158,7 @@ class InputBeerXML {
         foreach($recipe->hops->hops as $hop){
             $counter["hops"]++;
             if($counter["hops"] <= 9){
-                $vf["brewHops" . $counter["hops"]] = $hop->name;
+                $vf["brewHops" . $counter["hops"]] = strtr($hop->name, $html_string);
 				$vf["brewHops" . $counter["hops"] . "Weight"] = $this->convertUnit($hop->amount,"hopWeight");
 				$vf["brewHops" . $counter["hops"] . "IBU"] = $hop->alpha;
                 $vf["brewHops" . $counter["hops"] . "Time"] = round($hop->time, 0);
@@ -172,7 +170,7 @@ class InputBeerXML {
 
         $counter["yeast"] = 0;
         foreach($recipe->yeasts->yeasts as $yeast){
-            $vf["brewYeast"] = $yeast->name;
+            $vf["brewYeast"] = strtr($yeast->name, $html_string);
             $vf["brewYeast" . "Man"] = $yeast->laboratory;
             $vf["brewYeast" . "Form"] = $yeast->form;
             $vf["brewYeast" . "Type"] = $yeast->type;
@@ -228,12 +226,13 @@ class InputBeerXML {
 
     //{{{ insertBlog
     function insertBlog($recipe){
+	include ('../includes/scrubber.inc.php');
         $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
         mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
 
         $sqlQuery = "INSERT INTO brewing ";
         $fields = "(brewName";
-        $values = " VALUES('" .  htmlspecialchars($recipe->name, ENT_QUOTES) . "'";
+        $values = " VALUES('" .  strtr($recipe->name, $html_string) . "'";
         $vf = array();
         $counter = array();
         // $batchNumber = " SELECT brewBatchNum FROM `brewing` ORDER BY brewBatchNum DESC LIMIT 1 ";
@@ -245,7 +244,7 @@ class InputBeerXML {
 		elseif ($dateCheck == "4-") $vf["brewDate"] = $recipe->date;
 		else $vf["brewDate"] = date("Y-m-d");
         $vf["brewYield"] = $this->convertUnit($recipe->batchSize, "volume");
-        $vf["brewComments"] = strtr($recipe->notes, $string);
+        $vf["brewComments"] = strtr($recipe->notes, $html_string);
         $vf["brewMethod"] = $recipe->type; 
         $counter["grain"] = 0;
         $counter["extract"] = 0;
@@ -255,35 +254,35 @@ class InputBeerXML {
                 case "Grain":
                     $counter["grain"]++;
                     if($counter["grain"] <= 9){
-                        $vf["brewGrain" . $counter["grain"]] = $fermentable->name;
+                        $vf["brewGrain" . $counter["grain"]] = strtr($fermentable->name, $html_string);
 						$vf["brewGrain" . $counter["grain"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight");
 					}                    
 				break;
                 case "Extract":
                     $counter["extract"]++;
                     if($counter["extract"] <= 5){
-                        $vf["brewExtract" . $counter["extract"]] = $fermentable->name;
+                        $vf["brewExtract" . $counter["extract"]] = strtr($fermentable->name, $html_string);
                         $vf["brewExtract" . $counter["extract"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); 
                     }
                     break;
                 case "Dry Extract":
                     $counter["extract"]++;
                     if($counter["extract"] <= 5){
-                        $vf["brewExtract" . $counter["extract"]] = $fermentable->name;
+                        $vf["brewExtract" . $counter["extract"]] = strtr($fermentable->name, $html_string);
                         $vf["brewExtract" . $counter["extract"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); ;
                     }
                     break;
                 case "Adjunct":
                     $counter["adjunct"]++;
                     if($counter["adjunct"] <= 9){
-                        $vf["brewAddition" . $counter["adjunct"]] = $fermentable->name;
+                        $vf["brewAddition" . $counter["adjunct"]] = strtr($fermentable->name, $html_string);
 						$vf["brewAddition" . $counter["adjunct"] . "Amt"] = $this->convertUnit($fermentable->amount,"weight"); 
 						}
                     break;
                 case "Sugar":
                     $counter["adjunct"]++;
                     if($counter["adjunct"] <= 9){
-                        $vf["brewAddition" . $counter["adjunct"]] = $fermentable->name;
+                        $vf["brewAddition" . $counter["adjunct"]] = strtr($fermentable->name, $html_string);
                         $vf["brewAddition" . $counter["adjunct"] . "Amt"]  = $this->convertUnit($fermentable->amount,"weight"); 
                     }
                     break;
@@ -296,7 +295,7 @@ class InputBeerXML {
         foreach($recipe->miscs->miscs as $misc){
             $counter["misc"]++;
             if($counter["misc"] <= 4){
-                $vf["brewMisc" . $counter["misc"] . "Name"] = $misc->name;
+                $vf["brewMisc" . $counter["misc"] . "Name"] = strtr($misc->name, $html_string);
                 $vf["brewMisc" . $counter["misc"] . "Type"] = $misc->type;  // BeerXML differntiates between liquid and volume - BB 2.2 does not - item for future release
                 $vf["brewMisc" . $counter["misc"] . "Use"] = $misc->useFor;
                 $vf["brewMisc" . $counter["misc"] . "Time"] = round($misc->time, 0);
@@ -308,7 +307,7 @@ class InputBeerXML {
         foreach($recipe->hops->hops as $hop){
             $counter["hops"]++;
             if($counter["hops"] <= 9){
-                $vf["brewHops" . $counter["hops"]] = $hop->name;
+                $vf["brewHops" . $counter["hops"]] = strtr($hop->name, $html_string);
 				$vf["brewHops" . $counter["hops"] . "Weight"] = $this->convertUnit($hop->amount,"hopWeight");
 				$vf["brewHops" . $counter["hops"] . "IBU"] = $hop->alpha;
                 $vf["brewHops" . $counter["hops"] . "Time"] = round($hop->time, 0);
@@ -320,7 +319,7 @@ class InputBeerXML {
 
         $counter["yeast"] = 0;
         foreach($recipe->yeasts->yeasts as $yeast){
-            $vf["brewYeast"] = $yeast->name;
+            $vf["brewYeast"] = strtr($yeast->name, $html_string);
             $vf["brewYeast" . "Man"] = $yeast->laboratory;
             $vf["brewYeast" . "Form"] = $yeast->form;
             $vf["brewYeast" . "Type"] = $yeast->type;
@@ -331,7 +330,7 @@ class InputBeerXML {
             }        
 		}
 		
-		/* 
+		
 		
 		$counter["mash"] = 0;
         //$vf["brewMashGrainWeight"] = $recipe->mash->
@@ -346,7 +345,7 @@ class InputBeerXML {
         foreach($recipe->mash->mashSteps as $mashStep){
             $counter["mash"]++;
             if($counter["mash"] <= 5){
-                $vf["brewMashStep" . $counter["mash"] . "Name"] = $mashStep->name;
+                $vf["brewMashStep" . $counter["mash"] . "Name"] = strtr($mashStep->name, $html_string);
                 $vf["brewMashStep" . $counter["mash"] . "Temp"] = $this->convertUnit($mashStep->stepTemp,"temperature");
                 $vf["brewMashStep" . $counter["mash"] . "Time"] = $mashStep->stepTime;
                 $vf["brewMashStep" . $counter["mash"] . "Desc"] = $mashStep->type;
@@ -356,7 +355,7 @@ class InputBeerXML {
         $vf["brewMashSpargAmt"] = round($this->convertUnit($totalSpargeAmount,"volume"),3);
 
         foreach($recipe->waters->waters as $water){
-            $vf["brewWaterName"] = $water->name;
+            $vf["brewWaterName"] = strtr($water->name, $html_string);
             $vf["brewWaterAmount"] = $water->amount;
             $vf["brewWaterCalcium"] = $water->calcium;
             $vf["brewWaterBicarb"] = $water->bicarbonate;
@@ -368,11 +367,11 @@ class InputBeerXML {
             $vf["brewWaterSodium"] = $water->sodium;
         }
 		
-		*/
+		
 		
 		$vf["brewOG"] = $recipe->og; // changed_GH
         $vf["brewFG"] = $recipe->fg; // changed_GH
-        $vf["brewComments"] = strtr($recipe->notes, $string);
+        $vf["brewComments"] = strtr($recipe->notes, $html_string);
         if ($recipe->primaryAge != "") { $vf["brewPrimary"] = round($recipe->primaryAge, 0); }
         if ($recipe->primaryTemp != "") { $vf["brewPrimaryTemp"] = $this->convertUnit($recipe->primaryTemp,"temperature"); }
         if ($recipe->secondaryAge != "") { $vf["brewSecondary"] = round($recipe->secondaryAge, 0); }

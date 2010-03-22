@@ -534,7 +534,18 @@ switch ($units)
 		$grain10calc = ($grain10 * ($grain10amt * 2.202))/($wort * .264);
 		break;
 	}
-$efficiency_sum = ($grain1calc + $grain2calc + $grain3calc + $grain4calc + $grain5calc + $grain6calc + $grain7calc + $grain8calc + $grain9calc + $grain10calc);
+$efficiency_sum = (
+$grain1calc + 
+$grain2calc + 
+$grain3calc + 
+$grain4calc + 
+$grain5calc + 
+$grain6calc + 
+$grain7calc + 
+$grain8calc + 
+$grain9calc + 
+$grain10calc
+);
 	if (($efficiency_sum != 0) && ($gravity != ""))  {
 	$efficiency = ($ogconvert / $efficiency_sum) * 100;
 	echo "<tr><td class=\"dataLabelLeft\">Efficiency:</td><td class=\"data\">".round ($efficiency, 2)."%</td></tr>";
