@@ -118,14 +118,38 @@ $totalAAU = array_sum(array($hop1Per,$hop2Per,$hop3Per,$hop4Per,$hop5Per,$hop6Pe
  <tr>
   <td colspan="3" class="dataHeadingLeft">Extracts</td>
  </tr>
- <?php for($i = 1; $i <= 5; ++$i) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract1Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract1Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php echo $row_log['brewExtract1']; ?></td>
+  <td class="data"><?php if ($row_log['brewExtract1Weight'] != "") echo round ($extract1Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php if ($row_log['brewExtract2'] != "" ) {  ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract2Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract2Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php echo $row_log['brewExtract2']; ?></td>
+  <td class="data"><?php if ($row_log['brewExtract2Weight'] != "") echo round ($extract2Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php }  ?>
+ <?php if ($row_log['brewExtract3'] != "" ) {  ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract3Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract3Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php echo $row_log['brewExtract3']; ?></td>
+  <td class="data"><?php if ($row_log['brewExtract3Weight'] != "") echo round ($extract3Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php }  ?>
+ <?php if ($row_log['brewExtract4'] != "" ) {  ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract4Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract4Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php echo $row_log['brewExtract4']; ?></td>
+  <td class="data"><?php if ($row_log['brewExtract4Weight'] != "") echo round ($extract4Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php }  ?>
  <?php if ($row_log['brewExtract5'] != "" ) {  ?>
  <tr>
   <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewExtract5Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewExtract5Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
   <td class="data"><?php echo $row_log['brewExtract5']; ?></td>
   <td class="data"><?php if ($row_log['brewExtract5Weight'] != "") echo round ($extract5Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
  </tr>
- <?php }  ?>
  <?php }  ?>
  <tr bgcolor="<?php if (($page == "recipePrint") || ($page == "logPrint")) echo "#dddddd"; elseif (checkmobile()) echo "#dddddd"; else echo $color1; ?>">
   <td class="dataLeft bdr1T_light_dashed"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format ($totalExtract, 2); if ($action == "scale") echo number_format (($totalExtract * $scale), 2); echo"&nbsp;".$row_pref['measWeight2']; ?></td>
