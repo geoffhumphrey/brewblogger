@@ -5,10 +5,10 @@ include ('messages.inc.php');
 include ('scrubber.inc.php');
 
 $agent = $_SERVER['HTTP_USER_AGENT']; 
-if (eregi ("msie", $agent)) $printBrowser = "IE"; else $printBrowser = "notIE";
+if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
-//echo $agent;
-//echo $browser;
+//echo $agent."<br>";
+//echo $printBrowser."<br>";
 
 // ---------------------------- Color Conversion ------------------------------------------------------------
 // Calculations based upon Daniels, R. (2000, pg. 44). Designing great beers. Boulder, CO: Brewer's Publications.
@@ -87,12 +87,12 @@ if ($v == "milliliters") { // fluid ounces to milliliters
 // http://www.phpbuilder.com/annotate/message.php3?id=1031006
 function dateconvert($date,$func) {
 if ($func == 1){ //insert conversion
-list($day, $month, $year) = split('[/.-]', $date); 
+list($day, $month, $year) = preg_split('[/.-]', $date); 
 $date = "$year-$month-$day"; 
 return $date;
 }
 if ($func == 2){ //output conversion
-list($year, $month, $day) = split('[-.]', $date); 
+list($year, $month, $day) = preg_split('[-.]', $date); 
 $date = "$day, $year"; 
 if ($month == "01" ) { echo "January "; }
 if ($month == "02" ) { echo "February "; }
@@ -119,12 +119,12 @@ return $date;
 // function to convert MySQL dates to only month/year.
 function dateconvert2($date,$func) {
 if ($func == 1){ //insert conversion
-list($day, $month, $year) = split('[/.-]', $date); 
+list($day, $month, $year) = preg_split('[/.-]', $date); 
 $date = "$year-$month-$day"; 
 return $date;
 }
 if ($func == 2){ //output conversion
-list($year, $month, $day) = split('[-.]', $date); 
+list($year, $month, $day) = preg_split('[-.]', $date); 
 $date = "$year";
 if ($month == "01") { echo "Jan "; }
 if ($month == "02") { echo "Feb "; }
@@ -142,7 +142,7 @@ return $date;
 }
 
 if ($func == 3){ //output conversion
-list($year, $month, $day) = split('[-.]', $date); 
+list($year, $month, $day) = preg_split('[-.]', $date); 
 $date = "$day, $year";
 if ($month == "01") { echo "Jan "; }
 if ($month == "02") { echo "Feb "; }
@@ -160,7 +160,7 @@ return $date;
 }
 
 if ($func == 4){ //output conversion
-list($year, $month, $day) = split('[-.]', $date); 
+list($year, $month, $day) = preg_split('[-.]', $date); 
 $date = "$day $month $year";
 if ($month == "01") { echo "Jan "; }
 if ($month == "02") { echo "Feb "; }

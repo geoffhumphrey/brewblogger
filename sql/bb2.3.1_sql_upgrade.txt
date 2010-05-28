@@ -1,8 +1,0 @@
--- SQL Changes: BrewBlogger 2.3.1
--- Created October 15, 2009 by gpzhumphrey
--- Updated January 19, 2010 by gpzhumphrey
-
-ALTER TABLE `brewing` CHANGE `brewBitterness` `brewBitterness` FLOAT NULL;
-ALTER TABLE `brewing` CHANGE `brewLovibond` `brewLovibond` FLOAT NULL;
-ALTER TABLE `recipes` CHANGE `brewBitterness` `brewBitterness` FLOAT NULL;
-ALTER TABLE `recipes` CHANGE `brewLovibond` `brewLovibond` FLOAT NULL;

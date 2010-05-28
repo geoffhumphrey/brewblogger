@@ -6,9 +6,6 @@ include ('../includes/db_connect_universal.inc.php');
 include ('../includes/db_connect_log.inc.php');
 include ('../includes/plug-ins.inc.php');
 
-
-
-
 $dbTable = "brewing";
 if (isset($_GET['dbTable'])) {
   $dbTable = (get_magic_quotes_gpc()) ? $_GET['dbTable'] : addslashes($_GET['dbTable']);
@@ -138,13 +135,13 @@ body {
 background-color: #fff;
 color: #000;
 font-family: Arial;
-font-size: 9pt;
+font-size: 9px;
 }
-.headerTitle 			{ font-size: 22px; font-weight: bolder; white-space: nowrap; }
-.headerTitleSm 			{ font-size: 15px; font-weight: bold; white-space: nowrap; }
-.bottle					{ font-size: 9px; } 
-.medium					{ font-size: 8px; } 
-.small 					{ font-size: 7px; } 
+.headerTitle 			{ font-size: 1.7em; font-weight: bolder; white-space: nowrap; }
+.headerTitleSm 			{ font-size: 1.5em; font-weight: bold; white-space: nowrap; }
+.bottle					{ font-size: 1.2em; } 
+.medium					{ font-size: .9em; } 
+.small 					{ font-size: .8em; } 
 .caps					{ font-style: italic; font-weight: bold;  white-space: nowrap; }
 #printContainer 		{ width: 100%; }
 .bdr1_thick	 			{ border: 5px solid #000000; }
@@ -154,12 +151,12 @@ font-size: 9pt;
 .bdr1L 					{ border-left: 1px solid #000000; }
 .bdr1R 					{ border-right: 1px solid #000000; }
 .bdr1T 					{ border-top: 1px solid #000000; }
-input, textarea			{ font-family: Arial; font-size: 12px; border: 1px solid #cccccc;  }	
-.headerItalic 		    { font-size: 8px; font-style: italic; }
+input, textarea			{ font-family: Arial; font-size: 10px; border: 1px solid #cccccc;  }	
+.headerItalic 		    { font-size: 1em; font-style: italic; }
 table.small	td			{ padding: 1px 2px 1px 3px; }
 table.bottleLabel		{ border-collapse: collapse; }
 table.bottleLabel-inner	{ margin: 15px; width: 300px }
-table.bottleLabel-inner	td { padding: 5px; }
+table.bottleLabel-inner	td { padding: 3px; }
 .error 					{ color: #FF0000; font-size: 1em; font-weight: bold; margin: 0 0 1em 0; padding: .5em .5em .5em 1.5em; background-image: url(../images/error.png); background-position: center left; background-repeat: no-repeat; }
 
 -->
@@ -869,100 +866,101 @@ if ($action == "verify") { ?>
 <br style="page-break-after:always;">
 <table width="600" border="0" align="center" cellspacing="15">
   <tr>
-    <td><table width="100%" border="0" cellpadding="2" cellspacing="8" class="bdr1_thick bottle">
+    <td>
+    <table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
-        <td width="5%">Name</td>
+        <td width="5%" nowrap="nowrap">Name</td>
         <td colspan="3" class="bdr1B"><?php echo $name; ?></td>
       </tr>
       <tr>
-        <td width="5%">Street Address</td>
+        <td width="5%" nowrap="nowrap">Street Address</td>
         <td colspan="3" class="bdr1B"><?php echo $address; ?></td>
       </tr>
       <tr>
-        <td width="5%">City</td>
+        <td width="5%" nowrap="nowrap">City</td>
         <td colspan="3" class="bdr1B"><?php echo $city; ?></td>
       </tr>
       <tr>
-        <td width="5%">State</td>
+        <td width="5%" nowrap="nowrap">State</td>
         <td class="bdr1B"><?php echo $state; ?></td>
         <td width="5%">Zip</td>
         <td width="50%" class="bdr1B"><?php echo $zip; ?></td>
       </tr>
       <tr>
-        <td width="5%">Phone Number</td>
+        <td width="5%" nowrap="nowrap">Phone Number</td>
         <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
       </tr>
       <tr>
-        <td width="5%">Email Address</td>
+        <td width="5%" nowrap="nowrap">Email Address</td>
         <td colspan="3" class="bdr1B"><?php echo $email; ?></td>
       </tr>
       <tr>
-        <td width="5%">Name of Beer</td>
+        <td width="5%" nowrap="nowrap">Name of Beer</td>
         <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
       </tr>
       <tr>
-        <td width="5%">Category Entered</td>
+        <td width="5%" nowrap="nowrap">Category Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleGroup']; ?></td>
       </tr>
       <tr>
-        <td width="5%">Subcategory Entered</td>
+        <td width="5%" nowrap="nowrap">Subcategory Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleNum']; ?></td>
       </tr>
       <tr>
-        <td>Homebrew Club</td>
+        <td nowrap="nowrap">Homebrew Club</td>
         <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
       </tr>
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
       </tr>
     </table></td>
-    <td width="50%"><table width="100%" border="0" cellpadding="2" cellspacing="8" class="bdr1_thick bottle">
+    <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
-        <td width="5%">Name</td>
+        <td width="5%" nowrap="nowrap">Name</td>
         <td colspan="3" class="bdr1B"><?php echo $name; ?></td>
       </tr>
       <tr>
-        <td width="5%">Street Address</td>
+        <td width="5%" nowrap="nowrap">Street Address</td>
         <td colspan="3" class="bdr1B"><?php echo $address; ?></td>
       </tr>
       <tr>
-        <td width="5%">City</td>
+        <td width="5%" nowrap="nowrap">City</td>
         <td colspan="3" class="bdr1B"><?php echo $city; ?></td>
       </tr>
       <tr>
-        <td width="5%">State</td>
+        <td width="5%" nowrap="nowrap">State</td>
         <td class="bdr1B"><?php echo $state; ?></td>
         <td width="5%">Zip</td>
         <td width="50%" class="bdr1B"><?php echo $zip; ?></td>
       </tr>
       <tr>
-        <td width="5%">Phone Number</td>
+        <td width="5%" nowrap="nowrap">Phone Number</td>
         <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
       </tr>
       <tr>
-        <td width="5%">Email Address</td>
+        <td width="5%" nowrap="nowrap">Email Address</td>
         <td colspan="3" class="bdr1B"><?php echo $email; ?></td>
       </tr>
       <tr>
-        <td width="5%">Name of Beer</td>
+        <td width="5%" nowrap="nowrap">Name of Beer</td>
         <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
       </tr>
       <tr>
-        <td width="5%">Category Entered</td>
+        <td width="5%" nowrap="nowrap">Category Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleGroup']; ?></td>
       </tr>
       <tr>
-        <td width="5%">Subcategory Entered</td>
+        <td width="5%" nowrap="nowrap">Subcategory Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleNum']; ?></td>
       </tr>
       <tr>
-        <td>Homebrew Club</td>
+        <td nowrap="nowrap">Homebrew Club</td>
         <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
       </tr>
       <tr>
@@ -971,100 +969,100 @@ if ($action == "verify") { ?>
     </table></td>
   </tr>
   <tr>
-    <td><table width="100%" border="0" cellpadding="2" cellspacing="8" class="bdr1_thick bottle">
+    <td><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
-        <td width="5%">Name</td>
+        <td width="5%" nowrap="nowrap">Name</td>
         <td colspan="3" class="bdr1B"><?php echo $name; ?></td>
       </tr>
       <tr>
-        <td width="5%">Street Address</td>
+        <td width="5%" nowrap="nowrap">Street Address</td>
         <td colspan="3" class="bdr1B"><?php echo $address; ?></td>
       </tr>
       <tr>
-        <td width="5%">City</td>
+        <td width="5%" nowrap="nowrap">City</td>
         <td colspan="3" class="bdr1B"><?php echo $city; ?></td>
       </tr>
       <tr>
-        <td width="5%">State</td>
+        <td width="5%" nowrap="nowrap">State</td>
         <td class="bdr1B"><?php echo $state; ?></td>
         <td width="5%">Zip</td>
         <td width="50%" class="bdr1B"><?php echo $zip; ?></td>
       </tr>
       <tr>
-        <td width="5%">Phone Number</td>
+        <td width="5%" nowrap="nowrap">Phone Number</td>
         <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
       </tr>
       <tr>
-        <td width="5%">Email Address</td>
+        <td width="5%" nowrap="nowrap">Email Address</td>
         <td colspan="3" class="bdr1B"><?php echo $email; ?></td>
       </tr>
       <tr>
-        <td width="5%">Name of Beer</td>
+        <td width="5%" nowrap="nowrap">Name of Beer</td>
         <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
       </tr>
       <tr>
-        <td width="5%">Category Entered</td>
+        <td width="5%" nowrap="nowrap">Category Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleGroup']; ?></td>
       </tr>
       <tr>
-        <td width="5%">Subcategory Entered</td>
+        <td width="5%" nowrap="nowrap">Subcategory Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleNum']; ?></td>
       </tr>
       <tr>
-        <td>Homebrew Club</td>
+        <td nowrap="nowrap">Homebrew Club</td>
         <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
       </tr>
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
       </tr>
     </table></td>
-    <td width="50%"><table width="100%" border="0" cellpadding="2" cellspacing="8" class="bdr1_thick bottle">
+    <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
         <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
-        <td width="5%">Name</td>
+        <td width="5%" nowrap="nowrap">Name</td>
         <td colspan="3" class="bdr1B"><?php echo $name; ?></td>
       </tr>
       <tr>
-        <td width="5%">Street Address</td>
+        <td width="5%" nowrap="nowrap">Street Address</td>
         <td colspan="3" class="bdr1B"><?php echo $address; ?></td>
       </tr>
       <tr>
-        <td width="5%">City</td>
+        <td width="5%" nowrap="nowrap">City</td>
         <td colspan="3" class="bdr1B"><?php echo $city; ?></td>
       </tr>
       <tr>
-        <td width="5%">State</td>
+        <td width="5%" nowrap="nowrap">State</td>
         <td class="bdr1B"><?php echo $state; ?></td>
         <td width="5%">Zip</td>
         <td width="50%" class="bdr1B"><?php echo $zip; ?></td>
       </tr>
       <tr>
-        <td width="5%">Phone Number</td>
+        <td width="5%" nowrap="nowrap">Phone Number</td>
         <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
       </tr>
       <tr>
-        <td width="5%">Email Address</td>
+        <td width="5%" nowrap="nowrap">Email Address</td>
         <td colspan="3" class="bdr1B"><?php echo $email; ?></td>
       </tr>
       <tr>
-        <td width="5%">Name of Beer</td>
+        <td width="5%" nowrap="nowrap">Name of Beer</td>
         <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
       </tr>
       <tr>
-        <td width="5%">Category Entered</td>
+        <td width="5%" nowrap="nowrap">Category Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleGroup']; ?></td>
       </tr>
       <tr>
-        <td width="5%">Subcategory Entered</td>
+        <td width="5%" nowrap="nowrap">Subcategory Entered</td>
         <td colspan="3" class="bdr1B"><?php echo $row_style1['brewStyleNum']; ?></td>
       </tr>
       <tr>
-        <td>Homebrew Club</td>
+        <td nowrap="nowrap">Homebrew Club</td>
         <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
       </tr>
       <tr>
