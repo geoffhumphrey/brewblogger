@@ -36,11 +36,11 @@ if ($row_pref['mode'] == "2") {
 		   <td class="listLeftAlign" <?php if ($page == "brewBlogDetail") echo "colspan=\"2\""; ?>><?php if ($page != "recipeDetail") echo " <a href=\"?page=brewBlogList&sort=brewDate&dir=DESC\">All Club ".$row_pref['menuBrewBlogs']."</a>"; else echo " <a href=\"?page=recipeList\">All Club ".$row_pref['menuRecipes']."</a>"; ?></td>
 		</td>
 	    <?php if ($row_log['brewBrewerID'] != "") do { 
-			if ($row_list['brewArchive'] != "Y") { 
+			if (($row_list['brewArchive'] != "Y") || ($row_list['brewArchive'] != " ")) { 
 		?>
 		  <tr>
     	     <td class="listLeftAlign"><?php if ($row_list['id'] != $row_log['id']) { ?><a href="<?php if ($page != "recipeDetail") echo "index.php?page=brewBlogDetail&"; else echo "index.php?page=recipeDetail&"; ?>&filter=<?php echo $row_log['brewBrewerID']; ?>&id=<?php echo $row_list['id']; if ($pg != "") echo "&pg=".$pg ?>"><?php }  $str = $row_list['brewName']; if ($page != "recipeDetail") echo Truncate2($str);  else echo $str; if ($row_list['brewName'] != $row_log['brewName']) { ?></a><?php } ?></td>
-		     <?php if ($page != "recipeDetail") { ?><td class="listRightAlign"><?php $date = $row_list['brewDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td><?php }  ?>
+		     <?php if ($page != "recipeDetail") { ?><td class="listRightAlign"><?php echo dateconvert2($row_list['brewDate'],3); ?></td><?php }  ?>
 		 </tr> 
 	    <?php 
 			}

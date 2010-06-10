@@ -1916,9 +1916,10 @@ if (($action == "add") && ($dbTable == "users")) {
    defaultWaterProfile,
    defaultBitternessFormula,
    defaultMethod,
-   defaultBatchSize
+   defaultBatchSize,
+   defaultWaterRatio
    ) 
-   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
+   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
                        GetSQLValueString($_POST['user_name'], "text"),
                        GetSQLValueString($password, "text"),
 					   GetSQLValueString($_POST['realFirstName'], "scrubbed"),
@@ -1959,7 +1960,8 @@ if (($action == "add") && ($dbTable == "users")) {
 					   GetSQLValueString($_POST['defaultWaterProfile'], "text"),
 					   GetSQLValueString($_POST['defaultBitternessFormula'], "text"),
 					   GetSQLValueString($_POST['defaultMethod'], "text"),
-					   GetSQLValueString($_POST['defaultBatchSize'], "text")
+					   GetSQLValueString($_POST['defaultBatchSize'], "text"),
+					   GetSQLValueString($_POST['defaultWaterRatio'], "text")
 					   ); 
 
   mysql_select_db($database_brewing, $brewing);

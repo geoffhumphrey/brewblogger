@@ -102,6 +102,11 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
       <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Mash Profile?" title="Add Mash Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=mash_profiles">Add Mash Profiles?</a></span></td>
 </tr>
 <tr>
+      <td class="dataLabelLeft">Mash Thickness:</td>
+      <td class="data"><input name="defaultWaterRatio" type="text" value="<?php echo $row_log['defaultWaterRatio']; if ($row_log['defaultWaterRatio'] == "") echo "1.33"; ?>" size="5" /> <?php echo $row_pref['measWaterGrainRatio']; ?></td>
+	  <td class="data">&nbsp;</td>
+</tr>
+<tr>
       <td class="dataLabelLeft">Water Profile:</td>
       <td class="data">
       <select name="defaultWaterProfile" id="defaultWaterProfile">
