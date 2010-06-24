@@ -1,25 +1,22 @@
 <?php if ($row_members['userPicURL'] != "") {
-function getFileSizeW($file) 
-	{
-		$size = getimagesize($file);
-		$type = $size['mime'];
-		$width = $size[0];
-		return $width; 
-	}
-$file = "label_images/".$row_members['userPicURL']; $imgW = getFileSizeW($file);
-function getFileSizeH($fileH) 
-	{
-		$size = getimagesize($fileH);
-		$type = $size['mime'];
-		$height = $size[1];
-		return $height; 
-	}
-$file = "label_images/".$row_members['userPicURL']; $imgH = getFileSizeH($file);
+$img = $row_members['userPicURL'];
+$file = rtrim($images_dir."/label_images/".$img, " ");
 
-if (($imgH >= 150) && ($imgW >= 200)) $imgSize = "height=\"225\"";
-if (($imgH < 150) && ($imgW < 225)) $imgSize = "width=\"".$imgW."\"";
+$max_width = 225;
+$max_height = 450;
+
+list($width, $height) = getimagesize($file);
+if (($width >= $max_width) || ($height >= $max_height)) {
+	$ratioh = $max_height/$height;
+	$ratiow = $max_width/$width;
+	$ratio = min($ratioh, $ratiow);
+	// New dimensions
+	$width = intval($ratio*$width);
+	$height = intval($ratio*$height);
+} 
+
 ?>
 
-<div align="center"><img class="bdr1_dark" src="label_images/<?php echo $row_members['userPicURL']; ?>" <?php echo $imgSize; ?> border="0" title="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>" alt="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>"></a></div>
-<?php if (($imgH >= 150) && ($imgW >= 200)) { ?><div class="center dataLeft"><a href="label_images/<?php echo $row_members['userPicURL']; ?>" title="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>" class="thickbox">View Full Size</a></div><?php } ?>
+<div align="center"><img class="bdr1_dark" src="label_images/<?php echo $row_members['userPicURL']; ?>" <?php echo $imgSize; ?> border="0" title="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>" alt="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>"></a></div>
+<?php if (($height >= 150) && ($width >= 200)) { ?><div class="center dataLeft"><p><a href="label_images/<?php echo $row_members['userPicURL']; ?>" title="<?php echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName']; ?>" class="thickbox">View Full Size</a></p></div><?php  } ?>
 <?php } ?>

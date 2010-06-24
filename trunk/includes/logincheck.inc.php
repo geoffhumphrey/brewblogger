@@ -9,7 +9,7 @@ require '../Connections/config.php';
 $connection = $brewing;
 
 // Clean the data collected in the <form>
- function sterilize ($sterilize=NULL) {
+function sterilize ($sterilize=NULL) {
 if ($sterilize==NULL) {return NULL;}
 $check = array (1 => "'", 2 => '"', 3 => '<', 4 => '>');
 foreach ($check as $value) {
@@ -26,7 +26,8 @@ $loginUsername = sterilize($_POST['loginUsername']);
 $loginPassword = sterilize($_POST['loginPassword']);
 
 //if ($source != "calc") { 
-if (ctype_alnum($loginUsername)) {
+$aValid = array('-', '_', '.','*','@','!','#','$','%','^','&','+','=');
+if (ctype_alnum(str_replace(($aValid), '', $loginUsername))) {
 if (!mysql_selectdb($database_brewing, $connection))
   showerror();
 session_start();
