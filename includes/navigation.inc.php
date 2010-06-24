@@ -122,7 +122,7 @@ if ($row_user['userLevel'] == "1") { ?>
 <div id="publicMenu2.3" class="menu">
 	<?php echo "<a class=\"menuItem\" href=\"admin/index.php?action=edit&dbTable=users&filter=".$loginUsername."&id=".$row_user['id']."\">"; ?><?php if ($row_pref['mode'] == "2") echo "My"; ?> Personal Defaults and Info</a>
 	<a class="menuItem" href="admin/index.php?action=edit&dbTable=preferences&id=1">Preferences</a>
-	<a class="menuItem" href="adminindex.php?action=edit&dbTable=brewer&id=1">Profile</a>
+	<a class="menuItem" href="admin/index.php?action=edit&dbTable=brewer&id=1">Profile</a>
 </div>
 <div id="publicMenu2.4" class="menu">
 	<a class="menuItem" href="admin/index.php?action=importXML&dbTable=brewing">Brewlogs</a>

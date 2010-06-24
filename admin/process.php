@@ -2865,7 +2865,7 @@ if ((($action == "add") || ($action == "reuse")) && ($dbTable == "equip_profiles
   equipTopUp,
   equipTopUpKettle,
   equipBrewerID
-  ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+  ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
   						GetSQLValueString($_POST['equipProfileName'], "scrubbed"),
   						GetSQLValueString($_POST['equipBatchSize'], "text"),
   						GetSQLValueString($_POST['equipBoilVolume'], "text"),
