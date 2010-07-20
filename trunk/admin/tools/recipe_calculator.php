@@ -15,8 +15,15 @@ $row_recipeRecalc = mysql_fetch_assoc($recipeRecalc);
 
 if ($action == "calculate") {
 if (($results == "true") || ($results == "verify")) {
+
 include ('lib/calculations.lib.php');
 include ('lib/calcFormVar.lib.php'); 
+
+mysql_select_db($database_brewing, $brewing);
+$query_hops = "SELECT * FROM hops";
+$hops = mysql_query($query_hops, $brewing);
+$row_hops = mysql_fetch_assoc($hops);
+
 }
 
 if ($results != "verify") { 

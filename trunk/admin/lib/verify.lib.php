@@ -11,8 +11,8 @@
 <?php if ($row_recipeRecalc['id'] != "") { ?>
 <tr>
 	<td width="10%">&nbsp;</td>
-	<td width="40%" class="text_12_bold data">Current Recipe</td>
-	<td width="40%" class="text_12_bold data">Recalculated Recipe</td>
+	<td width="40%" class="text_12_bold data"><?php if ($assoc == "import") echo "Original"; else echo "Recalculated Recipe"; ?></td>
+	<td width="40%" class="text_12_bold data"><?php if ($assoc == "import") echo "To Import"; else echo "Recalculated Recipe"; ?></td>
 </tr>
 <?php } ?>
 <tr class="bknd_ultra_lt">
@@ -61,12 +61,12 @@
 </tr> 
 <tr>
 	<td class="dataLabelLeft" nowrap>OG<?php if ($assoc != "import")  echo " (Choose)"; ?>:</td>
-	<?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php echo number_format ($row_recipeRecalc['brewOG'], 3); ?>" checked="checked">&nbsp;<?php } ?><?php echo number_format ($row_recipeRecalc['brewOG'], 3); ?></td><?php } ?>
-	<td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php echo number_format ($brewOG, 3); ?>">&nbsp;<?php } ?><?php echo number_format ($brewOG, 3); ?></td>
+	<?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php if ($row_recipeRecalc['brewOG'] > 0) echo number_format ($row_recipeRecalc['brewOG'], 3); else echo ""; ?>" checked="checked">&nbsp;<?php } ?><?php if ($row_recipeRecalc['brewOG'] > 0) echo number_format ($row_recipeRecalc['brewOG'], 3); else echo "None entered" ?></td><?php } ?>
+	<td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php if ($brewOG > 0) echo number_format ($brewOG, 3); ?>">&nbsp;<?php } ?><?php if ($brewOG > 0) echo number_format ($brewOG, 3); ?></td>
 </tr>
 <tr class="bknd_ultra_lt">
 	<td class="dataLabelLeft" nowrap>FG<?php if ($assoc != "import")  echo " (Choose)"; ?>:</td>
-	<?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewFG" value ="<?php if ($row_recipeRecalc['brewFG'] !="") echo number_format ($row_recipeRecalc['brewFG'], 3); else echo ""; ?>" checked="checked">&nbsp;<?php } ?><?php echo number_format ($row_recipeRecalc['brewFG'], 3); ?></td><?php } ?>
+	<?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewFG" value ="<?php if ($row_recipeRecalc['brewFG'] > 0) echo number_format ($row_recipeRecalc['brewFG'], 3); else echo ""; ?>" checked="checked">&nbsp;<?php } ?><?php if ($row_recipeRecalc['brewFG'] > 0) echo number_format ($row_recipeRecalc['brewFG'], 3); else echo "None entered" ?></td><?php } ?>
 	<td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewFG" value ="<?php echo number_format ($brewFG, 3); ?>">&nbsp;<?php } ?><?php echo number_format ($brewFG, 3); ?></td>
 </tr>
 <tr>
@@ -114,7 +114,14 @@
 	if ($row_recipeRecalc['brewGrain6'] != "") echo $row_recipeRecalc['brewGrain6Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain6']."<br>";
 	if ($row_recipeRecalc['brewGrain7'] != "") echo $row_recipeRecalc['brewGrain7Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain7']."<br>";
 	if ($row_recipeRecalc['brewGrain8'] != "") echo $row_recipeRecalc['brewGrain8Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain8']."<br>";
-	if ($row_recipeRecalc['brewGrain9'] != "") echo $row_recipeRecalc['brewGrain9Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain9'];
+	if ($row_recipeRecalc['brewGrain9'] != "") echo $row_recipeRecalc['brewGrain9Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain9']."<br>";
+	if ($row_recipeRecalc['brewGrain10'] != "") echo $row_recipeRecalc['brewGrain10Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain10']."<br>";
+	if ($row_recipeRecalc['brewGrain11'] != "") echo $row_recipeRecalc['brewGrain11Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain11']."<br>";
+	if ($row_recipeRecalc['brewGrain12'] != "") echo $row_recipeRecalc['brewGrain12Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain12']."<br>";
+	if ($row_recipeRecalc['brewGrain13'] != "") echo $row_recipeRecalc['brewGrain13Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain13']."<br>";
+	if ($row_recipeRecalc['brewGrain14'] != "") echo $row_recipeRecalc['brewGrain14Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain14']."<br>";
+	if ($row_recipeRecalc['brewGrain15'] != "") echo $row_recipeRecalc['brewGrain15Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain15'];
+	
 	?>
 	</td>
     <?php } ?>
@@ -128,7 +135,13 @@
 	if ($brewGrain6 != "") echo $brewGrain6Weight." ".$row_pref['measWeight2']." ".$brewGrain6."<br>"; 
 	if ($brewGrain7 != "") echo $brewGrain7Weight." ".$row_pref['measWeight2']." ".$brewGrain7."<br>"; 
 	if ($brewGrain8 != "") echo $brewGrain8Weight." ".$row_pref['measWeight2']." ".$brewGrain8."<br>";
-	if ($brewGrain9 != "") echo $brewGrain9Weight." ".$row_pref['measWeight2']." ".$brewGrain9; 
+	if ($brewGrain9 != "") echo $brewGrain9Weight." ".$row_pref['measWeight2']." ".$brewGrain9."<br>"; 
+	if ($brewGrain10 != "") echo $brewGrain10Weight." ".$row_pref['measWeight2']." ".$brewGrain10."<br>"; 
+	if ($brewGrain11 != "") echo $brewGrain11Weight." ".$row_pref['measWeight2']." ".$brewGrain11."<br>"; 
+	if ($brewGrain12 != "") echo $brewGrain12Weight." ".$row_pref['measWeight2']." ".$brewGrain12."<br>"; 
+	if ($brewGrain13 != "") echo $brewGrain13Weight." ".$row_pref['measWeight2']." ".$brewGrain13."<br>"; 
+	if ($brewGrain14 != "") echo $brewGrain14Weight." ".$row_pref['measWeight2']." ".$brewGrain14."<br>"; 
+	if ($brewGrain15 != "") echo $brewGrain15Weight." ".$row_pref['measWeight2']." ".$brewGrain15;
 	?>
 	</td>
 </tr>
@@ -176,7 +189,13 @@
 	if ($row_recipeRecalc['brewHops6'] != "") echo $row_recipeRecalc['brewHops6Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops6']." ".$row_recipeRecalc['brewHops6IBU']."% @ ".$row_recipeRecalc['brewHops6Time']." min.<br>";
 	if ($row_recipeRecalc['brewHops7'] != "") echo $row_recipeRecalc['brewHops7Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops7']." ".$row_recipeRecalc['brewHops7IBU']."% @ ".$row_recipeRecalc['brewHops7Time']." min.<br>";
 	if ($row_recipeRecalc['brewHops8'] != "") echo $row_recipeRecalc['brewHops8Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops8']." ".$row_recipeRecalc['brewHops8IBU']."% @ ".$row_recipeRecalc['brewHops8Time']." min.<br>";
-	if ($row_recipeRecalc['brewHops9'] != "") echo $row_recipeRecalc['brewHops9Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops9']." ".$row_recipeRecalc['brewHops9IBU']."% @ ".$row_recipeRecalc['brewHops9Time']." min.";
+	if ($row_recipeRecalc['brewHops9'] != "") echo $row_recipeRecalc['brewHops9Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops9']." ".$row_recipeRecalc['brewHops9IBU']."% @ ".$row_recipeRecalc['brewHops9Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops10'] != "") echo $row_recipeRecalc['brewHops10Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops10']." ".$row_recipeRecalc['brewHops10IBU']."% @ ".$row_recipeRecalc['brewHops10Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops11'] != "") echo $row_recipeRecalc['brewHops11Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops11']." ".$row_recipeRecalc['brewHops11IBU']."% @ ".$row_recipeRecalc['brewHops11Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops12'] != "") echo $row_recipeRecalc['brewHops12Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops12']." ".$row_recipeRecalc['brewHops12IBU']."% @ ".$row_recipeRecalc['brewHops12Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops13'] != "") echo $row_recipeRecalc['brewHops13Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops13']." ".$row_recipeRecalc['brewHops13IBU']."% @ ".$row_recipeRecalc['brewHops13Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops14'] != "") echo $row_recipeRecalc['brewHops14Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops14']." ".$row_recipeRecalc['brewHops14IBU']."% @ ".$row_recipeRecalc['brewHops14Time']." min.<br>";
+	if ($row_recipeRecalc['brewHops15'] != "") echo $row_recipeRecalc['brewHops15Weight']." ".$row_pref['measWeight1']." ".$row_recipeRecalc['brewHops15']." ".$row_recipeRecalc['brewHops15IBU']."% @ ".$row_recipeRecalc['brewHops15Time']." min.";
 	?>
 	</td>
     <?php } ?>
@@ -190,7 +209,13 @@
 	if ($brewHops6 != "") echo $brewHops6Weight." ".$row_pref['measWeight1']." ".$brewHops6." ".$brewHops6IBU."% @ ".$brewHops6Time." min.<br>"; 
 	if ($brewHops7 != "") echo $brewHops7Weight." ".$row_pref['measWeight1']." ".$brewHops7." ".$brewHops7IBU."% @ ".$brewHops7Time." min.<br>"; 
 	if ($brewHops8 != "") echo $brewHops8Weight." ".$row_pref['measWeight1']." ".$brewHops8." ".$brewHops8IBU."% @ ".$brewHops8Time." min.<br>";
-	if ($brewHops9 != "") echo $brewHops9Weight." ".$row_pref['measWeight1']." ".$brewHops9." ".$brewHops9IBU."% @ ".$brewHops8Time." min."; 
+	if ($brewHops9 != "") echo $brewHops9Weight." ".$row_pref['measWeight1']." ".$brewHops9." ".$brewHops9IBU."% @ ".$brewHops9Time." min.<br>"; 
+	if ($brewHops10 != "") echo $brewHops10Weight." ".$row_pref['measWeight1']." ".$brewHops10." ".$brewHops10IBU."% @ ".$brewHops10Time." min.<br>"; 
+	if ($brewHops11 != "") echo $brewHops11Weight." ".$row_pref['measWeight1']." ".$brewHops11." ".$brewHops11IBU."% @ ".$brewHops11Time." min.<br>"; 
+	if ($brewHops12 != "") echo $brewHops12Weight." ".$row_pref['measWeight1']." ".$brewHops12." ".$brewHops12IBU."% @ ".$brewHops11Time." min.<br>"; 
+	if ($brewHops13 != "") echo $brewHops13Weight." ".$row_pref['measWeight1']." ".$brewHops13." ".$brewHops13IBU."% @ ".$brewHops11Time." min.<br>"; 
+	if ($brewHops14 != "") echo $brewHops14Weight." ".$row_pref['measWeight1']." ".$brewHops14." ".$brewHops14IBU."% @ ".$brewHops11Time." min.<br>"; 
+	if ($brewHops15 != "") echo $brewHops15Weight." ".$row_pref['measWeight1']." ".$brewHops15." ".$brewHops15IBU."% @ ".$brewHops11Time." min."; 
 	?>
 	</td>
 </tr>
@@ -203,101 +228,7 @@
 <?php if (($assoc == "import") && ($importDB == "recipes")) { ?>
 <input type="hidden" name="brewOG" value="<?php echo round ($brewOG, 3); ?>">
 <input type="hidden" name="brewFG" value="<?php echo round ($brewFG, 3); ?>">
-<?php } ?>
-<input type="hidden" name="brewName" value="<?php echo $brewName; ?>">
-<input type="hidden" name="brewStyle" value="<?php echo $brewStyle; ?>">
-<input type="hidden" name="brewLovibond" value="<?php if ($brewLovibond < 10) echo "0"; echo $brewLovibond; ?>">
-<input type="hidden" name="brewExtract1" value="<?php echo $brewExtract1; ?>">
-<input type="hidden" name="brewExtract2" value="<?php echo $brewExtract2; ?>">
-<input type="hidden" name="brewExtract3" value="<?php echo $brewExtract3; ?>">
-<input type="hidden" name="brewExtract4" value="<?php echo $brewExtract4; ?>">
-<input type="hidden" name="brewExtract5" value="<?php echo $brewExtract5; ?>">
-<input type="hidden" name="brewExtract1Weight" value="<?php echo $brewExtract1Weight; ?>">
-<input type="hidden" name="brewExtract2Weight" value="<?php echo $brewExtract2Weight; ?>">
-<input type="hidden" name="brewExtract3Weight" value="<?php echo $brewExtract3Weight; ?>">
-<input type="hidden" name="brewExtract4Weight" value="<?php echo $brewExtract4Weight; ?>">
-<input type="hidden" name="brewExtract5Weight" value="<?php echo $brewExtract5Weight; ?>">
-<input type="hidden" name="brewGrain1" value="<?php echo $brewGrain1; ?>">
-<input type="hidden" name="brewGrain2" value="<?php echo $brewGrain2; ?>">
-<input type="hidden" name="brewGrain3" value="<?php echo $brewGrain3; ?>">
-<input type="hidden" name="brewGrain4" value="<?php echo $brewGrain4; ?>">
-<input type="hidden" name="brewGrain5" value="<?php echo $brewGrain5; ?>">
-<input type="hidden" name="brewGrain6" value="<?php echo $brewGrain6; ?>">
-<input type="hidden" name="brewGrain7" value="<?php echo $brewGrain7; ?>">
-<input type="hidden" name="brewGrain8" value="<?php echo $brewGrain8; ?>">
-<input type="hidden" name="brewGrain9" value="<?php echo $brewGrain9; ?>">
-<input type="hidden" name="brewGrain1Weight" value="<?php echo $brewGrain1Weight; ?>">
-<input type="hidden" name="brewGrain2Weight" value="<?php echo $brewGrain2Weight; ?>">
-<input type="hidden" name="brewGrain3Weight" value="<?php echo $brewGrain3Weight; ?>">
-<input type="hidden" name="brewGrain4Weight" value="<?php echo $brewGrain4Weight; ?>">
-<input type="hidden" name="brewGrain5Weight" value="<?php echo $brewGrain5Weight; ?>">
-<input type="hidden" name="brewGrain6Weight" value="<?php echo $brewGrain6Weight; ?>">
-<input type="hidden" name="brewGrain7Weight" value="<?php echo $brewGrain7Weight; ?>">
-<input type="hidden" name="brewGrain8Weight" value="<?php echo $brewGrain8Weight; ?>">
-<input type="hidden" name="brewGrain9Weight" value="<?php echo $brewGrain9Weight; ?>">
-<input type="hidden" name="brewAddition1" value="<?php echo $brewAdjunct1; ?>">
-<input type="hidden" name="brewAddition2" value="<?php echo $brewAdjunct2; ?>">
-<input type="hidden" name="brewAddition3" value="<?php echo $brewAdjunct3; ?>">
-<input type="hidden" name="brewAddition4" value="<?php echo $brewAdjunct4; ?>">
-<input type="hidden" name="brewAddition5" value="<?php echo $brewAdjunct6; ?>">
-<input type="hidden" name="brewAddition6" value="<?php echo $brewAdjunct7; ?>">
-<input type="hidden" name="brewAddition7" value="<?php echo $brewAdjunct8; ?>">
-<input type="hidden" name="brewAddition8" value="<?php echo $brewAdjunct9; ?>">
-<input type="hidden" name="brewAddition9" value="<?php echo $brewAdjunct5; ?>">
-<input type="hidden" name="brewAddition1Amt" value="<?php echo $brewAdjunct1Weight; ?>">
-<input type="hidden" name="brewAddition2Amt" value="<?php echo $brewAdjunct2Weight; ?>">
-<input type="hidden" name="brewAddition3Amt" value="<?php echo $brewAdjunct3Weight; ?>">
-<input type="hidden" name="brewAddition4Amt" value="<?php echo $brewAdjunct4Weight; ?>">
-<input type="hidden" name="brewAddition5Amt" value="<?php echo $brewAdjunct5Weight; ?>">
-<input type="hidden" name="brewAddition6Amt" value="<?php echo $brewAdjunct6Weight; ?>">
-<input type="hidden" name="brewAddition7Amt" value="<?php echo $brewAdjunct7Weight; ?>">
-<input type="hidden" name="brewAddition8Amt" value="<?php echo $brewAdjunct8Weight; ?>">
-<input type="hidden" name="brewAddition9Amt" value="<?php echo $brewAdjunct9Weight; ?>">
-<input type="hidden" name="brewHops1" value="<?php echo $brewHops1; ?>">
-<input type="hidden" name="brewHops2" value="<?php echo $brewHops2; ?>">
-<input type="hidden" name="brewHops3" value="<?php echo $brewHops3; ?>">
-<input type="hidden" name="brewHops4" value="<?php echo $brewHops4; ?>">
-<input type="hidden" name="brewHops5" value="<?php echo $brewHops5; ?>">
-<input type="hidden" name="brewHops6" value="<?php echo $brewHops6; ?>">
-<input type="hidden" name="brewHops7" value="<?php echo $brewHops7; ?>">
-<input type="hidden" name="brewHops8" value="<?php echo $brewHops8; ?>">
-<input type="hidden" name="brewHops9" value="<?php echo $brewHops9; ?>">
-<input type="hidden" name="brewHops1Weight" value="<?php echo $brewHops1Weight; ?>">
-<input type="hidden" name="brewHops2Weight" value="<?php echo $brewHops2Weight; ?>">
-<input type="hidden" name="brewHops3Weight" value="<?php echo $brewHops3Weight; ?>">
-<input type="hidden" name="brewHops4Weight" value="<?php echo $brewHops4Weight; ?>">
-<input type="hidden" name="brewHops5Weight" value="<?php echo $brewHops5Weight; ?>">
-<input type="hidden" name="brewHops6Weight" value="<?php echo $brewHops6Weight; ?>">
-<input type="hidden" name="brewHops7Weight" value="<?php echo $brewHops7Weight; ?>">
-<input type="hidden" name="brewHops8Weight" value="<?php echo $brewHops8Weight; ?>">
-<input type="hidden" name="brewHops9Weight" value="<?php echo $brewHops9Weight; ?>">
-<input type="hidden" name="brewHops1IBU" value="<?php echo $brewHops1IBU; ?>">
-<input type="hidden" name="brewHops2IBU" value="<?php echo $brewHops2IBU; ?>">
-<input type="hidden" name="brewHops3IBU" value="<?php echo $brewHops3IBU; ?>">
-<input type="hidden" name="brewHops4IBU" value="<?php echo $brewHops4IBU; ?>">
-<input type="hidden" name="brewHops5IBU" value="<?php echo $brewHops5IBU; ?>">
-<input type="hidden" name="brewHops6IBU" value="<?php echo $brewHops6IBU; ?>">
-<input type="hidden" name="brewHops7IBU" value="<?php echo $brewHops7IBU; ?>">
-<input type="hidden" name="brewHops8IBU" value="<?php echo $brewHops8IBU; ?>">
-<input type="hidden" name="brewHops9IBU" value="<?php echo $brewHops9IBU; ?>">
-<input type="hidden" name="brewHops1Time" value="<?php echo $brewHops1Time; ?>">
-<input type="hidden" name="brewHops2Time" value="<?php echo $brewHops2Time; ?>">
-<input type="hidden" name="brewHops3Time" value="<?php echo $brewHops3Time; ?>">
-<input type="hidden" name="brewHops4Time" value="<?php echo $brewHops4Time; ?>">
-<input type="hidden" name="brewHops5Time" value="<?php echo $brewHops5Time; ?>">
-<input type="hidden" name="brewHops6Time" value="<?php echo $brewHops6Time; ?>">
-<input type="hidden" name="brewHops7Time" value="<?php echo $brewHops7Time; ?>">
-<input type="hidden" name="brewHops8Time" value="<?php echo $brewHops8Time; ?>">
-<input type="hidden" name="brewHops9Time" value="<?php echo $brewHops9Time; ?>">
-<input type="hidden" name="brewHops1Form" value="<?php echo $brewHops1Form; ?>">
-<input type="hidden" name="brewHops2Form" value="<?php echo $brewHops2Form; ?>">
-<input type="hidden" name="brewHops3Form" value="<?php echo $brewHops3Form; ?>">
-<input type="hidden" name="brewHops4Form" value="<?php echo $brewHops4Form; ?>">
-<input type="hidden" name="brewHops5Form" value="<?php echo $brewHops5Form; ?>">
-<input type="hidden" name="brewHops6Form" value="<?php echo $brewHops6Form; ?>">
-<input type="hidden" name="brewHops7Form" value="<?php echo $brewHops7Form; ?>">
-<input type="hidden" name="brewHops8Form" value="<?php echo $brewHops8Form; ?>">
-<input type="hidden" name="brewHops9Form" value="<?php echo $brewHops9Form; ?>">
+<?php } include ('importFormVar.lib.php'); ?>
 <input type="hidden" name="brewBrewerID" value="<?php if ($assoc == "import") echo $filter; elseif ($row_recipeRecalc['brewBrewerID'] != "") echo $row_recipeRecalc['brewBrewerID']; else echo $_SESSION['loginUsername']; ?>">
 </div>
 <br><br>

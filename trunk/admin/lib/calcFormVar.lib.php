@@ -39,37 +39,21 @@ $brewExtract4Weight = $_POST['brewExtract4Weight'];
 $brewExtract5Weight = $_POST['brewExtract5Weight'];
 
 
-$query_extract1 = "SELECT * FROM extract WHERE extractName='$brewExtract1'";
-$extract1 = mysql_query($query_extract1, $brewing) or die(mysql_error());
-$row_extract1 = mysql_fetch_assoc($extract1);
+for($i = 1; $i <= 15; ++$i) {
+	
+    $query_extract = 'query_extract'.$i;
+    $extract = 'extract'.$i;
+    $row_extract = 'row_extract'.$i;
+    $totalRows_extract = 'totalRows_extract'.$i;
+	
+	mysql_select_db($database_brewing, $brewing);
+    $$query_extract = sprintf("SELECT extractYield, extractLovibond FROM extract WHERE extractName='%s'", $_POST['brewExtract'.$i]);
+    $$extract = mysql_query($$query_extract, $brewing);
+    $$row_extract = mysql_fetch_assoc($$extract);
+    $$totalRows_extract = mysql_num_rows($$extract);
+}
 
 
-$query_extract2 = "SELECT * FROM extract WHERE extractName='$brewExtract2'";
-$extract2 = mysql_query($query_extract2, $brewing) or die(mysql_error());
-$row_extract2 = mysql_fetch_assoc($extract2);
-
-
-$query_extract3 = "SELECT * FROM extract WHERE extractName='$brewExtract3'";
-$extract3 = mysql_query($query_extract3, $brewing) or die(mysql_error());
-$row_extract3 = mysql_fetch_assoc($extract3);
-
-
-$query_extract4 = "SELECT * FROM extract WHERE extractName='$brewExtract4'";
-$extract4 = mysql_query($query_extract4, $brewing) or die(mysql_error());
-$row_extract4 = mysql_fetch_assoc($extract4);
-
-
-$query_extract5 = "SELECT * FROM extract WHERE extractName='$brewExtract5'";
-$extract5 = mysql_query($query_extract5, $brewing) or die(mysql_error());
-$row_extract5 = mysql_fetch_assoc($extract5);
-
-/*
-$brewExtract1 = $row_extract1['extractName'];
-$brewExtract2 = $row_extract2['extractName'];
-$brewExtract3 = $row_extract3['extractName'];
-$brewExtract4 = $row_extract4['extractName'];
-$brewExtract5 = $row_extract5['extractName'];
-*/
 
 // ------------------------------ Grains ---------------------------------
 $brewGrain1 = $_POST['brewGrain1'];
@@ -81,6 +65,12 @@ $brewGrain6 = $_POST['brewGrain6'];
 $brewGrain7 = $_POST['brewGrain7'];
 $brewGrain8 = $_POST['brewGrain8'];
 $brewGrain9 = $_POST['brewGrain9'];
+$brewGrain10 = $_POST['brewGrain10'];
+$brewGrain11 = $_POST['brewGrain11'];
+$brewGrain12 = $_POST['brewGrain12'];
+$brewGrain13 = $_POST['brewGrain13'];
+$brewGrain14 = $_POST['brewGrain14'];
+$brewGrain15 = $_POST['brewGrain15'];
 
 $brewGrain1Weight = $_POST['brewGrain1Weight'];
 $brewGrain2Weight = $_POST['brewGrain2Weight'];
@@ -91,63 +81,27 @@ $brewGrain6Weight = $_POST['brewGrain6Weight'];
 $brewGrain7Weight = $_POST['brewGrain7Weight'];
 $brewGrain8Weight = $_POST['brewGrain8Weight'];
 $brewGrain9Weight = $_POST['brewGrain9Weight'];
+$brewGrain10Weight = $_POST['brewGrain10Weight'];
+$brewGrain11Weight = $_POST['brewGrain11Weight'];
+$brewGrain12Weight = $_POST['brewGrain12Weight'];
+$brewGrain13Weight = $_POST['brewGrain13Weight'];
+$brewGrain14Weight = $_POST['brewGrain14Weight'];
+$brewGrain15Weight = $_POST['brewGrain15Weight'];
 
 
-$query_grain1 = "SELECT * FROM malt WHERE maltName='$brewGrain1'";
-$grain1 = mysql_query($query_grain1, $brewing) or die(mysql_error());
-$row_grain1 = mysql_fetch_assoc($grain1);
-
-
-$query_grain2 = "SELECT * FROM malt WHERE maltName='$brewGrain2'";
-$grain2 = mysql_query($query_grain2, $brewing) or die(mysql_error());
-$row_grain2 = mysql_fetch_assoc($grain2);
-
-
-$query_grain3 = "SELECT * FROM malt WHERE maltName='$brewGrain3'";
-$grain3 = mysql_query($query_grain3, $brewing) or die(mysql_error());
-$row_grain3 = mysql_fetch_assoc($grain3);
-
-
-$query_grain4 = "SELECT * FROM malt WHERE maltName='$brewGrain4'";
-$grain4 = mysql_query($query_grain4, $brewing) or die(mysql_error());
-$row_grain4 = mysql_fetch_assoc($grain4);
-
-
-$query_grain5 = "SELECT * FROM malt WHERE maltName='$brewGrain5'";
-$grain5 = mysql_query($query_grain5, $brewing) or die(mysql_error());
-$row_grain5 = mysql_fetch_assoc($grain5);
-
-
-$query_grain6 = "SELECT * FROM malt WHERE maltName='$brewGrain6'";
-$grain6 = mysql_query($query_grain6, $brewing) or die(mysql_error());
-$row_grain6 = mysql_fetch_assoc($grain6);
-
-
-$query_grain7 = "SELECT * FROM malt WHERE maltName='$brewGrain7'";
-$grain7 = mysql_query($query_grain7, $brewing) or die(mysql_error());
-$row_grain7 = mysql_fetch_assoc($grain7);
-
-
-$query_grain8 = "SELECT * FROM malt WHERE maltName='$brewGrain8'";
-$grain8 = mysql_query($query_grain8, $brewing) or die(mysql_error());
-$row_grain8 = mysql_fetch_assoc($grain8);
-
-
-$query_grain9 = "SELECT * FROM malt WHERE maltName='$brewGrain9'";
-$grain9 = mysql_query($query_grain9, $brewing) or die(mysql_error());
-$row_grain9 = mysql_fetch_assoc($grain9);
-
-/*
-$brewGrain1 = $row_grain1['maltName'];
-$brewGrain2 = $row_grain2['maltName'];
-$brewGrain3 = $row_grain3['maltName'];
-$brewGrain4 = $row_grain4['maltName'];
-$brewGrain5 = $row_grain5['maltName'];
-$brewGrain6 = $row_grain6['maltName'];
-$brewGrain7 = $row_grain7['maltName'];
-$brewGrain8 = $row_grain8['maltName'];
-$brewGrain9 = $row_grain9['maltName'];
-*/
+for($i = 1; $i <= 15; ++$i) {
+	
+    $query_grain = 'query_grain'.$i;
+    $grain = 'grain'.$i;
+    $row_grain = 'row_grain'.$i;
+    $totalRows_grain = 'totalRows_grain'.$i;
+	
+	mysql_select_db($database_brewing, $brewing);
+    $$query_grain = sprintf("SELECT maltYield, maltLovibond FROM malt WHERE maltName='%s'", $_POST['brewGrain'.$i]);
+    $$grain = mysql_query($$query_grain, $brewing);
+    $$row_grain = mysql_fetch_assoc($$grain);
+    $$totalRows_grain = mysql_num_rows($$grain);
+}
 
 // ------------------------------ Adjuncts -------------------------------
 $brewAdjunct1 = $_POST['brewAdjunct1'];
@@ -170,62 +124,19 @@ $brewAdjunct7Weight = $_POST['brewAdjunct7Weight'];
 $brewAdjunct8Weight = $_POST['brewAdjunct8Weight'];
 $brewAdjunct9Weight = $_POST['brewAdjunct9Weight'];
 
-
-$query_adjuncts1 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct1'";
-$adjuncts1 = mysql_query($query_adjuncts1, $brewing) or die(mysql_error());
-$row_adjuncts1 = mysql_fetch_assoc($adjuncts1);
-
-
-$query_adjuncts2 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct2'";
-$adjuncts2 = mysql_query($query_adjuncts2, $brewing) or die(mysql_error());
-$row_adjuncts2 = mysql_fetch_assoc($adjuncts2);
-
-
-$query_adjuncts3 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct3'";
-$adjuncts3 = mysql_query($query_adjuncts3, $brewing) or die(mysql_error());
-$row_adjuncts3 = mysql_fetch_assoc($adjuncts3);
-
-
-$query_adjuncts4 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct4'";
-$adjuncts4 = mysql_query($query_adjuncts4, $brewing) or die(mysql_error());
-$row_adjuncts4 = mysql_fetch_assoc($adjuncts4);
-
-
-$query_adjuncts5 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct5'";
-$adjuncts5 = mysql_query($query_adjuncts5, $brewing) or die(mysql_error());
-$row_adjuncts5 = mysql_fetch_assoc($adjuncts5);
-
-
-$query_adjuncts6 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct6'";
-$adjuncts6 = mysql_query($query_adjuncts6, $brewing) or die(mysql_error());
-$row_adjuncts6 = mysql_fetch_assoc($adjuncts6);
-
-
-$query_adjuncts7 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct7'";
-$adjuncts7 = mysql_query($query_adjuncts7, $brewing) or die(mysql_error());
-$row_adjuncts7 = mysql_fetch_assoc($adjuncts7);
-
-
-$query_adjuncts8 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct8'";
-$adjuncts8 = mysql_query($query_adjuncts8, $brewing) or die(mysql_error());
-$row_adjuncts8 = mysql_fetch_assoc($adjuncts8);
-
-
-$query_adjuncts9 = "SELECT * FROM adjuncts WHERE adjunctName='$brewAdjunct9'";
-$adjuncts9 = mysql_query($query_adjuncts9, $brewing) or die(mysql_error());
-$row_adjuncts9 = mysql_fetch_assoc($adjuncts9);
-
-/*
-$brewAdjunct1 = $row_adjuncts1['adjunctName'];
-$brewAdjunct2 = $row_adjuncts2['adjunctName'];
-$brewAdjunct3 = $row_adjuncts3['adjunctName'];
-$brewAdjunct4 = $row_adjuncts4['adjunctName'];
-$brewAdjunct5 = $row_adjuncts5['adjunctName'];
-$brewAdjunct6 = $row_adjuncts6['adjunctName'];
-$brewAdjunct7 = $row_adjuncts7['adjunctName'];
-$brewAdjunct8 = $row_adjuncts8['adjunctName'];
-$brewAdjunct9 = $row_adjuncts9['adjunctName'];
-*/
+for($i = 1; $i <= 9; ++$i) {
+	
+    $query_adjunct = 'query_adjunct'.$i;
+    $adjunct = 'adjunct'.$i;
+    $row_adjunct = 'row_adjunct'.$i;
+    $totalRows_adjunct = 'totalRows_adjunct'.$i;
+	
+	mysql_select_db($database_brewing, $brewing);
+    $$query_adjunct = sprintf("SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='%s'", $_POST['brewadjunct'.$i]);
+    $$adjunct = mysql_query($$query_adjunct, $brewing);
+    $$row_adjunct = mysql_fetch_assoc($$adjunct);
+    $$totalRows_adjunct = mysql_num_rows($$adjunct);
+}
 
 // Extract Gravity Units (GU)
 if ($row_pref['measWeight2'] == "pounds") { 
@@ -305,6 +216,13 @@ $brewHops6 = $_POST['brewHops6'];
 $brewHops7 = $_POST['brewHops7'];
 $brewHops8 = $_POST['brewHops8'];
 $brewHops9 = $_POST['brewHops9'];
+$brewHops10 = $_POST['brewHops10'];
+$brewHops11 = $_POST['brewHops11'];
+$brewHops12 = $_POST['brewHops12'];
+$brewHops13 = $_POST['brewHops13'];
+$brewHops14 = $_POST['brewHops14'];
+$brewHops15 = $_POST['brewHops15'];
+
 $brewHops1Weight = $_POST['brewHops1Weight'];
 $brewHops2Weight = $_POST['brewHops2Weight'];
 $brewHops3Weight = $_POST['brewHops3Weight'];
@@ -314,6 +232,13 @@ $brewHops6Weight = $_POST['brewHops6Weight'];
 $brewHops7Weight = $_POST['brewHops7Weight'];
 $brewHops8Weight = $_POST['brewHops8Weight'];
 $brewHops9Weight = $_POST['brewHops9Weight'];
+$brewHops10Weight = $_POST['brewHops10Weight'];
+$brewHops11Weight = $_POST['brewHops11Weight'];
+$brewHops12Weight = $_POST['brewHops12Weight'];
+$brewHops13Weight = $_POST['brewHops13Weight'];
+$brewHops14Weight = $_POST['brewHops14Weight'];
+$brewHops15Weight = $_POST['brewHops15Weight'];
+
 $brewHops1IBU = $_POST['brewHops1IBU'];
 $brewHops2IBU = $_POST['brewHops2IBU'];
 $brewHops3IBU = $_POST['brewHops3IBU'];
@@ -323,6 +248,13 @@ $brewHops6IBU = $_POST['brewHops6IBU'];
 $brewHops7IBU = $_POST['brewHops7IBU'];
 $brewHops8IBU = $_POST['brewHops8IBU'];
 $brewHops9IBU = $_POST['brewHops9IBU'];
+$brewHops10IBU = $_POST['brewHops10IBU'];
+$brewHops11IBU = $_POST['brewHops11IBU'];
+$brewHops12IBU = $_POST['brewHops12IBU'];
+$brewHops13IBU = $_POST['brewHops13IBU'];
+$brewHops14IBU = $_POST['brewHops14IBU'];
+$brewHops15IBU = $_POST['brewHops15IBU'];
+
 $brewHops1Time = $_POST['brewHops1Time'];
 $brewHops2Time = $_POST['brewHops2Time'];
 $brewHops3Time = $_POST['brewHops3Time'];
@@ -332,6 +264,13 @@ $brewHops6Time = $_POST['brewHops6Time'];
 $brewHops7Time = $_POST['brewHops7Time'];
 $brewHops8Time = $_POST['brewHops8Time'];
 $brewHops9Time = $_POST['brewHops9Time'];
+$brewHops10Time = $_POST['brewHops10Time'];
+$brewHops11Time = $_POST['brewHops11Time'];
+$brewHops12Time = $_POST['brewHops12Time'];
+$brewHops13Time = $_POST['brewHops13Time'];
+$brewHops14Time = $_POST['brewHops14Time'];
+$brewHops15Time = $_POST['brewHops15Time'];
+
 $brewHops1Form = $_POST['brewHops1Form'];
 $brewHops2Form = $_POST['brewHops2Form'];
 $brewHops3Form = $_POST['brewHops3Form'];
@@ -341,6 +280,12 @@ $brewHops6Form = $_POST['brewHops6Form'];
 $brewHops7Form = $_POST['brewHops7Form'];
 $brewHops8Form = $_POST['brewHops8Form'];
 $brewHops9Form = $_POST['brewHops9Form'];
+$brewHops10Form = $_POST['brewHops10Form'];
+$brewHops11Form = $_POST['brewHops11Form'];
+$brewHops12Form = $_POST['brewHops12Form'];
+$brewHops13Form = $_POST['brewHops13Form'];
+$brewHops14Form = $_POST['brewHops14Form'];
+$brewHops15Form = $_POST['brewHops15Form'];
 
 
 $query_hops1 = "SELECT * FROM hops WHERE hopsName='$brewHops1'";
