@@ -33,55 +33,42 @@ $brewExtract3Weight = $_POST['brewExtract3Weight'];
 $brewExtract4Weight = $_POST['brewExtract4Weight'];
 $brewExtract5Weight = $_POST['brewExtract5Weight'];
 
+
+for($i = 1; $i <= 15; ++$i) {
+	
+    $query_extract = 'query_extract'.$i;
+    $extract = 'extract'.$i;
+    $row_extract = 'row_extract'.$i;
+    $totalRows_extract = 'totalRows_extract'.$i;
+	
+	mysql_select_db($database_brewing, $brewing);
+    $$query_extract = sprintf("SELECT extractYield, extractLovibond FROM extract WHERE extractName='%s'", $_POST['brewExtract'.$i]);
+    $$extract = mysql_query($$query_extract, $brewing);
+    $$row_extract = mysql_fetch_assoc($$extract);
+    $$totalRows_extract = mysql_num_rows($$extract);
+}
+
 mysql_select_db($database_brewing, $brewing);
-$query_extract1 = "SELECT extractYield, extractLovibond FROM extract WHERE extractName='$brewExtract1'";
-$extract1 = mysql_query($query_extract1, $brewing);
-$row_extract1 = mysql_fetch_assoc($extract1);
 
 $query_extractPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract1['extractYield']);
 $extractPPG1 = mysql_query($query_extractPPG1, $brewing);
 $row_extractPPG1 = mysql_fetch_assoc($extractPPG1);
 
-$query_extract2 = "SELECT extractYield, extractLovibond FROM extract WHERE extractName='$brewExtract2'";
-$extract2 = mysql_query($query_extract2, $brewing);
-$row_extract2 = mysql_fetch_assoc($extract2);
-
 $query_extractPPG2 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract2['extractYield']);
 $extractPPG2 = mysql_query($query_extractPPG2, $brewing);
 $row_extractPPG2 = mysql_fetch_assoc($extractPPG2);
-
-$query_extract3 = "SELECT extractYield, extractLovibond FROM extract WHERE extractName='$brewExtract3'";
-$extract3 = mysql_query($query_extract3, $brewing);
-$row_extract3 = mysql_fetch_assoc($extract3);
 
 $query_extractPPG3 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract3['extractYield']);
 $extractPPG3 = mysql_query($query_extractPPG3, $brewing);
 $row_extractPPG3 = mysql_fetch_assoc($extractPPG3);
 
-$query_extract4 = "SELECT extractYield, extractLovibond FROM extract WHERE extractName='$brewExtract4'";
-$extract4 = mysql_query($query_extract4, $brewing);
-$row_extract4 = mysql_fetch_assoc($extract4);
-
 $query_extractPPG4 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract4['extractYield']);
 $extractPPG4 = mysql_query($query_extractPPG4, $brewing);
 $row_extractPPG4 = mysql_fetch_assoc($extractPPG4);
 
-$query_extract5 = "SELECT extractYield, extractLovibond FROM extract WHERE extractName='$brewExtract5'";
-$extract5 = mysql_query($query_extract5, $brewing);
-$row_extract5 = mysql_fetch_assoc($extract5);
-
 $query_extractPPG5 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract5['extractYield']);
 $extractPPG5 = mysql_query($query_extractPPG5, $brewing);
 $row_extractPPG5 = mysql_fetch_assoc($extractPPG5);
-
-
-/*
-$brewExtract1 = $row_extract1['extractName'];
-$brewExtract2 = $row_extract2['extractName'];
-$brewExtract3 = $row_extract3['extractName'];
-$brewExtract4 = $row_extract4['extractName'];
-$brewExtract5 = $row_extract5['extractName'];
-*/
 
 // ------------------------------ Grains ---------------------------------
 $brewGrain1 = $_POST['brewGrain1'];
@@ -94,7 +81,7 @@ $brewGrain7 = $_POST['brewGrain7'];
 $brewGrain8 = $_POST['brewGrain8'];
 $brewGrain9 = $_POST['brewGrain9'];
 $brewGrain10 = $_POST['brewGrain10'];
-$brewGrain11 = $_POST['brewGrain12'];
+$brewGrain11 = $_POST['brewGrain11'];
 $brewGrain12 = $_POST['brewGrain12'];
 $brewGrain13 = $_POST['brewGrain13'];
 $brewGrain14 = $_POST['brewGrain14'];
@@ -127,9 +114,8 @@ for($i = 1; $i <= 15; ++$i) {
     $$query_grain = sprintf("SELECT maltYield, maltLovibond FROM malt WHERE maltName='%s'", $_POST['brewGrain'.$i]);
     $$grain = mysql_query($$query_grain, $brewing);
     $$row_grain = mysql_fetch_assoc($$grain);
-    $$totalRows_malt = mysql_num_rows($$grain);
+    $$totalRows_grain = mysql_num_rows($$grain);
 }
-
 
 mysql_select_db($database_brewing, $brewing);
 $query_grainPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_grain1['maltYield']);
@@ -225,7 +211,7 @@ for($i = 1; $i <= 9; ++$i) {
     $$query_adjunct = sprintf("SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='%s'", $_POST['brewadjunct'.$i]);
     $$adjunct = mysql_query($$query_adjunct, $brewing);
     $$row_adjunct = mysql_fetch_assoc($$adjunct);
-    $$totalRows_malt = mysql_num_rows($$adjunct);
+    $$totalRows_adjunct = mysql_num_rows($$adjunct);
 }
 
 
@@ -469,7 +455,7 @@ $brewHops7Time = $_POST['brewHops7Time'];
 $brewHops8Time = $_POST['brewHops8Time'];
 $brewHops9Time = $_POST['brewHops9Time'];
 $brewHops10Time = $_POST['brewHops10Time'];
-$brewHops11Time = $_POST['brewHops111Time'];
+$brewHops11Time = $_POST['brewHops11Time'];
 $brewHops12Time = $_POST['brewHops12Time'];
 $brewHops13Time = $_POST['brewHops13Time'];
 $brewHops14Time = $_POST['brewHops14Time'];
@@ -491,7 +477,7 @@ $brewHops13Form = $_POST['brewHops13Form'];
 $brewHops14Form = $_POST['brewHops14Form'];
 $brewHops15Form = $_POST['brewHops15Form'];
 
-$wholeFraction = ".85";
+// $wholeFraction = ".85";
 
 // Hop Union has published data suggesting a 5% - 7% difference in utilization
 // between whole and pellet (Type 90) hops. Most modern data I've seen supports this range.
@@ -942,7 +928,37 @@ $SRM23 = ($row_adjunct9['adjunctLovibond'] * ($brewAdjunct9Weight * 2.2046)) / (
 }
 
 
-$SRMTotal = $SRM1 + $SRM2 + $SRM3 + $SRM4 + $SRM5 + $SRM6 + $SRM7 + $SRM8 + $SRM9 + $SRM10 + $SRM11 + $SRM12 + $SRM13 + $SRM14 + $SRM15 + $SRM16 + $SRM17 + $SRM18 + $SRM19 + $SRM20 + $SRM21 + $SRM22 + $SRM23 + $SRM24 + $SRM25 + $SRM26 + $SRM27 + $SRM28 + $SRM29; 
+$SRMTotal = 
+$SRM1 + 
+$SRM2 + 
+$SRM3 + 
+$SRM4 + 
+$SRM5 + 
+$SRM6 + 
+$SRM7 + 
+$SRM8 + 
+$SRM9 + 
+$SRM10 + 
+$SRM11 + 
+$SRM12 + 
+$SRM13 + 
+$SRM14 + 
+$SRM15 + 
+$SRM16 + 
+$SRM17 + 
+$SRM18 + 
+$SRM19 + 
+$SRM20 + 
+$SRM21 + 
+$SRM22 + 
+$SRM23 + 
+$SRM24 + 
+$SRM25 + 
+$SRM26 + 
+$SRM27 + 
+$SRM28 + 
+$SRM29;
+
 if (($SRMTotal >= 1) && ($SRMTotal <= 11)) $SRM = $SRMTotal;
 if (($SRMTotal >= 11) && ($SRMTotal < 21)) $SRM = $SRMTotal * .66;
 if (($SRMTotal >= 21) && ($SRMTotal < 31)) $SRM = $SRMTotal * .51;
