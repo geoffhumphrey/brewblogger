@@ -1,593 +1,5 @@
 <?php  { ?>
 <script type="text/javascript" language="JavaScript">
-//<![CDATA[
-
-//*****************************************************************************
-// Do not remove this notice.
-//
-// Copyright 2000-2004 by Mike Hall.
-// See http://www.brainjar.com for terms of use.
-//*****************************************************************************
-
-//----------------------------------------------------------------------------
-// Code to determine the browser and version.
-//----------------------------------------------------------------------------
-
-function Browser() {
-
-  var ua, s, i;
-
-  this.isIE    = false;  // Internet Explorer
-  this.isOP    = false;  // Opera
-  this.isNS    = false;  // Netscape
-  this.version = null;
-
-  ua = navigator.userAgent;
-
-  s = "Opera";
-  if ((i = ua.indexOf(s)) >= 0) {
-    this.isOP = true;
-    this.version = parseFloat(ua.substr(i + s.length));
-    return;
-  }
-
-  s = "Netscape6/";
-  if ((i = ua.indexOf(s)) >= 0) {
-    this.isNS = true;
-    this.version = parseFloat(ua.substr(i + s.length));
-    return;
-  }
-
-  // Treat any other "Gecko" browser as Netscape 6.1.
-
-  s = "Gecko";
-  if ((i = ua.indexOf(s)) >= 0) {
-    this.isNS = true;
-    this.version = 6.1;
-    return;
-  }
-
-  s = "MSIE";
-  if ((i = ua.indexOf(s))) {
-    this.isIE = true;
-    this.version = parseFloat(ua.substr(i + s.length));
-    return;
-  }
-}
-
-var browser = new Browser();
-
-//----------------------------------------------------------------------------
-// Code for handling the menu bar and active button.
-//----------------------------------------------------------------------------
-
-var activeButton = null;
-
-/* [MODIFIED] This code commented out, not needed for activate/deactivate
-   on mouseover.
-
-// Capture mouse clicks on the page so any active button can be
-// deactivated.
-
-if (browser.isIE)
-  document.onmousedown = pageMousedown;
-else
-  document.addEventListener("mousedown", pageMousedown, true);
-
-function pageMousedown(event) {
-
-  var el;
-
-  // If there is no active button, exit.
-
-  if (activeButton == null)
-    return;
-
-  // Find the element that was clicked on.
-
-  if (browser.isIE)
-    el = window.event.srcElement;
-  else
-    el = (event.target.tagName ? event.target : event.target.parentNode);
-
-  // If the active button was clicked on, exit.
-
-  if (el == activeButton)
-    return;
-
-  // If the element is not part of a menu, reset and clear the active
-  // button.
-
-  if (getContainerWith(el, "DIV", "menu") == null) {
-    resetButton(activeButton);
-    activeButton = null;
-  }
-}
-
-[END MODIFIED] */
-
-function buttonClick(event, menuId) {
-
-  var button;
-
-  // Get the target button element.
-
-  if (browser.isIE)
-    button = window.event.srcElement;
-  else
-    button = event.currentTarget;
-
-  // Blur focus from the link to remove that annoying outline.
-
-  button.blur();
-
-  // Associate the named menu to this button if not already done.
-  // Additionally, initialize menu display.
-
-  if (button.menu == null) {
-    button.menu = document.getElementById(menuId);
-    if (button.menu.isInitialized == null)
-      menuInit(button.menu);
-  }
-
-  // [MODIFIED] Added for activate/deactivate on mouseover.
-
-  // Set mouseout event handler for the button, if not already done.
-
-  if (button.onmouseout == null)
-    button.onmouseout = buttonOrMenuMouseout;
-
-  // Exit if this button is the currently active one.
-
-  if (button == activeButton)
-    return false;
-
-  // [END MODIFIED]
-
-  // Reset the currently active button, if any.
-
-  if (activeButton != null)
-    resetButton(activeButton);
-
-  // Activate this button, unless it was the currently active one.
-
-  if (button != activeButton) {
-    depressButton(button);
-    activeButton = button;
-  }
-  else
-    activeButton = null;
-
-  return false;
-}
-
-function buttonMouseover(event, menuId) {
-
-  var button;
-
-  // [MODIFIED] Added for activate/deactivate on mouseover.
-
-  // Activates this button's menu if no other is currently active.
-
-  if (activeButton == null) {
-    buttonClick(event, menuId);
-    return;
-  }
-
-  // [END MODIFIED]
-
-  // Find the target button element.
-
-  if (browser.isIE)
-    button = window.event.srcElement;
-  else
-    button = event.currentTarget;
-
-  // If any other button menu is active, make this one active instead.
-
-  if (activeButton != null && activeButton != button)
-    buttonClick(event, menuId);
-}
-
-function depressButton(button) {
-
-  var x, y;
-
-  // Update the button's style class to make it look like it's
-  // depressed.
-
-  button.className += " menuButtonActive";
-
-  // [MODIFIED] Added for activate/deactivate on mouseover.
-
-  // Set mouseout event handler for the button, if not already done.
-
-  if (button.onmouseout == null)
-    button.onmouseout = buttonOrMenuMouseout;
-  if (button.menu.onmouseout == null)
-    button.menu.onmouseout = buttonOrMenuMouseout;
-
-  // [END MODIFIED]
-
-  // Position the associated drop down menu under the button and
-  // show it.
-
-  x = getPageOffsetLeft(button);
-  y = getPageOffsetTop(button) + button.offsetHeight;
-
-  // For IE, adjust position.
-
-  if (browser.isIE) {
-    x += button.offsetParent.clientLeft;
-    y += button.offsetParent.clientTop;
-  }
-
-  button.menu.style.left = x + "px";
-  button.menu.style.top  = y + "px";
-  button.menu.style.visibility = "visible";
-
-  // For IE; size, position and show the menu's IFRAME as well.
-
-  if (button.menu.iframeEl != null)
-  {
-    button.menu.iframeEl.style.left = button.menu.style.left;
-    button.menu.iframeEl.style.top  = button.menu.style.top;
-    button.menu.iframeEl.style.width  = button.menu.offsetWidth + "px";
-    button.menu.iframeEl.style.height = button.menu.offsetHeight + "px";
-    button.menu.iframeEl.style.display = "";
-  }
-}
-
-function resetButton(button) {
-
-  // Restore the button's style class.
-
-  removeClassName(button, "menuButtonActive");
-
-  // Hide the button's menu, first closing any sub menus.
-
-  if (button.menu != null) {
-    closeSubMenu(button.menu);
-    button.menu.style.visibility = "hidden";
-
-    // For IE, hide menu's IFRAME as well.
-
-    if (button.menu.iframeEl != null)
-      button.menu.iframeEl.style.display = "none";
-  }
-}
-
-//----------------------------------------------------------------------------
-// Code to handle the menus and sub menus.
-//----------------------------------------------------------------------------
-
-function menuMouseover(event) {
-
-  var menu;
-
-  // Find the target menu element.
-
-  if (browser.isIE)
-    menu = getContainerWith(window.event.srcElement, "DIV", "menu");
-  else
-    menu = event.currentTarget;
-
-  // Close any active sub menu.
-
-  if (menu.activeItem != null)
-    closeSubMenu(menu);
-}
-
-function menuItemMouseover(event, menuId) {
-
-  var item, menu, x, y;
-
-  // Find the target item element and its parent menu element.
-
-  if (browser.isIE)
-    item = getContainerWith(window.event.srcElement, "A", "menuItem");
-  else
-    item = event.currentTarget;
-  menu = getContainerWith(item, "DIV", "menu");
-
-  // Close any active sub menu and mark this one as active.
-
-  if (menu.activeItem != null)
-    closeSubMenu(menu);
-  menu.activeItem = item;
-
-  // Highlight the item element.
-
-  item.className += " menuItemHighlight";
-
-  // Initialize the sub menu, if not already done.
-
-  if (item.subMenu == null) {
-    item.subMenu = document.getElementById(menuId);
-    if (item.subMenu.isInitialized == null)
-      menuInit(item.subMenu);
-  }
-
-  // [MODIFIED] Added for activate/deactivate on mouseover.
-
-  // Set mouseout event handler for the sub menu, if not already done.
-
-  if (item.subMenu.onmouseout == null)
-    item.subMenu.onmouseout = buttonOrMenuMouseout;
-
-  // [END MODIFIED]
-
-  // Get position for submenu based on the menu item.
-
-  x = getPageOffsetLeft(item) + item.offsetWidth;
-  y = getPageOffsetTop(item);
-
-  // Adjust position to fit in view.
-
-  var maxX, maxY;
-
-  if (browser.isIE) {
-    maxX = Math.max(document.documentElement.scrollLeft, document.body.scrollLeft) +
-      (document.documentElement.clientWidth != 0 ? document.documentElement.clientWidth : document.body.clientWidth);
-    maxY = Math.max(document.documentElement.scrollTop, document.body.scrollTop) +
-      (document.documentElement.clientHeight != 0 ? document.documentElement.clientHeight : document.body.clientHeight);
-  }
-  if (browser.isOP) {
-    maxX = document.documentElement.scrollLeft + window.innerWidth;
-    maxY = document.documentElement.scrollTop  + window.innerHeight;
-  }
-  if (browser.isNS) {
-    maxX = window.scrollX + window.innerWidth;
-    maxY = window.scrollY + window.innerHeight;
-  }
-  maxX -= item.subMenu.offsetWidth;
-  maxY -= item.subMenu.offsetHeight;
-
-  if (x > maxX)
-    x = Math.max(0, x - item.offsetWidth - item.subMenu.offsetWidth
-      + (menu.offsetWidth - item.offsetWidth));
-  y = Math.max(0, Math.min(y, maxY));
-
-  // Position and show the sub menu.
-
-  item.subMenu.style.left       = x + "px";
-  item.subMenu.style.top        = y + "px";
-  item.subMenu.style.visibility = "visible";
-
-  // For IE; size, position and display the menu's IFRAME as well.
-
-  if (item.subMenu.iframeEl != null)
-  {
-    item.subMenu.iframeEl.style.left    = item.subMenu.style.left;
-    item.subMenu.iframeEl.style.top     = item.subMenu.style.top;
-    item.subMenu.iframeEl.style.width   = item.subMenu.offsetWidth + "px";
-    item.subMenu.iframeEl.style.height  = item.subMenu.offsetHeight + "px";
-    item.subMenu.iframeEl.style.display = "";
-  }
-
-  // Stop the event from bubbling.
-
-  if (browser.isIE)
-    window.event.cancelBubble = true;
-  else
-    event.stopPropagation();
-}
-
-function closeSubMenu(menu) {
-
-  if (menu == null || menu.activeItem == null)
-    return;
-
-  // Recursively close any sub menus.
-
-  if (menu.activeItem.subMenu != null) {
-    closeSubMenu(menu.activeItem.subMenu);
-    menu.activeItem.subMenu.style.visibility = "hidden";
-
-    // For IE, hide the sub menu's IFRAME as well.
-
-    if (menu.activeItem.subMenu.iframeEl != null)
-      menu.activeItem.subMenu.iframeEl.style.display = "none";
-
-    menu.activeItem.subMenu = null;
-  }
-
-  // Deactivate the active menu item.
-
-  removeClassName(menu.activeItem, "menuItemHighlight");
-  menu.activeItem = null;
-}
-
-// [MODIFIED] Added for activate/deactivate on mouseover. Handler for mouseout
-// event on buttons and menus.
-
-function buttonOrMenuMouseout(event) {
-
-  var el;
-
-  // If there is no active button, exit.
-
-  if (activeButton == null)
-    return;
-
-  // Find the element the mouse is moving to.
-
-  if (browser.isIE)
-    el = window.event.toElement;
-  else if (event.relatedTarget != null)
-      el = (event.relatedTarget.tagName ? event.relatedTarget : event.relatedTarget.parentNode);
-
-  // If the element is not part of a menu, reset the active button.
-
-  if (getContainerWith(el, "DIV", "menu") == null) {
-    resetButton(activeButton);
-    activeButton = null;
-  }
-}
-
-// [END MODIFIED]
-
-//----------------------------------------------------------------------------
-// Code to initialize menus.
-//----------------------------------------------------------------------------
-
-function menuInit(menu) {
-
-  var itemList, spanList;
-  var textEl, arrowEl;
-  var itemWidth;
-  var w, dw;
-  var i, j;
-
-  // For IE, replace arrow characters.
-
-  if (browser.isIE) {
-    menu.style.lineHeight = "2.5ex";
-    spanList = menu.getElementsByTagName("SPAN");
-    for (i = 0; i < spanList.length; i++)
-      if (hasClassName(spanList[i], "menuItemArrow")) {
-        spanList[i].style.fontFamily = "Webdings";
-        spanList[i].firstChild.nodeValue = "4";
-      }
-  }
-
-  // Find the width of a menu item.
-
-  itemList = menu.getElementsByTagName("A");
-  if (itemList.length > 0)
-    itemWidth = itemList[0].offsetWidth;
-  else
-    return;
-
-  // For items with arrows, add padding to item text to make the
-  // arrows flush right.
-
-  for (i = 0; i < itemList.length; i++) {
-    spanList = itemList[i].getElementsByTagName("SPAN");
-    textEl  = null;
-    arrowEl = null;
-    for (j = 0; j < spanList.length; j++) {
-      if (hasClassName(spanList[j], "menuItemText"))
-        textEl = spanList[j];
-      if (hasClassName(spanList[j], "menuItemArrow"))
-        arrowEl = spanList[j];
-    }
-    if (textEl != null && arrowEl != null) {
-      textEl.style.paddingRight = (itemWidth 
-        - (textEl.offsetWidth + arrowEl.offsetWidth)) + "px";
-      // For Opera, remove the negative right margin to fix a display bug.
-      if (browser.isOP)
-        arrowEl.style.marginRight = "0px";
-    }
-  }
-
-  // Fix IE hover problem by setting an explicit width on first item of
-  // the menu.
-
-  if (browser.isIE) {
-    w = itemList[0].offsetWidth;
-    itemList[0].style.width = w + "px";
-    dw = itemList[0].offsetWidth - w;
-    w -= dw;
-    itemList[0].style.width = w + "px";
-  }
-
-  // Fix the IE display problem (SELECT elements and other windowed controls
-  // overlaying the menu) by adding an IFRAME under the menu.
-
-  if (browser.isIE) {
-    var iframeEl = document.createElement("IFRAME");
-    iframeEl.frameBorder = 0;
-    iframeEl.src = "javascript:false;";
-    iframeEl.style.display = "none";
-    iframeEl.style.position = "absolute";
-    iframeEl.style.filter = "progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)";
-    menu.iframeEl = menu.parentNode.insertBefore(iframeEl, menu);
-  }
-
-  // Mark menu as initialized.
-
-  menu.isInitialized = true;
-}
-
-//----------------------------------------------------------------------------
-// General utility functions.
-//----------------------------------------------------------------------------
-
-function getContainerWith(node, tagName, className) {
-
-  // Starting with the given node, find the nearest containing element
-  // with the specified tag name and style class.
-
-  while (node != null) {
-    if (node.tagName != null && node.tagName == tagName &&
-        hasClassName(node, className))
-      return node;
-    node = node.parentNode;
-  }
-
-  return node;
-}
-
-function hasClassName(el, name) {
-
-  var i, list;
-
-  // Return true if the given element currently has the given class
-  // name.
-
-  list = el.className.split(" ");
-  for (i = 0; i < list.length; i++)
-    if (list[i] == name)
-      return true;
-
-  return false;
-}
-
-function removeClassName(el, name) {
-
-  var i, curList, newList;
-
-  if (el.className == null)
-    return;
-
-  // Remove the given class name from the element's className property.
-
-  newList = new Array();
-  curList = el.className.split(" ");
-  for (i = 0; i < curList.length; i++)
-    if (curList[i] != name)
-      newList.push(curList[i]);
-  el.className = newList.join(" ");
-}
-
-function getPageOffsetLeft(el) {
-
-  var x;
-
-  // Return the x coordinate of an element relative to the page.
-
-  x = el.offsetLeft;
-  if (el.offsetParent != null)
-    x += getPageOffsetLeft(el.offsetParent);
-
-  return x;
-}
-
-function getPageOffsetTop(el) {
-
-  var y;
-
-  // Return the x coordinate of an element relative to the page.
-
-  y = el.offsetTop;
-  if (el.offsetParent != null)
-    y += getPageOffsetTop(el.offsetParent);
-
-  return y;
-}
-
-//]]>
 
 /***********************************************
 * AnyLink Drop Down Menu- ? Dynamic Drive (www.dynamicdrive.com)
@@ -595,7 +7,306 @@ function getPageOffsetTop(el) {
 * Visit http://www.dynamicdrive.com/ for full source code
 ***********************************************/
 
+var menu1=new Array()  // Public side Admin Menu
+menu1[0]='<a href="index.php?action=list&dbTable=adjuncts">Manage Adjuncts</a>'
+menu1[1]='<a href="index.php?action=add&dbTable=adjuncts">&nbsp;&nbsp;- Add Adjuncts</a>'
+menu1[2]='<a href="index.php?action=list&dbTable=extract">Manage Extracts</a>'
+menu1[3]='<a href="index.php?action=add&dbTable=extract">&nbsp;&nbsp;- Add Extracts</a>'
+menu1[4]='<a href="index.php?action=list&dbTable=malt">Manage Grains</a>'
+menu1[5]='<a href="index.php?action=add&dbTable=malt">&nbsp;&nbsp;- Add Grains</a>'
+menu1[6]='<a href="index.php?action=list&dbTable=hops">Manage Hops</a>'
+menu1[7]='<a href="index.php?action=add&dbTable=hops">&nbsp;&nbsp;- Add Hops</a>'
+menu1[8]='<a href="index.php?action=list&dbTable=misc">Manage Misc. Ingredients</a>'
+menu1[9]='<a href="index.php?action=add&dbTable=misc">&nbsp;&nbsp;- Add Misc. Ingredients</a>'
+menu1[10]='<a href="index.php?action=list&dbTable=styles">Manage Styles</a>'
+menu1[11]='<a href="index.php?action=add&dbTable=styles">&nbsp;&nbsp;- Add Styles</a>'
+menu1[12]='<a href="index.php?action=list&dbTable=equip_profiles">Manage Equipment Profiles</a>'
+menu1[13]='<a href="index.php?action=add&dbTable=equip_profiles">&nbsp;&nbsp;- Add Equipment Profiles</a>'
+menu1[14]='<a href="index.php?action=list&dbTable=mash_profiles">Manage Mash Profiles</a>'
+menu1[15]='<a href="index.php?action=add&dbTable=mash_profiles">&nbsp;&nbsp;- Add Mash Profiles</a>'
+menu1[16]='<a href="index.php?action=list&dbTable=water_profiles">Manage Water Profiles</a>'
+menu1[17]='<a href="index.php?action=add&dbTable=water_profiles">&nbsp;&nbsp;- Add Water Profiles</a>'
+menu1[18]='<a href="index.php?action=list&dbTable=yeast_profiles">Manage Yeast Profiles</a>'
+menu1[19]='<a href="index.php?action=add&dbTable=yeast_profiles">&nbsp;&nbsp;- Add Yeast Profiles</a>'
 
+var menu2=new Array() // Admin BrewBlogs Menu
+menu2[0]='<a href="index.php?action=list&dbTable=brewing">Manage <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu2[1]='<a href="index.php?action=add&dbTable=brewing">&nbsp;&nbsp;- Add <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu2[2]='<a href="index.php?action=importXML&dbTable=brewing">&nbsp;&nbsp;- Import BeerXML</a>'
+menu2[5]='<a href="index.php?action=list&dbTable=upcoming">Manage Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu2[6]='<a href="index.php?action=add&dbTable=upcoming">&nbsp;&nbsp;- Add Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu2[7]='<a href="index.php?action=list&dbTable=reviews">Manage Reviews</a>'
+menu2[8]='<a href="index.php?action=list&dbTable=awards">Manage <?php echo $row_pref['menuAwards']; ?></a>'
+
+var menu3=new Array() // Admin Recipes Menu
+menu3[0]='<a href="index.php?action=list&dbTable=recipes">Manage <?php echo $row_pref['menuRecipes']; ?></a>'
+menu3[1]='<a href="index.php?action=add&dbTable=recipes">&nbsp;&nbsp;- Add <?php echo $row_pref['menuRecipes']; ?></a>'
+menu3[2]='<a href="index.php?action=importXML&dbTable=recipes">&nbsp;&nbsp;- Import BeerXML</a>'
+
+var menu4=new Array() // Admin General Menu
+menu4[0]='<a href="index.php?action=edit&dbTable=brewer&id=1">Edit Profile</a>'
+menu4[1]='<a href="index.php?action=list&dbTable=brewerlinks">Manage Links</a>'
+menu4[2]='<a href="index.php?action=add&dbTable=brewerlinks">&nbsp;&nbsp;- Add Links</a>'
+menu4[3]='<a href="index.php?action=list&dbTable=brewingcss">Manage Themes</a>'
+menu4[4]='<a href="index.php?action=add&dbTable=brewingcss">&nbsp;&nbsp;- Add Themes</a>'
+menu4[5]='<a href="index.php?action=list&dbTable=users">Manage Users</a>'
+menu4[6]='<a href="index.php?action=add&dbTable=users">&nbsp;&nbsp;- Add Users</a>'
+menu4[7]='<a href="index.php?action=edit&dbTable=preferences&id=1">Edit Preferences</a>'
+
+var menu5=new Array() // Admin Calculators Menu
+menu5[0]='<a href="#" onClick="window.open(\'tools/calculate.php?section=bitterness\',\'\',\'height=620,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Bitterness Calculator</a>'
+menu5[7]='<a href="#" onClick="window.open(\'tools/calculate.php?section=water\',\'\',\'height=275,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Water Amounts Calculator</a>'
+menu5[2]='<a href="#" onClick="window.open(\'tools/calculate.php?section=calories\',\'\',\'height=300,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Calories, Alcohol, and Plato Calculator</a>'
+menu5[1]='<a href="#" onClick="window.open(\'tools/calculate.php?section=efficiency\',\'\',\'height=575,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Brewhouse Efficiency Calculator</a>'
+menu5[5]='<a href="#" onClick="window.open(\'tools/calculate.php?section=sugar\',\'\',\'height=440,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Priming Sugar Calculator</a>'
+menu5[3]='<a href="#" onClick="window.open(\'tools/calculate.php?section=force_carb\',\'\',\'height=400,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Force Carbonation Calculator</a>'
+menu5[4]='<a href="#" onClick="window.open(\'tools/calculate.php?section=plato\',\'\',\'height=225,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Plato/Brix/SG Calculator</a>'
+menu5[6]='<a href="#" onClick="window.open(\'tools/calculate.php?section=strike\',\'\',\'height=400,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Strike Water Temperature Calculator</a>'
+menu5[9]='<a href="index.php?action=calculate&source=calculator">Recipe Calculator</a>'
+menu5[8]='<a href="index.php?action=chooseRecalc">Recalculate Recipe or Log</a>'
+menu5[10]='<a href="#" onClick="window.open(\'tools/calculate.php?section=hyd\',\'\',\'height=225,width800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;">Hydrometer Correction Calculator</a>'
+
+var menu6=new Array() // Admin << Back To... menu
+menu6[1]='<a href="../index.php?page=about">Brewer Profile</a>'
+menu6[4]='<a href="../index.php?page=brewBlogCurrent">Current</a>'
+menu6[5]='<a href="../index.php?page=brewBlogList"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu6[6]='<a href="../index.php?page=recipeList"><?php echo $row_pref['menuRecipes']; ?></a>'
+menu6[7]='<a href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>'
+menu6[2]='<a href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>'
+menu6[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
+menu6[3]='<a href="../index.php?page=calendar"><?php echo $row_pref['menuCalendar']; ?></a>'
+
+var menu7=new Array()  // Adimin Help menu
+menu7[0]='<a href="https://sourceforge.net/forum/forum.php?forum_id=564469" target="_blank">Help Forum</a>'
+menu7[1]='<a href="https://sourceforge.net/tracker/?group_id=165855&atid=837037" target="_blank">Report a Bug</a>'
+menu7[2]='<a href="https://sourceforge.net/tracker/?group_id=165855&atid=837040" target="_blank">Request a Feature</a>'
+menu7[3]='<a href="https://sourceforge.net/tracker/?group_id=165855&atid=837038" target="_blank">Request Support</a>'
+
+// Club version User Level 2 menus
+
+var menu8=new Array() // Public << Back to.. Menu
+menu8[0]='<a href="index.php?action=list&dbTable=brewing">Manage <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu8[1]='<a href="index.php?action=add&dbTable=brewing">&nbsp;&nbsp;- Add <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu8[3]='<a href="admin/index.php?action=importXML&dbTable=brewing">&nbsp;&nbsp;- Import BeerXML to <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu8[6]='<a href="index.php?action=list&dbTable=recipes">Manage <?php echo $row_pref['menuRecipes']; ?></a>'
+menu8[7]='<a href="index.php?action=add&dbTable=recipes">&nbsp;&nbsp;- Add <?php echo $row_pref['menuRecipes']; ?></a>'
+menu8[8]='<a href="index.php?action=importXML&dbTable=recipes">&nbsp;&nbsp;- Import BeerXML to <?php echo $row_pref['menuRecipes']; ?></a>'
+menu8[9]='<a href="index.php?action=list&dbTable=recipes&view=copy">&nbsp;&nbsp;- Copy/Import Other User <?php echo $row_pref['menuRecipes']; ?></a>'
+menu8[4]='<a href="index.php?action=list&dbTable=upcoming">Manage Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu8[5]='<a href="index.php?action=add&dbTable=upcoming">&nbsp;&nbsp;- Add Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu8[10]='<a href="index.php?action=list&dbTable=awards">Manage <?php echo $row_pref['menuAwards']; ?></a>'
+
+
+var menu9=new Array() //
+menu9[0]='<a href="index.php?action=list&dbTable=adjuncts">List Adjuncts</a>'
+menu9[1]='<a href="index.php?action=add&dbTable=adjuncts">&nbsp;&nbsp;- Add Adjuncts</a>'
+menu9[2]='<a href="index.php?action=list&dbTable=equip_profiles">List Equipment Profiles</a>'
+menu9[3]='<a href="index.php?action=add&dbTable=equip_profiles">&nbsp;&nbsp;- Add Equipment Profiles</a>'
+menu9[4]='<a href="index.php?action=list&dbTable=extract">List Extracts</a>'
+menu9[5]='<a href="index.php?action=add&dbTable=extract">&nbsp;&nbsp;- Add Extracts</a>'
+menu9[6]='<a href="index.php?action=list&dbTable=malt">List Grains</a>'
+menu9[7]='<a href="index.php?action=add&dbTable=malt">&nbsp;&nbsp;- Add Grains</a>'
+menu9[8]='<a href="index.php?action=list&dbTable=hops">List Hops</a>'
+menu9[9]='<a href="index.php?action=add&dbTable=hops">&nbsp;&nbsp;- Add Hops</a>'
+menu9[10]='<a href="index.php?action=list&dbTable=styles">List Styles</a>'
+menu9[11]='<a href="index.php?action=add&dbTable=styles">&nbsp;&nbsp;- Add Styles</a>'
+menu9[12]='<a href="index.php?action=list&dbTable=users">List Users</a>'
+menu9[13]='<a href="index.php?action=list&dbTable=water_profiles">List Water Profiles</a>'
+menu9[14]='<a href="index.php?action=add&dbTable=water_profiles">&nbsp;&nbsp;- Add Water Profiles</a>'
+menu9[15]='<a href="index.php?action=list&dbTable=yeast_profiles">List Yeast Profiles</a>'
+menu9[16]='<a href="index.php?action=add&dbTable=yeast_profiles">&nbsp;&nbsp;- Add Yeast Profiles</a>'
+
+// menu10 no longer used
+
+var menu11=new Array()
+menu11[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
+menu11[1]='<a href="../index.php?page=brewBlogList&sort=brewDate&dir=DESC"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu11[2]='<a href="../index.php?page=members&sort=realLastName&dir=ASC"><?php echo $row_pref['menuMembers']; ?></a>'
+menu11[3]='<a href="../index.php?page=about">Profile</a>'
+menu11[4]='<a href="../index.php?page=recipeList"><?php echo $row_pref['menuRecipes']; ?></a>'
+menu11[5]='<a href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>'
+menu11[7]='<a href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>'
+menu11[6]='<a href="../index.php?page=calendar"><?php echo $row_pref['menuCalendar']; ?></a>'
+
+// menu12 no longer used
+
+<?php if ($row_user['userLevel'] == "1") { ?>
+var menu13=new Array()
+menu13[0]='<a href="admin/index.php">Admin Home</a>'
+menu13[1]='<a href="admin/index.php?action=list&dbTable=brewing">Manage <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu13[2]='<a href="admin/index.php?action=list&dbTable=recipes">Manage <?php echo $row_pref['menuRecipes']; ?></a>'
+menu13[3]='<a href="admin/index.php?action=list&dbTable=awards">Manage <?php echo $row_pref['menuAwards']; ?></a>'
+menu13[4]='<a href="admin/index.php?action=list&dbTable=upcoming">Manage Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu13[5]='<a href="admin/index.php?action=edit&dbTable=preferences&id=1">Edit Preferences</a>'
+menu13[6]='<a href="admin/index.php?action=importXML">Import BeerXML</a>'
+menu13[7]='<a href="admin/index.php?action=chooseRecalc">Recalculate a Recipe or Log</a>'
+menu13[8]='<a href="admin/index.php?action=calculate">Recipe Calculator</a>'
+<?php } ?>
+
+<?php if ($row_user['userLevel'] == "2") { ?>
+var menu13=new Array()
+menu13[0]='<a href="admin/index.php">Admin Home</a>'
+menu13[1]='<a href="admin/index.php?action=list&dbTable=brewing">Manage <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu13[2]='<a href="admin/index.php?action=list&dbTable=recipes">Manage <?php echo $row_pref['menuRecipes']; ?></a>'
+menu13[3]='<a href="admin/index.php?action=list&dbTable=upcoming">Manage Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+<?php } ?>
+
+// menu14 no longer used
+
+var menu15=new Array()
+menu15[0]='<a href="index.php?page=reference&section=styles">BJCP Style Information</a>'
+menu15[1]='<a href="index.php?page=reference&section=carbonation">Carbonation Chart</a>'
+menu15[2]='<a href="index.php?page=reference&section=hops">Hops</a>'
+menu15[3]='<a href="index.php?page=reference&section=grains">Malts and Grains</a>'
+menu15[4]='<a href="index.php?page=reference&section=color">Color Chart</a>'
+
+var menu16=new Array()
+menu16[0]='<a href="index.php?page=tools&section=bitterness">Bitterness Calculator</a>'
+menu16[1]='<a href="index.php?page=tools&section=efficiency">Brewhouse Efficiency Calculator</a>'
+menu16[2]='<a href="index.php?page=tools&section=calories">Calories, Alcohol, and Plato Calculator</a>'
+menu16[3]='<a href="index.php?page=tools&section=force_carb">Force Carbonation Calculator</a>'
+menu16[4]='<a href="index.php?page=tools&section=plato">Plato/Brix/SG Calculator</a>'
+menu16[5]='<a href="index.php?page=tools&section=sugar">Priming Sugar Calculator</a>'
+menu16[6]='<a href="index.php?page=tools&section=strike">Strike Water Temperature Calculator</a>'
+menu16[7]='<a href="index.php?page=tools&section=water">Water Amounts Calculator</a>'
+menu16[8]='<a href="index.php?page=tools&section=hyd">Hydrometer Correction Calculator</a>'
+
+var menu17=new Array()
+menu17[0]='<a href="admin/index.php?action=list&dbTable=brewing">Manage <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu17[2]='<a href="admin/index.php?action=list&dbTable=recipes">Manage <?php echo $row_pref['menuRecipes']; ?></a>'
+menu17[3]='<a href="admin/index.php?action=list&dbTable=recipes&view=copy">Copy/Import Other User <?php echo $row_pref['menuRecipes']; ?></a>'
+menu17[1]='<a href="admin/index.php?action=list&dbTable=upcoming">Manage Upcoming <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu17[4]='<a href="admin/index.php?action=list&dbTable=awards">Manage <?php echo $row_pref['menuAwards']; ?></a>'
+menu17[9]='<a href="admin/index.php?action=importXML">Import BeerXML to <?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu17[10]='<a href="admin/index.php?action=importXML">Import BeerXML to <?php echo $row_pref['menuRecipes']; ?></a>'
+menu17[11]='<a href="admin/index.php?action=chooseRecalc">Recalculate a Recipe or Log</a>'
+menu17[12]='<a href="admin/index.php?action=calculate">Recipe Calculator</a>'
+
+
+var menuwidth='250px' 		//default menu width
+var menubgcolor=''  		//menu bgcolor
+var disappeardelay='50' 		//menu disappear speed onMouseout (in miliseconds)
+var hidemenu_onclick="no" 	//hide menu when user clicks within menu?
+
+/////No further editing needed
+
+var ie4=document.all
+var ns6=document.getElementById&&!document.all
+
+if (ie4||ns6)
+document.write('<div id="dropmenudiv" style="visibility:hidden;width:'+menuwidth+';background-color:'+menubgcolor+'" onMouseover="clearhidemenu()" onMouseout="dynamichide(event)"></div>')
+
+function getposOffset(what, offsettype){
+var totaloffset=(offsettype=="left")? what.offsetLeft : what.offsetTop;
+var parentEl=what.offsetParent;
+while (parentEl!=null){
+totaloffset=(offsettype=="left")? totaloffset+parentEl.offsetLeft : totaloffset+parentEl.offsetTop;
+parentEl=parentEl.offsetParent;
+}
+return totaloffset;
+}
+
+
+function showhide(obj, e, visible, hidden, menuwidth){
+if (ie4||ns6)
+dropmenuobj.style.left=dropmenuobj.style.top=-500
+if (menuwidth!=""){
+dropmenuobj.widthobj=dropmenuobj.style
+dropmenuobj.widthobj.width=menuwidth
+}
+if (e.type=="click" && obj.visibility==hidden || e.type=="mouseover")
+obj.visibility=visible
+else if (e.type=="click")
+obj.visibility=hidden
+}
+
+function iecompattest(){
+return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+}
+
+function clearbrowseredge(obj, whichedge){
+var edgeoffset=0
+if (whichedge=="rightedge"){
+var windowedge=ie4 && !window.opera? iecompattest().scrollLeft+iecompattest().clientWidth-15 : window.pageXOffset+window.innerWidth-15
+dropmenuobj.contentmeasure=dropmenuobj.offsetWidth
+if (windowedge-dropmenuobj.x < dropmenuobj.contentmeasure)
+edgeoffset=dropmenuobj.contentmeasure-obj.offsetWidth
+}
+else{
+var topedge=ie4 && !window.opera? iecompattest().scrollTop : window.pageYOffset
+var windowedge=ie4 && !window.opera? iecompattest().scrollTop+iecompattest().clientHeight-15 : window.pageYOffset+window.innerHeight-18
+dropmenuobj.contentmeasure=dropmenuobj.offsetHeight
+if (windowedge-dropmenuobj.y < dropmenuobj.contentmeasure){ //move up?
+edgeoffset=dropmenuobj.contentmeasure+obj.offsetHeight
+if ((dropmenuobj.y-topedge)<dropmenuobj.contentmeasure) //up no good either?
+edgeoffset=dropmenuobj.y+obj.offsetHeight-topedge
+}
+}
+return edgeoffset
+}
+
+function populatemenu(what){
+if (ie4||ns6)
+dropmenuobj.innerHTML=what.join("")
+}
+
+
+function dropdownmenu(obj, e, menucontents, menuwidth){
+if (window.event) event.cancelBubble=true
+else if (e.stopPropagation) e.stopPropagation()
+clearhidemenu()
+dropmenuobj=document.getElementById? document.getElementById("dropmenudiv") : dropmenudiv
+populatemenu(menucontents)
+
+if (ie4||ns6){
+showhide(dropmenuobj.style, e, "visible", "hidden", menuwidth)
+dropmenuobj.x=getposOffset(obj, "left")
+dropmenuobj.y=getposOffset(obj, "top")
+dropmenuobj.style.left=dropmenuobj.x-clearbrowseredge(obj, "rightedge")+"px"
+dropmenuobj.style.top=dropmenuobj.y-clearbrowseredge(obj, "bottomedge")+obj.offsetHeight+"px"
+}
+
+return clickreturnvalue()
+}
+
+function clickreturnvalue(){
+if (ie4||ns6) return false
+else return true
+}
+
+function contains_ns6(a, b) {
+while (b.parentNode)
+if ((b = b.parentNode) == a)
+return true;
+return false;
+}
+
+function dynamichide(e){
+if (ie4&&!dropmenuobj.contains(e.toElement))
+delayhidemenu()
+else if (ns6&&e.currentTarget!= e.relatedTarget&& !contains_ns6(e.currentTarget, e.relatedTarget))
+delayhidemenu()
+}
+
+function hidemenu(e){
+if (typeof dropmenuobj!="undefined"){
+if (ie4||ns6)
+dropmenuobj.style.visibility="hidden"
+}
+}
+
+function delayhidemenu(){
+if (ie4||ns6)
+delayhide=setTimeout("hidemenu()",disappeardelay)
+}
+
+function clearhidemenu(){
+if (typeof delayhide!="undefined")
+clearTimeout(delayhide)
+}
+
+if (hidemenu_onclick=="yes")
+document.onclick=hidemenu
 
 </script>
 <?php } ?>

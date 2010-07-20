@@ -455,7 +455,14 @@ $brewHops6Form = $_POST['brewHops6Form'];
 $brewHops7Form = $_POST['brewHops7Form'];
 $brewHops8Form = $_POST['brewHops8Form'];
 $brewHops9Form = $_POST['brewHops9Form'];
-$wholeFraction = ".85";
+
+// Hop Union has published data suggesting a 5% - 7% difference in utilization
+// between whole and pellet (Type 90) hops. Most modern data I've seen supports this range.
+// The 15% delta value is a left-over from the old days and appears to have
+// been based on speculation at that time.
+// Anyways, this really should be a user var they can set in their prefs.
+// - Kevin
+$wholeFraction = ".94";
 
 // Convert to Utilization Percentage...
 
@@ -511,7 +518,7 @@ if ($og < 1.050) $cGravity = 1;
 if ($og >= 1.050) { $cGravity = 1 + (($og - 1.050) / 0.2); }
 
 
-// Garetz
+// ------------------ Garetz Method ------------------- //
 function convertUtilizationG($numG) {
 if ($numG <= 10) { $convertG = "0"; }
 if (($numG > 10) && ($numG <= 15)) { $convertG = "1"; }
@@ -540,7 +547,7 @@ $numG = $brewHops7Time; $uG7 = convertUtilizationG($numG);
 $numG = $brewHops8Time; $uG8 = convertUtilizationG($numG);
 $numG = $brewHops9Time; $uG9 = convertUtilizationG($numG);
 
-// Rager
+// ------------------ Rager Method ------------------- //
 function convertUtilizationR ($numR) {
 if ($numR == 0) $convertR = "0";
 if (($numR > 0) && ($numR <= 6))   $convertR = "0.05";
@@ -572,7 +579,7 @@ $numR = $brewHops8Time; $uR8 = convertUtilizationR($numR);
 $numR = $brewHops9Time; $uR9 = convertUtilizationR($numR);
 if ($og > 1.050) $ga = (($og - 1.050) / .2); else $ga = 0;
 
-// Tinseth
+// ------------------ Tinseth Method --------------- //
 // Bigness Factor = 1.65 * 0.000125^(wort gravity - 1)
 $wg = $og - 1;
 $bignessFactor = 1.65 * (pow(0.000125, $wg));
@@ -597,6 +604,7 @@ $numT = $brewHops8Time;	$decimalAA8 = $bignessFactor * hopBTF($numT);
 $numT = $brewHops9Time;	$decimalAA9 = $bignessFactor * hopBTF($numT);
 
 
+// Are all the queries below needed? Looks like they can be deleted?
 
 $query_hops1 = "SELECT * FROM hops WHERE hopsName='$brewHops1'";
 $hops1 = mysql_query($query_hops1, $brewing) or die(mysql_error());
@@ -654,7 +662,8 @@ $brewHops8 = $row_hops8['hopsName'];
 $brewHops9 = $row_hops9['hopsName'];
 */
 
-// ------------------------------ Calculations -----------------------------------
+// ------------------------------ Calculations ----------------------------------- //
+
 // Hops
 if ($row_pref['measWeight1'] == "ounces") { 
 
@@ -680,37 +689,39 @@ $hopsIBUCalc8D = ($brewHops8Weight * $uD8 * ($brewHops8IBU * .01) * 7489) / ($br
 $hopsIBUCalc9D = ($brewHops9Weight * $uD9 * ($brewHops9IBU * .01) * 7489) / ($brewYield * $cGravity);
 
 // Garetz
-$hopsIBUCalc1G = ($hopsAAU1 * $uG1) / $brewYield / 1.34; if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1G .= "*".$wholeFraction; 
-$hopsIBUCalc2G = ($hopsAAU2 * $uG2) / $brewYield / 1.34; if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug"))  $hopsIBUCalc2G .= "*".$wholeFraction;
-$hopsIBUCalc3G = ($hopsAAU3 * $uG3) / $brewYield / 1.34; if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug"))  $hopsIBUCalc3G .= "*".$wholeFraction;
-$hopsIBUCalc4G = ($hopsAAU4 * $uG4) / $brewYield / 1.34; if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug"))  $hopsIBUCalc4G .= "*".$wholeFraction;
-$hopsIBUCalc5G = ($hopsAAU5 * $uG5) / $brewYield / 1.34; if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug"))  $hopsIBUCalc5G .= "*".$wholeFraction;
-$hopsIBUCalc6G = ($hopsAAU6 * $uG6) / $brewYield / 1.34; if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug"))  $hopsIBUCalc6G .= "*".$wholeFraction;
-$hopsIBUCalc7G = ($hopsAAU7 * $uG7) / $brewYield / 1.34; if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug"))  $hopsIBUCalc7G .= "*".$wholeFraction;
-$hopsIBUCalc8G = ($hopsAAU8 * $uG8) / $brewYield / 1.34; if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug"))  $hopsIBUCalc8G .= "*".$wholeFraction;
-$hopsIBUCalc9G = ($hopsAAU9 * $uG9) / $brewYield / 1.34; if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug"))  $hopsIBUCalc9G .= "*".$wholeFraction;
+$hopsIBUCalc1G = ($hopsAAU1 * $uG1) / $brewYield / 1.34; if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1G *= $wholeFraction; 
+$hopsIBUCalc2G = ($hopsAAU2 * $uG2) / $brewYield / 1.34; if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug"))  $hopsIBUCalc2G *= $wholeFraction;
+$hopsIBUCalc3G = ($hopsAAU3 * $uG3) / $brewYield / 1.34; if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug"))  $hopsIBUCalc3G *= $wholeFraction;
+$hopsIBUCalc4G = ($hopsAAU4 * $uG4) / $brewYield / 1.34; if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug"))  $hopsIBUCalc4G *= $wholeFraction;
+$hopsIBUCalc5G = ($hopsAAU5 * $uG5) / $brewYield / 1.34; if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug"))  $hopsIBUCalc5G *= $wholeFraction;
+$hopsIBUCalc6G = ($hopsAAU6 * $uG6) / $brewYield / 1.34; if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug"))  $hopsIBUCalc6G *= $wholeFraction;
+$hopsIBUCalc7G = ($hopsAAU7 * $uG7) / $brewYield / 1.34; if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug"))  $hopsIBUCalc7G *= $wholeFraction;
+$hopsIBUCalc8G = ($hopsAAU8 * $uG8) / $brewYield / 1.34; if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug"))  $hopsIBUCalc8G *= $wholeFraction;
+$hopsIBUCalc9G = ($hopsAAU9 * $uG9) / $brewYield / 1.34; if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug"))  $hopsIBUCalc9G *= $wholeFraction;
 
 // Rager
-$hopsIBUCalc1R = ($brewHops1Weight * $uR1 * ($brewHops1IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1R .= "*".$wholeFraction; 
-$hopsIBUCalc2R = ($brewHops2Weight * $uR2 * ($brewHops2IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug"))$hopsIBUCalc2R .= "*".$wholeFraction; 
-$hopsIBUCalc3R = ($brewHops3Weight * $uR3 * ($brewHops3IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3R .= "*".$wholeFraction; 
-$hopsIBUCalc4R = ($brewHops4Weight * $uR4 * ($brewHops4IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4R .= "*".$wholeFraction; 
-$hopsIBUCalc5R = ($brewHops5Weight * $uR5 * ($brewHops5IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5R .= "*".$wholeFraction; 
-$hopsIBUCalc6R = ($brewHops6Weight * $uR6 * ($brewHops6IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6R .= "*".$wholeFraction; 
-$hopsIBUCalc7R = ($brewHops7Weight * $uR7 * ($brewHops7IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7R .= "*".$wholeFraction; 
-$hopsIBUCalc8R = ($brewHops8Weight * $uR8 * ($brewHops8IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8R .= "*".$wholeFraction; 
-$hopsIBUCalc9R = ($brewHops9Weight * $uR9 * ($brewHops9IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9R .= "*".$wholeFraction; 
+$hopsIBUCalc1R = ($brewHops1Weight * $uR1 * ($brewHops1IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1R *= $wholeFraction; 
+$hopsIBUCalc2R = ($brewHops2Weight * $uR2 * ($brewHops2IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug"))$hopsIBUCalc2R *= $wholeFraction; 
+$hopsIBUCalc3R = ($brewHops3Weight * $uR3 * ($brewHops3IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3R *= $wholeFraction; 
+$hopsIBUCalc4R = ($brewHops4Weight * $uR4 * ($brewHops4IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4R *= $wholeFraction; 
+$hopsIBUCalc5R = ($brewHops5Weight * $uR5 * ($brewHops5IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5R *= $wholeFraction; 
+$hopsIBUCalc6R = ($brewHops6Weight * $uR6 * ($brewHops6IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6R *= $wholeFraction; 
+$hopsIBUCalc7R = ($brewHops7Weight * $uR7 * ($brewHops7IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7R *= $wholeFraction; 
+$hopsIBUCalc8R = ($brewHops8Weight * $uR8 * ($brewHops8IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8R *= $wholeFraction; 
+$hopsIBUCalc9R = ($brewHops9Weight * $uR9 * ($brewHops9IBU / 100) * 7489) / ($brewYield * (1 + $ga)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9R *= $wholeFraction; 
 
-//Tinseth
-$hopsIBUCalc1T = $decimalAA1 * ((($brewHops1IBU / 100) * $brewHops1Weight * 7489) / $brewYield); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1T .= "*".$wholeFraction; 
-$hopsIBUCalc2T = $decimalAA2 * ((($brewHops2IBU / 100) * $brewHops2Weight * 7489) / $brewYield); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2T .= "*".$wholeFraction; 
-$hopsIBUCalc3T = $decimalAA3 * ((($brewHops3IBU / 100) * $brewHops3Weight * 7489) / $brewYield); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3T .= "*".$wholeFraction; 
-$hopsIBUCalc4T = $decimalAA4 * ((($brewHops4IBU / 100) * $brewHops4Weight * 7489) / $brewYield); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4T .= "*".$wholeFraction; 
-$hopsIBUCalc5T = $decimalAA5 * ((($brewHops5IBU / 100) * $brewHops5Weight * 7489) / $brewYield); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5T .= "*".$wholeFraction; 
-$hopsIBUCalc6T = $decimalAA6 * ((($brewHops6IBU / 100) * $brewHops6Weight * 7489) / $brewYield); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6T .= "*".$wholeFraction; 
-$hopsIBUCalc7T = $decimalAA7 * ((($brewHops7IBU / 100) * $brewHops7Weight * 7489) / $brewYield); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7T .= "*".$wholeFraction; 
-$hopsIBUCalc8T = $decimalAA8 * ((($brewHops8IBU / 100) * $brewHops8Weight * 7489) / $brewYield); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8T .= "*".$wholeFraction; 
-$hopsIBUCalc9T = $decimalAA9 * ((($brewHops9IBU / 100) * $brewHops9Weight * 7489) / $brewYield); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9T .= "*".$wholeFraction; 
+// Tinseth
+// The Tinseth formula is based on whole hops so, do the calc for that and then
+// convert to pellet if necessary.
+$hopsIBUCalc1T = $decimalAA1 * ((($brewHops1IBU / 100) * $brewHops1Weight * 7489) / $brewYield); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1T *= $wholeFraction; 
+$hopsIBUCalc2T = $decimalAA2 * ((($brewHops2IBU / 100) * $brewHops2Weight * 7489) / $brewYield); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2T *= $wholeFraction; 
+$hopsIBUCalc3T = $decimalAA3 * ((($brewHops3IBU / 100) * $brewHops3Weight * 7489) / $brewYield); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3T *= $wholeFraction; 
+$hopsIBUCalc4T = $decimalAA4 * ((($brewHops4IBU / 100) * $brewHops4Weight * 7489) / $brewYield); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4T *= $wholeFraction; 
+$hopsIBUCalc5T = $decimalAA5 * ((($brewHops5IBU / 100) * $brewHops5Weight * 7489) / $brewYield); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5T *= $wholeFraction; 
+$hopsIBUCalc6T = $decimalAA6 * ((($brewHops6IBU / 100) * $brewHops6Weight * 7489) / $brewYield); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6T *= $wholeFraction; 
+$hopsIBUCalc7T = $decimalAA7 * ((($brewHops7IBU / 100) * $brewHops7Weight * 7489) / $brewYield); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7T *= $wholeFraction; 
+$hopsIBUCalc8T = $decimalAA8 * ((($brewHops8IBU / 100) * $brewHops8Weight * 7489) / $brewYield); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8T *= $wholeFraction; 
+$hopsIBUCalc9T = $decimalAA9 * ((($brewHops9IBU / 100) * $brewHops9Weight * 7489) / $brewYield); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9T *= $wholeFraction; 
 }
 
 if ($row_pref['measWeight1'] == "grams") { 
@@ -736,38 +747,38 @@ $hopsIBUCalc7D = ($brewHops7Weight * $uD7 * ($brewHops7IBU * .01) * 1000) / ($br
 $hopsIBUCalc8D = ($brewHops8Weight * $uD8 * ($brewHops8IBU * .01) * 1000) / ($brewYield * $cGravity);
 $hopsIBUCalc9D = ($brewHops9Weight * $uD9 * ($brewHops9IBU * .01) * 1000) / ($brewYield * $cGravity);
 
-//Garetz
-$hopsIBUCalc1G = ($hopsAAU1 * $uG1) / ($brewYield * .2642) / 1.34;  if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1G .= "*".$wholeFraction;
-$hopsIBUCalc2G = ($hopsAAU2 * $uG2) / ($brewYield * .2642) / 1.34;  if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2G .= "*".$wholeFraction;
-$hopsIBUCalc3G = ($hopsAAU3 * $uG3) / ($brewYield * .2642) / 1.34;  if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3G .= "*".$wholeFraction;
-$hopsIBUCalc4G = ($hopsAAU4 * $uG4) / ($brewYield * .2642) / 1.34;  if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4G .= "*".$wholeFraction;
-$hopsIBUCalc5G = ($hopsAAU5 * $uG5) / ($brewYield * .2642) / 1.34;  if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5G .= "*".$wholeFraction;
-$hopsIBUCalc6G = ($hopsAAU6 * $uG6) / ($brewYield * .2642) / 1.34;  if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6G .= "*".$wholeFraction;
-$hopsIBUCalc7G = ($hopsAAU7 * $uG7) / ($brewYield * .2642) / 1.34;  if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7G .= "*".$wholeFraction;
-$hopsIBUCalc8G = ($hopsAAU8 * $uG8) / ($brewYield * .2642) / 1.34;  if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8G .= "*".$wholeFraction;
-$hopsIBUCalc9G = ($hopsAAU9 * $uG9) / ($brewYield * .2642) / 1.34;  if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9G .= "*".$wholeFraction;
+// Garetz
+$hopsIBUCalc1G = ($hopsAAU1 * $uG1) / ($brewYield * .2642) / 1.34;  if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1G *= $wholeFraction;
+$hopsIBUCalc2G = ($hopsAAU2 * $uG2) / ($brewYield * .2642) / 1.34;  if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2G *= $wholeFraction;
+$hopsIBUCalc3G = ($hopsAAU3 * $uG3) / ($brewYield * .2642) / 1.34;  if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3G *= $wholeFraction;
+$hopsIBUCalc4G = ($hopsAAU4 * $uG4) / ($brewYield * .2642) / 1.34;  if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4G *= $wholeFraction;
+$hopsIBUCalc5G = ($hopsAAU5 * $uG5) / ($brewYield * .2642) / 1.34;  if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5G *= $wholeFraction;
+$hopsIBUCalc6G = ($hopsAAU6 * $uG6) / ($brewYield * .2642) / 1.34;  if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6G *= $wholeFraction;
+$hopsIBUCalc7G = ($hopsAAU7 * $uG7) / ($brewYield * .2642) / 1.34;  if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7G *= $wholeFraction;
+$hopsIBUCalc8G = ($hopsAAU8 * $uG8) / ($brewYield * .2642) / 1.34;  if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8G *= $wholeFraction;
+$hopsIBUCalc9G = ($hopsAAU9 * $uG9) / ($brewYield * .2642) / 1.34;  if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9G *= $wholeFraction;
 
 // Rager
-$hopsIBUCalc1R = (($brewHops1Weight * .0353) * $uR1 * ($brewHops1IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1R .= "*".$wholeFraction;
-$hopsIBUCalc2R = (($brewHops2Weight * .0353) * $uR2 * ($brewHops2IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2R .= "*".$wholeFraction;
-$hopsIBUCalc3R = (($brewHops3Weight * .0353) * $uR3 * ($brewHops3IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3R .= "*".$wholeFraction;
-$hopsIBUCalc4R = (($brewHops4Weight * .0353) * $uR4 * ($brewHops4IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4R .= "*".$wholeFraction;
-$hopsIBUCalc5R = (($brewHops5Weight * .0353) * $uR5 * ($brewHops5IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5R .= "*".$wholeFraction;
-$hopsIBUCalc6R = (($brewHops6Weight * .0353) * $uR6 * ($brewHops6IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6R .= "*".$wholeFraction;
-$hopsIBUCalc7R = (($brewHops7Weight * .0353) * $uR7 * ($brewHops7IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7R .= "*".$wholeFraction;
-$hopsIBUCalc8R = (($brewHops8Weight * .0353) * $uR8 * ($brewHops8IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8R .= "*".$wholeFraction;
-$hopsIBUCalc9R = (($brewHops9Weight * .0353) * $uR9 * ($brewHops9IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9R .= "*".$wholeFraction;
+$hopsIBUCalc1R = (($brewHops1Weight * .0353) * $uR1 * ($brewHops1IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1R *= $wholeFraction;
+$hopsIBUCalc2R = (($brewHops2Weight * .0353) * $uR2 * ($brewHops2IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2R *= $wholeFraction;
+$hopsIBUCalc3R = (($brewHops3Weight * .0353) * $uR3 * ($brewHops3IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3R *= $wholeFraction;
+$hopsIBUCalc4R = (($brewHops4Weight * .0353) * $uR4 * ($brewHops4IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4R *= $wholeFraction;
+$hopsIBUCalc5R = (($brewHops5Weight * .0353) * $uR5 * ($brewHops5IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5R *= $wholeFraction;
+$hopsIBUCalc6R = (($brewHops6Weight * .0353) * $uR6 * ($brewHops6IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6R *= $wholeFraction;
+$hopsIBUCalc7R = (($brewHops7Weight * .0353) * $uR7 * ($brewHops7IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7R *= $wholeFraction;
+$hopsIBUCalc8R = (($brewHops8Weight * .0353) * $uR8 * ($brewHops8IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8R *= $wholeFraction;
+$hopsIBUCalc9R = (($brewHops9Weight * .0353) * $uR9 * ($brewHops9IBU / 100) * 1000) / (($brewYield * .2642) * (1 + $ga)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9R *= $wholeFraction;
 
-//Tinseth
-$hopsIBUCalc1T = $decimalAA1 * ((($brewHops1IBU / 100) * ($brewHops1Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1T .= "*".$wholeFraction; 
-$hopsIBUCalc2T = $decimalAA2 * ((($brewHops2IBU / 100) * ($brewHops2Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2T .= "*".$wholeFraction; 
-$hopsIBUCalc3T = $decimalAA3 * ((($brewHops3IBU / 100) * ($brewHops3Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3T .= "*".$wholeFraction; 
-$hopsIBUCalc4T = $decimalAA4 * ((($brewHops4IBU / 100) * ($brewHops4Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4T .= "*".$wholeFraction; 
-$hopsIBUCalc5T = $decimalAA5 * ((($brewHops5IBU / 100) * ($brewHops5Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5T .= "*".$wholeFraction; 
-$hopsIBUCalc6T = $decimalAA6 * ((($brewHops6IBU / 100) * ($brewHops6Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6T .= "*".$wholeFraction; 
-$hopsIBUCalc7T = $decimalAA7 * ((($brewHops7IBU / 100) * ($brewHops7Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7T .= "*".$wholeFraction; 
-$hopsIBUCalc8T = $decimalAA8 * ((($brewHops8IBU / 100) * ($brewHops8Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8T .= "*".$wholeFraction; 
-$hopsIBUCalc9T = $decimalAA9 * ((($brewHops9IBU / 100) * ($brewHops9Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9T .= "*".$wholeFraction; 
+// Tinseth
+$hopsIBUCalc1T = $decimalAA1 * ((($brewHops1IBU / 100) * ($brewHops1Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops1Form == "Leaf") || ($brewHops1Form == "Plug")) $hopsIBUCalc1T *= $wholeFraction; 
+$hopsIBUCalc2T = $decimalAA2 * ((($brewHops2IBU / 100) * ($brewHops2Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops2Form == "Leaf") || ($brewHops2Form == "Plug")) $hopsIBUCalc2T *= $wholeFraction; 
+$hopsIBUCalc3T = $decimalAA3 * ((($brewHops3IBU / 100) * ($brewHops3Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops3Form == "Leaf") || ($brewHops3Form == "Plug")) $hopsIBUCalc3T *= $wholeFraction; 
+$hopsIBUCalc4T = $decimalAA4 * ((($brewHops4IBU / 100) * ($brewHops4Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops4Form == "Leaf") || ($brewHops4Form == "Plug")) $hopsIBUCalc4T *= $wholeFraction; 
+$hopsIBUCalc5T = $decimalAA5 * ((($brewHops5IBU / 100) * ($brewHops5Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops5Form == "Leaf") || ($brewHops5Form == "Plug")) $hopsIBUCalc5T *= $wholeFraction; 
+$hopsIBUCalc6T = $decimalAA6 * ((($brewHops6IBU / 100) * ($brewHops6Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops6Form == "Leaf") || ($brewHops6Form == "Plug")) $hopsIBUCalc6T *= $wholeFraction; 
+$hopsIBUCalc7T = $decimalAA7 * ((($brewHops7IBU / 100) * ($brewHops7Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops7Form == "Leaf") || ($brewHops7Form == "Plug")) $hopsIBUCalc7T *= $wholeFraction; 
+$hopsIBUCalc8T = $decimalAA8 * ((($brewHops8IBU / 100) * ($brewHops8Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops8Form == "Leaf") || ($brewHops8Form == "Plug")) $hopsIBUCalc8T *= $wholeFraction; 
+$hopsIBUCalc9T = $decimalAA9 * ((($brewHops9IBU / 100) * ($brewHops9Weight * .0353) * 1000) / ($brewYield * .2642)); if (($brewHops9Form == "Leaf") || ($brewHops9Form == "Plug")) $hopsIBUCalc9T *= $wholeFraction; 
 }
 
 // Bitterness Calculations
@@ -851,7 +862,7 @@ if ($row_pref['measColor'] == "EBC") {
 $EBC = (2.65 * $SRM) - 1.2;
 }
 
-//$SRM = $SRMTotal * $efficiency * .49 * 1.25;
+// $SRM = $SRMTotal * $efficiency * .49 * 1.25;
 // formula from http://www.picobrewery.com/askarchive/color.html - best one I could find.
 
 // GU:BU Ratio

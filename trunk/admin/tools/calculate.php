@@ -34,11 +34,11 @@ $imageSrc = "../../images/";
     	<option value="?section=efficiency" <?php if ($section == "efficiency") echo "SELECTED"; ?>>Brewhouse Efficiency Calculator</option>
     	<option value="?section=calories" <?php if ($section == "calories") echo "SELECTED"; ?>>Calories, Alcohol, and Plato Calculator</option>
     	<option value="?section=force_carb" <?php if ($section == "force_carb") echo "SELECTED"; ?>>Force Carbonation Calculator</option>
-    	<option value="?section=hyd" <?php if ($section == "hyd") echo "SELECTED"; ?>>Hydrometer Correction Calculator</option>
-        <option value="?section=plato" <?php if ($section == "plato") echo "SELECTED"; ?>>Plato/Brix/SG Calculator</option>
+    	<option value="?section=plato" <?php if ($section == "plato") echo "SELECTED"; ?>>Plato/Brix/SG Calculator</option>
     	<option value="?section=sugar" <?php if ($section == "sugar") echo "SELECTED"; ?>>Priming Sugar Calculator</option>
     	<option value="?section=strike" <?php if ($section == "strike") echo "SELECTED"; ?>>Strike Water Temperature Calculator</option>
     	<option value="?section=water" <?php if ($section == "water") echo "SELECTED"; ?>>Water Amounts Calculator</option>
+    	<option value="?section=hyd" <?php if ($section == "hyd") echo "SELECTED"; ?>>Hydrometer Correction Calculator</option>
   	 </select>
 	</form>
     </td>

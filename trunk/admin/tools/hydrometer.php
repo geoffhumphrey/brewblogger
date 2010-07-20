@@ -10,95 +10,82 @@
    * Digest 963.
    ***********************************************
    */
+
+// Default hydrometer calibration temperature in Fahrenheit.
+// This needs to be a user profile variable.
+$CAL_TEMP_DEFAULT = 60;
+
 $calTemp = $_POST["calTemp"];
-$temp = $_POST["temp"];
-$sg = $_POST["sg"];
-$units = $_POST["units"];
-?>
-<?php if (($action == "default") || ($action == "entry")) { ?>
+$temp    = $_POST["temp"];
+$sg      = $_POST["sg"];
+$units   = $_POST["units"];
+
+if (($action == "default") || ($action == "entry")) { ?>
 <script type="text/javascript" language="JavaScript">
-<!-- Copyright 2003 Bontrager Connection, LLC
-// Code obtained from http://WillMaster.com/
-function CheckRequiredFields() {
-var errormessage = new String();
-// Put field checks below this point.
-if(WithoutContent(document.form1.sg.value))
-	{ errormessage += "\nSpecific Gravity."; }
-if(WithoutContent(document.form1.temp.value))
-	{ errormessage += "\nSample Temperature."; }
-if(WithoutContent(document.form1.calTemp.value))
-	{ errormessage += "\nCalibration Temperature."; }
-// Put field checks above this point.
-if(errormessage.length > 2) {
-	alert('To calculate properly, the following information is needed:\n' + errormessage);
-	return false;
-	}
-return true;
-} // end of function CheckRequiredFields()
+    <!-- Copyright 2003 Bontrager Connection, LLC
+    // Code obtained from http://WillMaster.com/
+    function CheckRequiredFields() {
+      var errormessage = new String();
+      // Put field checks below this point.
+      if(WithoutContent(document.form1.calTemp.value))
+	{ errormessage += "\nHydrometer calibration temperature."; }
+      if(WithoutContent(document.form1.temp.value))
+	{ errormessage += "\nTemperature of the wort sample."; }
+      if(WithoutContent(document.form1.sg.value))
+	{ errormessage += "\nSpecific Gravity of the wort sample."; }
+      // Put field checks above this point.
+      if(errormessage.length > 2) {
+        alert('To calculate properly, the following information is needed:\n' + errormessage);
+        return false;
+      }
+      return true;
+    }
 
-function WithoutContent(ss) {
-if(ss.length > 0) { return false; }
-return true;
-}
+    function WithoutContent(ss) {
+      if(ss.length > 0) { return false; }
+      return true;
+    }
+  //-->
+  </script>
+  <?php } ?>
 
-function NoneWithContent(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].value.length > 0) { return false; }
-	}
-return true;
-}
-
-function NoneWithCheck(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].checked) { return false; }
-	}
-return true;
-}
-
-function WithoutCheck(ss) {
-if(ss.checked) { return false; }
-return true;
-}
-
-function WithoutSelectionValue(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].selected) {
-		if(ss[i].value.length) { return false; }
-		}
-	}
-return true;
-}
-
-//-->
-</script>
-<?php } ?>
-<form name="form1" <?php if (($action == "default") || ($action == "entry")) echo "onSubmit=\"return CheckRequiredFields()\""; ?> method="post" action="?page=<?php echo $page; ?>&section=<?php echo $section; ?>&action=<?php if (($action == "default") || ($action == "entry")) echo "calculate"; if ($action == "calculate") echo "entry"; ?>">
+<form name="form1" method="post" action="?page=<?php echo $page; ?>&section=<?php echo $section; ?>&action=<?php if (($action == "default") || ($action == "entry")) echo 'calculate" onSubmit="return CheckRequiredFields()"'; if ($action == "calculate") echo 'entry"'; ?>>
 <div id="wideWrapper<?php if ($page == "tools") echo "Reference"; else echo "Calc"; ?>">
 <div id="referenceHeader">Hydrometer Correction Calculator</div>
+
 <?php if (($action == "default") || ($action == "entry")) { ?>
 <table>
 <tr>
   <td class="dataLabelLeft">Specific Gravity:</td>
-  <td colspan="2" class="data"><input name="sg" type="text" id="sg" size="5" value="<?php if ($action == "entry") echo $sg; ?>"></td>
-  </tr>
+  <td class="data"><input name="sg" type="text" id="sg" size="5" value="<?php if ($action == "entry") echo $sg; ?>"></td>
+</tr>
 <tr>
-  <td class="dataLabelLeft">Temperature of Sample:</td>
-  <td class="data" width="5%" nowrap="nowrap"><input name="temp" type="text" id="temp" size="5" value="<?php if ($action == "entry") echo $temp; ?>">&deg;</td>
-  <td class="data"><select name="units2" id="units2">
-    <option value="f" <?php if ($action == "default") echo "SELECTED"; if (($action == "entry") && ($units == "f")) echo "SELECTED"; ?>>Fahrenheit&nbsp;</option>
-    <option value="c" <?php if (($action == "entry") && ($units == "c")) echo "SELECTED"; ?>>Celsius</option>
-  </select></td>
+  <td class="dataLabelLeft">Temperature:</td>
+  <td class="data"><input name="temp" type="text" id="temp" size="5" value="<?php if ($action == "entry") echo $temp; ?>">&deg;&nbsp;</td>
 </tr>
 <tr>
   <td class="dataLabelLeft">Hydrometer Calibration Temperature:</td>
-  <td colspan="2" class="data"><input name="calTemp" type="text" id="calTemp" size="5" value="<?php if ($action == "entry") echo $calTemp; ?>"></td>
+  <td class="data"><input name="calTemp" type="text" id="calTemp" size="5" value="<?php if ($action == "default") echo $CAL_TEMP_DEFAULT; if ($action == "entry") echo $calTemp; ?>">&deg;&nbsp</td>
+</tr>
+<tr>
+  <td class="dataLabelLeft">Units:</td>
+  <td class="data">
+    <select name="units" id="units">
+      <option value="f" <?php if (($action == "default") || (($action == "entry") && ($units == "f"))) echo "SELECTED"; ?>>Fahrenheit&nbsp;</option>
+      <option value="c" <?php if (($action == "entry") && ($units == "c")) echo "SELECTED"; ?>>Celsius</option>
+    </select>
+  </td>
 </tr>
 </table>
 </div>
-<?php if (($action == "default") || ($action == "entry")) { if (!checkmobile()) { ?><input class="calcButton" type="image" src="<?php echo $imageSrc."Brilliant" ?>/button_calculate_Brilliant.png" alt="Calculate" class="radiobutton" value="Calculate"><?php } else { ?><input type="submit" class="buttons" value="Calculate" /><?php } } ?>
-		<?php if ($action == "entry") { ?><a class="calcButton" href="?page=<?php echo $page; ?>&amp;section=<?php echo $section; ?>"><?php if (!checkmobile()) { ?><img src="<?php echo $imageSrc."Brilliant" ?>/button_clear_Brilliant.png" border="0" title="Clear" alt="Clear"/><?php } else echo "Clear"; ?></a><?php } ?>
-		<?php if ($action == "calculate") { if (!checkmobile()) { ?><input class="calcButton" type="image" src="<?php echo $imageSrc."Brilliant" ?>/button_back_Brilliant.png" alt="Calculate" class="radiobutton" value="Re-enter Values"><?php } else { ?><input type="submit" class="radiobutton" value="Go Back"><?php } } ?>
-
+<table class="dataTable">
+<tr>
+  <td><input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_calculate_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Calculate" class="radiobutton" value="Calculate"></td>
+  <?php if ($action == "entry") { ?>
+  <td align="right"><a href="?page=<?php echo $page; ?>&amp;section=<?php echo $section; ?>"><img src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_clear_<?php echo $row_colorChoose['themeName']; ?>.png" border="0" title="Clear" alt="Clear"/></a></td>
+  <?php } ?>
+</tr>
+</table>
 <?php }
 
 if ($action == "calculate") {
