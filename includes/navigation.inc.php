@@ -44,7 +44,7 @@
 	<a class="menuItem" href="index.php?page=tools&section=efficiency">Efficiency Calculator</a>
 	<a class="menuItem" href="index.php?page=tools&section=calories">Calories, Alcohol, and Plato Calculator</a>
 	<a class="menuItem" href="index.php?page=tools&section=force_carb">Force Carbonation Calculator</a>
-	<a class="menuItem" href="index.php?page=tools&section=hyc">Hydrometer Correction Calculator</a>
+	<a class="menuItem" href="index.php?page=tools&section=hyd">Hydrometer Correction Calculator</a>
 	<a class="menuItem" href="index.php?page=tools&section=plato">Plato/Brix/SG Calculator</a>
 	<a class="menuItem" href="index.php?page=tools&section=sugar">Priming Sugar Calculator</a>
 	<a class="menuItem" href="index.php?page=tools&section=strike">Strike Water Calculator</a>
