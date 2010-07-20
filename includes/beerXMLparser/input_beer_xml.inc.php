@@ -103,7 +103,7 @@ class InputBeerXML {
             switch($fermentable->type){
                 case "Grain":
                     $counter["grain"]++;
-                    if($counter["grain"] <= 9){
+                    if($counter["grain"] <= 15){
                         $vf["brewGrain" . $counter["grain"]] = strtr($fermentable->name, $html_string);
 						$vf["brewGrain" . $counter["grain"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight"); 
 						
@@ -157,7 +157,7 @@ class InputBeerXML {
         $counter["hops"] = 0;
         foreach($recipe->hops->hops as $hop){
             $counter["hops"]++;
-            if($counter["hops"] <= 9){
+            if($counter["hops"] <= 15){
                 $vf["brewHops" . $counter["hops"]] = strtr($hop->name, $html_string);
 				$vf["brewHops" . $counter["hops"] . "Weight"] = $this->convertUnit($hop->amount,"hopWeight");
 				$vf["brewHops" . $counter["hops"] . "IBU"] = $hop->alpha;
@@ -253,7 +253,7 @@ class InputBeerXML {
             switch($fermentable->type){
                 case "Grain":
                     $counter["grain"]++;
-                    if($counter["grain"] <= 9){
+                    if($counter["grain"] <= 15){
                         $vf["brewGrain" . $counter["grain"]] = strtr($fermentable->name, $html_string);
 						$vf["brewGrain" . $counter["grain"] . "Weight"] = $this->convertUnit($fermentable->amount,"weight");
 					}                    
@@ -306,7 +306,7 @@ class InputBeerXML {
         $counter["hops"] = 0;
         foreach($recipe->hops->hops as $hop){
             $counter["hops"]++;
-            if($counter["hops"] <= 9){
+            if($counter["hops"] <= 15){
                 $vf["brewHops" . $counter["hops"]] = strtr($hop->name, $html_string);
 				$vf["brewHops" . $counter["hops"] . "Weight"] = $this->convertUnit($hop->amount,"hopWeight");
 				$vf["brewHops" . $counter["hops"] . "IBU"] = $hop->alpha;

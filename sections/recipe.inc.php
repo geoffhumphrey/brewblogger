@@ -2,7 +2,7 @@
 if ($amt != 0) $scale = $amt/$row_log['brewYield'];
 mysql_select_db($database_brewing, $brewing);
 
-for($i = 1; $i <= 9; ++$i) {
+for($i = 1; $i <= 15; ++$i) {
     $query_hops = 'query_hops'.$i;
     $hops = 'hops'.$i;
     $row_hops = 'row_hops'.$i;
@@ -13,7 +13,7 @@ for($i = 1; $i <= 9; ++$i) {
     $$totalRows_hops = mysql_num_rows($$hops);
 }
 
-for($i = 1; $i <= 9; ++$i) {
+for($i = 1; $i <= 15; ++$i) {
     $query_malt = 'query_malt'.$i;
     $malt = 'malt'.$i;
     $row_malt = 'row_malt'.$i;
@@ -44,7 +44,13 @@ $totalGrain = (
     $row_log['brewGrain6Weight'] + 
     $row_log['brewGrain7Weight'] + 
     $row_log['brewGrain8Weight'] + 
-    $row_log['brewGrain9Weight']
+    $row_log['brewGrain9Weight'] +
+	$row_log['brewGrain10Weight'] +
+	$row_log['brewGrain11Weight'] +
+	$row_log['brewGrain12Weight'] +
+	$row_log['brewGrain13Weight'] +
+	$row_log['brewGrain14Weight'] +
+	$row_log['brewGrain15Weight']
 );
 
 $totalGrist = ($totalExtract + $totalGrain);
@@ -56,7 +62,7 @@ for($i = 1; $i <= 5; ++$i) {
     }
 }
 
-for($i = 1; $i <= 9; ++$i) {
+for($i = 1; $i <= 15; ++$i) {
     $grainPer = 'grain'.$i.'Per';
     if (($row_log['brewGrain'.$i.'Weight'] != "0") && ($row_log['brewGrain'.$i.'Weight'] != "")) { 
         $$grainPer = (($row_log['brewGrain'.$i.'Weight']/$totalGrist) * 100); 
@@ -77,7 +83,13 @@ $totalHops = (
     $row_log['brewHops6Weight'] + 
     $row_log['brewHops7Weight'] + 
     $row_log['brewHops8Weight'] + 
-    $row_log['brewHops9Weight']
+    $row_log['brewHops9Weight'] +
+	$row_log['brewHops10Weight'] +
+	$row_log['brewHops11Weight'] +
+	$row_log['brewHops12Weight'] +
+	$row_log['brewHops13Weight'] +
+	$row_log['brewHops14Weight'] +
+	$row_log['brewHops15Weight']
 );
 
 $weightMultiplier = 1;
@@ -85,12 +97,12 @@ if ($row_pref['measWeight1'] == "grams") {
     $weightMultipler = 0.035;
 };
 
-for($i = 1; $i <= 9; ++$i) {
+for($i = 1; $i <= 15; ++$i) {
     $hopPer = 'hop'.$i.'Per';
     $$hopPer = (($row_log['brewHops'.$i.'Weight'] * $weightMultiplier) * $row_log['brewHops'.$i.'IBU']);
 }
 
-$totalAAU = array_sum(array($hop1Per,$hop2Per,$hop3Per,$hop4Per,$hop5Per,$hop6Per,$hop7Per,$hop8Per,$hop9Per));
+$totalAAU = array_sum(array($hop1Per,$hop2Per,$hop3Per,$hop4Per,$hop5Per,$hop6Per,$hop7Per,$hop8Per,$hop9Per,$hop10Per,$hop11Per,$hop12Per,$hop13Per,$hop14Per,$hop15Per));
 ?>
 
 <div id="headerContent"><a name="recipe" id="recipe"></a>Recipe</div>
@@ -509,7 +521,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
 <?php if ($row_log['brewGrain8'] != "" ) { ?>
  <tr>
   <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain8Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain8Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain2']; else { ?>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain8']; else { ?>
   <div id="moreInfo">
   <?php if ($totalRows_malt8 > 0) { ?>
   <a href="#"><?php } echo $row_log['brewGrain8']; if ($totalRows_malt8 > 0) { ?>
@@ -557,7 +569,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
 <?php if ($row_log['brewGrain9'] != "" ) { ?>
  <tr>
   <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain9Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain9Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
-  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain2']; else { ?>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain9']; else { ?>
   <div id="moreInfo">
   <?php if ($totalRows_malt9 > 0) { ?>
   <a href="#"><?php } echo $row_log['brewGrain9']; if ($totalRows_malt9 > 0) { ?>
@@ -602,6 +614,303 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
   <td class="data"><?php if ($row_log['brewGrain9Weight'] != "") echo round ($grain9Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
  </tr>
 <?php } ?>
+
+
+<?php if ($row_log['brewGrain10'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain10Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain10Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain10']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt10 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain10']; if ($totalRows_malt10 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt10['maltName'] != "") echo $row_malt10['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt10['maltName'] != "") { ?>
+		<?php if ($row_malt10['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt10['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt10['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt10['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt10['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt10['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain10Weight'] != "") echo round ($grain10Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
+<?php if ($row_log['brewGrain11'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain11Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain11Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain11']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt11 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain11']; if ($totalRows_malt11 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt11['maltName'] != "") echo $row_malt11['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt11['maltName'] != "") { ?>
+		<?php if ($row_malt11['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt11['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt11['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt11['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt11['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt11['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain11Weight'] != "") echo round ($grain11Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
+<?php if ($row_log['brewGrain12'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain12Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain12Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain12']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt12 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain12']; if ($totalRows_malt12 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt12['maltName'] != "") echo $row_malt12['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt12['maltName'] != "") { ?>
+		<?php if ($row_malt12['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt12['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt12['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt12['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt12['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt12['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain12Weight'] != "") echo round ($grain12Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
+
+<?php if ($row_log['brewGrain13'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain13Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain13Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain13']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt13 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain13']; if ($totalRows_malt13 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt13['maltName'] != "") echo $row_malt13['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt13['maltName'] != "") { ?>
+		<?php if ($row_malt13['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt13['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt13['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt13['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt13['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt13['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain13Weight'] != "") echo round ($grain13Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
+<?php if ($row_log['brewGrain14'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain14Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain14Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain14']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt14 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain14']; if ($totalRows_malt14 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt14['maltName'] != "") echo $row_malt14['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt14['maltName'] != "") { ?>
+		<?php if ($row_malt14['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt14['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt14['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt14['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt14['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt14['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain14Weight'] != "") echo round ($grain14Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
+<?php if ($row_log['brewGrain15'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewGrain15Weight'], 2); if ($action == "scale") echo number_format(($row_log['brewGrain15Weight'] * $scale), 2); echo "&nbsp;".$row_pref['measWeight2']; ?></td>
+  <td class="data"><?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewGrain15']; else { ?>
+  <div id="moreInfo">
+  <?php if ($totalRows_malt15 > 0) { ?>
+  <a href="#"><?php } echo $row_log['brewGrain15']; if ($totalRows_malt15 > 0) { ?>
+  <span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php if ($row_malt15['maltName'] != "") echo $row_malt15['maltName']; else echo "No Information Available" ?></div>
+		<table class="dataTable">
+		<?php if ($row_malt15['maltName'] != "") { ?>
+		<?php if ($row_malt15['maltLovibond'] != "") { ?>
+  		<tr>
+ 			<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data"><?php echo $row_malt15['maltLovibond']; ?>&nbsp;&deg;L</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt15['maltLovibond'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Color (L):</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt15['maltInfo'] != "") { ?>
+  		<tr align="left" valign="top">
+   		<td class="dataLabelLeft">Info/Use:</td>
+    	<td class="data"><?php echo $row_malt15['maltInfo']; ?></td>
+  		</tr>
+		<?php } ?>
+		<?php if ($row_malt15['maltInfo'] == "") { ?>
+  		<tr>
+    		<td class="dataLabelLeft">Info/Use:</td>
+    		<td class="data">Not provided.</td>
+  		</tr>
+		<?php } 
+		} ?>
+		</table>
+  	</div>
+  	</span>
+  	</a>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  </td>
+  <td class="data"><?php if ($row_log['brewGrain15Weight'] != "") echo round ($grain15Per, 1)."% of grist"; else echo "&nbsp;"; ?></td>
+ </tr>
+<?php } ?>
+
  <tr bgcolor="<?php if (($page == "recipePrint") || ($page == "logPrint")) echo "#dddddd"; elseif (checkmobile()) echo "#dddddd"; else echo $color1; ?>">
   <td class="dataLeft bdr1T_light_dashed"><?php if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format ($totalGrain, 2); if ($action == "scale") echo number_format (($totalGrain * $scale), 2);  echo "&nbsp;".$row_pref['measWeight2']; ?></td>
   <td class="data bdr1T_light_dashed"><?php if  ((($page ==  "recipePrint") || ($page == "logPrint")) || ($row_log['brewMethod'] != "All Grain") || (checkmobile())) echo "Total Grain Weight"; else include ('sections/water_amounts_calc.inc.php'); ?></td>
@@ -782,6 +1091,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
   </td>
  <td class="data"><?php if ($row_log['brewHops1IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop1Per, 1); if ($action == "scale") echo round (($hop1Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
  </tr>
+ 
  <?php if ($row_log['brewHops2'] != "" ) { ?>
  <tr>
   <td class="dataLeft"><?php if ($row_log['brewHops2Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops2Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops2Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
@@ -846,6 +1156,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
   <td class="data"><?php if ($row_log['brewHops2IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop2Per, 1); if ($action == "scale") echo round (($hop2Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
  </tr>
  <?php } ?>
+ 
  <?php if ($row_log['brewHops3'] != "" ) { ?>
  <tr>
   <td class="dataLeft"><?php if ($row_log['brewHops3Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops3Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops3Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
@@ -1287,6 +1598,400 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
   <td class="data"><?php if ($row_log['brewHops9IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop9Per, 1); if ($action == "scale") echo round (($hop9Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
  </tr>
  <?php } ?>
+ 
+ <?php if ($row_log['brewHops10'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops10Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops10Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops10Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops10'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops10']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops10 > 0) { ?><a href="#"><?php } echo $row_log['brewHops10']."<br>"; if ($totalRows_hops10 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops10['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops10['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops10['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops10['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops10['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops10['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops10['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops10['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops10['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops10['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops10['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops10['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops10['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops10['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops10IBU'] != "" ) echo $row_log['brewHops10IBU']."% ";  
+							 	if ($row_log['brewHops10Form'] != "" )  echo $row_log['brewHops10Form']." "; 
+                          		if ($row_log['brewHops10Time'] != "" )  echo "@ ".$row_log['brewHops10Time']." minutes "; 
+								if (($row_log['brewHops10Type'] != "" ) && ($row_log['brewHops10Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops10Type'] != "") echo  "<br>Type: ".$row_log['brewHops10Type'];
+								if ($row_log['brewHops10Type'] == "") echo "";
+								if ($row_log['brewHops10Use'] != "" )  echo "<br>Use: ".$row_log['brewHops10Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops10IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop10Per, 1); if ($action == "scale") echo round (($hop10Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?>
+ 
+ 
+ <?php if ($row_log['brewHops11'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops11Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops11Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops11Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops11'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops11']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops11 > 0) { ?><a href="#"><?php } echo $row_log['brewHops11']."<br>"; if ($totalRows_hops11 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops11['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops11['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops11['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops11['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops11['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops11['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops11['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops11['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops11['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops11['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops11['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops11['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops11['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops11['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops11IBU'] != "" ) echo $row_log['brewHops11IBU']."% ";  
+							 	if ($row_log['brewHops11Form'] != "" )  echo $row_log['brewHops11Form']." "; 
+                          		if ($row_log['brewHops11Time'] != "" )  echo "@ ".$row_log['brewHops11Time']." minutes "; 
+								if (($row_log['brewHops11Type'] != "" ) && ($row_log['brewHops11Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops11Type'] != "") echo  "<br>Type: ".$row_log['brewHops11Type'];
+								if ($row_log['brewHops11Type'] == "") echo "";
+								if ($row_log['brewHops11Use'] != "" )  echo "<br>Use: ".$row_log['brewHops11Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops11IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop11Per, 1); if ($action == "scale") echo round (($hop11Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?>
+ 
+ <?php if ($row_log['brewHops12'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops12Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops12Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops12Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops12'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops12']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops12 > 0) { ?><a href="#"><?php } echo $row_log['brewHops12']."<br>"; if ($totalRows_hops12 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops12['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops12['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops12['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops12['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops12['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops12['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops12['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops12['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops12['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops12['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops12['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops12['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops12['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops12['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops12IBU'] != "" ) echo $row_log['brewHops12IBU']."% ";  
+							 	if ($row_log['brewHops12Form'] != "" )  echo $row_log['brewHops12Form']." "; 
+                          		if ($row_log['brewHops12Time'] != "" )  echo "@ ".$row_log['brewHops12Time']." minutes "; 
+								if (($row_log['brewHops12Type'] != "" ) && ($row_log['brewHops12Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops12Type'] != "") echo  "<br>Type: ".$row_log['brewHops12Type'];
+								if ($row_log['brewHops12Type'] == "") echo "";
+								if ($row_log['brewHops12Use'] != "" )  echo "<br>Use: ".$row_log['brewHops12Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops12IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop12Per, 1); if ($action == "scale") echo round (($hop12Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?>
+
+<?php if ($row_log['brewHops13'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops13Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops13Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops13Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops13'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops13']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops13 > 0) { ?><a href="#"><?php } echo $row_log['brewHops13']."<br>"; if ($totalRows_hops13 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops13['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops13['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops13['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops13['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops13['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops13['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops13['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops13['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops13['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops13['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops13['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops13['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops13['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops13['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops13IBU'] != "" ) echo $row_log['brewHops13IBU']."% ";  
+							 	if ($row_log['brewHops13Form'] != "" )  echo $row_log['brewHops13Form']." "; 
+                          		if ($row_log['brewHops13Time'] != "" )  echo "@ ".$row_log['brewHops13Time']." minutes "; 
+								if (($row_log['brewHops13Type'] != "" ) && ($row_log['brewHops13Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops13Type'] != "") echo  "<br>Type: ".$row_log['brewHops13Type'];
+								if ($row_log['brewHops13Type'] == "") echo "";
+								if ($row_log['brewHops13Use'] != "" )  echo "<br>Use: ".$row_log['brewHops13Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops13IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop13Per, 1); if ($action == "scale") echo round (($hop13Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?> 
+ 
+ 
+ <?php if ($row_log['brewHops14'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops14Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops14Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops14Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops14'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops14']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops14 > 0) { ?><a href="#"><?php } echo $row_log['brewHops14']."<br>"; if ($totalRows_hops14 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops14['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops14['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops14['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops14['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops14['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops14['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops14['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops14['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops14['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops14['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops14['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops14['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops14['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops14['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops14IBU'] != "" ) echo $row_log['brewHops14IBU']."% ";  
+							 	if ($row_log['brewHops14Form'] != "" )  echo $row_log['brewHops14Form']." "; 
+                          		if ($row_log['brewHops14Time'] != "" )  echo "@ ".$row_log['brewHops14Time']." minutes "; 
+								if (($row_log['brewHops14Type'] != "" ) && ($row_log['brewHops14Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops14Type'] != "") echo  "<br>Type: ".$row_log['brewHops14Type'];
+								if ($row_log['brewHops14Type'] == "") echo "";
+								if ($row_log['brewHops14Use'] != "" )  echo "<br>Use: ".$row_log['brewHops14Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops14IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop14Per, 1); if ($action == "scale") echo round (($hop14Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?>
+ 
+ <?php if ($row_log['brewHops15'] != "" ) { ?>
+ <tr>
+  <td class="dataLeft"><?php if ($row_log['brewHops15Weight'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format($row_log['brewHops15Weight'],2); if ($action == "scale") echo number_format(($row_log['brewHops15Weight'] * $scale), 2); }; echo " ".$row_pref['measWeight1']; ?></td>
+  <td class="data">
+  <?php if ($row_log['brewHops15'] != "" ) { ?>
+  <?php if ((($page ==  "recipePrint") || ($page == "logPrint")) || (checkmobile())) echo $row_log['brewHops15']; else { ?>
+  <div id="moreInfo"><?php if ($totalRows_hops15 > 0) { ?><a href="#"><?php } echo $row_log['brewHops15']."<br>"; if ($totalRows_hops15 > 0) { ?><span>
+  <div id="moreInfoWrapper">
+  <div id="referenceHeader"><?php echo $row_hops15['hopsName']; ?></div>
+ 	<table class="dataTable">
+  	<?php if ($row_hops15['hopsGrown'] != "" ) {?>
+  		<tr>
+			<td class="dataLabelLeft">Region:</td>
+			<td class="data"><?php echo $row_hops15['hopsGrown']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops15['hopsAAULow'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">AAU Range:</td>
+			<td class="data"><?php { $AAUmin = ltrim ($row_hops15['hopsAAULow'], "0"); $AAUmax = ltrim ($row_hops15['hopsAAUHigh'], "0"); echo $AAUmin." - ".$AAUmax."%"; } ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops15['hopsInfo'] != "" ) {?>
+   		<tr>
+  			<td class="dataLabelLeft">Notes:</td>
+			<td class="data"><?php echo $row_hops15['hopsInfo']; ?></td>
+  		</tr>
+  	<?php }?>
+  	<?php if ($row_hops15['hopsUse'] != "" ) {?> 
+  	<tr>
+  			<td class="dataLabelLeft">Typical Use:</td>
+			<td class="data"><?php echo $row_hops15['hopsUse']; ?></td>
+  	</tr>
+  	<?php }?>
+  	<?php if ($row_hops15['hopsSub'] != "" ) {?>
+  		<tr>
+  			<td class="dataLabelLeft">Substitution:</td>
+			<td class="data"><?php echo $row_hops15['hopsSub']; ?></td>
+  		</tr>    
+  	<?php }?>
+  		<?php if ($row_hops15['hopsExample'] != "" ) {?> 
+  		<tr>
+  			<td class="dataLabelLeft">Example:</td>
+			<td class="data"><?php echo $row_hops15['hopsExample']; ?></td>
+  		</tr>
+  	<?php }?>
+	</table>
+  </div>
+  </span>
+  </a>
+  </div>
+  <?php } } } ?>
+                          <?php 
+								if ($row_log['brewHops15IBU'] != "" ) echo $row_log['brewHops15IBU']."% ";  
+							 	if ($row_log['brewHops15Form'] != "" )  echo $row_log['brewHops15Form']." "; 
+                          		if ($row_log['brewHops15Time'] != "" )  echo "@ ".$row_log['brewHops15Time']." minutes "; 
+								if (($row_log['brewHops15Type'] != "" ) && ($row_log['brewHops15Type'] == "Both"))   echo "<br>Type: Bittering and Aroma"; elseif ($row_log['brewHops15Type'] != "") echo  "<br>Type: ".$row_log['brewHops15Type'];
+								if ($row_log['brewHops15Type'] == "") echo "";
+								if ($row_log['brewHops15Use'] != "" )  echo "<br>Use: ".$row_log['brewHops15Use']." ";  
+							?>
+  </td>
+  <td class="data"><?php if ($row_log['brewHops15IBU'] != "" ) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo round ($hop15Per, 1); if ($action == "scale") echo round (($hop15Per * $scale), 1); echo "&nbsp;AAUs"; } else echo "&nbsp;"; ?></td>
+ </tr>
+ <?php } ?>
+ 
+ 
   <tr bgcolor="<?php if (($page == "recipePrint") || ($page == "logPrint")) echo "#dddddd"; elseif (checkmobile()) echo "#dddddd"; else echo $color1; ?>">
   <td class="dataLeft bdr1T_light_dashed"><?php if ($totalHops > 0) { if (($action == "default") || ($action == "reset") || ($action == "print")) echo number_format ($totalHops, 2); if ($action == "scale") echo number_format (($totalHops * $scale), 2); echo "&nbsp;".$row_pref['measWeight1']; } else echo "&nbsp;"; ?></td>
   <td class="data bdr1T_light_dashed"><?php if ($totalHops > 0) echo "Total Hop Weight"; else echo "&nbsp;"; ?></td>
