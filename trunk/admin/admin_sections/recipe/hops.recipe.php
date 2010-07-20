@@ -368,4 +368,249 @@
                     </select>
 	</td>
 </tr>
+<tr>
+   <td class="dataLabelLeft">Hop 10:</td>
+   <td class="data">
+   <select name="brewHops10" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops10'] != "")) { ?><option value="<?php echo $row_log['brewHops10']?>"><?php echo $row_log['brewHops10']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops10']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops10 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops10Weight" type="text" id="brewHops10Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops10Weight']; if ($action == "importCalc") echo $brewHops10Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops10IBU" type="text" id="brewHops10IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops10IBU']; if ($action == "importCalc") echo $brewHops10IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops10Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops10Time']; if ($action == "importCalc") echo $brewHops10Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops10Use" id="brewHops10Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops10Type" id="brewHops10Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops10Form" id="brewHops10Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops10Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops10Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops10Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops10Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+<tr>
+   <td class="dataLabelLeft">Hop 11:</td>
+   <td class="data">
+   <select name="brewHops11" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops11'] != "")) { ?><option value="<?php echo $row_log['brewHops11']?>"><?php echo $row_log['brewHops11']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops11']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops11 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops11Weight" type="text" id="brewHops11Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops11Weight']; if ($action == "importCalc") echo $brewHops11Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops11IBU" type="text" id="brewHops11IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops11IBU']; if ($action == "importCalc") echo $brewHops11IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops11Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops11Time']; if ($action == "importCalc") echo $brewHops11Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops11Use" id="brewHops11Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops11Type" id="brewHops11Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops11Form" id="brewHops11Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops11Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops11Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops11Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops11Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+<tr>
+   <td class="dataLabelLeft">Hop 12:</td>
+   <td class="data">
+   <select name="brewHops12" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops12'] != "")) { ?><option value="<?php echo $row_log['brewHops12']?>"><?php echo $row_log['brewHops12']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops12']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops12 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops12Weight" type="text" id="brewHops12Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops12Weight']; if ($action == "importCalc") echo $brewHops12Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops12IBU" type="text" id="brewHops12IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops12IBU']; if ($action == "importCalc") echo $brewHops12IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops12Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops12Time']; if ($action == "importCalc") echo $brewHops12Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops12Use" id="brewHops12Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops12Type" id="brewHops12Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops12Form" id="brewHops12Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops12Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops12Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops12Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops12Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+
+<tr>
+   <td class="dataLabelLeft">Hop 13:</td>
+   <td class="data">
+   <select name="brewHops13" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops13'] != "")) { ?><option value="<?php echo $row_log['brewHops13']?>"><?php echo $row_log['brewHops13']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops13']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops13 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops13Weight" type="text" id="brewHops13Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops13Weight']; if ($action == "importCalc") echo $brewHops13Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops13IBU" type="text" id="brewHops13IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops13IBU']; if ($action == "importCalc") echo $brewHops13IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops13Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops13Time']; if ($action == "importCalc") echo $brewHops13Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops13Use" id="brewHops13Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops13Type" id="brewHops13Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops13Form" id="brewHops13Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops13Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops13Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops13Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops13Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+
+<tr>
+   <td class="dataLabelLeft">Hop 14:</td>
+   <td class="data">
+   <select name="brewHops14" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops14'] != "")) { ?><option value="<?php echo $row_log['brewHops14']?>"><?php echo $row_log['brewHops14']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops14']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops14 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops14Weight" type="text" id="brewHops14Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops14Weight']; if ($action == "importCalc") echo $brewHops14Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops14IBU" type="text" id="brewHops14IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops14IBU']; if ($action == "importCalc") echo $brewHops14IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops14Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops14Time']; if ($action == "importCalc") echo $brewHops14Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops14Use" id="brewHops14Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops14Type" id="brewHops14Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops14Form" id="brewHops14Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops14Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops14Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops14Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops14Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+
+<tr>
+   <td class="dataLabelLeft">Hop 15:</td>
+   <td class="data">
+   <select name="brewHops15" >
+	<?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewHops15'] != "")) { ?><option value="<?php echo $row_log['brewHops15']?>"><?php echo $row_log['brewHops15']; ?></option><?php } ?>
+	<option value=""></option>
+<option value="">-- Items below are in the Hops DB --</option>
+    <?php do {  ?><option value="<?php echo $row_hops['hopsName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_hops['hopsName'], $row_log['brewHops15']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewHops15 == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']?></option>
+    <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+	<option value="Other">Other</option>
+   </select>
+   </td>
+   <td class="data"><input name="brewHops15Weight" type="text" id="brewHops15Weight" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops15Weight']; if ($action == "importCalc") echo $brewHops15Weight; ?>">&nbsp;<?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+   <td class="data"><input name="brewHops15IBU" type="text" id="brewHops15IBU" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops15IBU']; if ($action == "importCalc") echo $brewHops15IBU; ?>">&nbsp;%</td>
+   <td class="data"><input type="text" name="brewHops15Time" size="1" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewHops15Time']; if ($action == "importCalc") echo $brewHops15Time; ?>">&nbsp;min.</td>
+   <td class="data"><select name="brewHops15Use" id="brewHops15Use">
+                    <option value=""></option>
+					<option value="Boil" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Use'], "Boil"))) {echo "SELECTED";} }?>>Boil</option>
+                    <option value="Dry Hop" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Use'], "Dry Hop"))) {echo "SELECTED";} }?>>Dry Hop</option>
+                    <option value="Mash" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Use'], "Mash"))) {echo "SELECTED";} }?>>Mash</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Use'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="First Wort" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Use'], "First Wort"))) {echo "SELECTED";} }?>>First Wort</option>
+                    </select>
+   </td>
+   <td class="data"><select name="brewHops15Type" id="brewHops15Type">
+                    <option value=""></option>
+					<option value="Bittering" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Type'], "Bittering"))) {echo "SELECTED";} }?>>Bittering</option>
+                    <option value="Flavor" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Type'], "Flavor"))) {echo "SELECTED";} }?>>Flavor</option>
+                    <option value="Aroma" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Type'], "Aroma"))) {echo "SELECTED";} }?>>Aroma</option>
+                    <option value="Both" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Type'], "Both"))) {echo "SELECTED";} }?>>Both</option>
+                    </select>
+	 </td>
+     <td class="data"><select name="brewHops15Form" id="brewHops15Form">
+                    <option value=""></option>
+					<option value="Pellets" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Form'], "Pellets"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops15Form, "Pellets"))) {echo "SELECTED";} } ?>>Pellets</option>
+                    <option value="Plug" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Form'], "Plug"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops15Form, "Plug"))) {echo "SELECTED";} } ?>>Plug</option>
+                    <option value="Leaf" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) { if (!(strcmp($row_log['brewHops15Form'], "Leaf"))) {echo "SELECTED";} } if ($action=="importCalc") { if (!(strcmp($brewHops15Form, "Leaf"))) {echo "SELECTED";} } ?>>Leaf</option>
+                    </select>
+	</td>
+</tr>
+
+
 </table>

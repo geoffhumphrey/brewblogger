@@ -289,6 +289,103 @@ if ($results != "verify") {
 		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
 		<?php if (($results == "true") && ($brewGrain9Weight != "")) { $g9Grist = $brewGrain9Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g9Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain9Weight == "")) echo "<td>&nbsp;</td>"; ?>
 	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 10:</td>
+   		<td class="data">
+				<select name="brewGrain10" id="brewGrain10">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain10 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain10'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain10Weight" type="text" id="brewGrain10Weight" size="5" value="<?php if ($results == "true") echo $brewGrain10Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain10Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain10Weight != "")) { $g10Grist = $brewGrain10Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g10Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain10Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 11:</td>
+   		<td class="data">
+				<select name="brewGrain11" id="brewGrain11">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain11 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain11'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain11Weight" type="text" id="brewGrain11Weight" size="5" value="<?php if ($results == "true") echo $brewGrain11Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain11Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain11Weight != "")) { $g11Grist = $brewGrain11Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g11Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain11Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 12:</td>
+   		<td class="data">
+				<select name="brewGrain12" id="brewGrain12">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain12 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain12'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain12Weight" type="text" id="brewGrain12Weight" size="5" value="<?php if ($results == "true") echo $brewGrain12Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain12Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain12Weight != "")) { $g12Grist = $brewGrain12Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g12Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain12Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 13:</td>
+   		<td class="data">
+				<select name="brewGrain13" id="brewGrain13">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain13 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain13'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain13Weight" type="text" id="brewGrain13Weight" size="5" value="<?php if ($results == "true") echo $brewGrain13Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain13Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain13Weight != "")) { $g13Grist = $brewGrain13Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g13Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain13Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 14:</td>
+   		<td class="data">
+				<select name="brewGrain14" id="brewGrain14">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain14 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain14'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain14Weight" type="text" id="brewGrain14Weight" size="5" value="<?php if ($results == "true") echo $brewGrain14Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain14Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain14Weight != "")) { $g14Grist = $brewGrain14Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g14Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain14Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
+    <tr>
+   		<td class="dataLabelLeft">Grain 15:</td>
+   		<td class="data">
+				<select name="brewGrain15" id="brewGrain15">
+   				<option value=""></option>
+    				<?php do {  ?>
+    				<option value="<?php echo $row_grains['maltName']; ?>" <?php if ($results == "true") { if ($brewGrain15 == $row_grains['maltName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewGrain15'] == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']; ?></option>
+    				<?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+   				</select>
+		</td>
+   		<td class="dataLabel">Weight:</td>
+   		<td class="data"><input name="brewGrain15Weight" type="text" id="brewGrain15Weight" size="5" value="<?php if ($results == "true") echo $brewGrain15Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewGrain15Weight']; ?>">
+		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
+		<?php if (($results == "true") && ($brewGrain15Weight != "")) { $g15Grist = $brewGrain15Weight/$totalGrist * 100; echo "<td class=\"data\">".round ($g15Grist, 1)."%</td>"; } if (($results == "true") && ($brewGrain15Weight == "")) echo "<td>&nbsp;</td>"; ?>
+	</tr>
+    
 </table>
 <?php if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { ?>
 <div class="red"><em>**If any dropdown menu is blank, the recipe's original grain is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=malt">add another to the database</a>.</em></div>
@@ -606,6 +703,133 @@ if ($results != "verify") {
 	<td class="data" nowrap><input type="radio" name="brewHops9Form" value="Plug" 		<?php if (($results == "true") && ($brewHops9 != "")) { if ($brewHops9Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops9Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
 	<?php if ($results == "true") { if ($hopsAAU9 != 0) echo "<td class=\"data\">".round ($hopsAAU9, 1)."</td>"; } ?>
   </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 10:</td>
+    <td class="data"><select name="brewHops10" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops10 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops10'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops10Weight" type="text" id="brewHops10Weight" size="3" value="<?php if ($results == "true") echo $brewHops10Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops10Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops10IBU" type="text" id="brewHops10IBU" size="3" value="<?php if ($results == "true") echo $brewHops10IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops10IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops10Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops10Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops10Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops10Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops10 != "")) { if ($brewHops10Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops10Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops10Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops10 != "")) { if ($brewHops10Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops10Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops10Form" value="Plug" 		<?php if (($results == "true") && ($brewHops10 != "")) { if ($brewHops10Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops10Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU10 != 0) echo "<td class=\"data\">".round ($hopsAAU10, 1)."</td>"; } ?>
+  </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 11:</td>
+    <td class="data"><select name="brewHops11" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops11 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops11'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops11Weight" type="text" id="brewHops11Weight" size="3" value="<?php if ($results == "true") echo $brewHops11Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops11Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops11IBU" type="text" id="brewHops11IBU" size="3" value="<?php if ($results == "true") echo $brewHops11IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops11IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops11Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops11Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops11Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops11Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops11 != "")) { if ($brewHops11Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops11Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops11Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops11 != "")) { if ($brewHops11Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops11Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops11Form" value="Plug" 		<?php if (($results == "true") && ($brewHops11 != "")) { if ($brewHops11Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops11Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU11 != 0) echo "<td class=\"data\">".round ($hopsAAU11, 1)."</td>"; } ?>
+  </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 12:</td>
+    <td class="data"><select name="brewHops12" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops12 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops12'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops12Weight" type="text" id="brewHops12Weight" size="3" value="<?php if ($results == "true") echo $brewHops12Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops12Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops12IBU" type="text" id="brewHops12IBU" size="3" value="<?php if ($results == "true") echo $brewHops12IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops12IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops12Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops12Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops12Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops12Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops12 != "")) { if ($brewHops12Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops12Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops12Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops12 != "")) { if ($brewHops12Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops12Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops12Form" value="Plug" 		<?php if (($results == "true") && ($brewHops12 != "")) { if ($brewHops12Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops12Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU12 != 0) echo "<td class=\"data\">".round ($hopsAAU12, 1)."</td>"; } ?>
+  </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 13:</td>
+    <td class="data"><select name="brewHops13" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops13 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops13'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops13Weight" type="text" id="brewHops13Weight" size="3" value="<?php if ($results == "true") echo $brewHops13Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops13Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops13IBU" type="text" id="brewHops13IBU" size="3" value="<?php if ($results == "true") echo $brewHops13IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops13IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops13Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops13Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops13Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops13Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops13 != "")) { if ($brewHops13Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops13Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops13Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops13 != "")) { if ($brewHops13Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops13Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops13Form" value="Plug" 		<?php if (($results == "true") && ($brewHops13 != "")) { if ($brewHops13Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops13Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU13 != 0) echo "<td class=\"data\">".round ($hopsAAU13, 1)."</td>"; } ?>
+  </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 14:</td>
+    <td class="data"><select name="brewHops14" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops14 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops14'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops14Weight" type="text" id="brewHops14Weight" size="3" value="<?php if ($results == "true") echo $brewHops14Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops14Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops14IBU" type="text" id="brewHops14IBU" size="3" value="<?php if ($results == "true") echo $brewHops14IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops14IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops14Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops14Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops14Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops14Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops14 != "")) { if ($brewHops14Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops14Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops14Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops14 != "")) { if ($brewHops14Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops14Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops14Form" value="Plug" 		<?php if (($results == "true") && ($brewHops14 != "")) { if ($brewHops14Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops14Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU14 != 0) echo "<td class=\"data\">".round ($hopsAAU14, 1)."</td>"; } ?>
+  </tr>
+  
+  <tr>
+    <td nowrap class="dataLabelWide">Hop 15:</td>
+    <td class="data"><select name="brewHops15" >
+        <option value=""></option>
+        <?php do {  ?>
+        <option value="<?php echo $row_hops['hopsName']; ?>" <?php if ($results == "true") { if ($brewHops15 == $row_hops['hopsName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops15'] == $row_hops['hopsName']) echo "SELECTED"; } ?>><?php echo $row_hops['hopsName']; ?></option>
+        <?php } while ($row_hops = mysql_fetch_assoc($hops)); $rows = mysql_num_rows($hops); if($rows > 0) { mysql_data_seek($hops, 0); $row_hops = mysql_fetch_assoc($hops); } ?>
+      </select>
+    </td>
+    <td class="data"><input name="brewHops15Weight" type="text" id="brewHops15Weight" size="3" value="<?php if ($results == "true") echo $brewHops15Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops15Weight']; ?>"></td>
+    <td class="data"><?php if ($row_pref['measWeight1'] == "ounces") echo "oz."; if ($row_pref['measWeight1'] == "grams") echo "g."  ?></td>
+    <td class="data"><input name="brewHops15IBU" type="text" id="brewHops15IBU" size="3" value="<?php if ($results == "true") echo $brewHops15IBU; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops15IBU']; ?>"></td>
+    <td class="data">%</td>
+    <td class="data"><input name="brewHops15Time" type="text" size="3" value="<?php if ($results == "true") echo $brewHops15Time; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewHops15Time']; ?>"></td>
+    <td class="data">min.</td>
+	<td class="data" nowrap><input type="radio" name="brewHops15Form" value="Pellets" 	<?php if (($results == "true") && ($brewHops15 != "")) { if ($brewHops15Form == "Pellets") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops15Form'] == "Pellets") echo "CHECKED"; } if (($source == "calculator") && ($results == "false")) echo "CHECKED"; ?>  /><span class="data">Pellets</span></td>
+    <td class="data" nowrap><input type="radio" name="brewHops15Form" value="Leaf" 		<?php if (($results == "true") && ($brewHops15 != "")) { if ($brewHops15Form == "Leaf") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops15Form'] == "Leaf") echo "CHECKED"; } ?>   /><span class="data">Leaf</span></td>
+	<td class="data" nowrap><input type="radio" name="brewHops15Form" value="Plug" 		<?php if (($results == "true") && ($brewHops15 != "")) { if ($brewHops15Form == "Plug") echo "CHECKED"; } 	if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewHops15Form'] == "Plug") echo "CHECKED"; } ?>   /><span class="data">Plug</span></td>
+	<?php if ($results == "true") { if ($hopsAAU15 != 0) echo "<td class=\"data\">".round ($hopsAAU15, 1)."</td>"; } ?>
+  </tr>
+  
 </table>
 <?php if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { ?>
 <div class="red"><em>**If any dropdown menu is blank, the recipe's original hop is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=hops">add another to the database</a>.</em></div>
