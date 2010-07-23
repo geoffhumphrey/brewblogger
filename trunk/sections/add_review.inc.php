@@ -111,21 +111,20 @@ include ('../includes/plug-ins.inc.php');
    </tr>
   <tr>
     <td class="dataLabelLeft">Scorer Is:</td>
-    <td colspan="2" class="data">
-    		 <select class="text_area"  name="brewScorerLevel">
-              <option value="The Brewer" <?php if (!(strcmp("The Brewer", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>The Brewer</option>
-              <option value="Friend" <?php if (!(strcmp("Friend", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Friend</option>
-              <option value="Relative" <?php if (!(strcmp("Relative", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Relative</option>
-              <option value="Professional Brewer" <?php if (!(strcmp("Professional Brewer", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Professional Brewer</option>
-              <option value="Experienced Judge [non-BJCP]" <?php if (!(strcmp("Experienced Judge [non-BJCP]", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Experienced Judge [non-BJCP]</option>
-              <option value="BJCP Apprentice Judge" <?php if (!(strcmp("BJCP Apprentice Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Apprentice Judge</option>
-              <option value="BJCP Recognized Judge" <?php if (!(strcmp("BJCP Recognized Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Recognized Judge</option>
-              <option value="BJCP Certified Judge" <?php if (!(strcmp("BJCP Certified Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Certified Judge</option>
-              <option value="BJCP National Judge" <?php if (!(strcmp("BJCP National Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP National Judge</option>
-              <option value="BJCP Grand Master Judge" <?php if (!(strcmp("BJCP Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Grand Master Judge</option>
-              <option value="BJCP Honarary Master Judge" <?php if (!(strcmp("BJCP Honarary Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Master Judge</option>
-              <option value="BJCP Honarary Grand Master Judge" <?php if (!(strcmp("BJCP Honarary Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Grand Master Judge</option>
-            </select>    
+    <td colspan="2" class="data"><select class="text_area"  name="brewScorerLevel">
+      <option value="The Brewer" <?php if (!(strcmp("The Brewer", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>The Brewer</option>
+      <option value="Friend" <?php if (!(strcmp("Friend", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Friend</option>
+      <option value="Relative" <?php if (!(strcmp("Relative", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Relative</option>
+      <option value="Professional Brewer" <?php if (!(strcmp("Professional Brewer", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Professional Brewer</option>
+      <option value="Experienced Judge [non-BJCP]" <?php if (!(strcmp("Experienced Judge [non-BJCP]", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>Experienced Judge [non-BJCP]</option>
+      <option value="BJCP Apprentice Judge" <?php if (!(strcmp("BJCP Apprentice Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Apprentice Judge</option>
+      <option value="BJCP Recognized Judge" <?php if (!(strcmp("BJCP Recognized Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Recognized Judge</option>
+      <option value="BJCP Certified Judge" <?php if (!(strcmp("BJCP Certified Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Certified Judge</option>
+      <option value="BJCP National Judge" <?php if (!(strcmp("BJCP National Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP National Judge</option>
+      <option value="BJCP Grand Master Judge" <?php if (!(strcmp("BJCP Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Grand Master Judge</option>
+      <option value="BJCP Honarary Master Judge" <?php if (!(strcmp("BJCP Honarary Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Master Judge</option>
+      <option value="BJCP Honarary Grand Master Judge" <?php if (!(strcmp("BJCP Honarary Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Grand Master Judge</option>
+      </select>    
     </td>
   </tr>
   <?php if (((isset($_SESSION["loginUsername"])) && ($row_log['brewBrewerID'] == $loginUsername))) { ?>
@@ -137,20 +136,19 @@ include ('../includes/plug-ins.inc.php');
   <tr class="bknd_ultra_lt">
    <td class="dataLabelLeft">Aroma Score:</td>
    <td colspan="2" class="data"><select class="text_area"  name="brewAromaScore">
-   					<option></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-                    </select>&nbsp;/ 12   </td>
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+     <option value="5">5</option>
+     <option value="6">6</option>
+     <option value="7">7</option>
+     <option value="8">8</option>
+     <option value="9">9</option>
+     <option value="10">10</option>
+     <option value="11">11</option>
+     <option value="12">12</option>
+     </select>&nbsp;/ 12   </td>
    </tr>
   
   <tr class="bknd_ultra_lt">
@@ -162,11 +160,10 @@ include ('../includes/plug-ins.inc.php');
   <tr>
    <td class="dataLabelLeft">Appearance Score:</td>
    <td colspan="2" class="data"><select class="text_area"  name="brewAppearanceScore">
-   					<option></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select>&nbsp;/ 3   </td>
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     </select>&nbsp;/ 3   </td>
    </tr>
   
   <tr>
@@ -178,28 +175,27 @@ include ('../includes/plug-ins.inc.php');
   <tr class="bknd_ultra_lt">
    <td class="dataLabelLeft">Flavor Score:</td>
    <td colspan="2" class="data"><select class="text_area"  name="brewFlavorScore">
-                    <option></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-                    </select>&nbsp;/ 20                  </td>
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+     <option value="5">5</option>
+     <option value="6">6</option>
+     <option value="7">7</option>
+     <option value="8">8</option>
+     <option value="9">9</option>
+     <option value="10">10</option>
+     <option value="11">11</option>
+     <option value="12">12</option>
+     <option value="13">13</option>
+     <option value="14">14</option>
+     <option value="15">15</option>
+     <option value="16">16</option>
+     <option value="17">17</option>
+     <option value="18">18</option>
+     <option value="19">19</option>
+     <option value="20">20</option>
+     </select>&nbsp;/ 20</td>
     </tr>
    <tr class="bknd_ultra_lt">
     <td class="dataLabelLeft">Flavor Comments:</td>
@@ -210,13 +206,12 @@ include ('../includes/plug-ins.inc.php');
    <tr>
     <td class="dataLabelLeft">Mouthfeel Score:</td>
     <td colspan="2" class="data"><select class="text_area"  name="brewMouthfeelScore">
-                      <option></option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-					  <option value="3">3</option>
-					  <option value="4">4</option>
-					  <option value="5">5</option>
-	                </select>&nbsp;/ 5    </td>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      </select>&nbsp;/ 5</td>
     </tr>
    
    <tr>
@@ -228,18 +223,17 @@ include ('../includes/plug-ins.inc.php');
    <tr class="bknd_ultra_lt">
     <td class="dataLabelLeft">Overall Impression:</td>
     <td colspan="2" class="data"><select class="text_area"  name="brewOverallScore">
-                      <option></option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-					  <option value="4">4</option>
-					  <option value="5">5</option>
-					  <option value="6">6</option>
-					  <option value="7">7</option>
-					  <option value="8">8</option>
-					  <option value="9">9</option>
-					  <option value="10">10</option>
-                    </select>&nbsp;/ 10     </td>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      </select>&nbsp;/ 10</td>
       </tr>
 	 
      <tr class="bknd_ultra_lt">

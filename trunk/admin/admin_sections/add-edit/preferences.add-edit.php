@@ -11,6 +11,7 @@
     <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Themes?" title="Add Themes?"></span><span class="data"><a href="index.php?action=add&dbTable=brewingcss">Add Themes?</a></span></td>
 </tr>
 </table>
+
 <div id="headerContentAdmin">Edition</div>
 <table class="dataTable">
 <tr>
@@ -22,6 +23,7 @@
       </td>
 </tr>
 </table>
+
 <div id="headerContentAdmin">Home Page</div>
 <table class="dataTable">
 <tr>
@@ -41,6 +43,7 @@
       <td class="data">* Be sure to choose your edition and click "Edit" BEFORE choosing your home page.</td>
 </tr>
 </table>
+
 <div id="headerContentAdmin">General</div>
 <table>
 <tr>
@@ -121,7 +124,13 @@
       </select>      </td>
       <td class="data">IBU is the more recognized standard.</td>
 </tr>
+<tr>
+      <td class="dataLabelLeft">Pellet Factor:</td>
+      <td class="data"><input name="pelletFactor" type="text" value="<?php echo $row_log['hopPelletFactor']; ?>" size="5" /></td>
+      <td class="data">Represents increased utilization vs. whole or plug hops. A value of 1.06 is recommended as this reflects a 6% increase over whole hops.</td>
+</tr>    
 </table>
+
 <div id="headerContentAdmin">Water and Mash Profiles</div>
 <table>
 <tr>
@@ -141,6 +150,7 @@
       <td class="data">"Yes" indicates that you would like to use BrewBlogger's mash profiles database. You can add your own mash profiles to the database and  reuse any one for a BrewBlog.</td>
 </tr>
 </table>
+
 <div id="headerContentAdmin">Menu Link Text</div>
 <table>
 <tr>
