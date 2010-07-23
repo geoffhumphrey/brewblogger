@@ -140,7 +140,7 @@ if (($action == "default") || ($action == "entry")) {
   ?>
   
   <tr id="addHopButtonRow">
-  <td><input id="addHopButton" type="button" value="Add Hop Entry" onClick="addHop('hop_entries', <?php echo $MAX_HOPS . ', \'' . $DEFAULT_FORM . '\', '; if (($action == "entry") && ($endHopEntries > 0)) echo $endHopEntries + 1; else echo $INIT_HOP_ENTRIES; ?>);"></td>
+  <td><input id="addHopButton" type="button" value="Add Hop Entry" onClick="addHop('hop_entries', <?php echo $MAX_HOPS . ', \'' . $DEFAULT_FORM . '\', '; if (($action == "entry") && ($endHopEntries > 0)) echo $endHopEntries + 1; else echo $INIT_HOP_ENTRIES; ?>);" class="add_button"></td>
   </tr>
   <tr>
      <td class="dataLabelLeft">Final Volume:*</td>
