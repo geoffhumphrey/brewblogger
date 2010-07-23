@@ -399,3 +399,27 @@ border-left: 1px solid #050117;
 .text_white_18 		{ font-size: 18px; color: #ffffff; }
 .text_white_18_bold	{ font-size: 18px; color: #fefffe; font-weight: bold; }
 
+/* Add Elemnet Buttons - First used in the Bitterness calculator, v 2.2.3 */
+
+.add_button {
+border: none;
+background-color: transparent;
+padding: .5em .5em .5em 2.2em;
+background-image: url(../images/add.png);
+background-position: .5em;
+background-repeat: no-repeat;
+color: #990000;
+}
+
+.add_button:link, .add_button:visited, .add_button:hover, .add_button:active, .add_button:focus  {
+border: none;
+background-color: transparent;
+padding: .5em .5em .5em 2.2em;
+background-image: url(../images/add.png);
+background-position: .5em;
+background-repeat: no-repeat;
+color: #FF0000;
+cursor: pointer;
+
+}
+
