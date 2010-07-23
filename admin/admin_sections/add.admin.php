@@ -71,7 +71,7 @@ elseif (($dbTable == "recipes") && ($action == "importRecipe")) echo "<a href=\"
 else echo $breadcrumb; 
 ?>
 </div>
-<form action="process.php?<?php echo "action=".$action."&dbTable=".$dbTable; if ($action == "edit") echo "&id=".$id; if (($dbTable == "users") && ($action == "edit")) echo "&filter=".$row_log['user_name']."&section=".$section; if (($dbTable == "awards") && ($action == "add")) echo "&assoc=".$assoc; ?>" method="POST" name="form1" <?php if ($dbTable != "preferences") echo "onSubmit=\"return CheckRequiredFields()\""; ?>>
+<form action="process.php?<?php echo "action=".$action."&dbTable=".$dbTable; if ($action == "edit") echo "&id=".$id; if (($dbTable == "users") && ($action == "edit")) echo "&filter=".$row_log['user_name']."&section=".$section; if (($dbTable == "awards") && ($action == "add")) echo "&assoc=".$assoc; ?>" method="POST" name="form1" onSubmit="return CheckRequiredFields()">
 <table class="dataTable">
 <tr>
 <td>

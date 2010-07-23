@@ -12,7 +12,10 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   switch ($theType) {
     case "text":
       $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;    
+      break; 
+    case "float":
+      $theValue = ($theValue != "") ? floatval($theValue) : "NULL";
+      break;
     case "long":
     case "int":
       $theValue = ($theValue != "") ? intval($theValue) : "NULL";
@@ -2590,13 +2593,14 @@ if (($action == "edit") && ($dbTable == "preferences")) {
   menuLogout=%s,
   menuMembers=%s,
   mashDisplayMethod=%s,
-  waterDisplayMethod=%s
+  waterDisplayMethod=%s,
+  hopPelletFactor=%f
   WHERE $dbTable.id='%s'",
                        GetSQLValueString($_POST['measFluid1'], "text"),
                        GetSQLValueString($_POST['measFluid2'], "text"),
                        GetSQLValueString($_POST['measWeight1'], "text"),
                        GetSQLValueString($_POST['measWeight2'], "text"),
-					   GetSQLValueString($_POST['measWaterGrainRatio'], "text"),
+		       GetSQLValueString($_POST['measWaterGrainRatio'], "text"),
                        GetSQLValueString($_POST['measTemp'], "text"),
                        GetSQLValueString($_POST['measColor'], "text"),
                        GetSQLValueString($_POST['measBitter'], "text"),
@@ -2616,28 +2620,29 @@ if (($action == "edit") && ($dbTable == "preferences")) {
                        GetSQLValueString($_POST['allowFermentation'], "text"),
                        GetSQLValueString($_POST['allowLabel'], "text"),
                        GetSQLValueString($_POST['allowRelated'], "text"),
-					   GetSQLValueString($_POST['allowStatus'], "text"),
-					   GetSQLValueString($_POST['allowUpcoming'], "text"),
-					   GetSQLValueString($_POST['allowAwards'], "text"),
-					   GetSQLValueString($_POST['allowCalendar'], "text"),
-					   GetSQLValueString($_POST['allowNews'], "text"),
-					   GetSQLValueString($_POST['allowProfile'], "text"),
-					   GetSQLValueString($_POST['theme'], "text"),
-					   GetSQLValueString($_POST['mode'], "text"),
-					   GetSQLValueString($_POST['home'], "text"),
-					   GetSQLValueString($_POST['menuHome'], "scrubbed"),
-					   GetSQLValueString($_POST['menuBrewBlogs'], "scrubbed"),
-					   GetSQLValueString($_POST['menuRecipes'], "scrubbed"),
-					   GetSQLValueString($_POST['menuAwards'], "scrubbed"),
-					   GetSQLValueString($_POST['menuAbout'], "scrubbed"),
-					   GetSQLValueString($_POST['menuReference'], "scrubbed"),
-					   GetSQLValueString($_POST['menuCalculators'], "scrubbed"),
-					   GetSQLValueString($_POST['menuCalendar'], "scrubbed"),
-					   GetSQLValueString($_POST['menuLogin'], "scrubbed"),
-					   GetSQLValueString($_POST['menuLogout'], "scrubbed"),
-					   GetSQLValueString($_POST['menuMembers'], "scrubbed"),
-					   GetSQLValueString($_POST['mashDisplayMethod'], "text"),
-					   GetSQLValueString($_POST['waterDisplayMethod'], "text"),
+		       GetSQLValueString($_POST['allowStatus'], "text"),
+		       GetSQLValueString($_POST['allowUpcoming'], "text"),
+		       GetSQLValueString($_POST['allowAwards'], "text"),
+		       GetSQLValueString($_POST['allowCalendar'], "text"),
+		       GetSQLValueString($_POST['allowNews'], "text"),
+		       GetSQLValueString($_POST['allowProfile'], "text"),
+		       GetSQLValueString($_POST['theme'], "text"),
+		       GetSQLValueString($_POST['mode'], "text"),
+		       GetSQLValueString($_POST['home'], "text"),
+		       GetSQLValueString($_POST['menuHome'], "scrubbed"),
+		       GetSQLValueString($_POST['menuBrewBlogs'], "scrubbed"),
+		       GetSQLValueString($_POST['menuRecipes'], "scrubbed"),
+		       GetSQLValueString($_POST['menuAwards'], "scrubbed"),
+		       GetSQLValueString($_POST['menuAbout'], "scrubbed"),
+		       GetSQLValueString($_POST['menuReference'], "scrubbed"),
+		       GetSQLValueString($_POST['menuCalculators'], "scrubbed"),
+		       GetSQLValueString($_POST['menuCalendar'], "scrubbed"),
+		       GetSQLValueString($_POST['menuLogin'], "scrubbed"),
+		       GetSQLValueString($_POST['menuLogout'], "scrubbed"),
+		       GetSQLValueString($_POST['menuMembers'], "scrubbed"),
+		       GetSQLValueString($_POST['mashDisplayMethod'], "text"),
+		       GetSQLValueString($_POST['waterDisplayMethod'], "text"),
+		       GetSQLValueString($_POST['pelletFactor'], "float"),
                        GetSQLValueString($id, "int"));
 
   mysql_select_db($database_brewing, $brewing);

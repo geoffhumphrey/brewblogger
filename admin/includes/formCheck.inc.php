@@ -1,4 +1,3 @@
-<?php if ($dbTable != "preferences") { ?>
 <script type="text/javascript" language="JavaScript">
 <!-- Copyright 2003 Bontrager Connection, LLC
 // Code obtained from http://WillMaster.com/
@@ -15,8 +14,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if (($dbTable == "users") && ($action == "add")) { ?>
+<?php } elseif (($dbTable == "users") && ($action == "add")) { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -35,8 +33,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if (($dbTable == "users") && ($action == "edit")) { ?>
+<?php } elseif (($dbTable == "users") && ($action == "edit")) { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -51,8 +48,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if (($dbTable == "brewer") && ($row_pref['mode'] == "1")) { ?>
+<?php } elseif (($dbTable == "brewer") && ($row_pref['mode'] == "1")) { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -67,8 +63,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if (($dbTable == "brewer") && ($row_pref['mode'] == "2")) { ?>
+<?php } elseif (($dbTable == "brewer") && ($row_pref['mode'] == "2")) { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -83,8 +78,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "malt") { ?>
+<?php } elseif ($dbTable == "malt") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -101,8 +95,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "extract") { ?>
+<?php } elseif ($dbTable == "extract") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -119,8 +112,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "adjuncts") { ?>
+<?php } elseif ($dbTable == "adjuncts") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -137,8 +129,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "hops") { ?>
+<?php } elseif ($dbTable == "hops") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -159,9 +150,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-
-<?php if ($dbTable == "misc") { ?>
+<?php } elseif ($dbTable == "misc") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -174,9 +163,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-
-<?php if ($dbTable == "equip_profiles") { ?>
+<?php } elseif ($dbTable == "equip_profiles") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -189,9 +176,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-
-<?php if ($dbTable == "water_profiles") { ?>
+<?php } elseif ($dbTable == "water_profiles") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -204,9 +189,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-
-<?php if ($dbTable == "yeast_profiles") { ?>
+<?php } elseif ($dbTable == "yeast_profiles") { ?>
 /* function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -224,9 +207,7 @@ if(errormessage.length > 2) {
 return true;
 } // end of function CheckRequiredFields()
 */
-<?php  } ?>
-
-<?php if ($dbTable == "brewerlinks") { ?>
+<?php } elseif ($dbTable == "brewerlinks") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -241,8 +222,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "upcoming") { ?>
+<?php } elseif ($dbTable == "upcoming") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -259,8 +239,7 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "styles") { ?>
+<?php } elseif ($dbTable == "styles") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -297,32 +276,21 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($page == "reviews") { ?>
-function CheckRequiredFields() {
-var errormessage = new String();
-// Put field checks below this point.
-if(WithoutContent(document.form1.brewScoredBy.value))
-	{ errormessage += "\nScored By"; }
-if(WithoutContent(document.form1.brewAromaScore.value))
-	{ errormessage += "\nAroma Score"; }
-if(WithoutContent(document.form1.brewAppearanceScore.value))
-	{ errormessage += "\nAppearance Score"; }
-if(WithoutContent(document.form1.brewFlavorScore.value))
-	{ errormessage += "\nFlavor Score"; }
-if(WithoutContent(document.form1.brewMouthfeelScore.value))
-	{ errormessage += "\nMouthfeel Score"; }
-if(WithoutContent(document.form1.brewOverallScore.value))
-	{ errormessage += "\nOverall Score"; }
-// Put field checks above this point.
-if(errormessage.length > 2) {
-	alert('To process, the following fields cannot be empty:\n' + errormessage);
-	return false;
-	}
-return true;
-} // end of function CheckRequiredFields()
-<?php } ?>
-<?php if ($dbTable == "brewingcss") { ?>
+<?php } elseif (($dbTable == "reviews") || ($page == "reviews"))  { ?>
+  function CheckRequiredFields() {
+    var errormessage = new String();
+    // Put field checks below this point.
+    if(WithoutContent(document.form1.brewScoredBy.value))
+      { errormessage += "\nScored By"; }
+    // Should probably check brew score date too.
+    // Put field checks above this point.
+    if(errormessage.length > 2) {
+      alert('To process, the following fields cannot be empty:\n' + errormessage);
+      return false;
+    }
+    return true;
+  } // end of function CheckRequiredFields()
+<?php } elseif ($dbTable == "brewingcss") { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -341,8 +309,23 @@ if(errormessage.length > 2) {
 	}
 return true;
 } // end of function CheckRequiredFields()
-<?php } ?>
-<?php if (($action == "calculate") && ($results != "verify")) { ?>
+<?php } elseif ($dbTable == "preferences") { ?>
+  function CheckRequiredFields() {
+    var errormessage = new String();
+    if ((WithoutContent(document.form1.pelletFactor.value)) || (NotFloat(document.form1.pelletFactor.value))) {
+      errormessage = "The Pellet Factor field requires a numerical value";
+    }
+    if (TooLong(document.form1.pelletFactor.value, 6)) {
+      errormessage = "Please limit the Pellet Factor value to 5 digits or less.";
+    }
+    if (errormessage.length > 2) {
+      alert(errormessage);
+      return false;
+    }
+    return true;
+  }
+// Hard to tell who's calling this next one.
+<?php } elseif (($action == "calculate") && ($results != "verify")) { ?>
 function CheckRequiredFields() {
 var errormessage = new String();
 // Put field checks below this point.
@@ -358,38 +341,52 @@ return true;
 <?php } ?>
 
 function WithoutContent(ss) {
-if(ss.length > 0) { return false; }
-return true;
+  if(ss.length > 0) { return false; }
+
+  return true;
 }
 
 function NoneWithContent(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].value.length > 0) { return false; }
-	}
-return true;
+  for(var i = 0; i < ss.length; i++) {
+    if(ss[i].value.length > 0) { return false; }
+  }
+  return true;
 }
 
 function NoneWithCheck(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].checked) { return false; }
-	}
-return true;
+  for(var i = 0; i < ss.length; i++) {
+    if(ss[i].checked) { return false; }
+  }
+  return true;
 }
 
 function WithoutCheck(ss) {
-if(ss.checked) { return false; }
-return true;
+  if(ss.checked) { return false; }
+
+  return true;
 }
 
 function WithoutSelectionValue(ss) {
-for(var i = 0; i < ss.length; i++) {
-	if(ss[i].selected) {
-		if(ss[i].value.length) { return false; }
-		}
-	}
-return true;
+  for(var i = 0; i < ss.length; i++) {
+    if(ss[i].selected) {
+      if(ss[i].value.length) { return false; }
+    }
+  }
+  return true;
 }
+
+function NotFloat(x) {
+  if (!isNaN(parseFloat(x))) { return false; }
+
+  return true;
+}
+
+function TooLong(x, maxLength) {
+  if (x.length <= maxLength) { return false; }
+
+  return true;
+}
+
 //-->
 </script>
-<?php } ?>
 

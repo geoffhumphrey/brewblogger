@@ -19,9 +19,8 @@
 // Most modern data I've seen supports this range. The 15% 
 // delta value is a left-over from the old days and appears to 
 // have been based on speculation at that time.
-// Anyways, this really should be a user var they can set in their prefs.
 // - Kevin
-$pelletFactor = 1.06;
+$pelletFactor = $row_pref['hopPelletFactor'];
 
 // --------------------------- Tinseth Method --------------------------- //
 // Reference: Tinseth, Glenn. www.realbeer.com/hops, 1995-1999.

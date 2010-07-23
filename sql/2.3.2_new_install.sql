@@ -1892,3 +1892,5 @@ ADD `brewHops15Use` varchar(25) NULL AFTER `brewHops15Time`,
 ADD `brewHops15Type` varchar(25) NULL AFTER `brewHops15Use`,
 ADD `brewHops15Form` varchar(25) NULL AFTER `brewHops15Type`;  
 
+ALTER TABLE `preferences`
+ADD `hopPelletFactor` FLOAT NOT NULL DEFAULT '1.06' COMMENT 'Pellet factor compared to whole/plug';
