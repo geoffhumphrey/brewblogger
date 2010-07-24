@@ -350,7 +350,7 @@ VALUES
   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-  %s, %s, %s, %s, %s, %s, %s, %s, %s,
+  %s, %s, %s, %s, %s, %s, %s, %s, %s
   )",
                        GetSQLValueString($_POST['brewName'], "scrubbed"),
                        GetSQLValueString($_POST['brewStyle'], "text"),
@@ -636,6 +636,7 @@ VALUES
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
 
+  //echo $insertSQL;
   $insertGoTo = "index.php?action=list&dbTable=brewing&id=".$id."&confirm=true&msg=1";
   header(sprintf("Location: %s", $insertGoTo));
 }
