@@ -27,10 +27,18 @@ input:focus {
 }
 
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #595959; text-decoration: none; font-size: inherit; }
-a:visited 			{ color: #595959; text-decoration: none; font-size: inherit; }
-a:hover 			{ color: #ff7200; text-decoration: none; font-size: inherit; }
-a:active 			{ color: #ff7200; text-decoration: none; font-size: inherit; }
+a:link, .add_button, .update_button, .button { 
+color: #595959; text-decoration: none; font-size: inherit; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
+color: #595959; text-decoration: none; font-size: inherit; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+color: #ff7200; text-decoration: none; font-size: inherit; 
+}
+a:active, .add_button:active, update_button:active, .button:active { 
+color: #ff7200; text-decoration: none; font-size: inherit; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -167,7 +175,7 @@ height: 20px;
 
 
 
-#nav a:link 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:link		{ color: #FFFFFF; text-decoration: none; }
 #nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:hover 		{ color: #f2f2f2; text-decoration: none; }
 #nav a:active 		{ color: #f2f2f2; text-decoration: none; }

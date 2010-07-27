@@ -110,7 +110,7 @@
     </tr>
    	<tr>
    	  	<td class="dataLabelLeft">&nbsp;</td>
-   	  	<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input type="submit" value="Update"></td>
+   	  	<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input type="submit" value="Update" class="update_button"></td>
  		<td class="data"></td>
         <td class="data"></td>
     </tr>

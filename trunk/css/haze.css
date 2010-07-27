@@ -41,10 +41,18 @@ border: 1px solid #39294a;
 
 /* ------------------ Global links ------------------  */
 
-a:link 				{ color: #d16c00; text-decoration: none; }
-a:visited 			{ color: #d16c00; text-decoration: none; }
-a:hover 			{ color: #0e0545; text-decoration: none; }
-a:active 			{ color: #0e0545; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #d16c00; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited { 
+color: #d16c00; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+color: #0e0545; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active	{ 
+color: #0e0545; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -167,7 +175,7 @@ height: 30px;
 }
 
 
-#nav a:link 		{ color: #39294a; text-decoration: none; }
+#nav a:link		{ color: #39294a; text-decoration: none; }
 #nav a:visited 		{ color: #39294a; text-decoration: none; }
 #nav a:hover 		{ color: #990000; text-decoration: none; }
 #nav a:active 		{ color: #990000; text-decoration: none; }

@@ -33,10 +33,18 @@ input, select, textarea		{ font-family: inherit; font-size: 11px; }
 
 
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #005295; text-decoration: none; }
-a:visited 			{ color: #005295; text-decoration: none; }
-a:hover 			{ color: #ff7200; text-decoration: none; }
-a:active 			{ color: #ff7200; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #005295; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
+color: #005295; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+color: #ff7200; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active { 
+color: #ff7200; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -191,7 +199,7 @@ height: 23px;
 
 
 
-#nav a:link 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:link		{ color: #FFFFFF; text-decoration: none; }
 #nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:hover 		{ color: #cdddef; text-decoration: none; }
 #nav a:active 		{ color: #cdddef; text-decoration: none; }

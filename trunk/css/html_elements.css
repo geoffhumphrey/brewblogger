@@ -91,7 +91,7 @@ padding: 0;
   /* The order of link states are based on Eric Meyer's article:
    * http://meyerweb.com/eric/thoughts/2007/06/11/who-ordered-the-link-states
    */
-  a:link
+  a:link, .add_button, .button
   {
   }
 

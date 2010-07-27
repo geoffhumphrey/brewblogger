@@ -12,10 +12,18 @@ background-repeat: repeat-x;
 
 
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #000099; text-decoration: none; }
-a:visited 			{ color: #000099; text-decoration: none; }
-a:hover 			{ color: #9C2023; text-decoration: none; }
-a:active 			{ color: #9C2023; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #000099; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited	 { 
+color: #000099; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 
+{ color: #9C2023; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active	{ 
+color: #9C2023; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 
@@ -146,7 +154,7 @@ height: 25px;
 }
 
 
-#nav a:link 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:link		{ color: #FFFFFF; text-decoration: none; }
 #nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:hover 		{ color: #000099; text-decoration: none; }
 #nav a:active 		{ color: #000099; text-decoration: none; }
