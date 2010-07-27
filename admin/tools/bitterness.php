@@ -154,16 +154,16 @@ if (($action == "default") || ($action == "entry")) {
   <tr>
      <td class="dataLabelLeft">Target IBUs:</td>
      <td class="data"><input type="text" name="desiredIBUs" id="desiredIBUs" size="5" value="<?php if ($action == "entry") echo $desiredIBUs; ?>" /></td>
-     <td colspan="6">(Only required for Garetz)</td>
+     <td colspan="6">(only required for Garetz)</td>
   </tr>
   <tr>
      <td class="dataLabelLeft">Elevation:</td>
      <td class="data"><input type="text" name="elevation" id="elevation" size="5" value="<?php if ($action == "entry") echo $elevation; ?>" /></td>
-     <td colspan="6">feet or meters (Only required for Garetz)</td>
+     <td colspan="6">feet or meters (only required for Garetz)</td>
   <tr>
      <td class="dataLabelLeft">Pre-Boil Volume:</td>
      <td class="data"><input name="preBoilVol" type="text" id="preBoilVol" size="5" value="<?php if ($action == "entry") echo $preBoilVol; ?>" /></td>
-     <td colspan="6">(Only required for Garetz)</td>
+     <td colspan="6">(only required for Garetz)</td>
   </tr>
   <tr>
      <td class="dataLabelLeft">Units</td>

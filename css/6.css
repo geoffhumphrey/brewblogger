@@ -30,10 +30,18 @@ input, select, textarea		{ font-family: inherit; font-size: 11px; }
 .radiobutton		        { border: none; padding-bottom: 2px;}
                     
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #b22e2e; text-decoration: none; }
-a:visited 			{ color: #b22e2e; text-decoration: none; }
-a:hover 			{ color: #4c5b52; text-decoration: none; }
-a:active 			{ color: #4c5b52; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #b22e2e; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited { 
+color: #b22e2e; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+color: #4c5b52; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active	{ 
+color: #4c5b52; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -184,7 +192,7 @@ height:25px;
 
 
 
-#nav a:link 		{ color: #ffffff; text-decoration: none; }
+#nav a:link		{ color: #ffffff; text-decoration: none; }
 #nav a:visited 		{ color: #ffffff; text-decoration: none; }
 #nav a:hover 		{ color: #000000; text-decoration: none; }
 #nav a:active 		{ color: #000000; text-decoration: none; }
@@ -592,7 +600,7 @@ div.menu div.menuItemSep {
 .nonmonthdays 	{ border: 1px solid #4c5b52; color: #000000; background: #dce4dd; font-size: 9px; padding: 2px; height: 100px; } 
 .day 			{ vertical-align:top; height: 50px; font-size: 9px; padding: 2px; }
 .header			{ border: 1px solid #4c5b52; color: #ffffff; background-color:#4c5b52; padding: 2px; }
-.header a:link 	{ color: #FFFFFF; font-size: 9px; }
+.header a:link	{ color: #FFFFFF; font-size: 9px; }
 .header a:visited { color: #FFFFFF; font-size: 9px; }
 .header a:hover { color: #dce4dd; font-size: 9px; }
 .header a:active { color: #FFFFFF; font-size: 9px; }

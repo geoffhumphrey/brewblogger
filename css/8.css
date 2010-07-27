@@ -29,10 +29,18 @@ input, select, textarea		{ font-family: inherit; font-size: 11px; }
 .radiobutton		        { border: none; padding-bottom: 2px;}
 
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #362CA0; text-decoration: none; }
-a:visited 			{ color: #362CA0; text-decoration: none; }
-a:hover 			{ color: #7A2821; text-decoration: none; }
-a:active 			{ color: #7A2821; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #362CA0; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
+color: #362CA0; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 { 
+color: #7A2821; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active	{ 
+color: #7A2821; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -172,7 +180,7 @@ height: 23px;
 
 
 
-#nav a:link 		{ color: #ffffff; text-decoration: none; }
+#nav a:link		{ color: #ffffff; text-decoration: none; }
 #nav a:visited 		{ color: #ffffff; text-decoration: none; }
 #nav a:hover 		{ color: #bababa; text-decoration: none; }
 #nav a:active 		{ color: #bababa; text-decoration: none; }

@@ -13,10 +13,18 @@ background-repeat: repeat-x;
 }
 
 /* ------------------ global link styles ------------------  */
-a:link 				{ color: #610800; text-decoration: none; }
-a:visited 			{ color: #610800; text-decoration: none; }
-a:hover 			{ color: #E61614; text-decoration: none; }
-a:active 			{ color: #610800; text-decoration: none; }
+a:link, .add_button, .update_button, .button { 
+color: #610800; text-decoration: none; 
+}
+a:visited, .add_button:visited, .update_button:visited, .button:visited	 { 
+color: #610800; text-decoration: none; 
+}
+a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 { 
+color: #E61614; text-decoration: none; 
+}
+a:active, .add_button:active, update_button:active, .button:active { 
+color: #610800; text-decoration: none; 
+}
 
 /* ------------------  layout divs ------------------  */
 #maincontainer {
@@ -138,7 +146,7 @@ font-size: .85em;
 height: 25px;
 }
 
-#nav a:link 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:link		{ color: #FFFFFF; text-decoration: none; }
 #nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
 #nav a:hover 		{ color: #39393B; text-decoration: none; }
 #nav a:active 		{ color: #39393B; text-decoration: none; }
@@ -569,7 +577,7 @@ margin-right: 5px;
 .nonmonthdays 	{ border: 1px solid #151314; color: #000000; background: #E4DBC3; font-size: 9px; padding: 2px; height: 100px; } 
 .day 			{ vertical-align:top; height: 50px; }
 .header			{ border: 1px solid #151314; color: #ffffff; background-color: #825C25; padding: 2px; }
-.header a:link 	{ color: #FFFFFF; }
+.header a:link	{ color: #FFFFFF; }
 .header a:visited { color: #FFFFFF; }
 .header a:hover { color: #E4DBC3; }
 .header a:active { color: #FFFFFF; }
