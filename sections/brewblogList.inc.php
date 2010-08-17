@@ -13,7 +13,7 @@
 		?>
 		<table class="dataTable">
             <tr>
-			<td class="dataHeadingList">There are currently no BrewBlogs in the database <?php if ($filter != "all") echo "for this member"; ?>.<br><br></td>
+			<td class="dataHeadingList">There are currently no BrewBlogs in the database<?php if ($filter != "all") echo " for this member"; ?>.<br><br></td>
 			</tr>
 		</table>
 		</div>

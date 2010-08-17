@@ -393,15 +393,129 @@ $xml_output .= "<RECIPES>\n";
 				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
 				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops9IBU'] . "</ALPHA>\n";
 				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
-				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops0Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops9Weight'] * 0.028349), 6)."</AMOUNT>\n";
 				} else { 
-				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops0Weight']."</AMOUNT>\n";
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops9Weight']."</AMOUNT>\n";
 				}
 				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops9Time'] . "</TIME>\n";
 				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops9Use'] . "</USE>\n";
 				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops9Time'] . "</TIME>\n";
 				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops9Type'] . "</TYPE>\n";
 				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops9Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops10'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops10'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops10IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops10Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops10Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops10Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops10Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops10Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops10Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops10Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops11'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops11'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops11IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops11Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops11Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops11Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops11Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops11Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops11Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops11Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops12'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops12'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops12IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops12Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops12Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops12Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops12Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops12Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops12Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops12Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops13'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops13'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops13IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops13Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops13Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops13Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops13Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops13Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops13Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops13Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops14'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops14'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops14IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops14Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops14Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops14Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops14Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops14Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops14Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops14Form'] . "</FORM>\n";
+			$xml_output .= "\t\t\t</HOP>\n"; 
+			}
+			if ($row_log['brewHops15'] !="") {
+			$xml_output .= "\t\t\t<HOP>\n";
+			// Escaping illegal characters 
+        		$replaced = strtr($row_log['brewHops15'],$html_remove);
+				$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+				$xml_output .= "\t\t\t\t<VERSION>1</VERSION>\n";
+				$xml_output .= "\t\t\t\t<ALPHA>" . $row_log['brewHops15IBU'] . "</ALPHA>\n";
+				if ($row_pref['measWeight1'] == "ounces") { // BeerXML standard is kilograms
+				$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewHops15Weight'] * 0.028349), 6)."</AMOUNT>\n";
+				} else { 
+				$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewHops15Weight']."</AMOUNT>\n";
+				}
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops15Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<USE>" . $row_log['brewHops15Use'] . "</USE>\n";
+				$xml_output .= "\t\t\t\t<TIME>" . $row_log['brewHops15Time'] . "</TIME>\n";
+				$xml_output .= "\t\t\t\t<TYPE>" . $row_log['brewHops15Type'] . "</TYPE>\n";
+				$xml_output .= "\t\t\t\t<FORM>" . $row_log['brewHops15Form'] . "</FORM>\n";
 			$xml_output .= "\t\t\t</HOP>\n"; 
 			}
 		$xml_output .= "\t\t</HOPS>\n";
@@ -567,7 +681,7 @@ $xml_output .= "<RECIPES>\n";
 		}
 		if ($row_log['brewGrain9'] !="") {
 		$xml_output .= "\t\t\t<FERMENTABLE>\n";
-			$replaced = strtr($row_log['brewGrain8'],$html_remove);
+			$replaced = strtr($row_log['brewGrain9'],$html_remove);
 			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
 			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
 			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
@@ -577,6 +691,81 @@ $xml_output .= "<RECIPES>\n";
 			}
 		$xml_output .= "\t\t\t</FERMENTABLE>\n";
 		}
+		
+		if ($row_log['brewGrain10'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain10'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain10Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain10Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		if ($row_log['brewGrain11'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain11'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain11Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain11Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		if ($row_log['brewGrain12'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain12'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain12Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain12Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		if ($row_log['brewGrain13'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain13'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain13Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain13Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		if ($row_log['brewGrain14'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain14'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain14Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain14Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		if ($row_log['brewGrain15'] !="") {
+		$xml_output .= "\t\t\t<FERMENTABLE>\n";
+			$replaced = strtr($row_log['brewGrain15'],$html_remove);
+			$xml_output .= "\t\t\t\t<NAME>" . $replaced . "</NAME>\n";
+			$xml_output .= "\t\t\t\t<TYPE>" . "Grain" . "</TYPE>\n";
+			if ($row_pref['measWeight2'] == "pounds") { // BeerXML standard is kilograms
+			$xml_output .= "\t\t\t\t<AMOUNT>" . round(($row_log['brewGrain15Weight'] * 0.4535), 2)."</AMOUNT>\n";
+			} else {
+			$xml_output .= "\t\t\t\t<AMOUNT>" . $row_log['brewGrain15Weight']."</AMOUNT>\n";
+			}
+		$xml_output .= "\t\t\t</FERMENTABLE>\n";
+		}
+		
+		
 		// Begin <FERMENTABLES> tags for adjuncts
 		if ($row_log['brewAddition1'] !="") {
 		$xml_output .= "\t\t\t<FERMENTABLE>\n";

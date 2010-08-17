@@ -21,9 +21,9 @@ if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && 
     </tr>
     <tr>
   		<td class="dataLabelLeft"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) { if ($row_pref['measFluid2'] == "liters") echo "PPK:"; else echo "PPG:"; } elseif ($row_log['brewPPG'] != "") { if ($row_pref['measFluid2'] == "liters") echo "PPK:"; else echo "PPG:"; } else echo ""; ?></td>
-  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($ppg_display, 2); ?></td>
+  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($ppg_display, 1); ?></td>
   		<td class="dataLabel data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo "Efficiency:"; elseif ($row_log['brewEfficiency'] != "") echo "Efficiency:"; else echo ""; ?></td>
-  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($efficiency, 2)."%"; ?></td>
+  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($efficiency, 1)."%"; ?></td>
  	</tr>
     <tr>
     	<td class="dataLabelLeft">Notes:</td>

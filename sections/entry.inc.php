@@ -530,6 +530,48 @@ table.bottleLabel-inner	td { padding: 3px; }
         <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
       </tr>
       <?php } ?>
+      <?php if ($row_log['brewGrain10'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain10Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain10Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain10']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewGrain11'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain11Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain11Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain11']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewGrain12'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain12Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain12Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain12']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewGrain13'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain13Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain13Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain13']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewGrain14'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain14Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain14Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain14']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewGrain15'] != "") { ?>
+      <tr>
+        <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewGrain15Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewGrain15Weight']; ?></td>
+        <td width="35%" align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewGrain15']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php if ($row_log['brewMethod'] == "Extract") echo "Steep"; else echo "Mash"; ?></td>
+      </tr>
+      <?php } ?>
       <?php if ($row_log['brewExtract1'] != "") { ?>
       <tr>
         <td width="30%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight2'] == "kilograms") { $convert = $row_log['brewExtract1Weight'] * 2.204; echo round($convert,2); } else echo $row_log['brewExtract1Weight']; ?></td>
@@ -732,6 +774,66 @@ table.bottleLabel-inner	td { padding: 3px; }
         <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops9IBU']; ?></td>
         <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops9Use']; ?></td>
         <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops9Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops10'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops10Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops10Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops10Form'] == "Leaf") || ($row_log['brewHops10Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops10']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops10IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops10Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops10Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops11'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops11Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops11Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops11Form'] == "Leaf") || ($row_log['brewHops11Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops11']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops11IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops11Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops11Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops12'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops12Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops12Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops12Form'] == "Leaf") || ($row_log['brewHops12Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops12']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops12IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops12Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops12Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops13'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops13Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops13Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops13Form'] == "Leaf") || ($row_log['brewHops13Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops13']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops13IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops13Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops13Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops14'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops14Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops14Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops14Form'] == "Leaf") || ($row_log['brewHops14Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops14']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops14IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops14Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops14Time']; ?></td>
+      </tr>
+      <?php } ?>
+      <?php if ($row_log['brewHops15'] != "") { ?>
+      <tr>
+        <td width="20%" align="left" valign="top" class="medium bdr1B bdr1L"><?php if ($row_pref['measWeight1'] == "grams") { $convert = ($row_log['brewHops15Weight'] * 0.0352); echo round ($convert,2); } else echo $row_log['brewHops15Weight']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php if (($row_log['brewHops15Form'] == "Leaf") || ($row_log['brewHops15Form'] == "Plug")) echo "Whole"; else echo "Pellets"; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops15']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops15IBU']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L"><?php echo $row_log['brewHops15Use']; ?></td>
+        <td align="left" valign="top" class="medium bdr1B bdr1L bdr1R"><?php echo $row_log['brewHops15Time']; ?></td>
       </tr>
       <?php } ?>
     </table>
