@@ -492,6 +492,7 @@ $result = mysql_query("SELECT count(*) FROM awards");
 $total = mysql_result($result, 0);
 $awardsList = mysql_query("SELECT * FROM awards ORDER BY $sort $dir LIMIT $start, $display") or die(mysql_error());
 $row_awardsList = mysql_fetch_assoc($awardsList);
+//echo $awardsList;
 }
 
 

@@ -1,4 +1,5 @@
 <?php 
+
 $query_sugarPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt1['maltYield']);
 $sugarPPG1 = mysql_query($query_sugarPPG1, $brewing) or die(mysql_error());
 $row_sugarPPG1 = mysql_fetch_assoc($sugarPPG1);
@@ -35,6 +36,31 @@ $query_sugarPPG9 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row
 $sugarPPG9 = mysql_query($query_sugarPPG9, $brewing) or die(mysql_error());
 $row_sugarPPG9 = mysql_fetch_assoc($sugarPPG9);
 
+$query_sugarPPG10 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt10['maltYield']);
+$sugarPPG10 = mysql_query($query_sugarPPG10, $brewing) or die(mysql_error());
+$row_sugarPPG10 = mysql_fetch_assoc($sugarPPG10);
+
+$query_sugarPPG11 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt11['maltYield']);
+$sugarPPG11 = mysql_query($query_sugarPPG11, $brewing) or die(mysql_error());
+$row_sugarPPG11 = mysql_fetch_assoc($sugarPPG11);
+
+$query_sugarPPG12 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt12['maltYield']);
+$sugarPPG12 = mysql_query($query_sugarPPG12, $brewing) or die(mysql_error());
+$row_sugarPPG12 = mysql_fetch_assoc($sugarPPG12);
+
+$query_sugarPPG13 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt13['maltYield']);
+$sugarPPG13 = mysql_query($query_sugarPPG13, $brewing) or die(mysql_error());
+$row_sugarPPG13 = mysql_fetch_assoc($sugarPPG13);
+
+$query_sugarPPG14 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt14['maltYield']);
+$sugarPPG14 = mysql_query($query_sugarPPG14, $brewing) or die(mysql_error());
+$row_sugarPPG14 = mysql_fetch_assoc($sugarPPG14);
+
+$query_sugarPPG15 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt15['maltYield']);
+$sugarPPG15 = mysql_query($query_sugarPPG15, $brewing) or die(mysql_error());
+$row_sugarPPG15 = mysql_fetch_assoc($sugarPPG15);
+
+
 $gravity = $row_log['brewMashGravity']; 
 $wort = $row_log['brewPreBoilAmt']; 
 $grain = $totalGrain;
@@ -56,6 +82,18 @@ $grain8 = $row_sugarPPG8['sugarPPG'];
 $grain8amt = $row_log['brewGrain8Weight'];
 $grain9 = $row_sugarPPG9['sugarPPG'];
 $grain9amt = $row_log['brewGrain9Weight'];
+$grain10 = $row_sugarPPG10['sugarPPG'];
+$grain10amt = $row_log['brewGrain10Weight'];
+$grain11 = $row_sugarPPG11['sugarPPG'];
+$grain11amt = $row_log['brewGrain11Weight'];
+$grain12 = $row_sugarPPG12['sugarPPG'];
+$grain12amt = $row_log['brewGrain12Weight'];
+$grain13 = $row_sugarPPG13['sugarPPG'];
+$grain13amt = $row_log['brewGrain13Weight'];
+$grain14 = $row_sugarPPG14['sugarPPG'];
+$grain14amt = $row_log['brewGrain14Weight'];
+$grain15 = $row_sugarPPG15['sugarPPG'];
+$grain15amt = $row_log['brewGrain15Weight'];
 $units = $row_pref['measFluid2'];
 /*
 echo $gravity."<br>";
@@ -96,6 +134,12 @@ switch ($units)
 		$grain7calc = ($grain7 * $grain7amt)/$wort;
 		$grain8calc = ($grain8 * $grain8amt)/$wort;
 		$grain9calc = ($grain9 * $grain9amt)/$wort;
+		$grain10calc = ($grain10 * $grain10amt)/$wort;
+		$grain11calc = ($grain11 * $grain11amt)/$wort;
+		$grain12calc = ($grain12 * $grain12amt)/$wort;
+		$grain13calc = ($grain13 * $grain13amt)/$wort;
+		$grain14calc = ($grain14 * $grain14amt)/$wort;
+		$grain15calc = ($grain15 * $grain15amt)/$wort;
 		break;
 	case "liters":
 		$grain1calc = ($grain1 * ($grain1amt * 2.202))/($wort * .264);
@@ -107,6 +151,12 @@ switch ($units)
 		$grain7calc = ($grain7 * ($grain7amt * 2.202))/($wort * .264);
 		$grain8calc = ($grain8 * ($grain8amt * 2.202))/($wort * .264);
 		$grain9calc = ($grain9 * ($grain9amt * 2.202))/($wort * .264);
+		$grain10calc = ($grain10 * ($grain10amt * 2.202))/($wort * .264);
+		$grain11calc = ($grain11 * ($grain11amt * 2.202))/($wort * .264);
+		$grain12calc = ($grain12 * ($grain12amt * 2.202))/($wort * .264);
+		$grain13calc = ($grain13 * ($grain13amt * 2.202))/($wort * .264);
+		$grain14calc = ($grain14 * ($grain14amt * 2.202))/($wort * .264);
+		$grain15calc = ($grain15 * ($grain15amt * 2.202))/($wort * .264);
 		break;
 	}
 $efficiency_sum = (
@@ -118,7 +168,13 @@ $grain5calc +
 $grain6calc + 
 $grain7calc + 
 $grain8calc + 
-$grain9calc
+$grain9calc +
+$grain10calc +
+$grain11calc +
+$grain12calc +
+$grain13calc +
+$grain14calc +
+$grain15calc
 );
 	if (($efficiency_sum != 0) && ($gravity != ""))  {
 	$efficiency = ($ogconvert / $efficiency_sum) * 100;
