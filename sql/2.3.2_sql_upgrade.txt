@@ -1,5 +1,6 @@
 -- SQL Changes: BrewBlogger 2.3.2
 -- Created February 8, 2010 by gpzhumphrey
+-- Modified August 17, 2010 by gpzhumphrey
 
 INSERT INTO `brewingcss` (`id`, `theme`, `themeName`, `themeColor1`, `themeColor2`) VALUES
 (NULL, 'SB12.css', 'SB12', '#dae2ec', '#c7d3e3');
