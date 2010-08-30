@@ -5,7 +5,7 @@
 		<td><div id="subtitleAdmin"><?php echo $page_title; ?></div></td>
 	</tr>
 </table>
-<div id="headerContentAdmin"><?php if ($assoc != "import") echo "Recalculated"; else echo "Calculated"; ?> <?php if ($source == "brewing") echo "BrewBlog "; ?>Recipe <?php if ($assoc == "import") echo "To Import"; ?></div>
+<div class="headerContentAdmin"><?php if ($assoc != "import") echo "Recalculated"; else echo "Calculated"; ?> <?php if ($source == "brewing") echo "BrewBlog "; ?>Recipe <?php if ($assoc == "import") echo "To Import"; ?></div>
 <form id="form4" action="<?php if ($assoc == "update") echo "process"; if ($assoc == "import") echo "index"; ?>.php?action=<?php if ($assoc == "update") echo "update"; if ($assoc == "import") echo "importCalc"; ?>&dbTable=<?php if ($assoc == "update") echo $source; if ($assoc == "import") echo $importDB; if ($assoc == "update") echo "&id=".$id; ?>" method="post" name="form4">
 <table class="dataTable">
 <?php if ($row_recipeRecalc['id'] != "") { ?>

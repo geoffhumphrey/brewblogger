@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Adjuncts</div>
+<div class="headerContentAdmin">Adjuncts</div>
 <table>     
 <tr>
    <td class="dataLabelLeft" width="5%">Adjunct 1:</td>

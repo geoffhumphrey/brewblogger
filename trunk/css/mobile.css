@@ -122,7 +122,7 @@ margin-top: 2em;
 }
 
 
-#dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
+.dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
 margin-left: 0;
 padding: 0;
 }
@@ -180,7 +180,7 @@ text-align: center;
 
 /* ------------------ content display ------------------ */
 
-#headerContent {
+.headerContent {
 clear: left;
 width: inherit;
 padding: .5em 0 .5em 0;
@@ -191,7 +191,7 @@ font-weight: bold;
 }
 
 
-#headerContentAdmin {
+.headerContentAdmin {
 clear: left;
 width: inherit;
 padding: .5em 0 .5em 0;

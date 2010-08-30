@@ -1,10 +1,10 @@
 <?php 
-if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && (($page == "brewBlogCurrent") || ($page == "brewBlogDetail"))) { include ('includes/efficiency.inc.php'); }
-if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && ($page == "logPrint")) { include ('../includes/efficiency.inc.php'); } ?>
+if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && (($page == "brewBlogCurrent") || ($page == "brewBlogDetail"))) { include (INCLUDES.'efficiency.inc.php'); }
+if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && ($page == "logPrint")) { include (INCLUDES.'efficiency.inc.php'); } ?>
 
 <?php if (($row_pref['mashDisplayMethod'] == "1") && ($row_log['brewMashProfile'] != "")) { // Use mash profiles DB ?>
-<div id="headerContent">Mash Profile</div>
-<div id="dataContainer">
+<div class="headerContent">Mash Profile</div>
+<div class="dataContainer">
 <h3><em><?php echo $row_mash_profiles['mashProfileName']; ?></em></h3>
 <table class="dataTable">
 	<tr>
@@ -57,8 +57,8 @@ if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && 
 <?php } 
 if (($row_pref['mashDisplayMethod'] == "2") || (($row_pref['mashDisplayMethod'] == "1")  && ($row_log['brewMashProfile'] == ""))) { // unique mash profiles for every log
 if ($row_log['brewMashType'] != "" ) { // hide entire set of mash rows if first is not present ?>
-<div id="headerContent">Mash</div>
-<div id="dataContainer">
+<div class="headerContent">Mash</div>
+<div class="dataContainer">
 <table class="dataTable">
 	<tr>
 	<td width="50%">

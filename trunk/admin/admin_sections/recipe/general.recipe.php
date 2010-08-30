@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">General Information</div>
+<div class="headerContentAdmin">General Information</div>
 <table>
 <tr>
    <td class="dataLabelLeft" width="5%">Name:</td>

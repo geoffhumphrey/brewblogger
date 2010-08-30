@@ -4,8 +4,8 @@ $styles = mysql_query($query_styles, $brewing) or die(mysql_error());
 $row_styles = mysql_fetch_assoc($styles);
 $totalRows_styles = mysql_num_rows($styles);
 ?>
-<div id="headerContent">Specifics</div>
-<div id="dataContainer">
+<div class="headerContent">Specifics</div>
+<div class="dataContainer">
 <table class="dataTable">
   <tr>
     <td width="50%">
@@ -50,7 +50,7 @@ $totalRows_styles = mysql_num_rows($styles);
   		   <td class="dataLabelLeft"><?php if (($page == "recipePrint") || ($page == "logPrint")) echo ""; else { ?><div id="help"><a href="sections/reference.inc.php?section=color&source=log&KeepThis=true&TB_iframe=true&height=350&width=600" title="SRM Color Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference"></a></div><?php } ?>Color (<?php if ($row_pref['measColor'] == "EBC") echo "EBC"; else echo "SRM"; ?>/<?php if ($row_pref['measColor'] == "EBC") echo "SRM"; else echo "EBC"; ?>):</td>
 		   <td class="data">
 		   <?php
-		   if (($page != "logPrint") && ($page != "recipePrint")) include ('includes/color_display.inc.php');
+		   if (($page != "logPrint") && ($page != "recipePrint")) include (INCLUDES.'color_display.inc.php');
 		   if (($page == "logPrint") || ($page == "recipePrint")) {
 					if ($row_pref['measColor'] == "SRM") { echo round ($row_log['brewLovibond'], 1)."/"; echo colorconvert($row_log['brewLovibond'], "EBC"); }
 					if ($row_pref['measColor'] == "EBC") { echo round ($row_log['brewLovibond'], 1)."/"; echo colorconvert($row_log['brewLovibond'], "SRM"); }

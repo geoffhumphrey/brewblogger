@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Gravity</div>
+<div class="headerContentAdmin">Gravity</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft" width="5%">Original:</td>

@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Label Image</div>
+<div class="headerContentAdmin">Label Image</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft">Image Name: </td>

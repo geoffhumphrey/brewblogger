@@ -51,7 +51,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
 
 <?php } } ?>
 </table>
-<div id="headerContentAdmin">User Defaults</div>
+<div class="headerContentAdmin">User Defaults</div>
 <table  class="dataTable">
 <tr>
       <td class="dataLabelLeft">Usual Method:</td>
@@ -124,7 +124,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
 </tr>
 </table>
 <table class="dataTable">
-<div id="headerContentAdmin">Personal Information</div>
+<div class="headerContentAdmin">Personal Information</div>
 <tr>
   <td colspan="3" class="error">(*) Indicates the item is only used for printing competition recipes and labels. It's not displayed on the site.</td>
 </tr>

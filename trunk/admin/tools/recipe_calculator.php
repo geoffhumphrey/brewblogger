@@ -33,7 +33,7 @@ if ($results != "verify") {
 <?php if ($results == "true") include ('lib/predicted.lib.php'); ?>
 <form id="form3" action="index.php?action=calculate&results=true&filter=<?php echo $filter; if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>" method="post" name="form3" onSubmit="return CheckRequiredFields()">
 <input type="hidden" name="brewBrewerID" value="<?php echo $filter; ?>">
-<div id="headerContentAdmin">General Information</div>
+<div class="headerContentAdmin">General Information</div>
 <table>
 	<tr>
 		<td class="dataLabelLeft">Name:</td>
@@ -68,7 +68,7 @@ if ($results != "verify") {
 		<td class="data">%</td>
    	</tr>
 </table>
-<div id="headerContentAdmin">Malt Extracts</div>
+<div class="headerContentAdmin">Malt Extracts</div>
 <table>
 	<tr>
     	<td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Extracts?" title="Add Extracts?"></span>&nbsp;<a href="index.php?action=add&dbTable=extract">Add Extracts?</a></td>
@@ -155,7 +155,7 @@ if ($results != "verify") {
 <?php if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { ?>
 <div class="red"><em>**If any dropdown menu is blank, the recipe's original extract is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=extract">add another to the database</a>.</em></div>
 <?php } ?>
-<div id="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Grains</div>
+<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Grains</div>
 <table>
 	<tr>
     	<td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Grains?" title="Add Grains?"></span>&nbsp;<a href="index.php?action=add&dbTable=malt">Add Grains?</a></td>
@@ -397,7 +397,7 @@ if ($results != "verify") {
 <?php if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { ?>
 <div class="red"><em>**If any dropdown menu is blank, the recipe's original grain is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=malt">add another to the database</a>.</em></div>
 <?php } ?>
-<div id="headerContentAdmin">Adjuncts</div>
+<div class="headerContentAdmin">Adjuncts</div>
 <table>
 	<tr>
     	<td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Adjuncts?" title="Add Adjuncts?"></span>&nbsp;<a href="index.php?action=add&dbTable=adjuncts">Add Adjuncts?</a></td>
@@ -523,7 +523,7 @@ if ($results != "verify") {
 <?php if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { ?>
 <div class="red"><em>**If any dropdown menu is blank, the recipe's original adjunct is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=adjuncts">add another to the database</a>.</em></div>
 <?php } ?>
-<div id="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=hops&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Hops Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Hops</div>
+<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=hops&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Hops Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Hops</div>
 <table>
 	<tr>
     	<td colspan="11" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Hops?" title="Add Hops?"></span>&nbsp;<a href="index.php?action=add&dbTable=hops">Add Hops?</a></td>
@@ -854,7 +854,7 @@ if ($results == "verify") include ('lib/verify.lib.php');
 else { ?>
 <div id="breadcrumbWide"><a href="index.php">Administration</a> &gt; <?php echo $page_title; ?></div>
 <div id="subtitleWide"><?php echo $page_title; ?></div>
-<div id="headerContentAdmin">Recalculated <php if ($source == "brewing") echo "BrewBlog "; ?>Recipe</div>
+<div class="headerContentAdmin">Recalculated <php if ($source == "brewing") echo "BrewBlog "; ?>Recipe</div>
 <table class="dataTable">
 <tr>
 	<td class="error">Sorry, you do not have sufficient privileges to perform this action.<br><br><br></td>

@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Fermenting, Lagering, and Aging</div>
+<div class="headerContentAdmin">Fermenting, Lagering, and Aging</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft">Primary:</td>

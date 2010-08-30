@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Water</div>
+<div class="headerContentAdmin">Water</div>
 <?php  if ($row_pref['waterDisplayMethod'] == "1") { ?>
 <table>
 <td class="dataLabelLeft" width="5%">Water Profile:</td>

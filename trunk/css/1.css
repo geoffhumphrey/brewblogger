@@ -229,7 +229,7 @@ div.menu div.menuItemSep {
 /* ***************************** Theme-Specific Content Elements ***************************** */ 
 
 
-#dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
+.dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
 width: 100%;
 margin-left: 0px;
 padding: 0px 0px 0px 0px;
@@ -294,7 +294,7 @@ margin-top: 5px;
 
 /* ------------------ content display ------------------ */
 
-#headerContent {
+.headerContent {
 height: 20px;
 background: #efefef;
 padding: 5px 5px 5px 3px;
@@ -306,7 +306,7 @@ font-weight: bold;
 margin-bottom: 5px;
 }
 
-#headerContentAdmin {
+.headerContentAdmin {
 width: 740px;
 height: 20px;
 background: #efefef;

@@ -13,7 +13,7 @@ $totalRows_count2 = mysql_num_rows($count2);
 
 ?>
 
-<div id="dataContainer">
+<div class="dataContainer">
 <table>
 <?php if ($totalRows_count1 > 0) { ?>
 <tr>

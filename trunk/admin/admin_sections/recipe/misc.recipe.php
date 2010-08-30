@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Miscellaneous (<em>NON-Fermentable</em> Ingredients)</div>
+<div class="headerContentAdmin">Miscellaneous (<em>NON-Fermentable</em> Ingredients)</div>
 <table>
 <tr>
   <td width="5%" class="dataLabelLeft">Miscellaneous 1:</td>

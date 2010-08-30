@@ -5,7 +5,7 @@ Check here for news for club members eyes only.<br><br>
 There is no <?php echo $row_pref['menuMembers']; ?> news. Please check the <a href="../index.php?page=news&sort=newsDate&dir=DESC&view=5">public news</a>.
 <?php } else { ?>
 <?php do { ?>
-<div id="headerContentAdmin"><?php echo $row_newsGen['newsHeadline']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_newsGen['newsHeadline']; ?></div>
 <table class="dataTable" style="margin-bottom: 25px;">
   <tr>
   	<td width="90%">&nbsp;</td>

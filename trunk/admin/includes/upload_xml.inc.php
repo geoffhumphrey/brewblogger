@@ -92,7 +92,7 @@ else
 </table>
 </form>
 <?php if ($dbTable == "default") { ?>
-<div id="headerContentAdmin">Imported Files</div>
+<div class="headerContentAdmin">Imported Files</div>
 <table class="dataTable text_11">
 <?=$_SESSION['recipes']; ?>
 </tr>
