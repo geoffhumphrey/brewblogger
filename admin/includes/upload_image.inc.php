@@ -156,7 +156,7 @@ function do_upload($upload_dir, $upload_url) {
 </table>
 <?php } 
 if ($section == "confirm") { ?>
-<div id="headerContentAdmin">Delete Image</div>
+<div class="headerContentAdmin">Delete Image</div>
 <table class="dataTable">
   <tr>
 	<td width="5%" rowspan="2" nowrap><a href="../../label_images/<?php echo $fileConfirm; ?>" class="thickbox"><img src="../../label_images/<?php echo $fileConfirm; ?>" width = "100" border="0"></a></td>
@@ -174,7 +174,7 @@ if ($section == "confirm") { ?>
 <?php if ($section == "delete") {
 unlink($upload_dir.$fileConfirm);
 ?>
-<div id="headerContentAdmin">Delete Image</div>
+<div class="headerContentAdmin">Delete Image</div>
 <table class="dataTable">
 <tr>
 	<td class="error"><?php echo $fileConfirm; ?> deleted.</td>

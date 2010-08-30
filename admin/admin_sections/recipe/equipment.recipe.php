@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Equipment</div>
+<div class="headerContentAdmin">Equipment</div>
 <table class="dataTable">
 <tr>
 	<td class="dataLabelLeft">Equipment Profile:</td>

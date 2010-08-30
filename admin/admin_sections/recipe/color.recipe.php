@@ -1,4 +1,4 @@
-<div id="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=color&source=log&KeepThis=true&TB_iframe=true&height=370&width=600" title="Color Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>/information.png" border="0"></a></div>Color</div>
+<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=color&source=log&KeepThis=true&TB_iframe=true&height=370&width=600" title="Color Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>/information.png" border="0"></a></div>Color</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft">Color:</td>

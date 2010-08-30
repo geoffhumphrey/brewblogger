@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Mash</div>
+<div class="headerContentAdmin">Mash</div>
 <?php if ($row_pref['mashDisplayMethod'] == "1") { ?>
 <table>
 <tr>

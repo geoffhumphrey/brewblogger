@@ -292,7 +292,7 @@ margin-top: 5px;
 
 /* ------------------ content display ------------------ */
 
-#headerContent {
+.headerContent {
 clear: left;
 width: 489px;
 height: 20px;
@@ -306,7 +306,7 @@ font-weight: bold;
 margin-bottom: 5px;
 }
 
-#headerContentAdmin {
+.headerContentAdmin {
 clear: left;
 width: 740px;
 height: 20px;

@@ -1,39 +1,49 @@
 <?php 
+// Set up a root path constant
+define('ROOT', getcwd().'/');
+ 
+// Define the config, includes, connections, and application folders
+define('CONFIG', ROOT.'config/');
+define('IMAGES', ROOT.'images/');
+define('INCLUDES', ROOT.'includes/');
+define('SECTIONS', ROOT.'sections/');
+define('CONNECTIONS', ROOT.'Connections/');
+define('LABELS', ROOT.'label_images/');
 
 //image dir / SQL information and connect to MySQL server
-require_once ('Connections/config.php'); 
+require_once (CONNECTIONS.'config.php'); 
 
 //choose SQL table and set up functions to user authentication and
 //navbar configuration for login/logout links
-require ('includes/authentication_nav.inc.php'); session_start();
+require (INCLUDES.'authentication_nav.inc.php'); session_start();
 
 //override various default settings with GET parameters, if they exist
-include ('includes/url_variables.inc.php');
+include (INCLUDES.'url_variables.inc.php');
 
 //set up brewers, themes, etc.
-include ('includes/db_connect_universal.inc.php');
+include (INCLUDES.'db_connect_universal.inc.php');
 
 //set up recipes, brewlogs, etc.
-include ('includes/db_connect_log.inc.php');
+include (INCLUDES.'db_connect_log.inc.php');
 
 //include function to check for mobile browsers
-include ('includes/check_mobile.inc.php');
+include (INCLUDES.'check_mobile.inc.php');
 
 //do various abv calculations related to the currently viewed recipe (if any)
-include ('includes/abv.inc.php');
+include (INCLUDES.'abv.inc.php');
 
 //include various conversions functions, date functions and truncate functions
 //plus additional libs for 
 //    titles.inc.php - set up the navigation?
 //    messages.inc.php - tooltips and a few messages
 //    scrubber.inc.php - a few arrays for character replacement
-include ('includes/plug-ins.inc.php');
+include (INCLUDES.'plug-ins.inc.php');
 
 //figure out SRM and a hex value for displaying beer color
-include ('includes/color.inc.php');
+include (INCLUDES.'color.inc.php');
 
 //determine if club edition or personal edition is in use
-include ('includes/version.inc.php'); 
+include (INCLUDES.'version.inc.php'); 
 
 $imageSrc = "images/";
 
@@ -95,7 +105,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 <div id="contentwrapper">
     <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "about") || ($page == "recipeDetail") || ($page == "profile")) echo "contentcolumn"; else echo "contentWide"; ?>">
     <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "about") || ($page == "profile")) echo "breadcrumb"; else echo "breadcrumbWide"; ?>"><?php echo $breadcrumb; ?></div>
-	<?php if (($row_pref['mode'] == "2") && ($row_pref['home'] == $page) && ($row_pref['allowNews'] == "Y") && ($totalRows_newsGen > 0)) include ('sections/news.inc.php'); ?>
+	<?php if (($row_pref['mode'] == "2") && ($row_pref['home'] == $page) && ($row_pref['allowNews'] == "Y") && ($totalRows_newsGen > 0)) include (SECTIONS.'news.inc.php'); ?>
     <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "about") || ($page == "profile")) echo "subtitle"; else echo "subtitleWide"; ?>">
 	   <div id="icon"><img src="<?php echo $imageSrc.$icon.".png"; ?>" align="bottom"></div>
 	   <?php 
@@ -109,38 +119,38 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
       </div> <!-- end subtitle or subtitleWide -->
 		<?php 
 		if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) { 
-					if ($row_pref['allowSpecifics'] == "Y") 		include ('sections/specifics.inc.php');
-					if ($row_pref['allowGeneral'] == "Y") 			include ('sections/general.inc.php');
-					if ($row_pref['allowComments'] == "Y") 			include ('sections/comments.inc.php');
-					if ($row_pref['allowRecipe'] == "Y") 			include ('sections/recipe.inc.php');
-					include ('sections/equipment.inc.php'); 
-					if ($row_pref['allowMash'] == "Y") 				include ('sections/mash.inc.php');
-					if ($row_pref['allowWater'] == "Y") 			include ('sections/water.inc.php');
-					if ($row_pref['allowProcedure'] == "Y") 		include ('sections/procedure.inc.php');
-					if ($row_pref['allowSpecialProcedure'] == "Y") 	include ('sections/special_procedure.inc.php');
-					if ($row_pref['allowFermentation'] == "Y") 		include ('sections/fermentation.inc.php');
-					if (checkmobile()) echo ""; else { if ($row_pref['allowReviews'] == "Y") include ('sections/reviews.inc.php'); } 		    
+					if ($row_pref['allowSpecifics'] == "Y") 		include (SECTIONS.'recipe_specifics.inc.php');
+					if ($row_pref['allowGeneral'] == "Y") 			include (SECTIONS.'recipe_general.inc.php');
+					if ($row_pref['allowComments'] == "Y") 			include (SECTIONS.'recipe_comments.inc.php');
+					if ($row_pref['allowRecipe'] == "Y") 			include (SECTIONS.'recipe.inc.php');
+					include (SECTIONS.'recipe_equipment.inc.php'); 
+					if ($row_pref['allowMash'] == "Y") 				include (SECTIONS.'recipe_mash.inc.php');
+					if ($row_pref['allowWater'] == "Y") 			include (SECTIONS.'recipe_water.inc.php');
+					if ($row_pref['allowProcedure'] == "Y") 		include (SECTIONS.'recipe_procedure.inc.php');
+					if ($row_pref['allowSpecialProcedure'] == "Y") 	include (SECTIONS.'recipe_special_procedure.inc.php');
+					if ($row_pref['allowFermentation'] == "Y") 		include (SECTIONS.'recipe_fermentation.inc.php');
+					if (checkmobile()) echo ""; else { if ($row_pref['allowReviews'] == "Y") include (SECTIONS.'recipe_reviews.inc.php'); } 		    
 		} 
-		if ($page == "brewBlogList") 	include('sections/brewblogList.inc.php'); 
-		if ($page == "recipeList") 		include('sections/recipeList.inc.php'); 
-        if ($page == "awardsList") 		include('sections/awardsList.inc.php'); 
-		if ($page == "login")  			include ('sections/login.inc.php');   
-		if ($page == "tools") 			include ('sections/tools.inc.php'); 
-		if ($page == "about")  			include ('sections/about.inc.php'); 
-		if ($page == "reference")  		include ('sections/reference.inc.php'); 
-		if (($row_pref['allowCalendar'] == "Y") && ($page == "calendar")) include ('sections/calendar.inc.php'); 
+		if ($page == "brewBlogList") 	include(SECTIONS.'brewblogList.inc.php'); 
+		if ($page == "recipeList") 		include(SECTIONS.'recipeList.inc.php'); 
+        if ($page == "awardsList") 		include(SECTIONS.'awardsList.inc.php'); 
+		if ($page == "login")  			include (SECTIONS.'login.inc.php');   
+		if ($page == "tools") 			include (SECTIONS.'tools.inc.php'); 
+		if ($page == "about")  			include (SECTIONS.'about.inc.php'); 
+		if ($page == "reference")  		include (SECTIONS.'reference.inc.php'); 
+		if (($row_pref['allowCalendar'] == "Y") && ($page == "calendar")) include (SECTIONS.'calendar.inc.php'); 
 		if (($row_pref['allowCalendar'] == "N") && ($page == "calendar")) echo "<p class=\"error\">This feature has been disabled by the site administrator.</p>"; 
-		if (($row_pref['mode'] == "2") && ($page == "members"))  	include('sections/memberList.inc.php'); 
-		if (($row_pref['mode'] == "2") && ($page == "profile"))		include ('sections/profile.inc.php');
-		if (($row_pref['mode'] == "2") && ($page == "news")) 		include ('sections/news.inc.php');
+		if (($row_pref['mode'] == "2") && ($page == "members"))  	include(SECTIONS.'memberList.inc.php'); 
+		if (($row_pref['mode'] == "2") && ($page == "profile"))		include (SECTIONS.'profile.inc.php');
+		if (($row_pref['mode'] == "2") && ($page == "news")) 		include (SECTIONS.'news.inc.php');
 		if ($page == "recipeDetail") { 
 		// Include sections according to set preferences
-			if ($row_pref['allowSpecifics'] == "Y") 	{ include ('sections/specifics.inc.php'); }
-			if ($row_pref['allowGeneral'] == "Y") 		{ include ('sections/general.inc.php'); }
-			if ($row_pref['allowRecipe'] == "Y") 		{ include ('sections/recipe.inc.php'); }
-			if ($row_pref['allowProcedure'] == "Y") 	{ include ('sections/procedure.inc.php'); } 
-			if ($row_pref['allowFermentation'] == "Y") 	{ include ('sections/fermentation.inc.php'); } 
-			if ($row_pref['allowComments'] == "Y") 		{ include ('sections/notes.inc.php'); }
+			if ($row_pref['allowSpecifics'] == "Y") 	{ include (SECTIONS.'recipe_specifics.inc.php'); }
+			if ($row_pref['allowGeneral'] == "Y") 		{ include (SECTIONS.'recipe_general.inc.php'); }
+			if ($row_pref['allowRecipe'] == "Y") 		{ include (SECTIONS.'recipe.inc.php'); }
+			if ($row_pref['allowProcedure'] == "Y") 	{ include (SECTIONS.'recipe_procedure.inc.php'); } 
+			if ($row_pref['allowFermentation'] == "Y") 	{ include (SECTIONS.'recipe_fermentation.inc.php'); } 
+			if ($row_pref['allowComments'] == "Y") 		{ include (SECTIONS.'recipe_notes.inc.php'); }
 		   }
 		?>  
     <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis pharetra elit non porta. Nullam vel ipsum turpis, quis volutpat odio. Nullam posuere fringilla lacus eget vulputate. Nullam at eros sit amet est iaculis egestas sit amet quis nunc. Sed pretium laoreet neque sed fringilla. Mauris rutrum vulputate velit, eu tincidunt orci rhoncus nec. Suspendisse adipiscing massa vitae purus egestas fermentum. Cras pulvinar, velit ac commodo posuere, dui felis aliquet tellus, quis pulvinar quam urna pellentesque justo. Aenean mattis tellus ipsum, venenatis vehicula diam. Curabitur quis ipsum ante, ullamcorper commodo nulla. Curabitur ultrices egestas libero a sagittis.</p>-->
@@ -148,38 +158,38 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 	<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "about") || ($page == "recipeDetail") || ($page == "profile")) { ?>
 	<div id="rightcolumn">
 	<?php 
-		 if ($page == "about") { include ('sections/list.inc.php'); }
+		 if ($page == "about") { include (SECTIONS.'list.inc.php'); }
 		 if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) { 
 		 				if (checkmobile()) echo ""; else {
 						// Include printing, BeerXML buttons according to preferences
-						if ($row_pref['allowPrintLog'] == "Y") 		{ include ('sections/printLog.inc.php'); }
-						if ($row_pref['allowPrintRecipe'] == "Y") 	{ include ('sections/printRecipe.inc.php');  echo "&nbsp;"; }
-						if ($row_pref['allowPrintXML'] == "Y") 		{ include ('sections/printXML.inc.php'); }
+						if ($row_pref['allowPrintLog'] == "Y") 		{ include (SECTIONS.'printLog.inc.php'); }
+						if ($row_pref['allowPrintRecipe'] == "Y") 	{ include (SECTIONS.'printRecipe.inc.php');  echo "&nbsp;"; }
+						if ($row_pref['allowPrintXML'] == "Y") 		{ include (SECTIONS.'printXML.inc.php'); }
 						}
 						if (($row_pref['mode'] == "2") && ($filter != "all")) echo "<div id=\"sidebarWrapper\"><span class=\"text_9\"><span class=\"data_icon\"><img src = \"".$imageSrc."calendar_view_month.png\" alt=\"Calendar\" border=\"0\" align=\"absmiddle\"></span><span class=\"data\"><a href=\"index.php?page=calendar&filter=".$filter."\">View ".$row_user2['realFirstName']."'s Brewing Calendar</a></span></span></div>";
-																	{ include ('sections/quick_edit.inc.php'); }
+																	{ include (SECTIONS.'quick_edit.inc.php'); }
 						if (checkmobile()) echo ""; else {
 						// Include sidebar sections according to preferences
-						if ($row_pref['allowLabel'] == "Y") 		{ include ('sections/label.inc.php'); }
+						if ($row_pref['allowLabel'] == "Y") 		{ include (SECTIONS.'label.inc.php'); }
 						}
-						if ($row_pref['allowAwards'] == "Y") 		{ include ('sections/awards.inc.php'); }
-						if ($row_pref['allowRelated'] == "Y") 		{ include ('sections/related.inc.php'); } 
-						include ('sections/list.inc.php');  
-						if ($row_pref['allowStatus'] == "Y") 		{ include ('sections/status.inc.php'); } 
-						if ($row_pref['allowUpcoming'] == "Y") 		{ include ('sections/upcoming.inc.php'); }		
+						if ($row_pref['allowAwards'] == "Y") 		{ include (SECTIONS.'awards.inc.php'); }
+						if ($row_pref['allowRelated'] == "Y") 		{ include (SECTIONS.'related.inc.php'); } 
+						include (SECTIONS.'list.inc.php');  
+						if ($row_pref['allowStatus'] == "Y") 		{ include (SECTIONS.'status.inc.php'); } 
+						if ($row_pref['allowUpcoming'] == "Y") 		{ include (SECTIONS.'upcoming.inc.php'); }		
 		} 
 		if ($page == "recipeDetail") { 
 		// Include sidebar sections according to preferences
-		    if ($row_pref['allowPrintRecipe'] == "Y") 	{ include ('sections/printRecipe.inc.php'); echo "&nbsp;"; }
-			if ($row_pref['allowPrintXML'] == "Y") 		{ include ('sections/printXML.inc.php'); }
-														{ include ('sections/quick_edit.inc.php'); }
-			if ($row_pref['allowAwards'] == "Y") 		{ include ('sections/awards.inc.php'); }
-			if ($row_pref['allowRelated'] == "Y") 		{ include ('sections/related.inc.php'); } 
-			if ($row_pref['allowList'] == "Y") 			{ include ('sections/list.inc.php'); } 
+		    if ($row_pref['allowPrintRecipe'] == "Y") 	{ include (SECTIONS.'printRecipe.inc.php'); echo "&nbsp;"; }
+			if ($row_pref['allowPrintXML'] == "Y") 		{ include (SECTIONS.'printXML.inc.php'); }
+														{ include (SECTIONS.'quick_edit.inc.php'); }
+			if ($row_pref['allowAwards'] == "Y") 		{ include (SECTIONS.'awards.inc.php'); }
+			if ($row_pref['allowRelated'] == "Y") 		{ include (SECTIONS.'related.inc.php'); } 
+			if ($row_pref['allowList'] == "Y") 			{ include (SECTIONS.'list.inc.php'); } 
 			
 	    } 
         
-        if ($page == "profile") include ('sections/userPic.inc.php'); 
+        if ($page == "profile") include (SECTIONS.'userPic.inc.php'); 
 	?>
 	</div><!-- End rightcolumn -->
     <?php } ?>

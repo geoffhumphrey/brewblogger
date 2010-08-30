@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Procedure</div>
+<div class="headerContentAdmin">Procedure</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft">Enter Step By Step Instructions:<br><br><textarea name="brewProcedure" cols="67" rows="15"><?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewProcedure']; ?></textarea></td>

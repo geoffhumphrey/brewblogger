@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Malt Extracts</div>
+<div class="headerContentAdmin">Malt Extracts</div>
 <table class="dataTable">
 <tr>
    <td class="dataLabelLeft" width="5%">Extract 1:</td>

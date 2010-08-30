@@ -1,7 +1,8 @@
 <?php 
-require_once('../Connections/config.php'); 
-include ('../includes/url_variables.inc.php');
-include ('../includes/db_connect_log.inc.php');
+require ('../Connections/bootstrap.php');
+require_once(CONNECTIONS.'config.php'); 
+include (INCLUDES.'url_variables.inc.php');
+include (INCLUDES.'db_connect_log.inc.php');
 $page = "logPrint";
 if (isset($_GET['page'])) {
   $page = (get_magic_quotes_gpc()) ? $_GET['page'] : addslashes($_GET['page']);
@@ -20,12 +21,12 @@ $style = mysql_query($query_style, $brewing) or die(mysql_error());
 $row_style = mysql_fetch_assoc($style);
 $totalRows_style = mysql_num_rows($style);
 
-include ('../includes/db_connect_universal.inc.php');
-include ('../includes/abv.inc.php');
-include ('../includes/color.inc.php');
-include ('../includes/check_mobile.inc.php');
-include ('../includes/plug-ins.inc.php');
-include ('../includes/version.inc.php');
+include (INCLUDES.INCLUDES.'db_connect_universal.inc.php');
+include (INCLUDES.INCLUDES.'abv.inc.php');
+include (INCLUDES.INCLUDES.'color.inc.php');
+include (INCLUDES.INCLUDES.'check_mobile.inc.php');
+include (INCLUDES.INCLUDES.'plug-ins.inc.php');
+include (INCLUDES.INCLUDES.'version.inc.php');
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -57,15 +58,15 @@ include ('../includes/version.inc.php');
   </tr>
   </table>
   		<?php
-					if ($row_pref['allowSpecifics'] == "Y") { include ('specifics.inc.php'); }
-					if ($row_pref['allowGeneral'] == "Y") { include ('general.inc.php'); }
-					if ($row_pref['allowComments'] == "Y") { if ($page == "logPrint") include ('comments.inc.php'); if ($page == "recipePrint") include ('notes.inc.php'); }
+					if ($row_pref['allowSpecifics'] == "Y") { include ('recipe_specifics.inc.php'); }
+					if ($row_pref['allowGeneral'] == "Y") { include ('recipe_general.inc.php'); }
+					if ($row_pref['allowComments'] == "Y") { if ($page == "logPrint") include ('recipe_comments.inc.php'); if ($page == "recipePrint") include ('recipe_notes.inc.php'); }
 					if ($row_pref['allowRecipe'] == "Y") { include ('recipe.inc.php'); }
-					if ($row_pref['allowMash'] == "Y") { include ('mash.inc.php'); } 
-					if (($page == "logPrint") && ($row_pref['allowWater'] == "Y")) { include ('water.inc.php'); } 
-					if ($row_pref['allowProcedure'] == "Y") { include ('procedure.inc.php'); } 
-					if (($page == "logPrint") && ($row_pref['allowSpecialProcedure'] == "Y")) { include ('special_procedure.inc.php'); } 
-					if ($row_pref['allowFermentation'] == "Y") { include ('fermentation.inc.php'); } 
+					if ($row_pref['allowMash'] == "Y") { include ('recipe_mash.inc.php'); } 
+					if (($page == "logPrint") && ($row_pref['allowWater'] == "Y")) { include ('recipe_water.inc.php'); } 
+					if ($row_pref['allowProcedure'] == "Y") { include ('recipe_procedure.inc.php'); } 
+					if (($page == "logPrint") && ($row_pref['allowSpecialProcedure'] == "Y")) { include ('recipe_special_procedure.inc.php'); } 
+					if ($row_pref['allowFermentation'] == "Y") { include ('recipe_fermentation.inc.php'); } 
 		?>
   
  </div>

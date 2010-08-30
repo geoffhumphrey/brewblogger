@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Related Links</div>
+<div class="headerContentAdmin">Related Links</div>
 
 <table class="dataTable">
 

@@ -245,7 +245,7 @@ margin-top: 5px;
 
 /* ------------------ content display ------------------ */
 
-#headerContent {
+.headerContent {
 width: 100%;
 height: 20px; 
 /* 
@@ -261,7 +261,7 @@ font-weight: bold;
 margin-bottom: 5px;
 }
 
-#headerContentAdmin {
+.headerContentAdmin {
 clear: left;
 width: 738px;
 height: 20px;

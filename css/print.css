@@ -1,5 +1,5 @@
 body {
-margin:0;
+margin: 10px;
 padding:0;
 line-height: 1.25; 
 color: #000000; 
@@ -35,7 +35,7 @@ font-weight: bold;
 
 
 #maincontainer {
-width: 665px;
+width: 100%;
 padding: 0px;
 text-align: left;
 }
@@ -67,7 +67,7 @@ margin-top: 25px;
 }
 
 
-#dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
+.dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
 width: inherit;
 margin-left: 0px;
 padding: 0px 0px 0px 0px;
@@ -105,19 +105,19 @@ font-size: 9px;
 
 /* ------------------ content display ------------------ */
 
-#headerContent {
+.headerContent {
 clear: left;
 width: inherit;
 height: 20px;
 padding: 0px 0px 0px 0px;
 text-align: left;
 border-bottom: 1px dashed #000000;
-font-size: 14px;
+font-size: 16px;
 color: #000000;
 font-family: Georgia, "Times New Roman", Times, serif;
 font-weight: bold;
-margin-bottom: 3px;
-margin-top: 30px;
+margin-bottom: 10px;
+margin-top: 15px;
 }
 
 
@@ -145,3 +145,6 @@ margin-bottom: 5px;
 font-size: 10px; 
 }
 
+.bdr1B_black { 
+border-bottom: 1px solid #00000; 
+}

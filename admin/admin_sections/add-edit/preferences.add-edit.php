@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Theme</div>
+<div class="headerContentAdmin">Theme</div>
 <table class="dataTable">
 <tr>
 	<td width="5%">
@@ -12,7 +12,7 @@
 </tr>
 </table>
 
-<div id="headerContentAdmin">Edition</div>
+<div class="headerContentAdmin">Edition</div>
 <table class="dataTable">
 <tr>
       <td>
@@ -24,7 +24,7 @@
 </tr>
 </table>
 
-<div id="headerContentAdmin">Home Page</div>
+<div class="headerContentAdmin">Home Page</div>
 <table class="dataTable">
 <tr>
       <td width="5%">
@@ -44,7 +44,7 @@
 </tr>
 </table>
 
-<div id="headerContentAdmin">General</div>
+<div class="headerContentAdmin">General</div>
 <table>
 <tr>
       <td class="dataLabelLeft">Fluid Measure (Small):</td>
@@ -131,7 +131,7 @@
 </tr>    
 </table>
 
-<div id="headerContentAdmin">Water and Mash Profiles</div>
+<div class="headerContentAdmin">Water and Mash Profiles</div>
 <table>
 <tr>
       <td class="dataLabelLeft">Manage Water Profiles with BrewBlogger?</td>
@@ -151,7 +151,7 @@
 </tr>
 </table>
 
-<div id="headerContentAdmin">Menu Link Text</div>
+<div class="headerContentAdmin">Menu Link Text</div>
 <table>
 <tr>
       <td class="dataLabelLeft">Home Link Text:</td>
@@ -200,7 +200,7 @@
 </tr>
 <?php } ?>
 </table>
-<div id="headerContentAdmin">Printing and File Downloads</div>
+<div class="headerContentAdmin">Printing and File Downloads</div>
 <table>
 <tr>
       <td class="dataLabelLeft">Allow Visitors to Print an Entire BrewBlog?</td>
@@ -224,7 +224,7 @@
 	  </td>
 </tr>
 </table>
-<div id="headerContentAdmin">BrewBlog and Recipe Display</div>
+<div class="headerContentAdmin">BrewBlog and Recipe Display</div>
 <table>
 <tr>
       <td class="dataLabelLeft">Display Specifics?</td>

@@ -12,7 +12,7 @@
   </tr>
   <?php } ?>
 </table>
-<div id="headerContentAdmin"><?php echo $row_pref['menuBrewBlogs']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_pref['menuBrewBlogs']; ?></div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></td>
@@ -47,7 +47,7 @@
     <td class="data"><a href="index.php?action=chooseRecalc">Recalculate <?php echo $row_pref['menuBrewBlogs']; ?></a></td>
   </tr>
 </table>
-<div id="headerContentAdmin"><?php echo $row_pref['menuRecipes']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_pref['menuRecipes']; ?></div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>script.png"></td>
@@ -77,7 +77,7 @@
   </tr>
 </table>
 <?php if ($row_user['userLevel'] == "1") { ?>
-<div id="headerContentAdmin"><?php echo $row_pref['menuReference']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_pref['menuReference']; ?></div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>cup.png"></td>
@@ -169,7 +169,7 @@
   </tr>
   
 </table>
-<div id="headerContentAdmin">General</div>
+<div class="headerContentAdmin">General</div>
 <table>
   <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>user.png" /></td>
@@ -224,7 +224,7 @@
 </table>
 <?php } ?>
 <?php if ($row_user['userLevel'] == "2") { ?>
-<div id="headerContentAdmin">My Profile</div>
+<div class="headerContentAdmin">My Profile</div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>user.png"></td>
@@ -235,7 +235,7 @@
     <td class="data">&nbsp;</td>
   </tr>
 </table>
-<div id="headerContentAdmin">Lists</div>
+<div class="headerContentAdmin">Lists</div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>cup.png"></td>
@@ -313,7 +313,7 @@
 
 <?php } ?>
 
-<div id="headerContentAdmin"><?php echo $row_pref['menuCalculators']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_pref['menuCalculators']; ?></div>
 <table>
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>calculator.png"></td>

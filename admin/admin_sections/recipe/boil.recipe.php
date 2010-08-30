@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Boil</div>
+<div class="headerContentAdmin">Boil</div>
 <table class="dataTable">
 <tr>   
    <td class="dataLabelLeft">Total Boil Time:</td>

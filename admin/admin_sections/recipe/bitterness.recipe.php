@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Bitterness</div>
+<div class="headerContentAdmin">Bitterness</div>
 <table class="dataTable">
 <tr>   
    <td class="dataLabelLeft" width="5%">Bitterness:</td>

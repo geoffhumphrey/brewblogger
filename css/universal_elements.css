@@ -75,7 +75,7 @@ padding: 0 15px 0 0;
 
 /* ***************************** Data Display Elements ***************************** */
 
-#dataContainer {		 	/* container for main display of content - holds procedure, recipe, mash, etc. */
+.dataContainer {		 	/* container for main display of content - holds procedure, recipe, mash, etc. */
 width: 100%;
 margin-left: 0px;
 padding: 0px 0px 0px 0px;
@@ -360,7 +360,11 @@ display: none;
 }
 
 .bdr1L_black { 
-border-left: 1px solid #050117; 
+border-left: 1px solid #000000; 
+}
+
+.bdr1B_black { 
+border-bottom: 1px solid #000000; 
 }
 
 #quickEdit  { padding: 5px; width: 229px; }
