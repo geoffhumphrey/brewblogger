@@ -200,56 +200,77 @@ $brewAdjunct7Weight = $_POST['brewAdjunct7Weight'];
 $brewAdjunct8Weight = $_POST['brewAdjunct8Weight'];
 $brewAdjunct9Weight = $_POST['brewAdjunct9Weight'];
 
-for($i = 1; $i <= 9; ++$i) {
-	
-    $query_adjunct = 'query_adjunct'.$i;
-    $adjunct = 'adjunct'.$i;
-    $row_adjunct = 'row_adjunct'.$i;
-    $totalRows_adjunct = 'totalRows_adjunct'.$i;
-	
-	mysql_select_db($database_brewing, $brewing);
-    $$query_adjunct = sprintf("SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='%s'", $_POST['brewadjunct'.$i]);
-    $$adjunct = mysql_query($$query_adjunct, $brewing);
-    $$row_adjunct = mysql_fetch_assoc($$adjunct);
-    $$totalRows_adjunct = mysql_num_rows($$adjunct);
-}
+$query_adjunct1 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct1'";
+$adjunct1 = mysql_query($query_adjunct1, $brewing) or die(mysql_error());
+$row_adjunct1 = mysql_fetch_assoc($adjunct1);
 
+$query_adjunct1PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct1['adjunctYield']);
+$adjunct1PPG = mysql_query($query_adjunct1PPG, $brewing) or die(mysql_error());
+$row_adjunct1PPG = mysql_fetch_assoc($adjunct1PPG);
 
-$query_adjunctPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct1['adjunctYield']);
-$adjunctPPG1 = mysql_query($query_adjunctPPG1, $brewing);
-$row_adjunctPPG1 = mysql_fetch_assoc($adjunctPPG1);
+$query_adjunct2 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct2'";
+$adjunct2 = mysql_query($query_adjunct2, $brewing) or die(mysql_error());
+$row_adjunct2 = mysql_fetch_assoc($adjunct2);
 
-$query_adjunctPPG2 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct2['adjunctYield']);
-$adjunctPPG2 = mysql_query($query_adjunctPPG2, $brewing);
-$row_adjunctPPG2 = mysql_fetch_assoc($adjunctPPG2);
+$query_adjunct2PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct2['adjunctYield']);
+$adjunct2PPG = mysql_query($query_adjunct2PPG, $brewing) or die(mysql_error());
+$row_adjunct2PPG = mysql_fetch_assoc($adjunct2PPG);
 
-$query_adjunctPPG3 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct3['adjunctYield']);
-$adjunctPPG3 = mysql_query($query_adjunctPPG3, $brewing);
-$row_adjunctPPG3 = mysql_fetch_assoc($adjunctPPG3);
+$query_adjunct3 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct3'";
+$adjunct3 = mysql_query($query_adjunct3, $brewing) or die(mysql_error());
+$row_adjunct3 = mysql_fetch_assoc($adjunct3);
 
-$query_adjunctPPG4 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct4['adjunctYield']);
-$adjunctPPG4 = mysql_query($query_adjunctPPG4, $brewing);
-$row_adjunctPPG4 = mysql_fetch_assoc($adjunctPPG4);
+$query_adjunct3PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct3['adjunctYield']);
+$adjunct3PPG = mysql_query($query_adjunct3PPG, $brewing) or die(mysql_error());
+$row_adjunct3PPG = mysql_fetch_assoc($adjunct3PPG);
 
-$query_adjunctPPG5 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct5['adjunctYield']);
-$adjunctPPG5 = mysql_query($query_adjunctPPG5, $brewing);
-$row_adjunctPPG5 = mysql_fetch_assoc($adjunctPPG5);
+$query_adjunct4 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct4'";
+$adjunct4 = mysql_query($query_adjunct4, $brewing) or die(mysql_error());
+$row_adjunct4 = mysql_fetch_assoc($adjunct4);
 
-$query_adjunctPPG6 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct6['adjunctYield']);
-$adjunctPPG6 = mysql_query($query_adjunctPPG6, $brewing);
-$row_adjunctPPG6 = mysql_fetch_assoc($adjunctPPG6);
+$query_adjunct4PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct4['adjunctYield']);
+$adjunct4PPG = mysql_query($query_adjunct4PPG, $brewing) or die(mysql_error());
+$row_adjunct4PPG = mysql_fetch_assoc($adjunct4PPG);
 
-$query_adjunctPPG7 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct7['adjunctYield']);
-$adjunctPPG7 = mysql_query($query_adjunctPPG7, $brewing);
-$row_adjunctPPG7 = mysql_fetch_assoc($adjunctPPG7);
+$query_adjunct5 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE id='$brewAdjunct5'";
+$adjunct5 = mysql_query($query_adjunct5, $brewing) or die(mysql_error());
+$row_adjunct5 = mysql_fetch_assoc($adjunct5);
 
-$query_adjunctPPG8 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct8['adjunctYield']);
-$adjunctPPG8 = mysql_query($query_adjunctPPG8, $brewing);
-$row_adjunctPPG8 = mysql_fetch_assoc($adjunctPPG8);
+$query_adjunct5PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct5['adjunctYield']);
+$adjunct5PPG = mysql_query($query_adjunct5PPG, $brewing) or die(mysql_error());
+$row_adjunct5PPG = mysql_fetch_assoc($adjunct5PPG);
 
-$query_adjunctPPG9 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct9['adjunctYield']);
-$adjunctPPG9 = mysql_query($query_adjunctPPG9, $brewing);
-$row_adjunctPPG9 = mysql_fetch_assoc($adjunctPPG9);
+$query_adjunct6 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct6'";
+$adjunct6 = mysql_query($query_adjunct6, $brewing) or die(mysql_error());
+$row_adjunct6 = mysql_fetch_assoc($adjunct6);
+
+$query_adjunct6PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct6['adjunctYield']);
+$adjunct6PPG = mysql_query($query_adjunct6PPG, $brewing) or die(mysql_error());
+$row_adjunct6PPG = mysql_fetch_assoc($adjunct6PPG);
+
+$query_adjunct7 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct7'";
+$adjunct7 = mysql_query($query_adjunct7, $brewing) or die(mysql_error());
+$row_adjunct7 = mysql_fetch_assoc($adjunct7);
+
+$query_adjunct7PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct7['adjunctYield']);
+$adjunct7PPG = mysql_query($query_adjunct7PPG, $brewing) or die(mysql_error());
+$row_adjunct7PPG = mysql_fetch_assoc($adjunct7PPG);
+
+$query_adjunct8 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct8'";
+$adjunct8 = mysql_query($query_adjunct8, $brewing) or die(mysql_error());
+$row_adjunct8 = mysql_fetch_assoc($adjunct8);
+
+$query_adjunct8PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct8['adjunctYield']);
+$adjunct8PPG = mysql_query($query_adjunct8PPG, $brewing) or die(mysql_error());
+$row_adjunct8PPG = mysql_fetch_assoc($adjunct8PPG);
+
+$query_adjunct9 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct9'";
+$adjunct9 = mysql_query($query_adjunct9, $brewing) or die(mysql_error());
+$row_adjunct9 = mysql_fetch_assoc($adjunct9);
+
+$query_adjunct9PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct9['adjunctYield']);
+$adjunct9PPG = mysql_query($query_adjunct9PPG, $brewing) or die(mysql_error());
+$row_adjunct9PPG = mysql_fetch_assoc($adjunct9PPG);
 
 // Extract Gravity Units (GU)
 if ($row_pref['measWeight2'] == "pounds") { 
@@ -307,27 +328,27 @@ $grain15GU = ($brewGrain15Weight * 2.2046) * $row_grainPPG15['sugarPPG'];
 
 // Adjunct Gravity Units
 if ($row_pref['measWeight2'] == "pounds") {
-$adjunct1GU = $brewAdjunct1Weight * $row_adjunctPPG1['sugarPPG'];
-$adjunct2GU = $brewAdjunct2Weight * $row_adjunctPPG2['sugarPPG'];
-$adjunct3GU = $brewAdjunct3Weight * $row_adjunctPPG3['sugarPPG'];
-$adjunct4GU = $brewAdjunct4Weight * $row_adjunctPPG4['sugarPPG'];
-$adjunct5GU = $brewAdjunct5Weight * $row_adjunctPPG5['sugarPPG'];
-$adjunct6GU = $brewAdjunct6Weight * $row_adjunctPPG6['sugarPPG'];
-$adjunct7GU = $brewAdjunct7Weight * $row_adjunctPPG7['sugarPPG'];
-$adjunct8GU = $brewAdjunct8Weight * $row_adjunctPPG8['sugarPPG'];
-$adjunct9GU = $brewAdjunct9Weight * $row_adjunctPPG9['sugarPPG'];
+$adjunct1GU = $brewAdjunct1Weight * $row_adjunct1PPG['sugarPPG'];
+$adjunct2GU = $brewAdjunct2Weight * $row_adjunct2PPG['sugarPPG'];
+$adjunct3GU = $brewAdjunct3Weight * $row_adjunct3PPG['sugarPPG'];
+$adjunct4GU = $brewAdjunct4Weight * $row_adjunct4PPG['sugarPPG'];
+$adjunct5GU = $brewAdjunct5Weight * $row_adjunct5PPG['sugarPPG'];
+$adjunct6GU = $brewAdjunct6Weight * $row_adjunct6PPG['sugarPPG'];
+$adjunct7GU = $brewAdjunct7Weight * $row_adjunct7PPG['sugarPPG'];
+$adjunct8GU = $brewAdjunct8Weight * $row_adjunct8PPG['sugarPPG'];
+$adjunct9GU = $brewAdjunct9Weight * $row_adjunct9PPG['sugarPPG'];
 }
 
 if ($row_pref['measWeight2'] == "kilograms") {
-$adjunct1GU = ($brewAdjunct1Weight * 2.2046) * $row_adjunctPPG1['sugarPPG'];
-$adjunct2GU = ($brewAdjunct2Weight * 2.2046) * $row_adjunctPPG2['sugarPPG'];
-$adjunct3GU = ($brewAdjunct3Weight * 2.2046) * $row_adjunctPPG3['sugarPPG'];
-$adjunct4GU = ($brewAdjunct4Weight * 2.2046) * $row_adjunctPPG4['sugarPPG'];
-$adjunct5GU = ($brewAdjunct5Weight * 2.2046) * $row_adjunctPPG5['sugarPPG'];
-$adjunct6GU = ($brewAdjunct6Weight * 2.2046) * $row_adjunctPPG6['sugarPPG'];
-$adjunct7GU = ($brewAdjunct7Weight * 2.2046) * $row_adjunctPPG7['sugarPPG'];
-$adjunct8GU = ($brewAdjunct8Weight * 2.2046) * $row_adjunctPPG8['sugarPPG'];
-$adjunct9GU = ($brewAdjunct9Weight * 2.2046) * $row_adjunctPPG9['sugarPPG'];
+$adjunct1GU = ($brewAdjunct1Weight * 2.2046) * $row_adjunct1PPG['sugarPPG'];
+$adjunct2GU = ($brewAdjunct2Weight * 2.2046) * $row_adjunct2PPG['sugarPPG'];
+$adjunct3GU = ($brewAdjunct3Weight * 2.2046) * $row_adjunct3PPG['sugarPPG'];
+$adjunct4GU = ($brewAdjunct4Weight * 2.2046) * $row_adjunct4PPG['sugarPPG'];
+$adjunct5GU = ($brewAdjunct5Weight * 2.2046) * $row_adjunct5PPG['sugarPPG'];
+$adjunct6GU = ($brewAdjunct6Weight * 2.2046) * $row_adjunct6PPG['sugarPPG'];
+$adjunct7GU = ($brewAdjunct7Weight * 2.2046) * $row_adjunct7PPG['sugarPPG'];
+$adjunct8GU = ($brewAdjunct8Weight * 2.2046) * $row_adjunct8PPG['sugarPPG'];
+$adjunct9GU = ($brewAdjunct9Weight * 2.2046) * $row_adjunct9PPG['sugarPPG'];
 }
 
 // Total Gravity Units (GU)

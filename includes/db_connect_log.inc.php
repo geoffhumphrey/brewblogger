@@ -197,7 +197,7 @@ if (($row_pref['mode'] == "2") && ($filter != "all")) {
 mysql_select_db($database_brewing, $brewing);
 $result = mysql_query("SELECT count(*) FROM brewing WHERE brewBrewerID = '$filter'");
 $total = mysql_result($result, 0);
-$list = mysql_query("SELECT * FROM brewing WHERE brewBrewerID = '$filter' ORDER BY brewDate DESC LIMIT $start, $display") or die(mysql_error());
+$list = mysql_query("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewBrewerID = '$filter'ORDER BY brewDate DESC LIMIT $start, $display") or die(mysql_error());
 $row_list = mysql_fetch_assoc($list);
 }
 
@@ -630,13 +630,13 @@ $totalRows_status = mysql_num_rows($status);
 // Status - multi-user
 if ($row_pref['mode'] == "2") { 
 mysql_select_db($database_brewing, $brewing);
-$countStatus = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' AND brewArchive NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "", "Y");
+$countStatus = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '' AND brewArchive NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "Y");
 $query_count = mysql_query($countStatus, $brewing) or die(mysql_error());
 $total_status = mysql_num_rows($query_count);
 
 mysql_select_db($database_brewing, $brewing);
-if ($page == "profile") $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' AND brewArchive NOT LIKE '%s' ORDER BY brewStatus,brewName ASC", $filter, "", "Y");
-else $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '%s' ORDER BY brewStatus,brewName,brewDate DESC", $row_log['brewBrewerID'], "");
+if ($page == "profile") $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '' AND brewArchive NOT LIKE 'Y' ORDER BY brewStatus,brewName ASC", $filter);
+else $query_status = sprintf("SELECT * FROM brewing WHERE brewBrewerID = '%s' AND brewStatus NOT LIKE '' AND brewArchive NOT LIKE 'Y' ORDER BY brewStatus,brewName,brewDate DESC", $row_log['brewBrewerID']);
 if ($total_status > 25) $query_status .= " LIMIT 25";
 $status = mysql_query($query_status, $brewing) or die(mysql_error());
 $row_status = mysql_fetch_assoc($status);

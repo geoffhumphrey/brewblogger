@@ -1,4 +1,4 @@
-<div id="headerContentAdmin">Featured <?php echo $dbName; ?></div>
+<div class="headerContentAdmin">Featured <?php echo $dbName; ?></div>
 <table class="dataTable">
 <tr>
 <?php if (isset($_SESSION["loginUsername"])) echo "<td class=\"dataHeadingList\" width=\"1%\"><img src=\"".$imageSrc."pencil.png\" border=\"0\" align=\"absmiddle\"></td>"; ?>

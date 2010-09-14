@@ -410,7 +410,8 @@ if ($results != "verify") {
     			<?php do {  ?>
     			<option value="<?php echo $row_adjuncts['adjunctName']; ?>" <?php if ($results == "true") { if ($brewAdjunct1 == $row_adjuncts['adjunctName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewAddition1'] == $row_adjuncts['adjunctName']) echo "SELECTED"; } ?>><?php echo $row_adjuncts['adjunctName']; ?></option>
     			<?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
-   			</select>		</td>
+   			</select>
+            </td>
 		<td class="dataLabel">Weight:</td>
    		<td class="data" width="5%"><input name="brewAdjunct1Weight" type="text" id="brewAdjunct1Weight" size="5" value="<?php if ($results == "true") echo $brewAdjunct1Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewAddition1Amt']; ?>">
 		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
@@ -418,12 +419,13 @@ if ($results != "verify") {
 	<tr>
    		<td class="dataLabelLeft">Adjunct 2:</td>
 		<td class="data">
-   		<select name="brewAdjunct2" id="brewAdjunct2">
+   		    <select name="brewAdjunct2" id="brewAdjunct2">
 				<option value=""></option>
     			<?php do {  ?>
-    			<option value="<?php echo $row_adjuncts['adjunctName']; ?>" <?php if ($results == "true") { if ($brewAdjunct2 == $row_adjuncts['adjunctName']) echo "SELECTED"; } if (($source == "recipes") || ($source == "brewing")) { if ($row_recipeRecalc['brewAddition2'] == $row_adjuncts['adjunctName']) echo "SELECTED"; } ?>><?php echo $row_adjuncts['adjunctName']; ?></option>
+    			<option value="<?php echo $row_adjuncts['adjunctName']; ?>" <?php if ($results == "true") { if ($brewAdjunct2 == $row_adjuncts['adjunctName']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewAddition2'] == $row_adjuncts['adjunctName']) echo "SELECTED"; } ?>><?php echo $row_adjuncts['adjunctName']; ?></option>
     			<?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
-	  	</select>		</td>
+   			</select>
+        </td>
    		<td class="dataLabel">Weight:</td>
    		<td class="data"><input name="brewAdjunct2Weight" type="text" id="brewAdjunct2Weight" size="5" value="<?php if ($results == "true") echo $brewAdjunct2Weight; if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) echo $row_recipeRecalc['brewAddition2Amt']; ?>">
 		<td class="data"><?php echo $row_pref['measWeight2']; ?></td>
