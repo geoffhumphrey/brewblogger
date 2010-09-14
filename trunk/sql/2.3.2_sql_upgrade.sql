@@ -1,6 +1,6 @@
 -- SQL Changes: BrewBlogger 2.3.2
 -- Created February 8, 2010 by gpzhumphrey
--- Modified August 17, 2010 by gpzhumphrey
+-- Modified September 10, 2010 by gpzhumphrey
 
 INSERT INTO `brewingcss` (`id`, `theme`, `themeName`, `themeColor1`, `themeColor2`) VALUES
 (NULL, 'SB12.css', 'SB12', '#dae2ec', '#c7d3e3');
@@ -131,3 +131,35 @@ ADD `brewHops15Form` varchar(25) NULL AFTER `brewHops15Type`;
 
 ALTER TABLE `preferences`
 ADD `hopPelletFactor` FLOAT NOT NULL DEFAULT '1.06' COMMENT 'Pellet factor compared to whole/plug';
+
+INSERT INTO `adjuncts` (`id`, `adjunctName`, `adjunctType`, `adjunctOrigin`, `adjunctSupplier`, `adjunctLovibond`, `adjunctInfo`, `adjunctCategory`, `adjunctYield`) 
+VALUES 
+(NULL, 'Fruit - Blackberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Raspberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Marionberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Blueberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Cherries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Cranberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Strawberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Watermellon, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Apples, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Grapes, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Peaches, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
+(NULL, 'Fruit - Blackberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Raspberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Marionberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Blueberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Cherries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Cranberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Strawberries, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Watermellon, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Apples, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Raisins', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Peaches, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Fruit - Prunes', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200');
+
+-- Derived from averages at http://winemaking.jackkeller.net/sugar.asp --
+
+INSERT INTO `sugar_type` (`id`, `sugarName`, `sugarPPG`) VALUES
+(200, 'Fruit - Dried', '38'),
+(201, 'Fruit - Raw, Fresh/Frozen, No Sugar Added', '13');

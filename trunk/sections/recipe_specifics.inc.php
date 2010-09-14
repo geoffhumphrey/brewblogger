@@ -59,17 +59,19 @@ $totalRows_styles = mysql_num_rows($styles);
            </td>
   	   </tr>
 	   <?php } // Lovibond ?>
-	   <?php if ($row_log['brewBitterness'] != "" ) {  ?>
+	   <?php if ($row_log['brewBitterness'] != "") {  ?>
   	   <tr>
   		   <td class="dataLabelLeft">Bitterness (Calc):</td>
 		   <td class="data"><?php $IBU = ltrim ($row_log['brewBitterness'], "0"); echo round ($IBU,1)." ".$row_pref['measBitter']; if ($row_log['brewIBUFormula'] != "") echo " (".$row_log['brewIBUFormula'].")"; ?></td>
   	   </tr>
 	   <?php } // Bitterness ?>
 	   <?php if (($row_log['brewOG'] == "" ) || ($row_log['brewFG'] == "" )) echo ""; else { ?>
-	   <tr>
+	   <?php if ($row_log['brewBitterness'] != "") { ?>
+       <tr>
 	     <td class="dataLabelLeft">BU/GU:</td>
 	     <td class="data"><?php $bugu = $row_log['brewBitterness']/(($row_log['brewOG'] - 1) * 1000); echo round ($bugu, 2); ?></td>
-	     </tr>
+	   </tr>
+       <?php } ?>
 	   <tr>
   	       <td class="dataLabelLeft">Calories:</td>
 	       <td class="data"><?php echo round ($calories, 0); ?> (12 ounces)</td>

@@ -6,12 +6,11 @@ body  {
 font-size: 100%; /* Fixes exaggerated text resizing in IE6 and IE7 */
 }
 
-body, caption, input, textarea, select, option, legend, fieldset  {
+caption, input, textarea, select, option, legend, fieldset  {
 font-family: Verdana, Arial, Helvetica, "Bitstream Vera Sans", sans-serif;
 }
 
 th, td {
-font-family: Verdana, Arial, Helvetica, "Bitstream Vera Sans", sans-serif;
 vertical-align: top;
 }
 

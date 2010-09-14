@@ -17,8 +17,8 @@ $fg_featured = $row_featured['brewFG'];
 
 if (($page == "brewBlogCurrent") || ($page == "brewBlogList") || ($page == "brewBlogDetail") || ($page == "logPrint") || ($page == "recipePrint") || ($page == "recipeList") || ($page == "recipeDetail")) {
 // Square OG and FG
-$og2 = $og * $og;
-$fg2 = $fg * $fg;
+$og2 = pow($og,2);
+$fg2 = pow($fg,2);
 
 // Degrees Plato Calculation
 $plato_i = (-463.37) + (668.72 * $og) - (205.35 * $og2);
