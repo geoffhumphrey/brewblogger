@@ -1923,3 +1923,6 @@ VALUES
 INSERT INTO `sugar_type` (`id`, `sugarName`, `sugarPPG`) VALUES
 (200, 'Fruit - Dried', '38'),
 (201, 'Fruit - Raw, Fresh/Frozen, No Sugar Added', '13');
+
+ALTER TABLE `preferences`
+ADD `hopPelletFactor` FLOAT NOT NULL DEFAULT '1.06' COMMENT 'Pellet factor compared to whole/plug';
