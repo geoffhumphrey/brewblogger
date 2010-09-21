@@ -318,25 +318,33 @@
   <tr>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
     <td class="data" width="33%"><a href="tools/calculate.php?section=bitterness&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Bitterness Calculator</a></td>
-    <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
-    <td class="data" width="33%"><a href="tools/calculate.php?section=calories&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Calories, Alcohol, and Plato Calculator</a></td>
     <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
-    <td class="data"><a href="tools/calculate.php?section=force_carb&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Force Carbonation Calculator</a></td>
+    <td class="data" width="33%"><a href="tools/calculate.php?section=efficiency&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Brewhouse Efficiency Calculator</a></td>
+    <td class="data_icon" width="1%"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
+    <td class="data"><a href="tools/calculate.php?section=calories&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Calories, Alcohol, and Plato Calculator</a></td>
   </tr>
   <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
-    <td class="data"><a href="tools/calculate.php?section=plato&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Plato to Specific Gravity Calculator</a></td>
+    <td class="data"><a href="tools/calculate.php?section=force_carb&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Force Carbonation Calculator</a></td>
+    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
+    <td class="data"><a href="tools/calculate.php?section=hyd&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Hydrometer Correction Calculator</a></td>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
-    <td class="data"><a href="tools/calculate.php?section=efficiency&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">PPG and Efficiency Calculator</a></td>
+    <td class="data"><a href="tools/calculate.php?section=plato&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Plato/Brix/SG Calculator</a></td>
+  </tr>
+  <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
     <td class="data"><a href="tools/calculate.php?section=sugar&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Priming Sugar Calculator</a></td>
+    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
+    <td class="data"><a href="tools/calculate.php?section=strike&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Strike Water Temperature Calculator</a></td>
+    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
+    <td class="data"><a href="tools/calculate.php?section=water&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Water Amounts Calculator</a></td>
   </tr>
   <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
-    <td class="data"><a href="index.php?action=chooseRecalc">Recalculate a Recipe or Log</a></td>
+    <td class="data"><a href="index.php?action=chooseRecalc" target="_parent">Recalculate a Recipe or Log</a></td>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png"></td>
-    <td class="data"><a href="index.php?action=calculate">Recipe Calculator</a></td>
-    <td class="data_icon"><img src="<?php echo $imageSrc; ?>calculator.png" /></td>
-    <td class="data"><a href="tools/calculate.php?section=water&KeepThis=true&TB_iframe=true&height=475&width=800" title="<?php echo $row_pref['menuCalculators']; ?>" class="thickbox">Water Amounts Calculator</a> </td>
+    <td class="data"><a href="index.php?action=calculate" target="_parent">Recipe Calculator</a></td>
+    <td class="data_icon">&nbsp;</td>
+    <td class="data">&nbsp;</td>
   </tr>
 </table>
