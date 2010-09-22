@@ -129,9 +129,6 @@ ADD `brewHops15Use` varchar(25) NULL AFTER `brewHops15Time`,
 ADD `brewHops15Type` varchar(25) NULL AFTER `brewHops15Use`,
 ADD `brewHops15Form` varchar(25) NULL AFTER `brewHops15Type`;  
 
-ALTER TABLE `preferences`
-ADD `hopPelletFactor` FLOAT NOT NULL DEFAULT '1.06' COMMENT 'Pellet factor compared to whole/plug';
-
 INSERT INTO `adjuncts` (`id`, `adjunctName`, `adjunctType`, `adjunctOrigin`, `adjunctSupplier`, `adjunctLovibond`, `adjunctInfo`, `adjunctCategory`, `adjunctYield`) 
 VALUES 
 (NULL, 'Fruit - Blackberries, Raw or Frozen', 'Sugar', NULL, NULL, NULL, NULL, NULL, '201'),
@@ -156,10 +153,28 @@ VALUES
 (NULL, 'Fruit - Apples, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
 (NULL, 'Fruit - Raisins', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
 (NULL, 'Fruit - Peaches, Dried', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
-(NULL, 'Fruit - Prunes', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200');
+(NULL, 'Fruit - Prunes', 'Sugar', NULL, NULL, NULL, NULL, NULL, '200'),
+(NULL, 'Juice - Apple', 'Sugar', NULL, NULL, NULL, NULL, NULL, '202'),
+(NULL, 'Juice - Grape', 'Sugar', NULL, NULL, NULL, NULL, NULL, '203'),
+(NULL, 'Juice - Orange', 'Sugar', NULL, NULL, NULL, NULL, NULL, '204'),
+(NULL, 'Juice - Pineapple', 'Sugar', NULL, NULL, NULL, NULL, NULL, '205'),
+(NULL, 'Juice - Lemon', 'Sugar', NULL, NULL, NULL, NULL, NULL, '206'),
+(NULL, 'Juice - Grapefruit', 'Sugar', NULL, NULL, NULL, NULL, NULL, '207'),
+(NULL, 'Juice - Cranberry', 'Sugar', NULL, NULL, NULL, NULL, NULL, '208'),
+(NULL, 'Juice - Other', 'Sugar', NULL, NULL, NULL, NULL, NULL, '202');
 
 -- Derived from averages at http://winemaking.jackkeller.net/sugar.asp --
 
 INSERT INTO `sugar_type` (`id`, `sugarName`, `sugarPPG`) VALUES
 (200, 'Fruit - Dried', '38'),
-(201, 'Fruit - Raw, Fresh/Frozen, No Sugar Added', '13');
+(201, 'Fruit - Raw, Fresh/Frozen, No Sugar Added', '13'),
+(202, 'Juice - Apple, No Sugar Added', '11'),
+(203, 'Juice - Grape, No Sugar Added', '14'),
+(204, 'Juice - Orange, No Sugar Added', '11'),
+(205, 'Juice - Pineapple, No Sugar Added', '12'),
+(206, 'Juice - Lemon, No Sugar Added', '3'),
+(207, 'Juice - Grapefruit, No Sugar Added', '6'), 
+(208, 'Juice - Cranberry, No Sugar Added', '13');
+
+ALTER TABLE `preferences`
+ADD `hopPelletFactor` FLOAT NOT NULL DEFAULT '1.06' COMMENT 'Pellet factor compared to whole/plug';
