@@ -1,14 +1,23 @@
+<?php 
+
+$query_adjuncts = "SELECT * FROM adjuncts ORDER BY adjunctName ASC";
+$adjuncts = mysql_query($query_adjuncts, $brewing) or die(mysql_error());
+$row_adjuncts = mysql_fetch_assoc($adjuncts);
+$totalRows_adjuncts = mysql_num_rows($adjuncts);
+
+?>
+
 <div class="headerContentAdmin">Adjuncts</div>
 <table>     
 <tr>
-   <td class="dataLabelLeft" width="5%">Adjunct 1:</td>
+   <td class="dataLabelLeft" width="5%">Adjunct 1: </td>
    <td class="data" width="10%">
    <select name="brewAddition1">
    <?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewAddition1'] != "")) { ?><option value="<?php echo $row_log['brewAddition1']; ?>"><?php echo $row_log['brewAddition1']; ?></option><?php } ?>
    <option value=""></option>
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
-   <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition1']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAddition1))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
+   <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action=="reuse")) {  if ($row_adjuncts['adjunctName'] == $row_log['brewAddition1']) echo "SELECTED"; } if ($action == "importCalc") { if ($row_adjuncts['adjunctName'] == $brewAddition1) echo "SELECTED"; } ?>><?php echo $row_adjuncts['adjunctName']?></option>
    <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
    </select>
    </td>

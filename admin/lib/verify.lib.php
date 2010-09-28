@@ -6,12 +6,12 @@
 	</tr>
 </table>
 <div class="headerContentAdmin"><?php if ($assoc != "import") echo "Recalculated"; else echo "Calculated"; ?> <?php if ($source == "brewing") echo "BrewBlog "; ?>Recipe <?php if ($assoc == "import") echo "To Import"; ?></div>
-<form id="form4" action="<?php if ($assoc == "update") echo "process"; if ($assoc == "import") echo "index"; ?>.php?action=<?php if ($assoc == "update") echo "update"; if ($assoc == "import") echo "importCalc"; ?>&dbTable=<?php if ($assoc == "update") echo $source; if ($assoc == "import") echo $importDB; if ($assoc == "update") echo "&id=".$id; ?>" method="post" name="form4">
+<form id="form4" action="<?php if ($assoc == "update") echo "process"; if ($assoc == "import") echo "index"; ?>.php?action=<?php if ($assoc == "update") echo "update"; if ($assoc == "import") echo "importCalc"; ?>&dbTable=<?php if ($assoc == "update") echo $source; if ($assoc == "import") echo $importDB; if ($assoc == "import") echo "&filter=".$loginUsername; if ($assoc == "update") echo "&id=".$id; ?>" method="post" name="form4">
 <table class="dataTable">
 <?php if ($row_recipeRecalc['id'] != "") { ?>
 <tr>
 	<td width="10%">&nbsp;</td>
-	<td width="40%" class="text_12_bold data"><?php if ($assoc == "import") echo "Original"; else echo "Recalculated Recipe"; ?></td>
+	<td width="40%" class="text_12_bold data"><?php if ($assoc == "import") echo "Original"; else echo "Present Recipe"; ?></td>
 	<td width="40%" class="text_12_bold data"><?php if ($assoc == "import") echo "To Import"; else echo "Recalculated Recipe"; ?></td>
 </tr>
 <?php } ?>
@@ -200,27 +200,30 @@
 	</td>
     <?php } ?>
 	<td class="data">
+    	<table>
 	<?php 
-	if ($brewHops1 != "") echo $brewHops1Weight." ".$row_pref['measWeight1']." ".$brewHops1." ".$brewHops1IBU."% @ ".$brewHops1Time." min.<br>"; 
-	if ($brewHops2 != "") echo $brewHops2Weight." ".$row_pref['measWeight1']." ".$brewHops2." ".$brewHops2IBU."% @ ".$brewHops2Time." min.<br>"; 
-	if ($brewHops3 != "") echo $brewHops3Weight." ".$row_pref['measWeight1']." ".$brewHops3." ".$brewHops3IBU."% @ ".$brewHops3Time." min.<br>"; 
-	if ($brewHops4 != "") echo $brewHops4Weight." ".$row_pref['measWeight1']." ".$brewHops4." ".$brewHops4IBU."% @ ".$brewHops4Time." min.<br>"; 
-	if ($brewHops5 != "") echo $brewHops5Weight." ".$row_pref['measWeight1']." ".$brewHops5." ".$brewHops5IBU."% @ ".$brewHops5Time." min.<br>"; 
-	if ($brewHops6 != "") echo $brewHops6Weight." ".$row_pref['measWeight1']." ".$brewHops6." ".$brewHops6IBU."% @ ".$brewHops6Time." min.<br>"; 
-	if ($brewHops7 != "") echo $brewHops7Weight." ".$row_pref['measWeight1']." ".$brewHops7." ".$brewHops7IBU."% @ ".$brewHops7Time." min.<br>"; 
-	if ($brewHops8 != "") echo $brewHops8Weight." ".$row_pref['measWeight1']." ".$brewHops8." ".$brewHops8IBU."% @ ".$brewHops8Time." min.<br>";
-	if ($brewHops9 != "") echo $brewHops9Weight." ".$row_pref['measWeight1']." ".$brewHops9." ".$brewHops9IBU."% @ ".$brewHops9Time." min.<br>"; 
-	if ($brewHops10 != "") echo $brewHops10Weight." ".$row_pref['measWeight1']." ".$brewHops10." ".$brewHops10IBU."% @ ".$brewHops10Time." min.<br>"; 
-	if ($brewHops11 != "") echo $brewHops11Weight." ".$row_pref['measWeight1']." ".$brewHops11." ".$brewHops11IBU."% @ ".$brewHops11Time." min.<br>"; 
-	if ($brewHops12 != "") echo $brewHops12Weight." ".$row_pref['measWeight1']." ".$brewHops12." ".$brewHops12IBU."% @ ".$brewHops11Time." min.<br>"; 
-	if ($brewHops13 != "") echo $brewHops13Weight." ".$row_pref['measWeight1']." ".$brewHops13." ".$brewHops13IBU."% @ ".$brewHops11Time." min.<br>"; 
-	if ($brewHops14 != "") echo $brewHops14Weight." ".$row_pref['measWeight1']." ".$brewHops14." ".$brewHops14IBU."% @ ".$brewHops11Time." min.<br>"; 
-	if ($brewHops15 != "") echo $brewHops15Weight." ".$row_pref['measWeight1']." ".$brewHops15." ".$brewHops15IBU."% @ ".$brewHops11Time." min."; 
+	if ($brewHops1 != "") echo $brewHops1Weight." ".$row_pref['measWeight1']." ".$brewHops1." ".$brewHops1IBU."% ".$brewHops1Form." @ ".$brewHops1Time." min.<br>"; 
+	if ($brewHops2 != "") echo $brewHops2Weight." ".$row_pref['measWeight1']." ".$brewHops2." ".$brewHops2IBU."% ".$brewHops2Form." @ ".$brewHops2Time." min.<br>"; 
+	if ($brewHops3 != "") echo $brewHops3Weight." ".$row_pref['measWeight1']." ".$brewHops3." ".$brewHops3IBU."% ".$brewHops3Form." @ ".$brewHops3Time." min.<br>"; 
+	if ($brewHops4 != "") echo $brewHops4Weight." ".$row_pref['measWeight1']." ".$brewHops4." ".$brewHops4IBU."% ".$brewHops4Form." @ ".$brewHops4Time." min.<br>"; 
+	if ($brewHops5 != "") echo $brewHops5Weight." ".$row_pref['measWeight1']." ".$brewHops5." ".$brewHops5IBU."% ".$brewHops5Form." @ ".$brewHops5Time." min.<br>"; 
+	if ($brewHops6 != "") echo $brewHops6Weight." ".$row_pref['measWeight1']." ".$brewHops6." ".$brewHops6IBU."% ".$brewHops6Form." @ ".$brewHops6Time." min.<br>"; 
+	if ($brewHops7 != "") echo $brewHops7Weight." ".$row_pref['measWeight1']." ".$brewHops7." ".$brewHops7IBU."% ".$brewHops7Form." @ ".$brewHops7Time." min.<br>"; 
+	if ($brewHops8 != "") echo $brewHops8Weight." ".$row_pref['measWeight1']." ".$brewHops8." ".$brewHops8IBU."% ".$brewHops8Form." @ ".$brewHops8Time." min.<br>";
+	if ($brewHops9 != "") echo $brewHops9Weight." ".$row_pref['measWeight1']." ".$brewHops9." ".$brewHops9IBU."% ".$brewHops9Form." @ ".$brewHops9Time." min.<br>"; 
+	if ($brewHops10 != "") echo $brewHops10Weight." ".$row_pref['measWeight1']." ".$brewHops10." ".$brewHops10IBU."% ".$brewHops10Form." @ ".$brewHops10Time." min.<br>"; 
+	if ($brewHops11 != "") echo $brewHops11Weight." ".$row_pref['measWeight1']." ".$brewHops11." ".$brewHops11IBU."% ".$brewHops11Form." @ ".$brewHops11Time." min.<br>"; 
+	if ($brewHops12 != "") echo $brewHops12Weight." ".$row_pref['measWeight1']." ".$brewHops12." ".$brewHops12IBU."% ".$brewHops12Form." @ ".$brewHops12Time." min.<br>"; 
+	if ($brewHops13 != "") echo $brewHops13Weight." ".$row_pref['measWeight1']." ".$brewHops13." ".$brewHops13IBU."% ".$brewHops13Form." @ ".$brewHops13Time." min.<br>"; 
+	if ($brewHops14 != "") echo $brewHops14Weight." ".$row_pref['measWeight1']." ".$brewHops14." ".$brewHops14IBU."% ".$brewHops14Form." @ ".$brewHops14Time." min.<br>"; 
+	if ($brewHops15 != "") echo $brewHops15Weight." ".$row_pref['measWeight1']." ".$brewHops15." ".$brewHops15IBU."% ".$brewHops15Form." @ ".$brewHops15Time." min."; 
 	?>
+    	</table>
 	</td>
 </tr>
 </table>
 <div id="hide">
+<input type="hidden" name="brewBoilTime" value="<?php echo $row_recipeRecalc['brewBoilTime']; ?>"  />
 <?php if (($assoc == "import") && ($importDB == "brewing")) { ?>
 <input type="hidden" name="brewTargetOG" value="<?php echo round ($brewOG, 3); ?>">
 <input type="hidden" name="brewTargetFG" value="<?php echo round ($brewFG, 3); ?>">

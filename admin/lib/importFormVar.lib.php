@@ -60,11 +60,11 @@ if ($action == "calculate") { ?>
 <input type="hidden" name="brewAdjunct2" value="<?php echo $brewAdjunct2; ?>">
 <input type="hidden" name="brewAdjunct3" value="<?php echo $brewAdjunct3; ?>">
 <input type="hidden" name="brewAdjunct4" value="<?php echo $brewAdjunct4; ?>">
-<input type="hidden" name="brewAdjunct5" value="<?php echo $brewAdjunct6; ?>">
-<input type="hidden" name="brewAdjunct6" value="<?php echo $brewAdjunct7; ?>">
-<input type="hidden" name="brewAdjunct7" value="<?php echo $brewAdjunct8; ?>">
-<input type="hidden" name="brewAdjunct8" value="<?php echo $brewAdjunct9; ?>">
-<input type="hidden" name="brewAdjunct9" value="<?php echo $brewAdjunct5; ?>">
+<input type="hidden" name="brewAdjunct5" value="<?php echo $brewAdjunct5; ?>">
+<input type="hidden" name="brewAdjunct6" value="<?php echo $brewAdjunct6; ?>">
+<input type="hidden" name="brewAdjunct7" value="<?php echo $brewAdjunct7; ?>">
+<input type="hidden" name="brewAdjunct8" value="<?php echo $brewAdjunct8; ?>">
+<input type="hidden" name="brewAdjunct9" value="<?php echo $brewAdjunct9; ?>">
 
 <input type="hidden" name="brewAdjunct1Weight" value="<?php echo $brewAdjunct1Weight; ?>">
 <input type="hidden" name="brewAdjunct2Weight" value="<?php echo $brewAdjunct2Weight; ?>">
@@ -155,6 +155,24 @@ if ($action == "calculate") { ?>
 <input type="hidden" name="brewHops13Form" value="<?php echo $brewHops13Form; ?>">
 <input type="hidden" name="brewHops14Form" value="<?php echo $brewHops14Form; ?>">
 <input type="hidden" name="brewHops15Form" value="<?php echo $brewHops15Form; ?>">
+<!-- is this here? -->
+
+	<?php if ($assoc == "import") { ?>
+
+<input type="hidden" name="brewMisc1Name" value="<?php echo $row_recipeRecalc['brewMisc1Name']; ?>" />
+<input type="hidden" name="brewMisc1Time" value="<?php echo $row_recipeRecalc['brewMisc1Time']; ?>" />
+<input type="hidden" name="brewMisc1Amount" value="<?php echo $row_recipeRecalc['brewMisc1Amount']; ?>" />
+<input type="hidden" name="brewMisc2Name" value="<?php echo $row_recipeRecalc['brewMisc2Name']; ?>" />
+<input type="hidden" name="brewMisc2Time" value="<?php echo $row_recipeRecalc['brewMisc2Time']; ?>" />
+<input type="hidden" name="brewMisc2Amount" value="<?php echo $row_recipeRecalc['brewMisc2Amount']; ?>" />
+<input type="hidden" name="brewMisc3Name" value="<?php echo $row_recipeRecalc['brewMisc3Name']; ?>" />
+<input type="hidden" name="brewMisc3Time" value="<?php echo $row_recipeRecalc['brewMisc3Time']; ?>" />
+<input type="hidden" name="brewMisc3Amount" value="<?php echo $row_recipeRecalc['brewMisc3Amount']; ?>" />
+<input type="hidden" name="brewMisc4Name" value="<?php echo $row_recipeRecalc['brewMisc4Name']; ?>" />
+<input type="hidden" name="brewMisc4Time" value="<?php echo $row_recipeRecalc['brewMisc4Time']; ?>" />
+<input type="hidden" name="brewMisc4Amount" value="<?php echo $row_recipeRecalc['brewMisc4Amount']; ?>" />
+
+	<?php } ?>
 
 <?php }  
 
@@ -203,24 +221,24 @@ $brewGrain13Weight = $_POST['brewGrain13Weight'];
 $brewGrain14Weight = $_POST['brewGrain14Weight'];
 $brewGrain15Weight = $_POST['brewGrain15Weight'];
 
-$brewAddition1 = $_POST['brewAddition1'];
-$brewAddition2 = $_POST['brewAddition2'];
-$brewAddition3 = $_POST['brewAddition3'];
-$brewAddition4 = $_POST['brewAddition4'];
-$brewAddition5 = $_POST['brewAddition5'];
-$brewAddition6 = $_POST['brewAddition6'];
-$brewAddition7 = $_POST['brewAddition7'];
-$brewAddition8 = $_POST['brewAddition8'];
-$brewAddition9 = $_POST['brewAddition9'];
-$brewAddition1Amt = $_POST['brewAddition1Amt'];
-$brewAddition2Amt = $_POST['brewAddition2Amt'];
-$brewAddition3Amt = $_POST['brewAddition3Amt'];
-$brewAddition4Amt = $_POST['brewAddition4Amt'];
-$brewAddition5Amt = $_POST['brewAddition5Amt'];
-$brewAddition6Amt = $_POST['brewAddition6Amt'];
-$brewAddition7Amt = $_POST['brewAddition7Amt'];
-$brewAddition8Amt = $_POST['brewAddition8Amt'];
-$brewAddition9Amt = $_POST['brewAddition9Amt'];
+$brewAddition1 = $_POST['brewAdjunct1'];
+$brewAddition2 = $_POST['brewAdjunct2'];
+$brewAddition3 = $_POST['brewAdjunct3'];
+$brewAddition4 = $_POST['brewAdjunct4'];
+$brewAddition5 = $_POST['brewAdjunct5'];
+$brewAddition6 = $_POST['brewAdjunct6'];
+$brewAddition7 = $_POST['brewAdjunct7'];
+$brewAddition8 = $_POST['brewAdjunct8'];
+$brewAddition9 = $_POST['brewAdjunct9'];
+$brewAddition1Amt = $_POST['brewAdjunct1Weight'];
+$brewAddition2Amt = $_POST['brewAdjunct2Weight'];
+$brewAddition3Amt = $_POST['brewAdjunct3Weight'];
+$brewAddition4Amt = $_POST['brewAdjunct4Weight'];
+$brewAddition5Amt = $_POST['brewAdjunct5Weight'];
+$brewAddition6Amt = $_POST['brewAdjunct6Weight'];
+$brewAddition7Amt = $_POST['brewAdjunct7Weight'];
+$brewAddition8Amt = $_POST['brewAdjunct8Weight'];
+$brewAddition9Amt = $_POST['brewAdjunct9Weight'];
 
 $brewHops1 = $_POST['brewHops1'];
 $brewHops2 = $_POST['brewHops2'];

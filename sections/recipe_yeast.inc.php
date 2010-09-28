@@ -1,5 +1,6 @@
 <?php if (($page ==  "recipePrint") || ($page == "logPrint")) echo ""; else { if ((($row_log['brewYeast'] != "") && ($row_log['brewYeastProfile'] == "")) || (($row_log['brewYeast'] == "") && ($row_log['brewYeastProfile'] != ""))) { ?>
-<div id="help"><a href="sections/reference.inc.php?section=yeast&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Yeast Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div><?php } } ?>
+<div id="help"><a href="sections/reference.inc.php?section=yeast&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Yeast Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div><?php } } 
+if ((($row_log['brewYeast'] != "") && ($row_log['brewYeastProfile'] == "")) || (($row_log['brewYeast'] == "") && ($row_log['brewYeastProfile'] != ""))) { ?>
 <div class="headerContent">Yeast</div>
 <?php if ($row_log['brewYeast'] != "") { // hide Yeast section if none listed (6) ?>
 <div class="dataContainer">
@@ -80,4 +81,4 @@ if ($row_log['brewYeastAmount'] != "" ) { ?>
 <?php } ?>
 </table>
 </div>
-<?php } ?>
+<?php } } ?>

@@ -165,6 +165,8 @@ $adjuncts = mysql_query($query_adjuncts, $brewing) or die(mysql_error());
 $row_adjuncts = mysql_fetch_assoc($adjuncts);
 $totalRows_adjuncts = mysql_num_rows($adjuncts);
 
+// echo $query_adjuncts."<br>".$totalRows_adjuncts;
+
 $query_news = "SELECT * FROM news ORDER BY newsDate DESC";
 $news = mysql_query($query_news, $brewing) or die(mysql_error());
 $row_news = mysql_fetch_assoc($news);

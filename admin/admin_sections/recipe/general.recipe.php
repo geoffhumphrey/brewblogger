@@ -38,7 +38,7 @@
    </select>
    </td>
    <td class="dataLabel">Yield:</td>
-   <td class="data"><input name="brewYield" type="text" size="10" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if (($action == "add") || ($action == "importCalc")) echo $row_user['defaultBatchSize']; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewYield']; if ($action == "importCalc") echo $brewYield; ?>">&nbsp;<?php echo $row_pref['measFluid2']; ?></td>
+   <td class="data"><input name="brewYield" type="text" size="10" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if ($action == "add") echo $row_user['defaultBatchSize']; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewYield']; if ($action == "importCalc") echo $brewYield; ?>">&nbsp;<?php echo $row_pref['measFluid2']; ?></td>
 </tr>
 <tr>
     <td class="dataLabelLeft">Method:</td>
