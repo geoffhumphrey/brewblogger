@@ -15,7 +15,7 @@
 		<select name="brewBrewerID">
 		<option value=""></option>
    		<?php do {  ?>
-    	<option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $loginUsername)) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if ($row_users['user_name'] == $row_log['brewBrewerID']) echo "SELECTED"; } if ($action == "importCalc") {  if ($row_users['user_name'] ==  $filter) echo "SELECTED"; } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
+    	<option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $loginUsername)) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if ($row_users['user_name'] == $row_log['brewBrewerID']) echo "SELECTED"; } if ($action == "importCalc") {  if ($row_users['user_name'] ==  $filter) echo "SELECTED";  } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
     	<?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
    		</select>
 	</td>

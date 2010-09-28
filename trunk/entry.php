@@ -1,10 +1,12 @@
-<?php require_once('../Connections/config.php');
-include ('../includes/check_mobile.inc.php');
-include ('../includes/url_variables.inc.php');
+<?php 
+require ('Connections/config.php');
+require ('includes/authentication.inc.php'); session_start(); sessionAuthenticate();
+include ('includes/check_mobile.inc.php');
+include ('includes/url_variables.inc.php');
 $page = "contestPrint";
-include ('../includes/db_connect_universal.inc.php');
-include ('../includes/db_connect_log.inc.php');
-include ('../includes/plug-ins.inc.php');
+include ('includes/db_connect_universal.inc.php');
+include ('includes/db_connect_log.inc.php');
+include ('includes/plug-ins.inc.php');
 
 $dbTable = "brewing";
 if (isset($_GET['dbTable'])) {
@@ -26,11 +28,11 @@ $address = $_POST['address'];
 $city = $_POST['city'];
 $state = $_POST['state'];
 $zip = $_POST['zip'];
-$homePhone = $_POST['homePhone'];
-$workPhone = $_POST['workPhone'];
+$home_phone = $_POST['home_phone'];
+$work_phone = $_POST['work_phone'];
 $email = $_POST['email'];
-$brewClub = $_POST['brewClub'];
-$brewName = $_POST['brewName'];
+$brew_club = $_POST['brew_club'];
+$brew_name = $_POST['brew_name'];
 $still = $_POST['still'];
 $dry = $_POST['dry'];
 $hydromel = $_POST['hydromel'];
@@ -41,17 +43,17 @@ $sweet = $_POST['sweet'];
 $sparkling = $_POST['sparkling'];
 $sack = $_POST['sack'];
 $special = $_POST['special'];
-$waterTreatment = $_POST['waterTreatment'];
-$yeastLiquid = $_POST['yeastLiquid'];
-$yeastDried = $_POST['yeastDried'];
+$water_treatment = $_POST['water_treatment'];
+$yeast_liquid = $_POST['yeast_liquid'];
+$yeast_dried = $_POST['yeast_dried'];
 $starter = $_POST['starter'];
-$yeastNutrients = $_POST['yeastNutrients'];
+$yeast_nutrients = $_POST['yeast_nutrients'];
 $carbonation = $_POST['carbonation'];
-$volumeC02 = $_POST['volumeC02'];
-$primingSugar = $_POST['primingSugar'];
-$bottlingDate = $_POST['bottlingDate'];
-$finingsType = $_POST['finingsType'];
-$finingsAmount = $_POST['finingsAmount'];
+$C02_volume = $_POST['C02_volume'];
+$priming_sugar = $_POST['priming_sugar'];
+$bottling_date = $_POST['bottling_date'];
+$finings_type = $_POST['finings_type'];
+$finings_amount = $_POST['finings_amount'];
 }
 
 mysql_select_db($database_brewing, $brewing);
@@ -70,15 +72,15 @@ $style2 = mysql_query($query_style2, $brewing) or die(mysql_error());
 $row_style2 = mysql_fetch_assoc($style2);
 $totalRows_style2 = mysql_num_rows($style2);
 
-$query_club = "SELECT * FROM brewer WHERE id = '1'";
-$club = mysql_query($query_club, $brewing) or die(mysql_error());
-$row_club = mysql_fetch_assoc($club);
-$totalRows_club = mysql_num_rows($club);
-
 $query_brewer = sprintf("SELECT * FROM users WHERE user_name = '%s'", $filter);
 $brewer = mysql_query($query_brewer, $brewing) or die(mysql_error());
 $row_brewer = mysql_fetch_assoc($brewer);
 $totalRows_brewer = mysql_num_rows($brewer);
+
+$query_club = "SELECT * FROM brewer WHERE id = '1'";
+$club = mysql_query($query_club, $brewing) or die(mysql_error());
+$row_club = mysql_fetch_assoc($club);
+$totalRows_club = mysql_num_rows($club);
 
 $query_mash_profiles = sprintf("SELECT * FROM mash_profiles WHERE id='%s'", $row_log['brewMashProfile']);
 $mash_profiles = mysql_query($query_mash_profiles, $brewing) or die(mysql_error());
@@ -127,56 +129,27 @@ if ($row_style1['brewStyleGroup'] == "28") $styleConvert = "Specialty Cider and 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>AHA/BJCP Sanctioned Competition Program Entry/Recipe Form</title>
-<style type="text/css">
-<!--
-body {
-background-color: #fff;
-color: #000;
-font-family: Arial;
-font-size: 9px;
-}
-.headerTitle 			{ font-size: 1.7em; font-weight: bolder; white-space: nowrap; }
-.headerTitleSm 			{ font-size: 1.5em; font-weight: bold; white-space: nowrap; }
-.bottle					{ font-size: 1.2em; } 
-.medium					{ font-size: .9em; } 
-.small 					{ font-size: .8em; } 
-.caps					{ font-style: italic; font-weight: bold;  white-space: nowrap; }
-#printContainer 		{ width: 100%; }
-.bdr1_thick	 			{ border: 5px solid #000000; }
-.bdr1B_thick	 		{ border-bottom: 5px solid #000000; }
-.bdr1B_thick_dotted 	{ border-bottom: 3px dotted #000000; }
-.bdr1B 					{ border-bottom: 1px solid #000000; }
-.bdr1L 					{ border-left: 1px solid #000000; }
-.bdr1R 					{ border-right: 1px solid #000000; }
-.bdr1T 					{ border-top: 1px solid #000000; }
-input, textarea			{ font-family: Arial; font-size: 10px; border: 1px solid #cccccc;  }	
-.headerItalic 		    { font-size: 1em; font-style: italic; }
-table.small	td			{ padding: 1px 2px 1px 3px; }
-table.bottleLabel		{ border-collapse: collapse; }
-table.bottleLabel-inner	{ margin: 15px; width: 300px }
-table.bottleLabel-inner	td { padding: 3px; }
-.error 					{ color: #FF0000; font-size: 1em; font-weight: bold; margin: 0 0 1em 0; padding: .5em .5em .5em 1.5em; background-image: url(../images/error.png); background-position: center left; background-repeat: no-repeat; }
-
--->
-</style>
+<link href="css/html_elements.css" rel="stylesheet" type="text/css">
+<link href="css/universal_elements.css" rel="stylesheet" type="text/css">
+<link href="css/entry.css" rel="stylesheet" type="text/css">
 </head>
 <body <?php if ($action == "print") echo "onload=\"javascript:window.print()\""; ?>>
 
 <div id="printContainer">
-<form action="entry.inc.php?action=<?php if ($action == "default") echo "verify"; else echo "print"; ?>&style=<?php echo $style; ?>&id=<?php echo $id; ?>" method="post" name="form1">
+<form action="entry.php?action=<?php if ($action == "default") echo "verify"; else echo "print"; ?>&amp;style=<?php echo $style; ?>&amp;id=<?php echo $id; ?>" method="post" name="form1">
 <?php if ($action == "verify") { ?>
 <table>
   <tr>
     <td><span class="error">If any items are missing, close this window and edit the log or recipe.</span></td>
-    <td width="5%" align="right" nowrap="nowrap"><img src = "../images/printer.png" align="absmiddle" />&nbsp;<input type="submit" name="submit" id="submit" value="Print" /></td>
+    <td width="5%" align="right" nowrap="nowrap"><img src = "images/printer.png" align="absmiddle" />&nbsp;<input type="submit" name="submit" id="submit" value="Print" /></td>
   </tr>
 </table>
 <?php } ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td class="bdr1B_thick" width="10%" valign="top"><img src="../images/bjcp_logo.jpg" alt="BJCP Logo" width="65" height="60" align="left" /></td>
+    <td class="bdr1B_thick" width="10%" valign="top"><img src="images/bjcp_logo.jpg" alt="BJCP Logo" width="65" height="60" align="left" /></td>
     <td class="bdr1B_thick" width="80%" align="left" valign="bottom">
     <table width="100%" border="0" cellspacing="0" cellpadding="3">
       <tr>
@@ -186,7 +159,7 @@ table.bottleLabel-inner	td { padding: 3px; }
         <td class="headerTitle">ENTRY/RECIPE FORM</td>
       </tr>
     </table>    </td>
-    <td class="bdr1B_thick" width="10%" valign="top"><img src="../images/aha_logo.jpg" alt="AHA Logo" width="110" height="60" border="0" align="right" /></td>
+    <td class="bdr1B_thick" width="10%" valign="top"><img src="images/aha_logo.jpg" alt="AHA Logo" width="110" height="60" border="0" align="right" /></td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
@@ -224,15 +197,15 @@ table.bottleLabel-inner	td { padding: 3px; }
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
   <tr>
     <td width="15%">Phone (h)</td>
-    <td class="bdr1B"><?php if ($action == "default") { ?><input name="homePhone" type="text" id="homePhone" size="15" value="<?php echo $row_brewer['userPhoneH']; ?>" /><?php } else echo $homePhone; ?></td>
+    <td class="bdr1B"><?php if ($action == "default") { ?><input name="home_phone" type="text" id="home_phone" size="15" value="<?php echo $row_brewer['userPhoneH']; ?>" /><?php } else echo $home_phone; ?></td>
     <td width="60">Phone (w)</td>
-    <td class="bdr1B"><?php if ($action == "default") { ?><input name="workPhone" type="text" id="workPhone" size="15" value="<?php echo $row_brewer['userPhoneW']; ?>" /><?php } else echo $workPhone; ?></td>
+    <td class="bdr1B"><?php if ($action == "default") { ?><input name="work_phone" type="text" id="work_phone" size="15" value="<?php echo $row_brewer['userPhoneW']; ?>" /><?php } else echo $work_phone; ?></td>
     <td width="75">Email Address</td>
     <td class="bdr1B"><?php if ($action == "default") { ?><input name="email" type="text" id="email" size="15" value="<?php echo $row_brewer['userEmail']; ?>" /><?php } else echo $email; ?></td>
   </tr>
   <tr>
     <td width="15%">Club Name</td>
-    <td colspan="5" class="bdr1B"><?php if ($action == "default") { ?><input name="brewClub" type="text" id="brewClub" size="50" value="<?php if ($row_pref['mode'] == "2") echo $row_club['brewerFirstName']; else echo $row_club['brewerClubs']; ?>" /><?php } else echo $brewClub; ?></td>
+    <td colspan="5" class="bdr1B"><?php if ($action == "default") { ?><input name="brew_club" type="text" id="brew_club" size="50" value="<?php if ($row_pref['mode'] == "2") echo $row_club['brewerFirstName']; else echo $row_club['brewerClubs']; ?>" /><?php } else echo $brew_club; ?></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="3" cellspacing="0">
@@ -248,7 +221,7 @@ table.bottleLabel-inner	td { padding: 3px; }
   <tr>
     <td width="10%" nowrap="nowrap">Name of Brew</td>
     <td width="30%" class="bdr1B"><?php if ($action == "default") { ?>
-      <input type="text" name="brewName" id="brewName" value="<?php echo $row_log['brewName']; ?>"/><?php } else echo $brewName; ?></td>
+      <input type="text" name="brew_name" id="brew_name" value="<?php echo $row_log['brewName']; ?>"/><?php } else echo $brew_name; ?></td>
     <td width="10%" nowrap="nowrap">Category (No.)</td>
     <td width="10%" class="bdr1B">
     <?php if ($action == "default") { ?>
@@ -339,7 +312,7 @@ table.bottleLabel-inner	td { padding: 3px; }
         </tr>
       <tr>
         <td><span class="caps">WATER TREATMENT</span> Type/Amount</td>
-        <td class="bdr1B"><?php if ($action == "default") { ?><input name="waterTreatment" type="text" id="waterTreatment" size="20" /><?php } else echo $waterTreatment; ?></td>
+        <td class="bdr1B"><?php if ($action == "default") { ?><input name="water_treatment" type="text" id="water_treatment" size="20" /><?php } else echo $water_treatment; ?></td>
       </tr>
       <tr>
         <td colspan="2">&nbsp;</td>
@@ -348,9 +321,9 @@ table.bottleLabel-inner	td { padding: 3px; }
       <table width="100%" border="0" cellspacing="0" cellpadding="3">
         <tr>
           <td colspan="2"><span class="caps">YEAST CULTURE</span></td>
-          <td width="1%"><?php if ($action == "default") { ?><input type="checkbox" name="yeastLiquid" id="yeastLiquid" value="Y" /><?php } else { if ($yeastLiquid == "Y") echo "<img src=\"../images/check.jpg\" border=\"0\">";  else echo "<img src=\"../images/box.jpg\" border=\"0\">"; } ?></td>
+          <td width="1%"><?php if ($action == "default") { ?><input type="checkbox" name="yeast_liquid" id="yeast_liquid" value="Y" /><?php } else { if ($yeast_liquid == "Y") echo "<img src=\"../images/check.jpg\" border=\"0\">";  else echo "<img src=\"../images/box.jpg\" border=\"0\">"; } ?></td>
           <td>Liquid</td>
-          <td width="1%"><?php if ($action == "default") { ?><input type="checkbox" name="yeastDried" id="yeastDried" value="Y" /><?php } else { if ($yeastDried == "Y") echo "<img src=\"../images/check.jpg\" border=\"0\">"; else  echo "<img src=\"../images/box.jpg\" border=\"0\">"; } ?></td>
+          <td width="1%"><?php if ($action == "default") { ?><input type="checkbox" name="yeast_dried" id="yeast_dried" value="Y" /><?php } else { if ($yeast_dried == "Y") echo "<img src=\"../images/check.jpg\" border=\"0\">"; else  echo "<img src=\"../images/box.jpg\" border=\"0\">"; } ?></td>
           <td>Dried</td>
         </tr>
         <tr>
@@ -374,7 +347,7 @@ table.bottleLabel-inner	td { padding: 3px; }
         </tr>
         <tr>
           <td colspan="2" nowrap="nowrap"><span class="caps">YEAST NUTRIENTS </span><br />Type/Amount</td>
-          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="yeastNutrients" id="yeastNutrients" /><?php } else echo $yeastNutrients; ?></td>
+          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="yeast_nutrients" id="yeast_nutrients" /><?php } else echo $yeast_nutrients; ?></td>
         </tr>
       </table>
       <table width="100%" border="0" cellspacing="0" cellpadding="4">
@@ -387,11 +360,11 @@ table.bottleLabel-inner	td { padding: 3px; }
         </tr>
         <tr>
           <td nowrap="nowrap">Volumes of CO<sub>2</sub></td>
-          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="volumeC02" id="volumeC02" /><?php } else echo $volumeC02; ?></td>
+          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="C02_volume" id="C02_volume" /><?php } else echo $C02_volume; ?></td>
         </tr>
         <tr>
       	  <td nowrap="nowrap">Type/Amount of Priming Sugar</td>
-          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="primingSugar" id="primingSugar" /><?php } else echo $primingSugar; ?></td>
+          <td colspan="4" class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="priming_sugar" id="priming_sugar" /><?php } else echo $priming_sugar; ?></td>
           </tr>
       </table>
       <table width="100%" border="0" cellspacing="0" cellpadding="4">
@@ -454,7 +427,7 @@ table.bottleLabel-inner	td { padding: 3px; }
         </tr>
         <tr>
           <td width="5%"><span class="caps">BOTTLING DATE</span></td>
-          <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="bottlingDate" id="bottlingDate"><?php } else echo $bottlingDate; ?></td>
+          <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="bottling_date" id="bottling_date"><?php } else echo $bottling_date; ?></td>
         </tr>
       </table></td>
     <td width="2%" rowspan="4" align="left" valign="top">&nbsp;</td>
@@ -910,11 +883,11 @@ table.bottleLabel-inner	td { padding: 3px; }
         </tr>
       <tr>
         <td width="5%">Type</td>
-        <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="finingsType" id="finingsType" /><?php } else echo $finingsType; ?></td>
+        <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="finings_type" id="finings_type" /><?php } else echo $finings_type; ?></td>
       </tr>
       <tr>
         <td width="5%">Amount</td>
-        <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="finingsAmount" id="finingsAmount" /><?php } else echo $finingsAmount; ?></td>
+        <td class="bdr1B"><?php if ($action == "default") { ?><input type="text" name="finings_amount" id="finings_amount" /><?php } else echo $finings_amount; ?></td>
       </tr>
     </table></td>
   </tr>
@@ -934,11 +907,11 @@ if ($action == "verify") { ?>
 <input name="city" type="hidden" value="<?php echo $city; ?>" />
 <input name="state" type="hidden" value="<?php echo $state; ?>" />
 <input name="zip" type="hidden" value="<?php echo $zip; ?>" />
-<input name="homePhone" type="hidden" value="<?php echo $homePhone; ?>" />
-<input name="workPhone" type="hidden" value="<?php echo $workPhone; ?>" />
+<input name="home_phone" type="hidden" value="<?php echo $home_phone; ?>" />
+<input name="work_phone" type="hidden" value="<?php echo $work_phone; ?>" />
 <input name="email" type="hidden" value="<?php echo $email; ?>" />
-<input name="brewClub" type="hidden" value="<?php echo $brewClub; ?>" />
-<input name="brewName" type="hidden" value="<?php echo $brewName; ?>" />
+<input name="brew_club" type="hidden" value="<?php echo $brew_club; ?>" />
+<input name="brew_name" type="hidden" value="<?php echo $brew_name; ?>" />
 <input name="still" type="hidden" value="<?php echo $still; ?>" />
 <input name="dry" type="hidden" value="<?php echo $dry; ?>" />
 <input name="hydromel" type="hidden" value="<?php echo $hydromel; ?>" />
@@ -949,21 +922,21 @@ if ($action == "verify") { ?>
 <input name="sparkling" type="hidden" value="<?php echo $sparkling; ?>" />
 <input name="sack" type="hidden" value="<?php echo $sack; ?>" />
 <input name="special" type="hidden" value="<?php echo $special; ?>" />
-<input name="waterTreatment" type="hidden" value="<?php echo $waterTreatment; ?>" />
-<input name="yeastLiquid" type="hidden" value="<?php echo $yeastLiquid; ?>" />
-<input name="yeastDried" type="hidden" value="<?php echo $yeastDried; ?>" />
+<input name="water_treatment" type="hidden" value="<?php echo $water_treatment; ?>" />
+<input name="yeast_liquid" type="hidden" value="<?php echo $yeast_liquid; ?>" />
+<input name="yeast_dried" type="hidden" value="<?php echo $yeast_dried; ?>" />
 <input name="starter" type="hidden" value="<?php echo $starter; ?>" />
-<input name="yeastNutrients" type="hidden" value="<?php echo $yeastNutrients; ?>" />
+<input name="yeast_nutrients" type="hidden" value="<?php echo $yeast_nutrients; ?>" />
 <input name="carbonation" type="hidden" value="<?php echo $carbonation; ?>" />
-<input name="volumeC02" type="hidden" value="<?php echo $volumeC02; ?>" />
-<input name="primingSugar" type="hidden" value="<?php echo $primingSugar; ?>" />
-<input name="bottlingDate" type="hidden" value="<?php echo $bottlingDate; ?>" />
-<input name="finingsType" type="hidden" value="<?php echo $finingsType; ?>" />
-<input name="finingsAmount" type="hidden" value="<?php echo $finingsAmount; ?>" />
+<input name="C02_volume" type="hidden" value="<?php echo $C02_volume; ?>" />
+<input name="priming_sugar" type="hidden" value="<?php echo $priming_sugar; ?>" />
+<input name="bottling_date" type="hidden" value="<?php echo $bottling_date; ?>" />
+<input name="finings_type" type="hidden" value="<?php echo $finings_type; ?>" />
+<input name="finings_amount" type="hidden" value="<?php echo $finings_amount; ?>" />
 <input name="style" type="hidden" value="<?php echo $style; ?>" />
 <?php } ?>
 </form>
-<p class="medium">This form is emulates the BJCP Entry/Recipe Form Copyright Â©2006 Beer Judge Certification Program rev. 070307</p>
+<p class="medium">This form is emulates the BJCP Entry/Recipe Form Copyright ©2006 Beer Judge Certification Program rev. 070307</p>
 <?php if (($action == "print") || ($action == "verify")) { ?>
 <br style="page-break-after:always;">
 <table width="600" border="0" align="center" cellspacing="15">
@@ -971,7 +944,7 @@ if ($action == "verify") { ?>
     <td>
     <table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -993,7 +966,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Phone Number</td>
-        <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $home_phone; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Email Address</td>
@@ -1001,7 +974,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name of Beer</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_name; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Category Entered</td>
@@ -1013,15 +986,15 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td nowrap="nowrap">Homebrew Club</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
       </tr>
     </table></td>
     <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1043,7 +1016,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Phone Number</td>
-        <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $home_phone; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Email Address</td>
@@ -1051,7 +1024,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name of Beer</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_name; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Category Entered</td>
@@ -1063,17 +1036,17 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td nowrap="nowrap">Homebrew Club</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
         </tr>
     </table></td>
   </tr>
   <tr>
     <td><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1095,7 +1068,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Phone Number</td>
-        <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $home_phone; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Email Address</td>
@@ -1103,7 +1076,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name of Beer</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_name; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Category Entered</td>
@@ -1115,15 +1088,15 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td nowrap="nowrap">Homebrew Club</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
       </tr>
     </table></td>
     <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1145,7 +1118,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Phone Number</td>
-        <td colspan="3" class="bdr1B"><?php echo $homePhone; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $home_phone; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Email Address</td>
@@ -1153,7 +1126,7 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name of Beer</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewName; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_name; ?></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Category Entered</td>
@@ -1165,10 +1138,10 @@ if ($action == "verify") { ?>
       </tr>
       <tr>
         <td nowrap="nowrap">Homebrew Club</td>
-        <td colspan="3" class="bdr1B"><?php echo $brewClub; ?></td>
+        <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="../images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
       </tr>
     </table></td>
   </tr>
