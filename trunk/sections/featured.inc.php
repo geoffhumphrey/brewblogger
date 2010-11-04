@@ -23,7 +23,7 @@
 	$query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_featured['brewStyle']);
 	$styles = mysql_query($query_styles, $brewing) or die(mysql_error());
 	$row_styles = mysql_fetch_assoc($styles);
-	$totalRows_styles = mysql_num_rows($styles);
+	$totalRows_styles = mysql_num_rows($styles); 
 	
 	// Get real user names
 	mysql_select_db($database_brewing, $brewing);
