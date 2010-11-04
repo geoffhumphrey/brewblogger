@@ -200,11 +200,12 @@ class InputBeerXML {
             $fields .= "," . $field;
             $values .= ",'" . $value . "'";
         }
-
+		$fields .= ", brewArchive";
         $fields .= ")";
+		$values .= ", 'N'";
         $values .= ")";
         $sqlQuery .= $fields . $values;
-        // echo $sqlQuery . "<br />";
+        echo $sqlQuery . "<br />";
         mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
         $Result1 = mysql_query($sqlQuery, $brewing) or die(mysql_error());
 
@@ -391,7 +392,9 @@ class InputBeerXML {
             $values .= ",'" . $value . "'";
         }
 
+        $fields .= ", brewArchive";
         $fields .= ")";
+		$values .= ", 'N'";
         $values .= ")";
         $sqlQuery .= $fields . $values;
         //echo $sqlQuery . "<br />";

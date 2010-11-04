@@ -19,7 +19,7 @@
 		</div>
 		<?php } else { ?>
         <?php if ($totalRows_featured > 0) { if (($row_pref['mode'] == "1") ||  (($row_pref['mode'] == "2") && ($filter == "all"))) include ('featured.inc.php'); } ?>
-		<?php if ($totalRows_featured > 0) { if (($row_pref['mode'] == "1") ||  (($row_pref['mode'] == "2") && ($filter == "all"))) { ?><div class="headerContentAdmin">All <?php echo $dbName; ?></div><?php } } ?>
+		<?php if ($totalRows_featured > 0) { if (($row_pref['mode'] == "1") ||  (($row_pref['mode'] == "2") && ($filter == "all"))) { ?><div class="headerContentAdmin">All <?php echo $dbName; ?></div><?php } } ?> 
 		<table class="dataTable">
         	<tr>
             <?php if ($style != "all") { ?>

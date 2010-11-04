@@ -1222,18 +1222,24 @@ if (($action == "edit") && ($dbTable == "brewing")) {
 
 if (($action == "update") && (($dbTable == "brewing") || ($dbTable == "recipes"))) {
 	function get_hop_type($time) { 
-	if ($time > 30) $type = "Bittering";
-	if (($time <= 30) && ($time >= 15)) $type = "Flavor";
-	if (($time < 15) && ($time >= 0)) $type = "Aroma";
+	if ($time != "") {
+		if ($time > 30) $type = "Bittering";
+		if (($time <= 30) && ($time >= 15)) $type = "Flavor";
+		if (($time < 15) && ($time >= 0)) $type = "Aroma";
+		}
+	else $type = "";
 	return $type;
 	}
 
 	function get_hop_use($time,$boil_time) { 
-	if ($boil_time == "") $boil_time = 60;
-	if ($time > $boil_time) $use = "First Wort";
-	if (($time <= $boil_time) && ($time > 15)) $use = "Boil";
-	if (($time <= 15) && ($time > 0)) $use = "Aroma";
-	if ($time <= 0) $use = "Dry Hop";
+	if ($time != "") { 
+		if ($boil_time == "") $boil_time = 60;
+		if ($time > $boil_time) $use = "First Wort";
+		if (($time <= $boil_time) && ($time > 15)) $use = "Boil";
+		if (($time <= 15) && ($time > 0)) $use = "Aroma";
+		if ($time <= 0) $use = "Dry Hop";
+		}
+	else $use = "";
 	return $use;
 	}
   $brewBitterness = explode("-", $_POST['brewBitterness']);

@@ -1182,12 +1182,15 @@ $xml_output .= "<RECIPES>\n";
     $xml_output .= "\t</RECIPE>\n"; 
 $xml_output .= "</RECIPES>\n"; 
 # This line will stream the file to the user rather than spray it across the screen
+
 $nospace = str_replace(" ", "", $row_log['brewName'] );
 $nospace = strtr($nospace, $html_remove);
 header("Content-Type: application/force-download");
 header("Content-Disposition: attachment; filename=".$nospace.".xml");
 header("Pragma: no-cache");
 header("Expires: 0");
+
 echo $xml_output;
 exit();
+
 ?>
