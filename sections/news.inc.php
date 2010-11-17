@@ -29,7 +29,7 @@
 </table>
 <?php do { ?>
 <?php if ($row_news['newsPrivate'] == "Y") { ?>
-<div class="headerContent<?php if ($page == "news") echo "Admin"; ?>"><?php echo $row_news['newsHeadline']; ?></div>
+<div class="headerContentAdmin"><?php echo $row_news['newsHeadline']; ?></div>
 <table class="dataTable" style="margin-bottom: 15px;">
   <tr>
   	<td>&nbsp;</td>
