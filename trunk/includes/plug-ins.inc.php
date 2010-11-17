@@ -323,5 +323,52 @@ $color2 = $row_colorChoose['themeColor2'];
 $color = $color1;
 }
 
+function output_beer_xml($id, $source, $style, $imageSrc, $theme) { 
+
+$agent = $_SERVER['HTTP_USER_AGENT']; 
+if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
+
+	if ($printBrowser == "IE") $output = '<a href="includes/output_beer_xml.inc.php?id='.$id.'&source='.$source.'&brewStyle='.$style.'">'; 
+	else $output = '<a href="#" onclick="window.open(\'includes/output_beer_xml.inc.php?id='.$id.'&source='.$source.'&brewStyle='.$style.'\',\'\',\'height=5,width=5, scrollbars=no, toolbar=no, resizable==no, menubar=no\'); return false;">';
+	$output .= '<img src="'.$imageSrc.$theme.'/button_beer_xml_'.$theme.'.png"  border="0" alt="Output to Beer XML"></a>';
+	return $output;
+
+}
+
+function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) { 
+
+$agent = $_SERVER['HTTP_USER_AGENT']; 
+if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
+
+	if ($printBrowser == "IE") {  
+	$output = '<a href="#" onClick="window.open(\'print.php?page='.$page.'&source='.$source.'&dbTable='.$dbTable.'&brewStyle='.$style;  
+	if ($scale == "Y") $output .= '&amp;action=scale&amp;amt='.$amt;
+ 	$output .= '&id='.$id.'&view=print\',\'\',\'height=600,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;" title="Print '.$name.'">';  }
+	
+	else { $output = '<a href="print.php?page='.$page.'&source='.$source.'&dbTable='.$dbTable.'&brewStyle='.$style;  
+	if ($scale == "Y") $output .= '&amp;action=scale&amp;amt='.$amt; 
+	$output .= '&id='.$id.'&KeepThis=true&TB_iframe=true&height=450&width=700" title="Print '.$name.'" class="thickbox">';
+	}
+	$output .= '<img src="'.$imageSrc.$theme.'/button_print_recipe_'.$theme.'.png"  border="0" alt="print '.$source.'"></a>';
+	return $output;
+}
+
+function output_print_log($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) { 
+
+$agent = $_SERVER['HTTP_USER_AGENT']; 
+if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
+
+	if ($printBrowser == "IE") {  
+	$output = '<a href="#" onClick="window.open(\'print.php?page='.$page.'&source='.$source.'&dbTable='.$dbTable.'&brewStyle='.$style;  
+	if ($scale == "Y") $output .= '&amp;action=scale&amp;amt='.$amt;
+ 	$output .= '&id='.$id.'&view=print\',\'\',\'height=600,width=800,toolbar=no,resizable=yes,scrollbars=yes\'); return false;" title="Print '.$name.'">';  }
+	
+	else { $output = '<a href="print.php?page='.$page.'&source='.$source.'&dbTable='.$dbTable.'&brewStyle='.$style;  
+	if ($scale == "Y") $output .= '&amp;action=scale&amp;amt='.$amt; 
+	$output .= '&id='.$id.'&KeepThis=true&TB_iframe=true&height=450&width=700" title="Print '.$name.'" class="thickbox">'; }
+	$output .= '<img src="'.$imageSrc.$theme.'/button_print_log_'.$theme.'.png"  border="0" alt="print '.$source.'"></a>';
+	return $output;
+}
+
 
 ?>

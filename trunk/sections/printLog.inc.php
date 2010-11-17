@@ -1,5 +1,1 @@
-<?php if ($printBrowser == "IE") { ?>
-<a href="#" onClick="window.open('print.php?page=logPrint&source=log&dbTable=brewing&brewStyle=<?php echo $row_log['brewStyle'];  if ($action == "scale") echo "&action=scale&amt=".$amt; ?>&id=<?php echo $row_log['id']; ?>&view=print','','height=600,width=800,toolbar=no,resizable=yes,scrollbars=yes'); return false;" title="Print <?php echo $row_log['brewName']; ?>"><img src="<?php echo $imageSrc. $row_colorChoose['themeName']; ?>/button_print_log_<?php echo $row_colorChoose['themeName']; ?>.png"  border="0" alt="Print Log"></a>
-<?php } else { ?>
-<a href="print.php?page=logPrint&source=log&dbTable=brewing&brewStyle=<?php echo $row_log['brewStyle'];  if ($action == "scale") echo "&action=scale&amt=".$amt; ?>&id=<?php echo $row_log['id']; ?>&KeepThis=true&TB_iframe=true&height=450&width=700" title="Print <?php echo $row_log['brewName']; ?>" class="thickbox"><img src="<?php echo $imageSrc. $row_colorChoose['themeName']; ?>/button_print_log_<?php echo $row_colorChoose['themeName']; ?>.png"  border="0" alt="Print Log"></a>
-<?php } ?>
+<?php if ($action == "scale") $scale = "Y"; else $scale = "N"; echo output_print_log($row_log['id'], "log", "brewing", "logPrint", $row_log['brewStyle'], $scale, $amt, $row_log['brewName'], $imageSrc, $row_colorChoose['themeName']); ?>
