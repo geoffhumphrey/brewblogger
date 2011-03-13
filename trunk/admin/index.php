@@ -2,13 +2,14 @@
 // --------------------------- Globals ------------------------------------------------ //
 $page = "admin";
 $imageSrc = "../images/";
-require ('../Connections/config.php');
-require ('../includes/authentication.inc.php'); session_start(); sessionAuthenticate();
-include ('../includes/check_mobile.inc.php');
-include ('../includes/db_connect_universal.inc.php');
-include ('../includes/db_connect_admin.inc.php');
-include ('../includes/plug-ins.inc.php'); 
-include ('../includes/version.inc.php');
+require '../Connections/config.php';
+require '../includes/authentication.inc.php'; session_start(); sessionAuthenticate();
+include '../includes/check_mobile.inc.php';
+include '../includes/db_connect_universal.inc.php';
+include '../includes/db_connect_admin.inc.php';
+include '../includes/plug-ins.inc.php'; 
+include '../includes/version.inc.php';
+include_once 'includes/constants.inc.php';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,7 +17,7 @@ include ('../includes/version.inc.php');
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" /> 
 <?php 
-include ('includes/formCheck.inc.php'); 
+include 'includes/formCheck.inc.php'; 
 if ($page == "delWithCon") echo "<meta http-equiv=\"refresh\" content=\"0\">"; //cached page work-around
 ?>
 <title><?php if ($row_pref['mode'] == "1") echo "BrewBlog Administration"; if ($row_pref['mode'] == "2")  echo $row_name['brewerFirstName']." ".$row_name['brewerLogName']." Administration"; ?></title>
