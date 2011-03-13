@@ -1,3 +1,12 @@
+<?php
+/**
+ * Module: predicted.lib.php
+ * Description: Part of the Recipe Calculator. Presents calculated values in a small box at
+ *              the top right of the Calculator page. Creates a form with options allowing
+ *              the user to import or update the blog or recipe with the new values.
+ */
+?>
+
 <div id="calculate">
 <div id="calculateInner">
     <table class="dataTable">
@@ -57,27 +66,27 @@
 			<table>
  				<tr>
     				<td>Garetz:&nbsp;</td>
-    				<td><?php echo round ($bitternessG, 1); ?>&nbsp;</td>
+    				<td><?php echo round ($ibuG, 1); ?>&nbsp;</td>
     				<td>IBU</td>
   				</tr>
   				<tr>
     				<td>Rager:&nbsp;</td>
-    				<td><?php echo round ($bitternessR, 1); ?>&nbsp;</td>
+    				<td><?php echo round ($ibuR, 1); ?>&nbsp;</td>
     				<td>IBU</td>
   				</tr>
   				<tr>
     				<td>Tinseth:&nbsp;</td>
-    				<td><?php echo round ($bitternessT, 1); ?>&nbsp;</td>
+    				<td><?php echo round ($ibuT, 1); ?>&nbsp;</td>
     				<td>IBU</td>
   				</tr>
   				<tr>
     				<td>Daniels:&nbsp;</td>
-    				<td><?php echo round ($bitternessD, 1); ?>&nbsp;</td>
+    				<td><?php echo round ($ibuD, 1); ?>&nbsp;</td>
     				<td>IBU</td>
   				</tr>
   				<tr>
    				 	<td>Avg:&nbsp;</td>
-    				<td><strong><?php echo round ($bitternessAvg, 1); ?></strong>&nbsp;</td>
+    				<td><strong><?php echo round($ibuAvg, 1); ?></strong>&nbsp;</td>
     				<td>IBU</td>
   				</tr>
 			</table>
@@ -164,44 +173,43 @@
 	</tr>
 	</table>
 <?php if (isset($_SESSION["loginUsername"])) { ?>
-<table class="dataTable">
-<tr>
-<td width="90%"><img src="<?php echo $imageSrc; ?>spacer.gif" width="1" height="30"></td>
-<td width="5%">&nbsp;</td>
-<td width="5%">&nbsp;</td>
-</tr>
-<tr>
-
-
-<form id="form2"  action="index.php?action=calculate&results=verify&assoc=import&filter=<?php echo $filter;  if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>" method="post" name="form2">
-<td><input type="radio" name="importDB" value="brewing" checked="checked" />Import to BrewBlog<br />
-<input type="radio" name="importDB" value="recipes" />Import to Recipes<br /></td>
-<td>
-<div id="hide">
-<input type="hidden" name="brewBrewerID" value="<?php echo $loginUsername; ?>">
-<?php include ('importFormVar.lib.php'); ?>
-<input type="hidden" name="brewOG" value="<?php echo $og; ?>">
-<input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
-</div>
-<input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_import_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Import Calculation to Recipe Database" class="radiobutton" value="Import"></form> 
-</form>
-</td>
-<td>
-<?php if ($id !="default") { ?>
-<?php if (($row_recipeRecalc['brewBrewerID']) == ($loginUsername) || ($row_user['userLevel'] == "1")) { ?>
-<form id="form1" action="index.php?action=calculate&results=verify&assoc=update&filter=<?php echo $filter; if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>"  method="post" name="form1">
-<div id="hide">
-<input type="hidden" name="brewBrewerID" value="<?php if ($row_user['userName'] == $loginUsername) echo $loginUsername; else echo $row_recipeRecalc['brewBrewerID']; ?>">
-<?php include ('importFormVar.lib.php'); ?>
-<input type="hidden" name="brewOG" value="<?php echo $og; ?>">
-<input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
-</div>
-<input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_update_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Update Recipe with New Calculations" class="radiobutton" value="Update"></form>
-</form>
-<?php } }  ?>
-</td>
-</tr>
-</table>
+  <table class="dataTable">
+  <tr>
+    <td width="90%"><img src="<?php echo $imageSrc; ?>spacer.gif" width="1" height="30"></td>
+    <td width="5%">&nbsp;</td>
+    <td width="5%">&nbsp;</td>
+  </tr>
+  <tr>
+    <form id="form2"  action="index.php?action=calculate&results=verify&assoc=import&filter=<?php echo $filter;  if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>" method="post" name="form2">
+    <td><input type="radio" name="importDB" value="brewing" checked="checked" />Import to BrewBlog<br />
+    <input type="radio" name="importDB" value="recipes" />Import to Recipes<br /></td>
+    <td>
+    <div id="hide">
+    <input type="hidden" name="brewBrewerID" value="<?php echo $loginUsername; ?>">
+    <?php include ('importFormVar.lib.php'); ?>
+    <input type="hidden" name="brewOG" value="<?php echo $og; ?>">
+    <input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
+    </div>
+    <input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_import_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Import Calculation to Recipe Database" class="radiobutton" value="Import"></form> 
+    </form>
+    </td>
+    <td>
+    <?php if ($id !="default") { ?>
+      <?php if (($row_recipeRecalc['brewBrewerID']) == ($loginUsername) || ($row_user['userLevel'] == "1")) { ?>
+        <form id="form1" action="index.php?action=calculate&results=verify&assoc=update&filter=<?php echo $filter; if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>"  method="post" name="form1">
+        <div id="hide">
+        <input type="hidden" name="brewBrewerID" value="<?php if ($row_user['userName'] == $loginUsername) echo $loginUsername; else echo $row_recipeRecalc['brewBrewerID']; ?>">
+        <?php include ('importFormVar.lib.php'); ?>
+        <input type="hidden" name="brewOG" value="<?php echo $og; ?>">
+        <input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
+        </div>
+        <input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_update_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Update Recipe with New Calculations" class="radiobutton" value="Update"></form>
+        </form>
+      <?php }
+    }?>
+    </td>
+  </tr>
+  </table>
 <?php } // end if (isset) ?>
 </div>
 </div>

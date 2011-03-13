@@ -6,14 +6,17 @@
 // Load the library of bitterness formula functions
 // The file_exists.. statement helps determine what our CWD is since the getcwd()
 // function isn't entirely portable or may be disabled.
-if (file_exists("bitterness.php"))
-  require "../lib/bitterness.lib.php";
-else
-  require "admin/lib/bitterness.lib.php";
+if (file_exists("bitterness.php")) {
+  require_once "../lib/bitterness.lib.php";
+  require_once "../includes/constants.inc.php";
+} else {
+  require_once "admin/lib/bitterness.lib.php";
+  require_once "admin/includes/constants.inc.php";
+}
 
 // This is the maximum number of hop entries we can 
 // process in this calculator.
-$MAX_HOPS = 20;
+#$MAX_HOPS = 20;
 
 // Initial number of hop entries to display.
 $INIT_HOP_ENTRIES = 3;
@@ -37,7 +40,7 @@ if (($action == "calculate") || ($action == "entry")) {
 // It's easy to confuse this with fact that it's being 
 // submitted via an HTML form.
 
-  for ($i = 0; $i < $MAX_HOPS; $i++) {
+  for ($i = 0; $i < MAX_HOPS; $i++) {
     $hopWeight[$i]   = $_POST['hopWeight'][$i];
     $hopAA[$i]       = $_POST['hopAA'][$i];
     $utilization[$i] = $_POST['utilization'][$i];
@@ -53,21 +56,21 @@ if (($action == "calculate") || ($action == "entry")) {
 
   // Tinseth method
   $ibuT = 0;
-  for ($i = 0; $i < $MAX_HOPS; $i++) {
+  for ($i = 0; $i < MAX_HOPS; $i++) {
     $ibu_T[$i] = calc_bitter_tinseth($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuT     += $ibu_T[$i];
   }
 
   // Rager Method
   $ibuR = 0;
-  for ($i = 0; $i < $MAX_HOPS; $i++) {
+  for ($i = 0; $i < MAX_HOPS; $i++) {
     $ibu_R[$i] = calc_bitter_rager($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuR     += $ibu_R[$i];
   }
 
   // Daniels Method
   $ibuD = 0;
-  for ($i = 0; $i < $MAX_HOPS; $i++) {
+  for ($i = 0; $i < MAX_HOPS; $i++) {
     $ibu_D[$i] = calc_bitter_daniels($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuD     += $ibu_D[$i];
   }
@@ -75,7 +78,7 @@ if (($action == "calculate") || ($action == "entry")) {
   // Garetz Method
   $ibuG = 0;
   if (($preBoilVol > 0) && ($desiredIBUs > 0) && ($elevation >= 0)) {
-    for ($i = 0; $i < $MAX_HOPS; $i++) {
+    for ($i = 0; $i < MAX_HOPS; $i++) {
       $ibu_G[$i] = calc_bitter_garetz($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units,
 				      $preBoilVol, $desiredIBUs, $elevation);
       $ibuG     += $ibu_G[$i];
@@ -132,7 +135,7 @@ if (($action == "default") || ($action == "entry")) {
   // Add any extra hop entries if the user previously gave values for them.
   if ($action == "entry") {
     $endHopEntries = 0;
-    for ($i = $INIT_HOP_ENTRIES; $i < $MAX_HOPS; $i++) {
+    for ($i = $INIT_HOP_ENTRIES; $i < MAX_HOPS; $i++) {
       if ($hopWeight[$i] > 0) $endHopEntries = $i;
     }
     if ($endHopEntries > 0) create_hop_entries($INIT_HOP_ENTRIES, $endHopEntries);
@@ -140,7 +143,7 @@ if (($action == "default") || ($action == "entry")) {
   ?>
   
   <tr id="addHopButtonRow">
-  <td><input id="addHopButton" type="button" value="Add Hop Entry" onClick="addHop('hop_entries', <?php echo $MAX_HOPS . ', \'' . $DEFAULT_FORM . '\', '; if (($action == "entry") && ($endHopEntries > 0)) echo $endHopEntries + 1; else echo $INIT_HOP_ENTRIES; ?>);" class="add_button"></td>
+  <td><input id="addHopButton" type="button" value="Add Hop Entry" onClick="addHop('hop_entries', <?php echo MAX_HOPS . ', \'' . $DEFAULT_FORM . '\', '; if (($action == "entry") && ($endHopEntries > 0)) echo $endHopEntries + 1; else echo $INIT_HOP_ENTRIES; ?>);" class="add_button"></td>
   </tr>
   <tr>
      <td class="dataLabelLeft">Final Volume:*</td>
@@ -193,7 +196,7 @@ if  ($action == "calculate") { ?>
 <div id="hide">
 
 <?php
-for ($i = 0; $i < $MAX_HOPS; $i++) {
+for ($i = 0; $i < MAX_HOPS; $i++) {
   echo '<input name="hopWeight['.$i.']" type="hidden" value="'.$hopWeight[$i].'" />';
   echo '<input name="hopAA['.$i.']" type="hidden" value="'.$hopAA[$i].'" />';
   echo '<input name="utilization['.$i.']" type="hidden" value="'.$utilization[$i].'" />';
@@ -221,7 +224,7 @@ for ($i = 0; $i < $MAX_HOPS; $i++) {
 
 <?php
   $endHopEntries = 0;
-  for ($i = 0; $i < $MAX_HOPS; $i++) {
+  for ($i = 0; $i < MAX_HOPS; $i++) {
     if ($ibu_T[$i] > 0) $endHopEntries = $i;
   }
 

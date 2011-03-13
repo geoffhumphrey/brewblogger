@@ -121,86 +121,84 @@ $totalRows_styles = mysql_num_rows($styles);
 	
 	<td width="50%">
 	<table>
-  <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>   
-  	   <?php if ($row_log['brewBatchNum'] != "" ) { ?>
-	   <tr>
-	   	   <td class="dataLabelLeft">Batch No:</td>
-		   <td class="data"><?php echo $row_log['brewBatchNum']; ?></td>
-	   </tr>
-  <?php } ?>
-  	   <?php } // Batch Number ?>
-  	   <?php if ($row_log['brewOG'] != "" ) {  ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">OG:</td>
-		   <td class="data"><?php echo number_format ($row_log['brewOG'], 3); ?> </td>
-  	   </tr>
-  	   <?php } // OG ?>
-	   <?php if (($row_log['brewOG'] == "" ) || ($row_log['brewFG'] == "" )) echo ""; else { ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">OG (Plato):</td>
-		   <td class="data"><?php echo round ($plato_i, 2); ?>&deg; P</td>
-  	   </tr>
-	   <?php } // Plato ?>
-  <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>
-  		<?php if ($row_log['brewTargetOG'] != "" ) {  ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">Target OG:</td>
-		   <td class="data"><?php echo number_format ($row_log['brewTargetOG'], 3); ?> </td>
-  	   </tr>
-  	   <?php } // Target OG ?>
-	   <?php if ($row_log['brewGravity1'] != "" ) {  ?>
-       <tr>
-	   	   <td class="dataLabelLeft">Reading 1:</td>
-		   <td class="data"><?php echo $row_log['brewGravity1']; ?>&nbsp;<?php if ($row_log['brewGravity1Days'] != "" ) {  ?>&nbsp;(<?php echo $row_log['brewGravity1Days']; ?> days)<?php }  ?></td>
-       </tr>
-	   <?php } // Gravity 1 ?>
-	   <?php if ($row_log['brewGravity2'] != "" ) {  ?>
-       <tr>
-	   	   <td class="dataLabelLeft">Reading 2:</td>
-		   <td class="data"><?php echo $row_log['brewGravity2']; ?>&nbsp;<?php if ($row_log['brewGravity2Days'] != "" ) {  ?>&nbsp;(<?php echo $row_log['brewGravity2Days']; ?> days)<?php }  ?></td>
-  	   </tr>
-	   <?php } // Gravity 2 ?>
-  <?php } ?>
-	   <?php if ($row_log['brewFG'] != "" ) {  ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">FG:</td>
-		   <td class="data"><?php echo number_format ($row_log['brewFG'], 3); ?></td>
-  	   </tr>
-	   <?php } // FG } ??>
-	   <?php if (($row_log['brewOG'] == "" ) || ($row_log['brewFG'] == "" )) echo ""; else { ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">FG (Plato):</td>
-		   <td class="data"><?php echo round ($plato_f, 2); ?>&deg; P</td>
-  	   </tr>
-  <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>
-  		<?php if ($row_log['brewTargetFG'] != "" ) {  ?>
-  	   <tr>
-	   	   <td class="dataLabelLeft">Target FG:</td>
-		   <td class="data"><?php echo number_format ($row_log['brewTargetFG'], 3); ?> </td>
-  	   </tr>
-  	   <?php } // Target FG ?>
-  		<?php } ?>
-       <tr>
-	   	   <td class="dataLabelLeft">Real Extract:</td>
-		   <td class="data"><?php echo round ($real_extract, 2); ?>&deg; P</td>
-  	   </tr>
-  	   <tr>
-	   	   <td class="dataLabelLeft">App. Atten.:</td>
-		   <td class="data"><?php echo round ($aa, 1); ?>%</td>
-  	   </tr>
-  	   <tr>
-	   	   <td class="dataLabelLeft">Real Atten.:</td>
-		   <td class="data"><?php echo round ($ra, 1); ?>%</td>
-	   </tr>
-	   <?php } // FG (Plato), RE, AA, RA ?>
-	<?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>
-	   <?php if ($row_log['brewStatus'] !="") { ?>
-       <tr>
-		<td class="dataLabelLeft">Status:</td>
-        <td class="data"><?php echo $row_log['brewStatus']; ?></td>
-	  </tr>
+          <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>   
+  	    <?php if ($row_log['brewBatchNum'] != "" ) { ?>
+	      <tr>
+	        <td class="dataLabelLeft">Batch No:</td>
+		<td class="data"><?php echo $row_log['brewBatchNum']; ?></td>
+	      </tr>
+            <?php } ?>
+  	  <?php } // Batch Number ?>
+  	  <?php if ($row_log['brewOG'] != "" ) {  ?>
+  	    <tr>
+	      <td class="dataLabelLeft">OG:</td>
+	      <td class="data"><?php echo number_format($row_log['brewOG'], 3); ?> </td>
+  	    </tr>
+  	    <tr>
+	      <td class="dataLabelLeft">OG (Plato):</td>
+	      <td class="data"><?php echo round($plato_i, 2); ?>&deg; P</td>
+  	    </tr>
 	  <?php } ?>
-	<?php } ?>
+          <?php if (($page != "recipeDetail") && ($page != "recipePrint")) { ?>
+  	    <?php if ($row_log['brewTargetOG'] != "" ) {  ?>
+  	      <tr>
+	        <td class="dataLabelLeft">Target OG:</td>
+	        <td class="data"><?php echo number_format($row_log['brewTargetOG'], 3); ?> </td>
+  	      </tr>
+  	    <?php } ?>
+	    <?php if ($row_log['brewGravity1'] != "" ) {  ?>
+              <tr>
+	   	<td class="dataLabelLeft">Reading 1:</td>
+		<td class="data"><?php echo $row_log['brewGravity1']; ?>&nbsp;<?php if ($row_log['brewGravity1Days'] != "" ) {  ?>&nbsp;(<?php echo $row_log['brewGravity1Days']; ?> days)<?php }  ?></td>
+              </tr>
+	    <?php } // Gravity 1 ?>
+	    <?php if ($row_log['brewGravity2'] != "" ) {  ?>
+              <tr>
+	        <td class="dataLabelLeft">Reading 2:</td>
+		<td class="data"><?php echo $row_log['brewGravity2']; ?>&nbsp;<?php if ($row_log['brewGravity2Days'] != "" ) {  ?>&nbsp;(<?php echo $row_log['brewGravity2Days']; ?> days)<?php }  ?></td>
+  	      </tr>
+	    <?php } // Gravity 2 ?>
+          <?php } ?>
+	  <?php if ($row_log['brewFG'] != "" ) {  ?>
+  	    <tr>
+	      <td class="dataLabelLeft">FG:</td>
+	      <td class="data"><?php echo number_format($row_log['brewFG'], 3); ?></td>
+  	    </tr>
+  	    <tr>
+	      <td class="dataLabelLeft">FG (Plato):</td>
+	      <td class="data"><?php echo round($plato_f, 2); ?>&deg; P</td>
+  	    </tr>
+	  <?php } ?>
+          <?php if (($page != "recipeDetail") && ($page != "recipePrint")) { ?>
+  	    <?php if ($row_log['brewTargetFG'] != "" ) {  ?>
+  	      <tr>
+	        <td class="dataLabelLeft">Target FG:</td>
+		<td class="data"><?php echo number_format($row_log['brewTargetFG'], 3); ?> </td>
+  	      </tr>
+  	    <?php } // Target FG ?>
+  	  <?php } ?>
+	  <?php if (($row_log['brewOG'] != "" ) && ($row_log['brewFG'] != "" )) { ?>
+            <tr>
+	      <td class="dataLabelLeft">Real Extract:</td>
+	      <td class="data"><?php echo round ($real_extract, 2); ?>&deg; P</td>
+  	    </tr>
+  	    <tr>
+	      <td class="dataLabelLeft">App. Atten.:</td>
+	      <td class="data"><?php echo round ($aa, 1); ?>%</td>
+  	    </tr>
+  	    <tr>
+	      <td class="dataLabelLeft">Real Atten.:</td>
+	      <td class="data"><?php echo round ($ra, 1); ?>%</td>
+	    </tr>
+	  <?php } // FG (Plato), RE, AA, RA ?>
+	  <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>
+	    <?php if ($row_log['brewStatus'] !="") { ?>
+              <tr>
+		 <td class="dataLabelLeft">Status:</td>
+                 <td class="data"><?php echo $row_log['brewStatus']; ?></td>
+	      </tr>
+	    <?php } ?>
+	  <?php } ?>
 	</table>
 	</td>
   </tr>

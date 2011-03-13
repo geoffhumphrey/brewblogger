@@ -19,6 +19,10 @@
 // Most modern data I've seen supports this range. The 15% 
 // delta value is a left-over from the old days and appears to 
 // have been based on speculation at that time.
+//
+// Leaf, whole and plug can all be considered the same thing as
+// there's little difference between whole/leaf and plug, if 
+// any.
 // - Kevin
 $pelletFactor = $row_pref['hopPelletFactor'];
 
@@ -43,7 +47,7 @@ $pelletFactor = $row_pref['hopPelletFactor'];
 //
 // Decimal Alpha Acid Utilization = Bigness Factor * Boil Time Factor
 //
-// $form  = ('pellet' || 'whole')
+// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
 // $units = ('metric' || 'us')
 function calc_bitter_tinseth($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
   global $pelletFactor;
@@ -71,7 +75,7 @@ function calc_bitter_tinseth($boilTime, $sg, $aa, $weight, $vol, $form, $units) 
 }
 
 // ---------------------------- Rager Method ----------------------------- //
-// $form  = ('pellet' || 'whole')
+// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
 // $units = ('metric' || 'us')
 function calc_bitter_rager($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
   global $pelletFactor;
@@ -128,7 +132,7 @@ function calc_bitter_rager($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
 
 // --------------------------- Garetz Method --------------------------- //
 // Default form: whole.
-// $form  = ('pellet' || 'whole')
+// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
 // $units = ('metric' || 'us')
 function calc_bitter_garetz($boilTime, $sg, $aa, $weight, $postBoilVol, $form, $units,
 			    $preBoilVol, $desiredIBU, $elevation) {
@@ -212,7 +216,7 @@ function calc_bitter_garetz($boilTime, $sg, $aa, $weight, $postBoilVol, $form, $
 //   -------------------------------------------
 // (Final Volume * (1 +[(Boil Time - 1.050) / 0.2)])
 //
-// $form  = ('pellet' || 'whole')
+// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
 // $units = ('metric' || 'us')
 function calc_bitter_daniels($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
 
