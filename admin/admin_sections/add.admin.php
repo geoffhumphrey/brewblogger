@@ -61,7 +61,6 @@ if ($action == "importCalc") include ('lib/importFormVar.lib.php');
 ($dbTable == "mash_profiles")   	||
 ($dbTable == "mash_steps")   		||
 ($dbTable == "water_profiles")   	||
-($dbTable == "sugar_type")          ||
 (($dbTable == "brewing") && ($action != "import"))	||
 (($dbTable == "users") && ($row_user['userLevel'] == "1"))
 ) echo "<a href = \"index.php?action=list&dbTable=".$dbTable."\">".$breadcrumb."</a> &gt; ".$page_title; 
@@ -105,7 +104,6 @@ if ($dbTable == "adjuncts") 		include ('add-edit/adjuncts.add-edit.php');
 if ($dbTable == "hops") 			include ('add-edit/hops.add-edit.php'); 
 if ($dbTable == "styles") 			include ('add-edit/styles.add-edit.php'); 
 if ($dbTable == "brewerlinks") 		include ('add-edit/brewerlinks.add-edit.php');
-if ($dbTable == "sugar_type") 		include ('add-edit/sugar_type.add-edit.php');
 if ($dbTable == "news") 			include ('add-edit/news.add-edit.php'); 
 if ($dbTable == "malt") 			include ('add-edit/grains.add-edit.php'); 
 if (($dbTable == "yeast_profiles") && (($action == "add") || ($action == "edit") || ($action == "reuse"))) 	include ('add-edit/yeast_profiles.add-edit.php'); 

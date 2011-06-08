@@ -85,9 +85,14 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
     <?php 
     if ($row_recipeRecalc['id'] != "") {
       echo '<td class="data">';
-      if ($row_recipeRecalc['brewExtract1'] != "") { 
-	echo $row_recipeRecalc['brewExtract1Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract1']."<br />"; 
-      } 
+      for ($i = 0; $i < MAX_EXT; $i++) {
+	$keyName = "brewExtract" . ($i + 1);
+	if ($row_recipeRecalc[$keyName] != "") { 
+	  $keyWeight = "brewExtract" . ($i + 1) . "Weight";
+	  echo $row_recipeRecalc[$keyWeight] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />';
+	}
+      }
+      /*
       if ($row_recipeRecalc['brewExtract2'] != "") { 
 	echo $row_recipeRecalc['brewExtract2Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract2']."<br />"; 
       } 
@@ -100,14 +105,22 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
       if ($row_recipeRecalc['brewExtract5'] != "") { 
 	echo $row_recipeRecalc['brewExtract5Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract5'];
       }
+      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">';
+    for ($i = 0; $i < MAX_EXT; $i++) {
+      if ($extName[$i] != "") {
+	echo $extWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $extName[$i] . '<br />';
+      } 
+    }
+/*
       if ($brewExtract1 != "") { echo $brewExtract1Weight." ".$row_pref['measWeight2']." ".$brewExtract1."<br />"; } 
       if ($brewExtract2 != "") { echo $brewExtract2Weight." ".$row_pref['measWeight2']." ".$brewExtract2."<br />"; }  
       if ($brewExtract3 != "") { echo $brewExtract3Weight." ".$row_pref['measWeight2']." ".$brewExtract3."<br />"; }  
       if ($brewExtract4 != "") { echo $brewExtract4Weight." ".$row_pref['measWeight2']." ".$brewExtract4."<br />"; }  
-      if ($brewExtract5 != "") { echo $brewExtract5Weight." ".$row_pref['measWeight2']." ".$brewExtract5; }  
+      if ($brewExtract5 != "") { echo $brewExtract5Weight." ".$row_pref['measWeight2']." ".$brewExtract5; }
+*/
     ?>
     </td>
   </tr>
@@ -116,40 +129,30 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
     <?php
     if ($row_recipeRecalc['id'] != "") {
       echo '<td class="data">';
+      for ($i = 0; $i < MAX_GRAINS; $i++) {
+	$keyName = "brewGrain" . ($i + 1);
+	if ($row_recipeRecalc[$keyName] != "") {
+	  $keyWeight = "brewGrain" . ($i + 1) . "Weight";
+	  echo $row_recipeRecalc[$keyWeight] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />' . "\n";;
+	}
+      }
+      /*
       if ($row_recipeRecalc['brewGrain1'] != "") echo $row_recipeRecalc['brewGrain1Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain1']."<br>";
-      if ($row_recipeRecalc['brewGrain2'] != "") echo $row_recipeRecalc['brewGrain2Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain2']."<br>";
-      if ($row_recipeRecalc['brewGrain3'] != "") echo $row_recipeRecalc['brewGrain3Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain3']."<br>";
-      if ($row_recipeRecalc['brewGrain4'] != "") echo $row_recipeRecalc['brewGrain4Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain4']."<br>";
-      if ($row_recipeRecalc['brewGrain5'] != "") echo $row_recipeRecalc['brewGrain5Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain5']."<br>";
-      if ($row_recipeRecalc['brewGrain6'] != "") echo $row_recipeRecalc['brewGrain6Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain6']."<br>";
-      if ($row_recipeRecalc['brewGrain7'] != "") echo $row_recipeRecalc['brewGrain7Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain7']."<br>";
-      if ($row_recipeRecalc['brewGrain8'] != "") echo $row_recipeRecalc['brewGrain8Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain8']."<br>";
-      if ($row_recipeRecalc['brewGrain9'] != "") echo $row_recipeRecalc['brewGrain9Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain9']."<br>";
-      if ($row_recipeRecalc['brewGrain10'] != "") echo $row_recipeRecalc['brewGrain10Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain10']."<br>";
-      if ($row_recipeRecalc['brewGrain11'] != "") echo $row_recipeRecalc['brewGrain11Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain11']."<br>";
-      if ($row_recipeRecalc['brewGrain12'] != "") echo $row_recipeRecalc['brewGrain12Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain12']."<br>";
-      if ($row_recipeRecalc['brewGrain13'] != "") echo $row_recipeRecalc['brewGrain13Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain13']."<br>";
-      if ($row_recipeRecalc['brewGrain14'] != "") echo $row_recipeRecalc['brewGrain14Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain14']."<br>";
       if ($row_recipeRecalc['brewGrain15'] != "") echo $row_recipeRecalc['brewGrain15Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain15'];
+      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">' . "\n";
+    for ($i = 0; $i < MAX_GRAINS; $i++) {
+      if ($grainName[$i] != "") {
+	echo $grainWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $grainName[$i] . '<br />' . "\n";
+      }
+      /*
       if ($brewGrain1 != "") echo $brewGrain1Weight." ".$row_pref['measWeight2']." ".$brewGrain1."<br>"; 
-      if ($brewGrain2 != "") echo $brewGrain2Weight." ".$row_pref['measWeight2']." ".$brewGrain2."<br>"; 
-      if ($brewGrain3 != "") echo $brewGrain3Weight." ".$row_pref['measWeight2']." ".$brewGrain3."<br>"; 
-      if ($brewGrain4 != "") echo $brewGrain4Weight." ".$row_pref['measWeight2']." ".$brewGrain4."<br>"; 
-      if ($brewGrain5 != "") echo $brewGrain5Weight." ".$row_pref['measWeight2']." ".$brewGrain5."<br>"; 
-      if ($brewGrain6 != "") echo $brewGrain6Weight." ".$row_pref['measWeight2']." ".$brewGrain6."<br>"; 
-      if ($brewGrain7 != "") echo $brewGrain7Weight." ".$row_pref['measWeight2']." ".$brewGrain7."<br>"; 
-      if ($brewGrain8 != "") echo $brewGrain8Weight." ".$row_pref['measWeight2']." ".$brewGrain8."<br>";
-      if ($brewGrain9 != "") echo $brewGrain9Weight." ".$row_pref['measWeight2']." ".$brewGrain9."<br>"; 
-      if ($brewGrain10 != "") echo $brewGrain10Weight." ".$row_pref['measWeight2']." ".$brewGrain10."<br>"; 
-      if ($brewGrain11 != "") echo $brewGrain11Weight." ".$row_pref['measWeight2']." ".$brewGrain11."<br>"; 
-      if ($brewGrain12 != "") echo $brewGrain12Weight." ".$row_pref['measWeight2']." ".$brewGrain12."<br>"; 
-      if ($brewGrain13 != "") echo $brewGrain13Weight." ".$row_pref['measWeight2']." ".$brewGrain13."<br>"; 
-      if ($brewGrain14 != "") echo $brewGrain14Weight." ".$row_pref['measWeight2']." ".$brewGrain14."<br>"; 
       if ($brewGrain15 != "") echo $brewGrain15Weight." ".$row_pref['measWeight2']." ".$brewGrain15;
-      ?>
+      */
+    }
+     ?>
     </td>
   </tr>
   <tr>
@@ -157,18 +160,26 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
     <?php
     if ($row_recipeRecalc['id'] != "") {
       echo '<td class="data">';
+      for ($i = 0; $i < MAX_ADJ; $i++) {
+	$keyName = "brewAddition" . ($i + 1);
+	if ($row_recipeRecalc[$keyName] != "") {
+	  $keyAmt = "brewAddition" . ($i + 1) . "Amt";
+	  echo $row_recipeRecalc[$keyAmt] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />' . "\n";
+	}
+      }
+      /*
       if ($row_recipeRecalc['brewAddition1'] != "") echo $row_recipeRecalc['brewAddition1Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition1']."<br>";
-      if ($row_recipeRecalc['brewAddition2'] != "") echo $row_recipeRecalc['brewAddition2Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition2']."<br>";
-      if ($row_recipeRecalc['brewAddition3'] != "") echo $row_recipeRecalc['brewAddition3Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition3']."<br>";
-      if ($row_recipeRecalc['brewAddition4'] != "") echo $row_recipeRecalc['brewAddition4Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition4']."<br>";
-      if ($row_recipeRecalc['brewAddition5'] != "") echo $row_recipeRecalc['brewAddition5Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition5']."<br>";
-      if ($row_recipeRecalc['brewAddition6'] != "") echo $row_recipeRecalc['brewAddition6Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition6']."<br>";
-      if ($row_recipeRecalc['brewAddition7'] != "") echo $row_recipeRecalc['brewAddition7Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition7']."<br>";
-      if ($row_recipeRecalc['brewAddition8'] != "") echo $row_recipeRecalc['brewAddition8Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition8']."<br>";
       if ($row_recipeRecalc['brewAddition9'] != "") echo $row_recipeRecalc['brewAddition9Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition9'];
+      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">';
+    for ($i = 0; $i < MAX_ADJ; $i++) {
+      if ($adjName[$i] != "") {
+	echo $adjWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $adjName[$i] . '<br />' . "\n";
+      }
+    }
+      /*
       if ($brewAdjunct1 != "") echo $brewAdjunct1Weight." ".$row_pref['measWeight2']." ".$brewAdjunct1."<br>"; 
       if ($brewAdjunct2 != "") echo $brewAdjunct2Weight." ".$row_pref['measWeight2']." ".$brewAdjunct2."<br>"; 
       if ($brewAdjunct3 != "") echo $brewAdjunct3Weight." ".$row_pref['measWeight2']." ".$brewAdjunct3."<br>"; 
@@ -178,6 +189,7 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
       if ($brewAdjunct7 != "") echo $brewAdjunct7Weight." ".$row_pref['measWeight2']." ".$brewAdjunct7."<br>"; 
       if ($brewAdjunct8 != "") echo $brewAdjunct8Weight." ".$row_pref['measWeight2']." ".$brewAdjunct8."<br>";
       if ($brewAdjunct9 != "") echo $brewAdjunct9Weight." ".$row_pref['measWeight2']." ".$brewAdjunct9; 
+      */
     ?>
     </td>
   </tr>
@@ -187,14 +199,14 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
     if ($row_recipeRecalc['id'] != "") {
       echo '<td class="data">';
       for ($i = 1; $i <= MAX_HOPS; $i++) {
-	$key0 = "brewHops" . $i;
-	if ($row_recipeRecalc[$key0]) {
-	  $key1 = "brewHops" . $i . "Weight";
-	  echo $row_recipeRecalc[$key1] . " " . $row_pref['measWeight1'] . " " . $row_recipeRecalc[$key0] . " ";
-	  $key1 = "brewHops" . $i . "IBU";
-	  echo $row_recipeRecalc[$key1] . "% @ ";
-	  $key1 = "brewHops" . $i . "Time";
-	  echo $row_recipeRecalc[$key1] . " min.<br />";
+	$keyName = "brewHops" . $i;
+	if ($row_recipeRecalc[$keyName]) {
+	  $key = "brewHops" . $i . "Weight";
+	  echo $row_recipeRecalc[$key] . " " . $row_pref['measWeight1'] . " " . $row_recipeRecalc[$keyName] . " ";
+	  $key = "brewHops" . $i . "IBU";
+	  echo $row_recipeRecalc[$key] . "% @ ";
+	  $key = "brewHops" . $i . "Time";
+	  echo $row_recipeRecalc[$key] . " min.<br />";
 	}
       }
       echo '</td>' . "\n";
@@ -203,12 +215,12 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
     echo '<td class="data">';
     echo '<table>';
     for ($i = 0; $i < MAX_HOPS; $i++) {
-      if ($brewHopsName[$i]) {
-	echo $brewHopsWeight[$i] . " " . $row_pref['measWeight1'] . " ";
-	echo $brewHopsName[$i] . " ";
-	echo $brewHopsAA[$i] . "% ";
-	echo $brewHopsForm[$i] . " @ ";
-	echo $brewHopsTime[$i] . " min.<br />";
+      if ($hopsName[$i]) {
+	echo $hopsWeight[$i] . " " . $row_pref['measWeight1'] . " ";
+	echo $hopsName[$i] . " ";
+	echo $hopsAA[$i] . "% ";
+	echo $hopsForm[$i] . " @ ";
+	echo $hopsTime[$i] . " min.<br />";
       }
     }
     echo '</table>' . "\n";

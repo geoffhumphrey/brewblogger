@@ -8,6 +8,8 @@
 if ($action == "calculate") { ?>
   <input type="hidden" name="brewName" value="<?php echo strtr($brewName, $html_string); ?>">
 
+  <input type="hidden" name="brewYeastAmt" value="<?php echo $brewYeastAmt; ?>">
+
   <input type="hidden" name="brewYield" value="<?php echo $brewYield; ?>">
   <input type="hidden" name="brewStyle" value="<?php echo $brewStyle; ?>">
   <input type="hidden" name="brewLovibond" value="<?php if ($row_pref['measColor'] == "EBC") echo $EBC; else echo $SRM; ?>">
@@ -18,6 +20,13 @@ if ($action == "calculate") { ?>
   <input type="hidden" name="ibuD" value="<?php echo $ibuD; ?>">
   <input type="hidden" name="ibuAvg" value="<?php echo $ibuAvg; ?>">
 
+<?php
+  for ($i = 0; $i < MAX_EXT; $i++) {
+    echo '<input type="hidden" name="extName['.$i.']" value="'.$extName[$i].'">' . "\n";
+    echo '<input type="hidden" name="extWeight['.$i.']" value="'.$extWeight[$i].'">' . "\n";
+  }
+
+  /*
   <input type="hidden" name="brewExtract1" value="<?php echo $brewExtract1; ?>">
   <input type="hidden" name="brewExtract2" value="<?php echo $brewExtract2; ?>">
   <input type="hidden" name="brewExtract3" value="<?php echo $brewExtract3; ?>">
@@ -29,7 +38,14 @@ if ($action == "calculate") { ?>
   <input type="hidden" name="brewExtract3Weight" value="<?php echo $brewExtract3Weight; ?>">
   <input type="hidden" name="brewExtract4Weight" value="<?php echo $brewExtract4Weight; ?>">
   <input type="hidden" name="brewExtract5Weight" value="<?php echo $brewExtract5Weight; ?>">
+  */
 
+  for ($i = 0; $i < MAX_GRAINS; $i++) {
+    echo '<input type="hidden" name="grainName['.$i.']" value="'.$grainName[$i].'">' . "\n";
+    echo '<input type="hidden" name="grainWeight['.$i.']" value="'.$grainWeight[$i].'">' . "\n";
+  }
+
+  /*
   <input type="hidden" name="brewGrain1" value="<?php echo $brewGrain1; ?>">
   <input type="hidden" name="brewGrain2" value="<?php echo $brewGrain2; ?>">
   <input type="hidden" name="brewGrain3" value="<?php echo $brewGrain3; ?>">
@@ -61,7 +77,14 @@ if ($action == "calculate") { ?>
   <input type="hidden" name="brewGrain13Weight" value="<?php echo $brewGrain13Weight; ?>">
   <input type="hidden" name="brewGrain14Weight" value="<?php echo $brewGrain14Weight; ?>">
   <input type="hidden" name="brewGrain15Weight" value="<?php echo $brewGrain15Weight; ?>">
+  */
 
+  for ($i = 0; $i < MAX_ADJ; $i++) {
+    echo '<input type="hidden" name="adjName['.$i.']" value="'.$adjName[$i].'">' . "\n";
+    echo '<input type="hidden" name="adjWeight['.$i.']" value="'.$adjWeight[$i].'">' . "\n";
+  }
+
+  /*
   <input type="hidden" name="brewAdjunct1" value="<?php echo $brewAdjunct1; ?>">
   <input type="hidden" name="brewAdjunct2" value="<?php echo $brewAdjunct2; ?>">
   <input type="hidden" name="brewAdjunct3" value="<?php echo $brewAdjunct3; ?>">
@@ -81,18 +104,17 @@ if ($action == "calculate") { ?>
   <input type="hidden" name="brewAdjunct7Weight" value="<?php echo $brewAdjunct7Weight; ?>">
   <input type="hidden" name="brewAdjunct8Weight" value="<?php echo $brewAdjunct8Weight; ?>">
   <input type="hidden" name="brewAdjunct9Weight" value="<?php echo $brewAdjunct9Weight; ?>">
+  */
 
-  <?php
   for ($i = 0; $i < MAX_HOPS; $i++) {
-    echo '<input type="hidden" name="brewHopsName['.$i.']" value="'.$brewHopsName[$i].'" />';
-    echo '<input type="hidden" name="brewHopsWeight['.$i.']" value="'.$brewHopsWeight[$i].'" />';
-    echo '<input type="hidden" name="brewHopsAA['.$i.']" value="'.$brewHopsAA[$i].'" />';
-    echo '<input type="hidden" name="brewHopsTime['.$i.']" value="'.$brewHopsTime[$i].'" />';
-    echo '<input type="hidden" name="brewHopsForm['.$i.']" value="'.$brewHopsForm[$i].'" />';
+    echo '<input type="hidden" name="hopsName['.$i.']" value="'.$hopsName[$i].'" />';
+    echo '<input type="hidden" name="hopsWeight['.$i.']" value="'.$hopsWeight[$i].'" />';
+    echo '<input type="hidden" name="hopsAA['.$i.']" value="'.$hopsAA[$i].'" />';
+    echo '<input type="hidden" name="hopsTime['.$i.']" value="'.$hopsTime[$i].'" />';
+    echo '<input type="hidden" name="hopsForm['.$i.']" value="'.$hopsForm[$i].'" />';
   }
-  ?>
 
-  <?php if ($assoc == "import") { ?>
+  if ($assoc == "import") { ?>
     <input type="hidden" name="brewMisc1Name" value="<?php echo $row_recipeRecalc['brewMisc1Name']; ?>" />
     <input type="hidden" name="brewMisc1Time" value="<?php echo $row_recipeRecalc['brewMisc1Time']; ?>" />
     <input type="hidden" name="brewMisc1Amount" value="<?php echo $row_recipeRecalc['brewMisc1Amount']; ?>" />
@@ -110,6 +132,13 @@ if ($action == "calculate") { ?>
 <?php
 } else {
   // This code runs when we import to a recipe or blog from the calculator.
+
+  for ($i = 0; $i < MAX_EXT; $i++) {
+    $extName[$i] = $_POST['extName'][$i];
+    $extWeight[$i] = $_POST['extWeight'][$i];
+  }
+
+  /*
   $brewExtract1 = $_POST['brewExtract1'];
   $brewExtract2 = $_POST['brewExtract2'];
   $brewExtract3 = $_POST['brewExtract3'];
@@ -121,7 +150,14 @@ if ($action == "calculate") { ?>
   $brewExtract3Weight = $_POST['brewExtract3Weight'];
   $brewExtract4Weight = $_POST['brewExtract4Weight'];
   $brewExtract5Weight = $_POST['brewExtract5Weight'];
+  */
 
+  for ($i = 0; $i < MAX_GRAINS; $i++) {
+    $grainName[$i]   = $_POST['grainName'][$i];
+    $grainWeight[$i] = $_POST['grainWeight'][$i];
+  }
+
+  /*
   $brewGrain1 = $_POST['brewGrain1'];
   $brewGrain2 = $_POST['brewGrain2'];
   $brewGrain3 = $_POST['brewGrain3'];
@@ -153,7 +189,14 @@ if ($action == "calculate") { ?>
   $brewGrain13Weight = $_POST['brewGrain13Weight'];
   $brewGrain14Weight = $_POST['brewGrain14Weight'];
   $brewGrain15Weight = $_POST['brewGrain15Weight'];
+  */
 
+  for ($i = 0; $i < MAX_ADJ; $i++) {
+    $adjName[$i]   = $_POST['adjName'][$i];
+    $adjWeight[$i] = $_POST['adjWeight'][$i];
+  }
+
+  /*
   $brewAdjunct1 = $_POST['brewAdjunct1'];
   $brewAdjunct2 = $_POST['brewAdjunct2'];
   $brewAdjunct3 = $_POST['brewAdjunct3'];
@@ -173,13 +216,14 @@ if ($action == "calculate") { ?>
   $brewAdjunct7Amt = $_POST['brewAdjunct7Weight'];
   $brewAdjunct8Amt = $_POST['brewAdjunct8Weight'];
   $brewAdjunct9Amt = $_POST['brewAdjunct9Weight'];
+  */
 
   for ($i = 0; $i < MAX_HOPS; $i++) {
-    $brewHopsName[$i]   = $_POST['brewHopsName'][$i];
-    $brewHopsWeight[$i] = $_POST['brewHopsWeight'][$i];
-    $brewHopsAA[$i]     = $_POST['brewHopsAA'][$i];
-    $brewHopsTime[$i]   = $_POST['brewHopsTime'][$i];
-    $brewHopsForm[$i]   = $_POST['brewHopsForm'][$i];
+    $hopsName[$i]   = $_POST['hopsName'][$i];
+    $hopsWeight[$i] = $_POST['hopsWeight'][$i];
+    $hopsAA[$i]     = $_POST['hopsAA'][$i];
+    $hopsTime[$i]   = $_POST['hopsTime'][$i];
+    $hopsForm[$i]   = $_POST['hopsForm'][$i];
   }
 
   $brewBrewerID   = $_POST['brewBrewerID'];

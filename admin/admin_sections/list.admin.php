@@ -24,7 +24,6 @@ echo "<a href=\"index.php\">Administration</a>"; else echo "Administration"; ?> 
 ($dbTable == "water_profiles")   		||
 ($dbTable == "equip_profiles")   		||
 ($dbTable == "news")   					||
-($dbTable == "sugar_type")				||
 ($dbTable == "brewing")
 ) echo $breadcrumb; else echo " "; ?>
 </div>
@@ -55,7 +54,6 @@ if (($action == "list") && ($dbTable == "equip_profiles"))	include ('list/equip_
 if (($action == "list") && ($dbTable == "mash_steps"))		include ('add-edit/mash_steps.add-edit.php');
 if (($action == "list") && ($dbTable == "upcoming")	)		include ('list/upcoming.list.php');
 if (($action == "list") && ($dbTable == "misc")	)			include ('list/misc.list.php');
-if (($action == "list") && ($dbTable == "sugar_type"))		include ('list/sugar_type.list.php');
 
 if ($row_pref['mode'] == "2") {
  	if (($action == "list") && ($dbTable == "news")) 	include ('list/news.list.php'); 

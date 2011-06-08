@@ -1,5 +1,55 @@
-<div class="headerContentAdmin">Malt Extracts</div>
-<table class="dataTable">
+<?php
+/**
+ * Module: extracts.recipe.php
+ * Description: Setup extracts part of the page to add/edit blog or recipe.
+ */
+
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+
+echo '<div class="headerContentAdmin">Malt Extracts</div>' . "\n";
+echo '<table class="dataTable">' . "\n";
+
+for ($i = 0; $i < MAX_EXT; $i++) {
+  echo '<tr>' . "\n";
+  echo '<td class="dataLabelLeft" width="5%">Extract ' . ($i + 1) . ':</td>' . "\n";
+  echo '<td class="data" width="10%"><select name="extName['.$i.']">' . "\n";
+  $key = "brewExtract" . ($i + 1);
+  if ((($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) && ($row_log[$key] != "")) {
+    echo '<option value="' . $row_log[$key] . '">' . $row_log[$key] . '</option>' . "\n";
+  }
+  echo '<option value=""></option>' . "\n";
+  echo '<option value="">-- Items below are in the Extracts DB --</option>' . "\n";
+  do {
+    echo '<option value="' . $row_extracts['extractName'] . '" ';
+    if (($action != "add") && ((($action != "importCalc") && ($row_extracts['extractName'] == $row_log[$key])) ||
+			       (($action == "importCalc") && ($row_extracts['extractName'] == $extName[$i])))) {
+	echo "SELECTED";
+    }
+    echo '>' . $row_extracts['extractName'] . '</option>' . "\n";
+  } while ($row_extracts = mysql_fetch_array($extracts));
+  echo '</select></td>' . "\n";
+
+  // Reset $row_extracts to first row
+  $rows = mysql_num_rows($extracts);
+  if ($rows > 0) {
+    mysql_data_seek($extracts, 0);
+    $row_extracts = mysql_fetch_array($extracts);
+  }
+
+  echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
+  $key = "brewExtract" . ($i + 1) . "Weight";
+  echo '<td class="data"><input name="extWeight['.$i.']" type="text" tooltipText="' . $toolTip_decimal . '" value="';
+  if (($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) {
+    echo $row_log[$key];
+  }
+  if ($action == "importCalc") {
+    echo $extWeight[$i];
+  }
+  echo '" size="5">&nbsp;' . $row_pref['measWeight2'] . '</td>' . "\n";
+  echo '</tr>' . "\n";
+}
+
+/*
 <tr>
    <td class="dataLabelLeft" width="5%">Extract 1:</td>
    <td class="data" width="10%">
@@ -15,6 +65,7 @@
    <td class="dataLabel" width="5%">Weight:</td>
    <td class="data"><input name="brewExtract1Weight" type="text" id="brewExtract1Weight" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewExtract1Weight'];  if ($action == "importCalc") echo $brewExtract1Weight; ?>" size="5">&nbsp;<?php echo $row_pref['measWeight2']; ?></td>
 </tr>
+
 <tr>
    <td class="dataLabelLeft">Extract 2:</td>
    <td class="data">
@@ -75,4 +126,6 @@
    <td class="dataLabel">Weight:</td>
    <td class="data"><input name="brewExtract5Weight" type="text" id="brewExtract5Weight" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewExtract5Weight'];  if ($action == "importCalc") echo $brewExtract5Weight; ?>" size="5">&nbsp;<?php echo $row_pref['measWeight2']; ?></td>
 </tr>
+*/
+?>
 </table>

@@ -105,13 +105,6 @@ $msgName = "extract";
 $icon = "database"; 
 }
 
-if ($dbTable == "sugar_type") { 
-$dbName = "Sugar Types";	   		
-$sqlSelect = "sugarName"; 					
-$msgName = "sugar type"; 																	
-$icon = "database"; 
-}
-
 if ($dbTable == "yeast_profiles") 	{ 
 $dbName = "Yeast Profiles";	
 $sqlSelect = "yeastName"; 						

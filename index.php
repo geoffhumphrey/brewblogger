@@ -45,6 +45,9 @@ include (INCLUDES.'color.inc.php');
 //determine if club edition or personal edition is in use
 include (INCLUDES.'version.inc.php'); 
 
+// Load constants
+require_once ('admin/includes/constants.inc.php');
+
 $imageSrc = "images/";
 
 // -----------------------------------------------------------------------------------------------

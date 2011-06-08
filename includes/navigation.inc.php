@@ -76,7 +76,6 @@ if ($row_user['userLevel'] == "1") { ?>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=hops">Hops</a>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=misc">Misc Ingredients</a>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=styles">Styles</a>
-	<a class="menuItem" href="admin/index.php?action=list&dbTable=sugar_type">Sugar Types</a>
 </div>
 <div id="publicMenu2.1.2" class="menu">
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=equip_profiles">Equipment Profiles</a>
@@ -106,7 +105,6 @@ if ($row_user['userLevel'] == "1") { ?>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=hops">Hops</a>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=misc">Misc Ingredients</a>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=styles">Styles</a>
-	<a class="menuItem" href="admin/index.php?action=add&dbTable=sugar_type">Sugar Types</a>
 </div>
 <div id="publicMenu2.2.2" class="menu">
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=equip_profiles">Equipment Profiles</a>
@@ -160,7 +158,6 @@ if ($row_user['userLevel'] == "1") { ?>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=hops">Hops</a>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=misc">Misc Ingredients</a>
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=styles">Styles</a>
-	<a class="menuItem" href="admin/index.php?action=list&dbTable=sugar_type">Sugar Types</a>
 </div>
 <div id="publicMenu2.6.2" class="menu">
 	<a class="menuItem" href="admin/index.php?action=list&dbTable=equip_profiles">Equipment Profiles</a>
@@ -188,7 +185,6 @@ if ($row_user['userLevel'] == "1") { ?>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=hops">Hops</a>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=misc">Misc Ingredients</a>
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=styles">Styles</a>
-	<a class="menuItem" href="admin/index.php?action=add&dbTable=sugar_type">Sugar Types</a>
 </div>
 <div id="publicMenu2.2.2" class="menu">
 	<a class="menuItem" href="admin/index.php?action=add&dbTable=equip_profiles">Equipment Profiles</a>

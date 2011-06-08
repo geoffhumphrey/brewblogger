@@ -128,14 +128,6 @@
     <td class="data">&nbsp;</td>
   </tr>
   <tr>
-    <td class="data_icon"><img src="<?php echo $imageSrc; ?>ruby.png"></td>
-    <td class="data"><a href="index.php?action=list&dbTable=sugar_type">Manage Sugar Types</a></td>
-    <td class="data_icon"><img src="<?php echo $imageSrc; ?>ruby_add.png"></td>
-    <td class="data"><a href="index.php?action=add&dbTable=sugar_type">Add Sugar Types</a></td>
-    <td class="data_icon">&nbsp;</td>
-    <td class="data">&nbsp;</td>
-  </tr>
-  <tr>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>database.png"></td>
     <td class="data"><a href="index.php?action=list&dbTable=equip_profiles">Manage Equipment Profiles</a></td>
     <td class="data_icon"><img src="<?php echo $imageSrc; ?>database_add.png"></td>
