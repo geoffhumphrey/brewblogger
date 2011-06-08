@@ -1,4 +1,10 @@
 <?php 
+/**
+ * Module: recipe.inc.php
+ * Description: This module loads up vars which will be used to display all the ingredients 
+ *              when viewing a recipe or blog.
+ */
+
 if ($amt != 0) $scale = $amt/$row_log['brewYield'];
 mysql_select_db($database_brewing, $brewing);
 

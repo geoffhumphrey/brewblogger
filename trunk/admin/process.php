@@ -84,15 +84,24 @@ function get_hop_use($time, $boil_time) {
 }
 
 // Load data common to 'recipes' and 'brewing' tables.
+// $update == TRUE if we're updating from the recipe calculator.
 function load_recipe_brewing_common_data($update) {
   global $fieldData;
 
-  $fieldData["brewName"] = GetSQLValueString($_POST['brewName'], "scrubbed");
-  $fieldData["brewStyle"] = GetSQLValueString($_POST['brewStyle'], "text");
-  $fieldData["brewYield"] = GetSQLValueString($_POST['brewYield'], "text");
+  $fieldData["brewName"]     = GetSQLValueString($_POST['brewName'], "scrubbed");
+  $fieldData["brewStyle"]    = GetSQLValueString($_POST['brewStyle'], "text");
+  $fieldData["brewYield"]    = GetSQLValueString($_POST['brewYield'], "text");
   $fieldData["brewBrewerID"] = GetSQLValueString($_POST['brewBrewerID'], "text");
   $fieldData["brewLovibond"] = GetSQLValueString($_POST['brewLovibond'], "text");
 
+  for ($i = 0; $i < MAX_EXT; $i++) {
+    $key = "brewExtract" . ($i + 1);
+    $fieldData[$key] = GetSQLValueString($_POST['extName'][$i], "text");
+    $key = "brewExtract" . ($i + 1) . "Weight";
+    $fieldData[$key] = GetSQLValueString($_POST['extWeight'][$i], "text");
+  }
+
+  /*
   $fieldData["brewExtract1"] = GetSQLValueString($_POST['brewExtract1'], "text");
   $fieldData["brewExtract1Weight"] = GetSQLValueString($_POST['brewExtract1Weight'], "text");
   $fieldData["brewExtract2"] = GetSQLValueString($_POST['brewExtract2'], "text");
@@ -103,7 +112,16 @@ function load_recipe_brewing_common_data($update) {
   $fieldData["brewExtract4Weight"] = GetSQLValueString($_POST['brewExtract4Weight'], "text");
   $fieldData["brewExtract5"] = GetSQLValueString($_POST['brewExtract5'], "text");
   $fieldData["brewExtract5Weight"] = GetSQLValueString($_POST['brewExtract5Weight'], "text");
+  */
 
+  for ($i = 0; $i < MAX_GRAINS; $i++) {
+    $key = "brewGrain" . ($i + 1);
+    $fieldData[$key] = GetSQLValueString($_POST['grainName'][$i], "text");
+    $key = "brewGrain" . ($i + 1) . "Weight";
+    $fieldData[$key] = GetSQLValueString($_POST['grainWeight'][$i], "text");
+  }
+
+  /*
   $fieldData["brewGrain1"] = GetSQLValueString($_POST['brewGrain1'], "text");
   $fieldData["brewGrain1Weight"] = GetSQLValueString($_POST['brewGrain1Weight'], "text");
   $fieldData["brewGrain2"] = GetSQLValueString($_POST['brewGrain2'], "text");
@@ -134,7 +152,16 @@ function load_recipe_brewing_common_data($update) {
   $fieldData["brewGrain14Weight"] = GetSQLValueString($_POST['brewGrain14Weight'], "text");
   $fieldData["brewGrain15"] = GetSQLValueString($_POST['brewGrain15'], "text");
   $fieldData["brewGrain15Weight"] = GetSQLValueString($_POST['brewGrain15Weight'], "text");
+  */
 
+  for ($i = 0; $i < MAX_ADJ; $i++) {
+    $key = "brewAddition" . ($i + 1);
+    $fieldData[$key] = GetSQLValueString($_POST['adjName'][$i], "text");
+    $key = "brewAddition" . ($i + 1) . "Amt";
+    $fieldData[$key] = GetSQLValueString($_POST['adjWeight'][$i], "text");
+  }
+
+  /*
   $fieldData["brewAddition1"] = GetSQLValueString($_POST['brewAdjunct1'], "text");
   $fieldData["brewAddition1Amt"] = GetSQLValueString($_POST['brewAdjunct1Weight'], "text");
   $fieldData["brewAddition2"] = GetSQLValueString($_POST['brewAdjunct2'], "text");
@@ -153,73 +180,74 @@ function load_recipe_brewing_common_data($update) {
   $fieldData["brewAddition8Amt"] = GetSQLValueString($_POST['brewAdjunct8Weight'], "text");
   $fieldData["brewAddition9"] = GetSQLValueString($_POST['brewAdjunct9'], "text");
   $fieldData["brewAddition9Amt"] = GetSQLValueString($_POST['brewAdjunct9Weight'], "text");
+  */
 
   for ($i = 0; $i < MAX_HOPS; $i++) {
     $key = "brewHops" . ($i + 1);
-    $fieldData[$key] = GetSQLValueString($_POST['brewHopsName'][$i], "text");
+    $fieldData[$key] = GetSQLValueString($_POST['hopsName'][$i], "text");
     $key = "brewHops" . ($i + 1) . "Weight";
-    $fieldData[$key] = GetSQLValueString($_POST['brewHopsWeight'][$i], "text");
+    $fieldData[$key] = GetSQLValueString($_POST['hopsWeight'][$i], "text");
     $key = "brewHops" . ($i + 1) . "IBU";
-    $fieldData[$key] = GetSQLValueString($_POST['brewHopsAA'][$i], "text");
+    $fieldData[$key] = GetSQLValueString($_POST['hopsAA'][$i], "text");
     $key = "brewHops" . ($i + 1) . "Time";
-    $fieldData[$key] = GetSQLValueString($_POST['brewHopsTime'][$i], "text");
+    $fieldData[$key] = GetSQLValueString($_POST['hopsTime'][$i], "text");
     $key = "brewHops" . ($i + 1) . "Form";
-    $fieldData[$key] = GetSQLValueString($_POST['brewHopsForm'][$i], "text");
+    $fieldData[$key] = GetSQLValueString($_POST['hopsForm'][$i], "text");
 
     if (!$update) {
       $key = "brewHops" . ($i + 1) . "Use";
-      $fieldData[$key] = GetSQLValueString($_POST['brewHopsUse'][$i], "text");
+      $fieldData[$key] = GetSQLValueString($_POST['hopsUse'][$i], "text");
       $key = "brewHops" . ($i + 1) . "Type";
-      $fieldData[$key] = GetSQLValueString($_POST['brewHopsType'][$i], "text");
+      $fieldData[$key] = GetSQLValueString($_POST['hopsType'][$i], "text");
     }
   }
 
   if (!$update) {
-    $fieldData["brewMethod"] = GetSQLValueString($_POST['brewMethod'], "text");
-    $fieldData["brewProcedure"] = GetSQLValueString($_POST['brewProcedure'], "text");
+    $fieldData["brewMethod"]     = GetSQLValueString($_POST['brewMethod'], "text");
+    $fieldData["brewProcedure"]  = GetSQLValueString($_POST['brewProcedure'], "text");
     $fieldData["brewBitterness"] = GetSQLValueString($_POST['brewBitterness'], "text");
     $fieldData["brewIBUFormula"] = GetSQLValueString($_POST['brewIBUFormula'], "text");
-    $fieldData["brewFeatured"] = GetSQLValueString($_POST['brewFeatured'], "text");
-    $fieldData["brewArchive"] = GetSQLValueString($_POST['brewArchive'], "text");
-    $fieldData["brewBoilTime"] = GetSQLValueString($_POST['brewBoilTime'], "text");
-    $fieldData["brewOG"] = GetSQLValueString($_POST['brewOG'], "text");
-    $fieldData["brewFG"] = GetSQLValueString($_POST['brewFG'], "text");
+    $fieldData["brewFeatured"]   = GetSQLValueString($_POST['brewFeatured'], "text");
+    $fieldData["brewArchive"]    = GetSQLValueString($_POST['brewArchive'], "text");
+    $fieldData["brewBoilTime"]   = GetSQLValueString($_POST['brewBoilTime'], "text");
+    $fieldData["brewOG"]         = GetSQLValueString($_POST['brewOG'], "text");
+    $fieldData["brewFG"]         = GetSQLValueString($_POST['brewFG'], "text");
 
-    $fieldData["brewPrimary"] = GetSQLValueString($_POST['brewPrimary'], "text");
-    $fieldData["brewPrimaryTemp"] = GetSQLValueString($_POST['brewPrimaryTemp'], "text");
-    $fieldData["brewSecondary"] = GetSQLValueString($_POST['brewSecondary'], "text");
+    $fieldData["brewPrimary"]       = GetSQLValueString($_POST['brewPrimary'], "text");
+    $fieldData["brewPrimaryTemp"]   = GetSQLValueString($_POST['brewPrimaryTemp'], "text");
+    $fieldData["brewSecondary"]     = GetSQLValueString($_POST['brewSecondary'], "text");
     $fieldData["brewSecondaryTemp"] = GetSQLValueString($_POST['brewSecondaryTemp'], "text");
-    $fieldData["brewTertiary"] = GetSQLValueString($_POST['brewTertiary'], "text");
-    $fieldData["brewTertiaryTemp"] = GetSQLValueString($_POST['brewTertiaryTemp'], "text");
-    $fieldData["brewLager"] = GetSQLValueString($_POST['brewLager'], "text");
-    $fieldData["brewLagerTemp"] = GetSQLValueString($_POST['brewLagerTemp'], "text");
-    $fieldData["brewAge"] = GetSQLValueString($_POST['brewAge'], "text");
-    $fieldData["brewAgeTemp"] = GetSQLValueString($_POST['brewAgeTemp'], "text");
+    $fieldData["brewTertiary"]      = GetSQLValueString($_POST['brewTertiary'], "text");
+    $fieldData["brewTertiaryTemp"]  = GetSQLValueString($_POST['brewTertiaryTemp'], "text");
+    $fieldData["brewLager"]         = GetSQLValueString($_POST['brewLager'], "text");
+    $fieldData["brewLagerTemp"]     = GetSQLValueString($_POST['brewLagerTemp'], "text");
+    $fieldData["brewAge"]           = GetSQLValueString($_POST['brewAge'], "text");
+    $fieldData["brewAgeTemp"]       = GetSQLValueString($_POST['brewAgeTemp'], "text");
 
-    $fieldData["brewLink1"] = GetSQLValueString($_POST['brewLink1'], "text");
+    $fieldData["brewLink1"]     = GetSQLValueString($_POST['brewLink1'], "text");
     $fieldData["brewLink1Name"] = GetSQLValueString($_POST['brewLink1Name'], "scrubbed");
-    $fieldData["brewLink2"] = GetSQLValueString($_POST['brewLink2'], "text");
+    $fieldData["brewLink2"]     = GetSQLValueString($_POST['brewLink2'], "text");
     $fieldData["brewLink2Name"] = GetSQLValueString($_POST['brewLink2Name'], "scrubbed");
 
-    $fieldData["brewMisc1Name"] = GetSQLValueString($_POST['brewMisc1Name'], "text");
-    $fieldData["brewMisc1Type"] = GetSQLValueString($_POST['brewMisc1Type'], "text");
-    $fieldData["brewMisc1Use"] = GetSQLValueString($_POST['brewMisc1Use'], "text");
-    $fieldData["brewMisc1Time"] = GetSQLValueString($_POST['brewMisc1Time'], "text");
+    $fieldData["brewMisc1Name"]   = GetSQLValueString($_POST['brewMisc1Name'], "text");
+    $fieldData["brewMisc1Type"]   = GetSQLValueString($_POST['brewMisc1Type'], "text");
+    $fieldData["brewMisc1Use"]    = GetSQLValueString($_POST['brewMisc1Use'], "text");
+    $fieldData["brewMisc1Time"]   = GetSQLValueString($_POST['brewMisc1Time'], "text");
     $fieldData["brewMisc1Amount"] = GetSQLValueString($_POST['brewMisc1Amount'], "text");
-    $fieldData["brewMisc2Name"] = GetSQLValueString($_POST['brewMisc2Name'], "text");
-    $fieldData["brewMisc2Type"] = GetSQLValueString($_POST['brewMisc2Type'], "text");
-    $fieldData["brewMisc2Use"] = GetSQLValueString($_POST['brewMisc2Use'], "text");
-    $fieldData["brewMisc2Time"] = GetSQLValueString($_POST['brewMisc2Time'], "text");
+    $fieldData["brewMisc2Name"]   = GetSQLValueString($_POST['brewMisc2Name'], "text");
+    $fieldData["brewMisc2Type"]   = GetSQLValueString($_POST['brewMisc2Type'], "text");
+    $fieldData["brewMisc2Use"]    = GetSQLValueString($_POST['brewMisc2Use'], "text");
+    $fieldData["brewMisc2Time"]   = GetSQLValueString($_POST['brewMisc2Time'], "text");
     $fieldData["brewMisc2Amount"] = GetSQLValueString($_POST['brewMisc2Amount'], "text");
-    $fieldData["brewMisc3Name"] = GetSQLValueString($_POST['brewMisc3Name'], "text");
-    $fieldData["brewMisc3Type"] = GetSQLValueString($_POST['brewMisc3Type'], "text");
-    $fieldData["brewMisc3Use"] = GetSQLValueString($_POST['brewMisc3Use'], "text");
-    $fieldData["brewMisc3Time"] = GetSQLValueString($_POST['brewMisc3Time'], "text");
+    $fieldData["brewMisc3Name"]   = GetSQLValueString($_POST['brewMisc3Name'], "text");
+    $fieldData["brewMisc3Type"]   = GetSQLValueString($_POST['brewMisc3Type'], "text");
+    $fieldData["brewMisc3Use"]    = GetSQLValueString($_POST['brewMisc3Use'], "text");
+    $fieldData["brewMisc3Time"]   = GetSQLValueString($_POST['brewMisc3Time'], "text");
     $fieldData["brewMisc3Amount"] = GetSQLValueString($_POST['brewMisc3Amount'], "text");
-    $fieldData["brewMisc4Name"] = GetSQLValueString($_POST['brewMisc4Name'], "text");
-    $fieldData["brewMisc4Type"] = GetSQLValueString($_POST['brewMisc4Type'], "text");
-    $fieldData["brewMisc4Use"] = GetSQLValueString($_POST['brewMisc4Use'], "text");
-    $fieldData["brewMisc4Time"] = GetSQLValueString($_POST['brewMisc4Time'], "text");
+    $fieldData["brewMisc4Name"]   = GetSQLValueString($_POST['brewMisc4Name'], "text");
+    $fieldData["brewMisc4Type"]   = GetSQLValueString($_POST['brewMisc4Type'], "text");
+    $fieldData["brewMisc4Use"]    = GetSQLValueString($_POST['brewMisc4Use'], "text");
+    $fieldData["brewMisc4Time"]   = GetSQLValueString($_POST['brewMisc4Time'], "text");
     $fieldData["brewMisc4Amount"] = GetSQLValueString($_POST['brewMisc4Amount'], "text");
   }
 }
@@ -228,80 +256,86 @@ function load_recipe_brewing_common_data($update) {
 function load_brewing_data() {
   global $fieldData;
   
-  $fieldData["brewBatchNum"] = GetSQLValueString($_POST['brewBatchNum'], "text");
-  $fieldData["brewCondition"] = GetSQLValueString($_POST['brewCondition'], "text");
-  $fieldData["brewDate"] = GetSQLValueString($_POST['brewDate'], "date");
-  $filedData["brewCost"] = GetSQLValueString($_POST['brewCost'], "text");
-  $fieldData["brewInfo"] = GetSQLValueString($_POST['brewInfo'], "text");
-  $fieldData["brewLabelImage"] = GetSQLValueString($_POST['brewLabelImage'], "text");
+  $fieldData["brewBatchNum"]         = GetSQLValueString($_POST['brewBatchNum'], "text");
+  $fieldData["brewCondition"]        = GetSQLValueString($_POST['brewCondition'], "text");
+  $fieldData["brewDate"]             = GetSQLValueString($_POST['brewDate'], "date");
+  $fieldData["brewCost"]             = GetSQLValueString($_POST['brewCost'], "text");
+  $fieldData["brewInfo"]             = GetSQLValueString($_POST['brewInfo'], "text");
+  $fieldData["brewLabelImage"]       = GetSQLValueString($_POST['brewLabelImage'], "text");
   $fieldData["brewSpecialProcedure"] = GetSQLValueString($_POST['brewSpecialProcedure'], "text");
-  $fieldData["brewComments"] = GetSQLValueString($_POST['brewComments'], "text");
-  $fieldData["brewEfficiency"] = GetSQLValueString($_POST['brewEfficiency'], "text");
-  $fieldData["brewPPG"] = GetSQLValueString($_POST['brewPPG'], "text");
-  $fieldData["brewTapDate"] = GetSQLValueString($_POST['brewTapDate'], "text");
-  $fieldData["brewStatus"] = GetSQLValueString($_POST['brewStatus'], "text");
-  $fieldData["brewPreBoilAmt"] = GetSQLValueString($_POST['brewPreBoilAmt'], "text");
-  $fieldData["brewTargetOG"] = GetSQLValueString($_POST['brewTargetOG'], "text");
-  $fieldData["brewTargetFG"] = GetSQLValueString($_POST['brewTargetFG'], "text");
-  $fieldData["brewMashProfile"] = GetSQLValueString($_POST['brewMashProfile'], "text");
-  $fieldData["brewWaterProfile"] = GetSQLValueString($_POST['brewWaterProfile'], "text");
-  $fieldData["brewEquipProfile"] = GetSQLValueString($_POST['brewEquipProfile'], "text");
-  $fieldData["brewWaterRatio"] = GetSQLValueString($_POST['brewWaterRatio'], "text");
-  $fieldData["brewGravity1"] = GetSQLValueString($_POST['brewGravity1'], "text");
+  $fieldData["brewComments"]         = GetSQLValueString($_POST['brewComments'], "text");
+  $fieldData["brewEfficiency"]       = GetSQLValueString($_POST['brewEfficiency'], "text");
+  $fieldData["brewPPG"]              = GetSQLValueString($_POST['brewPPG'], "text");
+  $fieldData["brewTapDate"]          = GetSQLValueString($_POST['brewTapDate'], "text");
+  $fieldData["brewStatus"]           = GetSQLValueString($_POST['brewStatus'], "text");
+  $fieldData["brewPreBoilAmt"]       = GetSQLValueString($_POST['brewPreBoilAmt'], "text");
+  $fieldData["brewTargetOG"]         = GetSQLValueString($_POST['brewTargetOG'], "text");
+  $fieldData["brewTargetFG"]         = GetSQLValueString($_POST['brewTargetFG'], "text");
+  $fieldData["brewMashProfile"]      = GetSQLValueString($_POST['brewMashProfile'], "text");
+  $fieldData["brewWaterProfile"]     = GetSQLValueString($_POST['brewWaterProfile'], "text");
+  $fieldData["brewEquipProfile"]     = GetSQLValueString($_POST['brewEquipProfile'], "text");
+  $fieldData["brewWaterRatio"]       = GetSQLValueString($_POST['brewWaterRatio'], "text");
+
+  $fieldData["brewGravity1"]     = GetSQLValueString($_POST['brewGravity1'], "text");
   $fieldData["brewGravity1Days"] = GetSQLValueString($_POST['brewGravity1Days'], "text");
-  $fieldData["brewGravity2"] = GetSQLValueString($_POST['brewGravity2'], "text");
+  $fieldData["brewGravity2"]     = GetSQLValueString($_POST['brewGravity2'], "text");
   $fieldData["brewGravity2Days"] = GetSQLValueString($_POST['brewGravity2Days'], "text");
-  $fieldData["brewMashGravity"] = GetSQLValueString($_POST['brewMashGravity'], "text");
-  $fieldData["brewMashType"] = GetSQLValueString($_POST['brewMashType'], "text");
+
+  $fieldData["brewMashGravity"]     = GetSQLValueString($_POST['brewMashGravity'], "text");
+  $fieldData["brewMashType"]        = GetSQLValueString($_POST['brewMashType'], "text");
   $fieldData["brewMashGrainWeight"] = GetSQLValueString($_POST['brewMashGrainWeight'], "text");
-  $fieldData["brewMashGrainTemp"] = GetSQLValueString($_POST['brewMashGrainTemp'], "text");
-  $fieldData["brewMashTunTemp"] = GetSQLValueString($_POST['brewMashTunTemp'], "text");
-  $fieldData["brewMashSpargAmt"] = GetSQLValueString($_POST['brewMashSpargAmt'], "text");
-  $fieldData["brewMashSpargeTemp"] = GetSQLValueString($_POST['brewMashSpargeTemp'], "text");
+  $fieldData["brewMashGrainTemp"]   = GetSQLValueString($_POST['brewMashGrainTemp'], "text");
+  $fieldData["brewMashTunTemp"]     = GetSQLValueString($_POST['brewMashTunTemp'], "text");
+  $fieldData["brewMashSpargAmt"]    = GetSQLValueString($_POST['brewMashSpargAmt'], "text");
+  $fieldData["brewMashSpargeTemp"]  = GetSQLValueString($_POST['brewMashSpargeTemp'], "text");
   $fieldData["brewMashEquipAdjust"] = GetSQLValueString($_POST['brewMashEquipAdjust'], "text");
-  $fieldData["brewMashPH"] = GetSQLValueString($_POST['brewMashPH'], "text");
-  $fieldData["brewMashStep1Name"] = GetSQLValueString($_POST['brewMashStep1Name'], "scrubbed");
-  $fieldData["brewMashStep1Desc"] = GetSQLValueString($_POST['brewMashStep1Desc'], "scrubbed");
-  $fieldData["brewMashStep1Temp"] = GetSQLValueString($_POST['brewMashStep1Temp'], "text");
-  $fieldData["brewMashStep1Time"] = GetSQLValueString($_POST['brewMashStep1Time'], "text");
-  $fieldData["brewMashStep2Name"] = GetSQLValueString($_POST['brewMashStep2Name'], "scrubbed");
-  $fieldData["brewMashStep2Desc"] = GetSQLValueString($_POST['brewMashStep2Desc'], "scrubbed");
-  $fieldData["brewMashStep2Temp"] = GetSQLValueString($_POST['brewMashStep2Temp'], "text");
-  $fieldData["brewMashStep2Time"] = GetSQLValueString($_POST['brewMashStep2Time'], "text");
-  $fieldData["brewMashStep3Name"] = GetSQLValueString($_POST['brewMashStep3Name'], "scrubbed");
-  $fieldData["brewMashStep3Desc"] = GetSQLValueString($_POST['brewMashStep3Desc'], "scrubbed");
-  $fieldData["brewMashStep3Temp"] = GetSQLValueString($_POST['brewMashStep3Temp'], "text");
-  $fieldData["brewMashStep3Time"] = GetSQLValueString($_POST['brewMashStep3Time'], "text");
-  $fieldData["brewMashStep4Name"] = GetSQLValueString($_POST['brewMashStep4Name'], "scrubbed");
-  $fieldData["brewMashStep4Desc"] = GetSQLValueString($_POST['brewMashStep4Desc'], "scrubbed");
-  $fieldData["brewMashStep4Temp"] = GetSQLValueString($_POST['brewMashStep4Temp'], "text");
-  $fieldData["brewMashStep4Time"] = GetSQLValueString($_POST['brewMashStep4Time'], "text");
-  $fieldData["brewMashStep5Name"] = GetSQLValueString($_POST['brewMashStep5Name'], "scrubbed");
-  $fieldData["brewMashStep5Desc"] = GetSQLValueString($_POST['brewMashStep5Desc'], "scrubbed");
-  $fieldData["brewMashStep5Temp"] = GetSQLValueString($_POST['brewMashStep5Temp'], "text");
-  $fieldData["brewMashStep5Time"] = GetSQLValueString($_POST['brewMashStep5Time'], "text");
-  $fieldData["brewWaterName"] = GetSQLValueString($_POST['brewWaterName'], "scrubbed");
-  $fieldData["brewWaterAmount"] = GetSQLValueString($_POST['brewWaterAmount'], "text");
-  $fieldData["brewWaterCalcium"] = GetSQLValueString($_POST['brewWaterCalcium'], "text");
-  $fieldData["brewWaterBicarb"] = GetSQLValueString($_POST['brewWaterBicarb'], "text");
-  $fieldData["brewWaterSulfate"] = GetSQLValueString($_POST['brewWaterSulfate'], "text");
-  $fieldData["brewWaterChloride"] = GetSQLValueString($_POST['brewWaterChloride'], "text");
+  $fieldData["brewMashPH"]          = GetSQLValueString($_POST['brewMashPH'], "text");
+  $fieldData["brewMashStep1Name"]   = GetSQLValueString($_POST['brewMashStep1Name'], "scrubbed");
+  $fieldData["brewMashStep1Desc"]   = GetSQLValueString($_POST['brewMashStep1Desc'], "scrubbed");
+  $fieldData["brewMashStep1Temp"]   = GetSQLValueString($_POST['brewMashStep1Temp'], "text");
+  $fieldData["brewMashStep1Time"]   = GetSQLValueString($_POST['brewMashStep1Time'], "text");
+  $fieldData["brewMashStep2Name"]   = GetSQLValueString($_POST['brewMashStep2Name'], "scrubbed");
+  $fieldData["brewMashStep2Desc"]   = GetSQLValueString($_POST['brewMashStep2Desc'], "scrubbed");
+  $fieldData["brewMashStep2Temp"]   = GetSQLValueString($_POST['brewMashStep2Temp'], "text");
+  $fieldData["brewMashStep2Time"]   = GetSQLValueString($_POST['brewMashStep2Time'], "text");
+  $fieldData["brewMashStep3Name"]   = GetSQLValueString($_POST['brewMashStep3Name'], "scrubbed");
+  $fieldData["brewMashStep3Desc"]   = GetSQLValueString($_POST['brewMashStep3Desc'], "scrubbed");
+  $fieldData["brewMashStep3Temp"]   = GetSQLValueString($_POST['brewMashStep3Temp'], "text");
+  $fieldData["brewMashStep3Time"]   = GetSQLValueString($_POST['brewMashStep3Time'], "text");
+  $fieldData["brewMashStep4Name"]   = GetSQLValueString($_POST['brewMashStep4Name'], "scrubbed");
+  $fieldData["brewMashStep4Desc"]   = GetSQLValueString($_POST['brewMashStep4Desc'], "scrubbed");
+  $fieldData["brewMashStep4Temp"]   = GetSQLValueString($_POST['brewMashStep4Temp'], "text");
+  $fieldData["brewMashStep4Time"]   = GetSQLValueString($_POST['brewMashStep4Time'], "text");
+  $fieldData["brewMashStep5Name"]   = GetSQLValueString($_POST['brewMashStep5Name'], "scrubbed");
+  $fieldData["brewMashStep5Desc"]   = GetSQLValueString($_POST['brewMashStep5Desc'], "scrubbed");
+  $fieldData["brewMashStep5Temp"]   = GetSQLValueString($_POST['brewMashStep5Temp'], "text");
+  $fieldData["brewMashStep5Time"]   = GetSQLValueString($_POST['brewMashStep5Time'], "text");
+
+  $fieldData["brewWaterName"]      = GetSQLValueString($_POST['brewWaterName'], "scrubbed");
+  $fieldData["brewWaterAmount"]    = GetSQLValueString($_POST['brewWaterAmount'], "text");
+  $fieldData["brewWaterCalcium"]   = GetSQLValueString($_POST['brewWaterCalcium'], "text");
+  $fieldData["brewWaterBicarb"]    = GetSQLValueString($_POST['brewWaterBicarb'], "text");
+  $fieldData["brewWaterSulfate"]   = GetSQLValueString($_POST['brewWaterSulfate'], "text");
+  $fieldData["brewWaterChloride"]  = GetSQLValueString($_POST['brewWaterChloride'], "text");
   $fieldData["brewWaterMagnesium"] = GetSQLValueString($_POST['brewWaterMagnesium'], "text");
-  $fieldData["brewWaterPH"] = GetSQLValueString($_POST['brewWaterPH'], "text");
-  $fieldData["brewWaterNotes"] = GetSQLValueString($_POST['brewWaterNotes'], "text");
-  $fieldData["brewWaterSodium"] = GetSQLValueString($_POST['brewWaterSodium'], "text");
+  $fieldData["brewWaterPH"]        = GetSQLValueString($_POST['brewWaterPH'], "text");
+  $fieldData["brewWaterNotes"]     = GetSQLValueString($_POST['brewWaterNotes'], "text");
+  $fieldData["brewWaterSodium"]    = GetSQLValueString($_POST['brewWaterSodium'], "text");
 }
 
+// Load data specific to the 'recipe' table.
 function load_recipe_data() {
   global $fieldData;
-
+  
+  $fieldData["brewSource"] = GetSQLValueString($_POST['brewSource'], "scrubbed");
+  $fieldData["brewNotes"]  = GetSQLValueString($_POST['brewNotes'], "text");
 }
 
 // Load data specific to an update of a recipe or blog from running the 
 // Recipe Calculator.
 // $table == ['brewing' || 'recipes']
 function load_recipe_brewing_update_data($table) {
-  global $filedData;
+  global $fieldData;
 
   $brewBitterness              = explode("-", $_POST['brewBitterness']);
   $fieldData["brewBitterness"] = GetSQLValueString($brewBitterness[0], "text");
@@ -311,9 +345,9 @@ function load_recipe_brewing_update_data($table) {
   $boilTime = $_POST['brewBoilTime'];
   for ($i = 0; $i < MAX_HOPS; $i++) {
     $key = "brewHops" . ($i + 1) . "Use";
-    $fieldData[$key] = GetSQLValueString(get_hop_use($_POST['brewHopsTime'][$i], $boilTime), "text");
+    $fieldData[$key] = GetSQLValueString(get_hop_use($_POST['hopsTime'][$i], $boilTime), "text");
     $key = "brewHops" . ($i + 1) . "Type";
-    $fieldData[$key] = GetSQLValueString(get_hop_type($_POST['brewHopsTime'][$i]), "text");
+    $fieldData[$key] = GetSQLValueString(get_hop_type($_POST['hopsTime'][$i]), "text");
   }
 
   // If this is a blog, we want to update the target/predicted OG and FG; Otherwise, it's a
@@ -395,20 +429,20 @@ if (($action == "edit") && ($dbTable == "brewing")) {
   $fieldData["brewYeastProfile"] = GetSQLValueString($brewYeastProfile, "text");
   $fieldData["brewYeastAmount"]  = GetSQLValueString($brewYeastAmount, "text");
 
-  $insert = "";
+  $data = "";
   $count  = count($fieldData);
   $i      = 1;
 
   foreach ($fieldData as $k => $v) {
-    $insert .= "$k = $v";
+    $data .= "$k = $v";
     if ($i < $count) {
-      $insert .= ", ";
+      $data .= ", ";
     }
 
     $i++;
   }
 
-  $updateSQL = "UPDATE brewing SET $insert WHERE id=" . GetSQLValueString($id, "int");
+  $updateSQL = "UPDATE brewing SET $data WHERE id=" . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -424,20 +458,20 @@ if (($action == "update") && (($dbTable == "brewing") || ($dbTable == "recipes")
   load_recipe_brewing_common_data(TRUE);
   load_recipe_brewing_update_data($dbTable);
 
-  $insert = "";
+  $data = "";
   $count  = count($fieldData);
   $i      = 1;
 
   foreach ($fieldData as $k => $v) {
-    $insert .= "$k = $v";
+    $data .= "$k = $v";
     if ($i < $count) {
-      $insert .= ", ";
+      $data .= ", ";
     }
 
     $i++;
   }
 
-  $updateSQL = "UPDATE $dbTable SET $insert WHERE id=" . GetSQLValueString($id, "int");
+  $updateSQL = "UPDATE $dbTable SET $data WHERE id=" . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -451,13 +485,14 @@ if (($action == "update") && (($dbTable == "brewing") || ($dbTable == "recipes")
 if ((($action == "add") || ($action == "importRecipe") || ($action == "importCalc")  ||
      ($action == "reuse") || ($action == "import")) && ($dbTable=="recipes")) {
 
-  $fieldData["brewSource"] = GetSQLValueString($_POST['brewSource'], "scrubbed");
-  $fieldData["brewNotes"] = GetSQLValueString($_POST['brewNotes'], "text");
-  $fieldData["brewYeast"] = GetSQLValueString($_POST['brewYeast'], "scrubbed");
-  $fieldData["brewYeastMan"] = GetSQLValueString($_POST['brewYeastMan'], "scrubbed");
-  $fieldData["brewYeastForm"] = GetSQLValueString($_POST['brewYeastForm'], "text");
-  $fieldData["brewYeastType"] = GetSQLValueString($_POST['brewYeastType'], "text");
-  $fieldData["brewYeastAmount"] = GetSQLValueString($_POST['brewYeastAmount'], "scrubbed");
+  load_recipe_brewing_common_data(FALSE);
+  load_recipe_data();
+
+  $fieldData["brewYeast"]        = GetSQLValueString($_POST['brewYeast'], "scrubbed");
+  $fieldData["brewYeastMan"]     = GetSQLValueString($_POST['brewYeastMan'], "scrubbed");
+  $fieldData["brewYeastForm"]    = GetSQLValueString($_POST['brewYeastForm'], "text");
+  $fieldData["brewYeastType"]    = GetSQLValueString($_POST['brewYeastType'], "text");
+  $fieldData["brewYeastAmount"]  = GetSQLValueString($_POST['brewYeastAmount'], "scrubbed");
   $fieldData["brewYeastProfile"] = GetSQLValueString($_POST['brewYeastProfile'], "text");
 
   $columns = array();
@@ -487,13 +522,14 @@ if ((($action == "add") || ($action == "importRecipe") || ($action == "importCal
 
 if (($action == "edit") && ($dbTable == "recipes")) { 
 
-  $fieldData["brewSource"] = GetSQLValueString($_POST['brewSource'], "scrubbed");
-  $fieldData["brewNotes"] = GetSQLValueString($_POST['brewNotes'], "text");
-  $fieldData["brewYeast"] = GetSQLValueString($_POST['brewYeast'], "scrubbed");
-  $fieldData["brewYeastMan"] = GetSQLValueString($_POST['brewYeastMan'], "scrubbed");
-  $fieldData["brewYeastForm"] = GetSQLValueString($_POST['brewYeastForm'], "text");
-  $fieldData["brewYeastType"] = GetSQLValueString($_POST['brewYeastType'], "text");
-  $fieldData["brewYeastAmount"] = GetSQLValueString($_POST['brewYeastAmount'], "scrubbed");
+  load_recipe_brewing_common_data(FALSE);
+  load_recipe_data();
+
+  $fieldData["brewYeast"]        = GetSQLValueString($_POST['brewYeast'], "scrubbed");
+  $fieldData["brewYeastMan"]     = GetSQLValueString($_POST['brewYeastMan'], "scrubbed");
+  $fieldData["brewYeastForm"]    = GetSQLValueString($_POST['brewYeastForm'], "text");
+  $fieldData["brewYeastType"]    = GetSQLValueString($_POST['brewYeastType'], "text");
+  $fieldData["brewYeastAmount"]  = GetSQLValueString($_POST['brewYeastAmount'], "scrubbed");
   $fieldData["brewYeastProfile"] = GetSQLValueString($_POST['brewYeastProfile'], "text");
 
   $insert = "";
@@ -501,15 +537,15 @@ if (($action == "edit") && ($dbTable == "recipes")) {
   $i      = 1;
 
   foreach ($fieldData as $k => $v) {
-    $insert .= "$k = $v";
+    $data .= "$k = $v";
     if ($i < $count) {
-      $insert .= ", ";
+      $data .= ", ";
     }
 
     $i++;
   }
 
-  $updateSQL = "UPDATE recipes SET $insert WHERE id=" . GetSQLValueString($id, "int");
+  $updateSQL = "UPDATE recipes SET $data WHERE id=" . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -518,7 +554,7 @@ if (($action == "edit") && ($dbTable == "recipes")) {
   header(sprintf("Location: %s", $updateGoTo));
 }
 
-// --------------------------- If Editing	brewer Profile -------------------------------------- //
+// --------------------------- If Editing brewer Profile -------------------------------------- //
 
 if (($action == "edit") && ($dbTable == "brewer")) {
   $updateSQL = sprintf("UPDATE	brewer SET	brewerFirstName=%s,	brewerLastName=%s,	brewerMiddleName=%s,	brewerPrefix=%s,	brewerSuffix=%s,	brewerAge=%s,	brewerCity=%s,	brewerState=%s,	brewerCountry=%s,	brewerAbout=%s,	brewerLogName=%s,	brewerTagline=%s,	brewerFavStyles=%s,	brewerPrefMethod=%s,	brewerClubs=%s,	brewerOther=%s,	brewerImage=%s WHERE id=1",
@@ -1102,14 +1138,30 @@ if (($action == "edit") && ($dbTable == "hops")) {
 // --------------------------- If Adding a Grain --------------------------- //
 
 if (($action == "add") && ($dbTable == "malt")) {
-  $insertSQL = sprintf("INSERT INTO malt (maltName, maltLovibond, maltInfo, maltYield, maltOrigin, maltSupplier) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['maltName'], "scrubbed"),
-                       GetSQLValueString($_POST['maltLovibond'], "text"),
-                       GetSQLValueString($_POST['maltInfo'], "text"),
-					   GetSQLValueString($_POST['maltYield'], "text"),
-					   GetSQLValueString($_POST['maltOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['maltSupplier'], "scrubbed")
-					   );
+  //$insertSQL = sprintf("INSERT INTO malt (maltName, maltLovibond, maltInfo, maltYield, maltOrigin, maltSupplier) VALUES (%s, %s, %s, %s, %s, %s)",
+  $fieldData['maltName']         = GetSQLValueString($_POST['maltName'], "scrubbed");
+  $fieldData['maltLovibondLow']  = GetSQLValueString($_POST['maltLovibondLow'], "text");
+  $fieldData['maltLovibondHigh'] = GetSQLValueString($_POST['maltLovibondHigh'], "text");
+  $fieldData['maltInfo']         = GetSQLValueString($_POST['maltInfo'], "text");
+  $fieldData['maltPPG']          = GetSQLValueString($_POST['maltPPG'], "text");
+  $fieldData['maltOrigin']       = GetSQLValueString($_POST['maltOrigin'], "scrubbed");
+  $fieldData['maltSupplier']     = GetSQLValueString($_POST['maltSupplier'], "scrubbed");
+
+  $columns = array();
+  $data    = array();
+
+  foreach ($fieldData as $k => $v) {
+    $columns[] = $k;
+    if ($v != "") {
+      $data[] = $v;
+    } else {
+      $data[] = "NULL";
+    }
+  }
+  $cols = implode(",", $columns);
+  $vals = implode(",", $data);
+
+  $insertSQL = "INSERT INTO malt ($cols) VALUES ($vals)";
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
@@ -1121,14 +1173,15 @@ if (($action == "add") && ($dbTable == "malt")) {
 // --------------------------- If Editing a Grain --------------------------- //
 
 if (($action == "edit") && ($dbTable == "malt")) {
-  $updateSQL = sprintf("UPDATE malt SET maltName=%s, maltLovibond=%s, maltInfo=%s, maltYield=%s, maltOrigin=%s, maltSupplier=%s WHERE id=%s",
-                       GetSQLValueString($_POST['maltName'], "scrubbed"),
-                       GetSQLValueString($_POST['maltLovibond'], "text"),
-                       GetSQLValueString($_POST['maltInfo'], "text"),
-					   GetSQLValueString($_POST['maltYield'], "text"),
-					   GetSQLValueString($_POST['maltOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['maltSupplier'], "scrubbed"),
-                       GetSQLValueString($id, "int"));
+  $update  = "maltName = " . GetSQLValueString($_POST['maltName'], "scrubbed") . ", ";
+  $update .= "maltLovibondLow = " . GetSQLValueString($_POST['maltLovibondLow'], "text") . ", ";
+  $update .= "maltLovibondHigh = " . GetSQLValueString($_POST['maltLovibondHigh'], "text") . ", ";
+  $update .= "maltInfo = " . GetSQLValueString($_POST['maltInfo'], "text") . ", ";
+  $update .= "maltPPG = " . GetSQLValueString($_POST['maltPPG'], "text") . ", ";
+  $update .= "maltOrigin = " . GetSQLValueString($_POST['maltOrigin'], "scrubbed") . ", ";
+  $update .= "maltSupplier = " . GetSQLValueString($_POST['maltSupplier'], "scrubbed");
+
+  $updateSQL = "UPDATE malt SET $update WHERE id = " . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -1140,15 +1193,31 @@ if (($action == "edit") && ($dbTable == "malt")) {
 // --------------------------- If Adding an Adjunct --------------------------- //
 
 if (($action == "add") && ($dbTable == "adjuncts")) {
-  $insertSQL = sprintf("INSERT INTO adjuncts (adjunctName, adjunctLovibond, adjunctInfo, adjunctYield, adjunctType, adjunctOrigin, adjunctSupplier) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['adjunctName'], "scrubbed"),
-                       GetSQLValueString($_POST['adjunctLovibond'], "text"),
-                       GetSQLValueString($_POST['adjunctInfo'], "text"),
-					   GetSQLValueString($_POST['adjunctYield'], "text"),
-					   GetSQLValueString($_POST['adjunctType'], "scrubbed"),
-					   GetSQLValueString($_POST['adjunctOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['adjunctSupplier'], "scrubbed")
-					   );
+  //$insertSQL = sprintf("INSERT INTO adjuncts (adjunctName, adjunctLovibond, adjunctInfo, adjunctYield, adjunctType, adjunctOrigin, adjunctSupplier) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+
+  $fieldData['adjunctName']         = GetSQLValueString($_POST['adjunctName'], "scrubbed");
+  $fieldData['adjunctLovibondLow']  = GetSQLValueString($_POST['adjunctLovibondLow'], "text");
+  $fieldData['adjunctLovibondHigh'] = GetSQLValueString($_POST['adjunctLovibondHigh'], "text");
+  $fieldData['adjunctInfo']         = GetSQLValueString($_POST['adjunctInfo'], "text");
+  $fieldData['adjunctPPG']          = GetSQLValueString($_POST['adjunctPPG'], "text");
+  $fieldData['adjunctOrigin']       = GetSQLValueString($_POST['adjunctOrigin'], "scrubbed");
+  $fieldData['adjunctSupplier']     = GetSQLValueString($_POST['adjunctSupplier'], "scrubbed");
+
+  $columns = array();
+  $data    = array();
+
+  foreach ($fieldData as $k => $v) {
+    $columns[] = $k;
+    if ($v != "") {
+      $data[] = $v;
+    } else {
+      $data[] = "NULL";
+    }
+  }
+  $cols = implode(",", $columns);
+  $vals = implode(",", $data);
+
+  $insertSQL = "INSERT INTO adjuncts ($cols) VALUES ($vals)";
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
@@ -1160,15 +1229,15 @@ if (($action == "add") && ($dbTable == "adjuncts")) {
 // --------------------------- If Editing an Adjunct --------------------------- //
 
 if (($action == "edit") && ($dbTable == "adjuncts")) {
-  $updateSQL = sprintf("UPDATE adjuncts SET adjunctName=%s, adjunctLovibond=%s, adjunctInfo=%s, adjunctYield=%s, adjunctType=%s, adjunctOrigin=%s, adjunctSupplier=%s WHERE id=%s",
-                       GetSQLValueString($_POST['adjunctName'], "scrubbed"),
-                       GetSQLValueString($_POST['adjunctLovibond'], "text"),
-                       GetSQLValueString($_POST['adjunctInfo'], "text"),
-					   GetSQLValueString($_POST['adjunctYield'], "text"),
-					   GetSQLValueString($_POST['adjunctType'], "scrubbed"),
-					   GetSQLValueString($_POST['adjunctOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['adjunctSupplier'], "scrubbed"),
-                       GetSQLValueString($id, "int"));
+  $update  = "adjunctName = " . GetSQLValueString($_POST['adjunctName'], "scrubbed") . ", ";
+  $update .= "adjunctLovibondLow = " . GetSQLValueString($_POST['adjunctLovibondLow'], "text") . ", ";
+  $update .= "adjunctLovibondHigh = " . GetSQLValueString($_POST['adjunctLovibondHigh'], "text") . ", ";
+  $update .= "adjunctInfo = " . GetSQLValueString($_POST['adjunctInfo'], "text") . ", ";
+  $update .= "adjunctPPG = " . GetSQLValueString($_POST['adjunctPPG'], "text") . ", ";
+  $update .= "adjunctOrigin = " . GetSQLValueString($_POST['adjunctOrigin'], "scrubbed") . ", ";
+  $update .= "adjunctSupplier = " . GetSQLValueString($_POST['adjunctSupplier'], "scrubbed");
+
+  $updateSQL = "UPDATE adjuncts SET $update WHERE id = " . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -1180,14 +1249,30 @@ if (($action == "edit") && ($dbTable == "adjuncts")) {
 // --------------------------- If Adding an Extract --------------------------- //
 
 if (($action == "add") && ($dbTable == "extract")) {
-  $insertSQL = sprintf("INSERT INTO extract (extractName, extractLovibond, extractInfo, extractYield, extractOrigin, extractSupplier, extractType) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['extractName'], "scrubbed"),
-                       GetSQLValueString($_POST['extractLovibond'], "text"),
-                       GetSQLValueString($_POST['extractInfo'], "text"),
-					   GetSQLValueString($_POST['extractYield'], "text"),
-					   GetSQLValueString($_POST['extractOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['extractSupplier'], "scrubbed"),
-					   GetSQLValueString($_POST['extractType'], "text"));
+  $fieldData['extractName']         = GetSQLValueString($_POST['extractName'], "scrubbed");
+  $fieldData['extractLovibondLow']  = GetSQLValueString($_POST['extractLovibondLow'], "text");
+  $fieldData['extractLovibondHigh'] = GetSQLValueString($_POST['extractLovibondHigh'], "text");
+  $fieldData['extractInfo']         = GetSQLValueString($_POST['extractInfo'], "text");
+  $fieldData['extractPPG']          = GetSQLValueString($_POST['extractPPG'], "text");
+  $fieldData['extractOrigin']       = GetSQLValueString($_POST['extractOrigin'], "scrubbed");
+  $fieldData['extractSupplier']     = GetSQLValueString($_POST['extractSupplier'], "scrubbed");
+  $fieldData['extractLME']          = GetSQLValueString($_POST['extractLME'], "text");
+
+  $columns = array();
+  $data    = array();
+
+  foreach ($fieldData as $k => $v) {
+    $columns[] = $k;
+    if ($v != "") {
+      $data[] = $v;
+    } else {
+      $data[] = "NULL";
+    }
+  }
+  $cols = implode(",", $columns);
+  $vals = implode(",", $data);
+
+  $insertSQL = "INSERT INTO extract ($cols) VALUES ($vals)";
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
@@ -1199,15 +1284,16 @@ if (($action == "add") && ($dbTable == "extract")) {
 // --------------------------- If Editing an Extract --------------------------- //
 
 if (($action == "edit") && ($dbTable == "extract")) {
-  $updateSQL = sprintf("UPDATE extract SET extractName=%s, extractLovibond=%s, extractInfo=%s, extractYield=%s, extractOrigin=%s, extractSupplier=%s, extractType=%s WHERE id=%s",
-                       GetSQLValueString($_POST['extractName'], "scrubbed"),
-                       GetSQLValueString($_POST['extractLovibond'], "text"),
-                       GetSQLValueString($_POST['extractInfo'], "text"),
-					   GetSQLValueString($_POST['extractYield'], "text"),
-					   GetSQLValueString($_POST['extractOrigin'], "scrubbed"),
-					   GetSQLValueString($_POST['extractSupplier'], "scrubbed"),
-					   GetSQLValueString($_POST['extractType'], "text"),
-                       GetSQLValueString($id, "int"));
+  $update = "extractName = " . GetSQLValueString($_POST['extractName'], "scrubbed") . ", ";
+  $update .= "extractLovibondLow = " . GetSQLValueString($_POST['extractLovibondLow'], "text") . ", ";
+  $update .= "extractLovibondHigh = " . GetSQLValueString($_POST['extractLovibondHigh'], "text") . ", ";
+  $update .= "extractInfo = " . GetSQLValueString($_POST['extractInfo'], "text") . ", ";
+  $update .= "extractPPG = " . GetSQLValueString($_POST['extractPPG'], "text") . ", ";
+  $update .= "extractOrigin = " . GetSQLValueString($_POST['extractOrigin'], "scrubbed") . ", ";
+  $update .= "extractSupplier = " . GetSQLValueString($_POST['extractSupplier'], "scrubbed") . ", ";
+  $update .= "extractLME = ". GetSQLValueString($_POST['extractLME'], "text");
+
+  $updateSQL = "UPDATE extract SET $update WHERE id = " . GetSQLValueString($id, "int");
 
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
@@ -1833,35 +1919,6 @@ if (($action == "edit") && ($dbTable == "misc")) {
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
 
   $updateGoTo = "index.php?action=list&dbTable=$dbTable&confirm=true&msg=2";
-  header(sprintf("Location: %s", $updateGoTo));
-}
-
-// --------------------------- If Adding a Sugar Type ------------------- //
-
-if (($action == "add") && ($dbTable == "sugar_type")) {
-  $insertSQL = sprintf("INSERT INTO sugar_type (sugarName, sugarPPG) VALUES (%s, %s)",
-                       GetSQLValueString($_POST['sugarName'], "scrubbed"),
-                       GetSQLValueString($_POST['sugarPPG'], "int"));
-
-  mysql_select_db($database_brewing, $brewing);
-  $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
-
-  $insertGoTo = "index.php?action=list&dbTable=sugar_type&confirm=true&msg=1";
-  header(sprintf("Location: %s", $insertGoTo));
-}
-
-// --------------------------- If Editing a Sugar Type ------------------- //
-
-if (($action == "edit") && ($dbTable == "sugar_type")) {
-  $updateSQL = sprintf("UPDATE sugar_type SET sugarName=%s, sugarPPG=%s WHERE id=%s",
-                       GetSQLValueString($_POST['sugarName'], "scrubbed"),
-                       GetSQLValueString($_POST['sugarPPG'], "int"),
-                       GetSQLValueString($id, "int"));
-
-  mysql_select_db($database_brewing, $brewing);
-  $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
-
-  $updateGoTo = "index.php?action=list&dbTable=sugar_type&confirm=true&msg=2";
   header(sprintf("Location: %s", $updateGoTo));
 }
 

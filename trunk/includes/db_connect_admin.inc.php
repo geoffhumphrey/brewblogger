@@ -114,7 +114,6 @@ if (
 		($dbTable == "news") || 
 		($dbTable == "misc") || 
 		($dbTable == "reviews")  || 
-		($dbTable == "sugar_type")  ||
 		($dbTable == "water_profiles")  ||
 		($dbTable == "equip_profiles")  ||
 		($dbTable == "yeast_profiles")  ||
@@ -202,11 +201,6 @@ $equip_profiles = mysql_query($query_equip_profiles, $brewing) or die(mysql_erro
 $row_equip_profiles = mysql_fetch_assoc($equip_profiles);
 $totalRows_equip_profiles = mysql_num_rows($equip_profiles);
 
-$query_sugar_type = "SELECT * FROM sugar_type";
-if (($action == "edit") && ($dbTable == "sugar_type")) $query_sugar_type .= " WHERE id=$id"; else $query_sugar_type .= " ORDER BY sugarName ASC"; 
-$sugar_type = mysql_query($query_sugar_type, $brewing) or die(mysql_error());
-$row_sugar_type = mysql_fetch_assoc($sugar_type);
-$totalRows_sugar_type = mysql_num_rows($sugar_type);
 }
 
 /* -- Styles list -- */

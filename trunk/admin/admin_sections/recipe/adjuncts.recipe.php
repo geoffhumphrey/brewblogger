@@ -1,14 +1,55 @@
-<?php 
+<?php
+/**
+ * Module: adjuncts.recipe.php
+ * Description: Setup adjuncts part of the page to add/edit blog or recipe.
+ */
 
-$query_adjuncts = "SELECT * FROM adjuncts ORDER BY adjunctName ASC";
-$adjuncts = mysql_query($query_adjuncts, $brewing) or die(mysql_error());
-$row_adjuncts = mysql_fetch_assoc($adjuncts);
-$totalRows_adjuncts = mysql_num_rows($adjuncts);
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
 
-?>
+echo '<div class="headerContentAdmin">Adjuncts</div>' . "\n";
+echo '<table class="dataTable">' . "\n";
 
-<div class="headerContentAdmin">Adjuncts</div>
-<table>     
+for ($i = 0; $i < MAX_ADJ; $i++) {
+  echo '<tr>' . "\n";
+  echo '<td class="dataLabelLeft" width="5%">Adjunct ' . ($i + 1) . ': </td>' . "\n";
+  echo '<td class="data" width="10%"><select name="adjName['.$i.']">' . "\n";
+  $key = "brewAddition" . ($i + 1);
+  if ((($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) && ($row_log[$key] != "")) {
+    echo '<option value="' . $row_log[$key] . '">' . $row_log[$key] . '</option>' . "\n";
+  }
+  echo '<option value=""></option>' . "\n";
+  echo '<option value="">-- Items below are in the Adjunct DB --</option>' . "\n";
+  do {
+    echo '<option value="' . $row_adjuncts['adjunctName'] . '" ';
+    if (($action != "add") && ((($action != "importCalc") && ($row_adjuncts['adjunctName'] == $row_log[$key])) ||
+			       (($action == "importCalc") && ($row_adjuncts['adjunctName'] == $adjName[$i])))) {
+      echo "SELECTED";
+    }
+    echo '>' . $row_adjuncts['adjunctName'] . '</option>' . "\n";
+  } while ($row_adjuncts = mysql_fetch_array($adjuncts));
+  echo '</select></td>' . "\n";
+  
+  // Reset $row_adjuncts to first row
+  $rows = mysql_num_rows($adjuncts);
+  if ($rows > 0) {
+    mysql_data_seek($adjuncts, 0);
+    $row_adjuncts = mysql_fetch_array($adjuncts);
+  }
+
+  echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
+  $key = "brewAddition" . ($i +1) . "Amt";
+  echo '<td class="data"><input name="adjWeight['.$i.']" type="text" tooltipText="' . $toolTip_decimal . '" value="';
+  if (($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) {
+    echo $row_log[$key];
+  }
+  if ($action == "importCalc") {
+    echo $adjWeight[$i];
+  }
+  echo '" size="10" maxlength="20">&nbsp;' . $row_pref['measWeight2'] . '</td>' . "\n";
+  echo '</tr>' . "\n";
+}
+
+/*
 <tr>
    <td class="dataLabelLeft" width="5%">Adjunct 1: </td>
    <td class="data" width="10%">
@@ -144,4 +185,7 @@ $totalRows_adjuncts = mysql_num_rows($adjuncts);
    	<td class="dataLabel">Weight:</td>
    	<td class="data"><input type="text" name="brewAdjunct9Weight" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewAddition9Amt']; if ($action == "importCalc") echo $brewAdjunct9Weight; ?>" size="10" maxlength="20">&nbsp;<?php echo $row_pref['measWeight2']; ?></td>
 </tr>
+*/
+
+?>
 </table>

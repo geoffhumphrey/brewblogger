@@ -1,5 +1,55 @@
-<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>/information.png" border="0"></a></div>Grains</div>
-<table>
+<?php
+/**
+ * Module: grains.recipe.php
+ * Description: Setup grains part of the page to add/edit blog or recipe.
+ */
+
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+
+echo '<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="' . $imageSrc . '/information.png" border="0"></a></div>Grains</div>' . "\n";
+echo '<table class="dataTable">' . "\n";
+
+for ($i = 0; $i < MAX_GRAINS; $i++) {
+  echo '<tr>' . "\n";
+  echo '<td class="dataLabelLeft" width="5%">Grain ' . ($i + 1) . ':</td>' . "\n";
+  echo '<td class="data" width="10%"><select name="grainName['.$i.']">' . "\n";
+  $key = "brewGrain" . ($i + 1);
+  if ((($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) && ($row_log[$key] != "")) {
+    echo '<option value="' . $row_log[$key] . '">' . $row_log[$key] . '</option>' . "\n";
+  }
+  echo '<option value=""></option>' . "\n";
+  echo '<option value="">-- Items below are in the Grain DB --</option>' . "\n";
+  do {
+    echo '<option value="' . $row_grains['maltName'] . '" ';
+    if (($action != "add") && ((($action != "importCalc") && ($row_grains['maltName'] == $row_log[$key])) ||
+			       (($action == "importCalc") && ($row_grains['maltName'] == $grainName[$i])))) {
+      echo "SELECTED";
+    }
+    echo '>' . $row_grains['maltName'] . '</option>' . "\n";
+  } while ($row_grains = mysql_fetch_array($grains));
+  echo '</select></td>' . "\n";
+ 
+  // Reset $row_grains to first row
+  $rows = mysql_num_rows($grains);
+  if ($rows > 0) {
+    mysql_data_seek($grains, 0);
+    $row_grains = mysql_fetch_array($grains);
+  }
+
+  echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
+  $key = "brewGrain" . ($i + 1) . "Weight";
+  echo '<td class="data"><input name="grainWeight['.$i.']" type="text" tooltipText="' . $toolTip_decimal . '" value="';
+  if (($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action == "reuse")) {
+    echo $row_log[$key];
+  }
+  if ($action == "importCalc") {
+    echo $grainWeight[$i];
+  }
+  echo '" size="5">&nbsp;' . $row_pref['measWeight2'] . '</td>' . "\n";
+  echo '</tr>' . "\n";
+}
+
+ /*
 <tr>
    <td class="dataLabelLeft" width="5%">Grain 1:</td>
    <td class="data" width="10%">
@@ -225,4 +275,7 @@
    <td class="dataLabel">Weight:</td>
    <td class="data"><input name="brewGrain15Weight" type="text" id="brewGrain15Weight" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) echo $row_log['brewGrain15Weight']; if ($action == "importCalc") echo $brewGrain15Weight; ?>" size="5">&nbsp;<?php echo $row_pref['measWeight2']; ?></td>
 </tr>
+ */
+
+?>
 </table>

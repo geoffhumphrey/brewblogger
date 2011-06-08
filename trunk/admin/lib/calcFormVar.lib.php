@@ -1,24 +1,27 @@
 <?php
 /**
  * Module: calcFormVar.lib.php
- * Description: Load form variable for processing...may be mostly unneccessary?
+ * Description: Load form variables for processing...may be mostly unneccessary?
  */
 
 // This file needs review for it's relevancy. It looks like there might be
-// a lot of redundancy going on.
+// a lot of redundancy going on b/t this file and calculate.lib.php
 
-mysql_select_db($database_brewing, $brewing);
+  // this shouldn't be needed
+  //mysql_select_db($database_brewing, $brewing);
 
+  // $results == ["true" | "verify"]
 if ($results == "true") {
   /*
-   The first section here gathers the required information to 
-   perform calculations from the HTML form.
+   The first section here gathers the required information from the
+   HTML form to perform calculations.
   */
   // ----------------------------- General Information ---------------------
-  $brewName = strtr($_POST['brewName'], $string);
-  $efficiency = ($_POST['efficiency'] * .01);
-  $attenuation = ($_POST['attenuation'] * .01);
-  $brewYield = $_POST['brewYield'];
+  /*
+  $brewName       = strtr($_POST['brewName'], $string);
+  $efficiency     = ($_POST['efficiency'] * .01);
+  $attenuation    = ($_POST['attenuation'] * .01);
+  $brewYield      = $_POST['brewYield'];
   // $gravity = $_POST['gravity'];
   $measureWeight1 = $row_pref['measWeight1']; 
 
@@ -28,12 +31,28 @@ if ($results == "true") {
   $query_style1 = "SELECT * FROM styles WHERE brewStyle='$brewStyle'";
   $style1 = mysql_query($query_style1, $brewing) or die(mysql_error());
   $row_style1 = mysql_fetch_assoc($style1);
- 
-  $brewLovibond = $_POST['brewLovibond'];
-  $brewOG = $_POST['brewOG'];
-  $brewFG = $_POST['brewFG'];
+  */
+  //  $brewLovibond = $_POST['brewLovibond'];
+
+  //only used in "verify"
+  //  $brewOG = $_POST['brewOG'];
+  //  $brewFG = $_POST['brewFG'];
 
   // ------------------------------ Extracts -------------------------------
+  /*
+  for ($i = 0; $i < MAX_EXT; $i++) {
+    $extName[$i]   = $_POST['extName'][$i];
+    $extWeight[$i] = $_POST['extWeight'][$i];
+    
+    $query          = "SELECT extractPPG, extractLovibondLow, extractLovibondHigh FROM extract where extractName='$extName[$i]'";
+    $result         = mysql_query($query, $brewing) or die(mysql_error());
+    $row            = mysql_fetch_array($result);
+    $extPPG[$i]     = $row['extractPPG'];
+    $extLovLow[$i]  = $row['extractLovibondLow'];
+    $extLovHigh[$i] = $row['extractLovibondHigh'];
+  }
+
+  /*
   $brewExtract1 = $_POST['brewExtract1'];
   $brewExtract2 = $_POST['brewExtract2'];
   $brewExtract3 = $_POST['brewExtract3'];
@@ -58,8 +77,10 @@ if ($results == "true") {
     $$row_extract = mysql_fetch_assoc($$extract);
     $$totalRows_extract = mysql_num_rows($$extract);
   }
+  */
 
   // ------------------------------ Grains ---------------------------------
+  /*
   $brewGrain1 = $_POST['brewGrain1'];
   $brewGrain2 = $_POST['brewGrain2'];
   $brewGrain3 = $_POST['brewGrain3'];
@@ -104,8 +125,9 @@ if ($results == "true") {
     $$row_grain = mysql_fetch_assoc($$grain);
     $$totalRows_grain = mysql_num_rows($$grain);
   }
-
+  */
   // ------------------------------ Adjuncts -------------------------------
+  /*
   $brewAdjunct1 = $_POST['brewAdjunct1'];
   $brewAdjunct2 = $_POST['brewAdjunct2'];
   $brewAdjunct3 = $_POST['brewAdjunct3'];
@@ -205,9 +227,9 @@ if ($results == "true") {
     $adjunct8GU = ($brewAdjunct8Weight * 2.2046) * $row_adjuncts8['adjunctYield'];
     $adjunct9GU = ($brewAdjunct9Weight * 2.2046) * $row_adjuncts9['adjunctYield'];
   }
-
+  */
   // ------------------------------ Hops -----------------------------------
-
+  /*
   for ($i = 0; $i < MAX_HOPS; $i++) {
     $brewHopsName[$i]   = $_POST['brewHopsName'][$i];
     $brewHopsWeight[$i] = $_POST['brewHopsWeight'][$i];
@@ -247,6 +269,7 @@ if ($results == "true") {
   $brewOG       = $_POST['brewOG'];
   $brewFG       = $_POST['brewFG'];
 
+  /*
   $brewExtract1 = $_POST['brewExtract1'];
   $brewExtract2 = $_POST['brewExtract2'];
   $brewExtract3 = $_POST['brewExtract3'];
@@ -318,6 +341,6 @@ if ($results == "true") {
     $brewHopsTime[$i]   = $_POST['brewHopsTime'][$i];
     $brewHopsForm[$i]   = $_POST['brewHopsForm'][$i];
   }
-
+  */
 }
 ?>
