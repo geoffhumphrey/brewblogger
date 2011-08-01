@@ -7,9 +7,51 @@
  *              to the old values.
  */
 
+include_once 'lib/color.lib.php';
+
+// Load form vars
+$brewBrewerID = $_POST['loginUsername'];
+$brewName     = $_POST['brewName'];
+$brewYield    = $_POST['brewYield'];
+$brewStyle    = $_POST['brewStyle'];
+$srmMorey     = $_POST['srmMorey'];
+$srmDaniels   = $_POST['srmDaniels'];
+$srmMoser     = $_POST['srmMoser'];
+$ibuR         = $_POST['ibuR'];
+$ibuG         = $_POST['ibuG'];
+$ibuT         = $_POST['ibuT'];
+$ibuD         = $_POST['ibuD'];
+$ibuAvg       = $_POST['ibuAvg'];
+$brewOG       = $_POST['brewOG'];
+$brewFG       = $_POST['brewFG'];
+
+for ($i = 0; $i < MAX_EXT; $i++) {
+  $extName[$i]   = $_POST['extName'][$i];
+  $extWeight[$i] = $_POST['extWeight'][$i];
+}
+
+for ($i = 0; $i < MAX_GRAINS; $i++) {
+  $grainName[$i]   = $_POST['grainName'][$i];
+  $grainWeight[$i] = $_POST['grainWeight'][$i];
+}
+
+for ($i = 0; $i < MAX_ADJ; $i++) {
+  $adjName[$i]   = $_POST['adjName'][$i];
+  $adjWeight[$i] = $_POST['adjWeight'][$i];
+}
+
+for ($i = 0; $i < MAX_HOPS; $i++) {
+  $hopsName[$i]   = $_POST['hopsName'][$i];
+  $hopsWeight[$i] = $_POST['hopsWeight'][$i];
+  $hopsAA[$i]     = $_POST['hopsAA'][$i];
+  $hopsTime[$i]   = $_POST['hopsTime'][$i];
+  $hopsForm[$i]   = $_POST['hopsForm'][$i];
+}
+
 // $assoc will either be "import" or "update"
 if ($assoc == "import") $importDB = $_POST['importDB'];
 ?>
+
 <div id="breadcrumbAdmin"><a href="index.php">Administration</a> &gt; <?php echo $page_title; ?></div>
 <table class="dataTable">
   <tr>
@@ -36,47 +78,159 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
       <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php echo $row_recipeRecalc['brewStyle']; ?></td><?php } ?>
     <td class="data"><?php echo $brewStyle; ?></td>
   </tr>
+
   <tr class="bknd_ultra_lt">
-    <td class="dataLabelLeft" nowrap>Color:</td>
-      <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php echo round($row_recipeRecalc['brewLovibond'],1)." ".$row_pref['measColor']; ?></td><?php } ?>
-    <td class="data"><?php echo round($brewLovibond,1)." ".$row_pref['measColor']; ?></td>
-  </tr>
-  <tr>
-    <td class="dataLabelLeft" nowrap>Bitterness:</td>
-      <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php echo round($row_recipeRecalc['brewBitterness'],1); ?></td><?php } ?>
+    <td class="dataLabelLeft" nowrap>Bitterness (IBU):</td>
+    <?php if ($row_recipeRecalc['id'] != "") { ?>
+      <td class="data">
+      <table>
+        <tr>
+          <td><?php echo round($row_recipeRecalc['brewBitterness'], 1); ?></td>
+          <td>&nbsp;<?php echo $row_recipeRecalc['brewIBUFormula']; ?></td>
+        </tr>
+      </table>
+      </td>
+    <?php } ?>
     <td class="data">
     <table>
       <tr>
         <td><input type="radio" name="brewBitterness" value="<?php echo round($ibuD, 1); echo "-Daniels"; ?>" <?php if ($row_user['defaultBitternessFormula'] == "Daniels") echo "checked"; ?> /></td>
-   	<td>&nbsp;<?php echo round($ibuD,1); ?></td>
-    	<td>&nbsp;(Daniels)</td>
+   	<td>&nbsp;<?php echo round($ibuD, 1); ?></td>
+    	<td>&nbsp;Daniels</td>
         <td><input type="radio" name="brewBitterness" value="<?php echo round($ibuG, 1); echo "-Garetz"; ?>" <?php if ($row_user['defaultBitternessFormula'] == "Garetz") echo "checked"; ?> /></td>
-    	<td>&nbsp;<?php echo round($ibuG,1); ?></td>
-    	<td>&nbsp;(Garetz)&nbsp;</td>
+    	<td>&nbsp;<?php echo round($ibuG, 1); ?></td>
+    	<td>&nbsp;Garetz&nbsp;</td>
       </tr>
       <tr>
     	<td><input type="radio" name="brewBitterness" value="<?php echo round($ibuR, 1); echo "-Rager"; ?>" <?php if ($row_user['defaultBitternessFormula'] == "Rager") echo "checked"; ?> /></td>
-    	<td>&nbsp;<?php echo round($ibuR,1); ?></td>
-    	<td>&nbsp;(Rager)</td>
+    	<td>&nbsp;<?php echo round($ibuR, 1); ?></td>
+    	<td>&nbsp;Rager</td>
     	<td><input type="radio" name="brewBitterness" value="<?php echo round($ibuT, 1); echo "-Tinseth"; ?>" <?php if ($row_user['defaultBitternessFormula'] == "Tinseth") echo "checked"; ?> /></td>
-    	<td>&nbsp;<?php echo round($ibuT,1); ?></td>
-    	<td>&nbsp;(Tinseth)&nbsp;</td>
+    	<td>&nbsp;<?php echo round($ibuT, 1); ?></td>
+    	<td>&nbsp;Tinseth&nbsp;</td>
       </tr>
     </table>
     </td>
   </tr>
+
+  <tr>
+    <td class="dataLabelLeft" nowrap>Color (<?php echo $row_pref['measColor']; ?>):</td>
+
+    <td class="data">
+    <?php
+    if ($row_recipeRecalc['id'] != "") {    
+      echo '<table>' . "\n";
+      echo '<tr>' . "\n";
+      $brewLov   = $row_recipeRecalc['brewLovibond'];
+      if ($row_pref['measColor'] == "EBC")
+	$brewLov = ebc_to_srm($brewLov);
+      $fontColor = ($brewLov >= 15) ? "#ffffff" : "#000000";
+      $bkColor   = get_display_color($brewLov);
+      echo '<td class="colorTable" style="text-align: center; background: ' . $bkColor . '; color: ' . $fontColor . ';">&nbsp;&nbsp;';
+      echo round($row_recipeRecalc['brewLovibond'], 1);
+      echo '&nbsp;&nbsp;</td>' . "\n";
+      echo '<td style="vertical-align: middle;">';
+      if ($row_recipeRecalc['brewColorFormula'] == "") {
+	echo "&nbsp;formula unknown";
+      } else {
+	echo '&nbsp;' . $row_recipeRecalc['brewColorFormula'];
+      }
+      echo '</td>' . "\n";
+      echo '</tr>' . "\n";
+      echo '</table>' . "\n";
+    } ?>
+    </td>
+
+    <td class="data">
+    <table>
+      <tr>
+        <?php
+        echo '<td><input type="radio" name="brewLovibond" value="';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo $srmMorey;
+	} else {
+	  echo srm_to_ebc($srmMorey);
+	}
+        echo '-Morey" ';
+        if ($row_user['defaultColorFormula'] == "Morey")
+	  echo "checked";
+        echo '/>&nbsp;</td>' . "\n";
+	$fontColor = ($srmMorey >= 15) ? "#ffffff" : "#000000";
+        $bkColor   = get_display_color($srmMorey);
+        echo '<td class="colorTable" style="text-align: center; background: ' . $bkColor . '; color: ' . $fontColor . ';">&nbsp;&nbsp;';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo round($srmMorey, 1);
+	} else {
+	  echo round(srm_to_ebc($srmMorey), 1);
+	}
+        echo '&nbsp;&nbsp;</td>' . "\n";
+        ?>
+        <td style="vertical-align: middle;">&nbsp;Morey&nbsp;</td>
+      </tr>
+      <tr>
+	<?php
+        echo '<td><input type="radio" name="brewLovibond" value="';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo $srmDaniels;
+	} else {
+	  echo srm_to_ebc($srmDaniels);
+	}
+        echo '-Daniels" ';
+        if ($row_user['defaultColorFormula'] == "Daniels")
+	  echo "checked";
+        echo '/>&nbsp;</td>' . "\n";
+	$fontColor = ($srmDaniels >= 15) ? "#ffffff" : "#000000";
+        $bkColor   = get_display_color($srmDaniels);
+        echo '<td class="colorTable" style="text-align: center; background: ' . $bkColor . '; color: ' . $fontColor . ';">&nbsp;&nbsp;';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo round($srmDaniels, 1);
+	} else {
+	  echo round(srm_to_ebc($srmDaniels), 1);
+	}
+        echo '&nbsp;&nbsp;</td>' . "\n";
+	?>
+        <td style="vertical-align: middle;">&nbsp;Daniels&nbsp;</td>
+      </tr>
+      <tr>
+	<?php
+        echo '<td><input type="radio" name="brewLovibond" value="';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo $srmMoser;
+	} else {
+	  echo srm_to_ebc($srmMoser);
+	}
+        echo '-Moser" ';
+        if ($row_user['defaultColorFormula'] == "Moser")
+	  echo "checked";
+        echo '/>&nbsp;</td>' . "\n";
+	$fontColor = ($srmMoser >= 15) ? "#ffffff" : "#000000";
+        $bkColor   = get_display_color($srmMoser);
+        echo '<td class="colorTable" style="text-align: center; background: ' . $bkColor . '; color: ' . $fontColor . ';">&nbsp;&nbsp;';
+        if ($row_pref['measColor'] == "SRM") {
+	  echo round($srmMoser, 1);
+	} else {
+	  echo round(srm_to_ebc($srmMoser), 1);
+	}
+        echo '&nbsp;&nbsp;</td>' . "\n";
+	?>
+        <td style="vertical-align: middle;">&nbsp;Moser&nbsp;</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+
   <tr class="bknd_ultra_lt">
-    <td class="dataLabelLeft" nowrap>Yield<?php if ($assoc != "import")  echo " (Choose)"; ?>:</td>
+    <td class="dataLabelLeft" nowrap>Yield:</td>
       <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import") { ?><input type="radio" name="brewYield" value ="<?php echo $row_recipeRecalc['brewYield']; ?>">&nbsp;<?php } ?><?php echo $row_recipeRecalc['brewYield']; ?></td><?php } ?>
     <td class="data"><?php if ($assoc != "import") { ?><input type="radio" name="brewYield" value ="<?php echo $brewYield; ?>" checked="checked">&nbsp;<?php } ?><?php echo $brewYield; ?></td>
   </tr> 
   <tr>
-    <td class="dataLabelLeft" nowrap>OG<?php if ($assoc != "import")  echo " (Choose)"; ?>:</td>
+    <td class="dataLabelLeft" nowrap>OG:</td>
       <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php if ($source == "brewing") echo number_format($row_recipeRecalc['brewTargetOG'], 3); elseif ($row_recipeRecalc['brewOG'] > 0) echo number_format($row_recipeRecalc['brewOG'], 3); else echo ""; ?>" checked="checked">&nbsp;<?php } ?><?php if ($source == "brewing") echo number_format($row_recipeRecalc['brewTargetOG'], 3); elseif ($row_recipeRecalc['brewOG'] > 0) echo number_format($row_recipeRecalc['brewOG'], 3); else echo "None entered" ?></td><?php } ?>
     <td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewOG" value ="<?php if ($brewOG > 0) echo number_format ($brewOG, 3); ?>">&nbsp;<?php } ?><?php if ($brewOG > 0) echo number_format ($brewOG, 3); ?></td>
   </tr>
   <tr class="bknd_ultra_lt">
-    <td class="dataLabelLeft" nowrap>FG<?php if ($assoc != "import")  echo " (Choose)"; ?>:</td>
+    <td class="dataLabelLeft" nowrap>FG:</td>
       <?php if ($row_recipeRecalc['id'] != "") { ?><td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewFG" value ="<?php if ($source == "brewing") echo number_format($row_recipeRecalc['brewTargetFG'], 3); elseif ($row_recipeRecalc['brewFG'] > 0) echo number_format($row_recipeRecalc['brewFG'], 3); else echo ""; ?>" checked="checked">&nbsp;<?php } ?><?php if ($source == "brewing") echo number_format($row_recipeRecalc['brewTargetFG'], 3); elseif ($row_recipeRecalc['brewFG'] > 0) echo number_format($row_recipeRecalc['brewFG'], 3); else echo "None entered" ?></td><?php } ?>
     <td class="data"><?php if ($assoc != "import")  { ?><input type="radio" name="brewFG" value ="<?php echo number_format ($brewFG, 3); ?>">&nbsp;<?php } ?><?php echo number_format ($brewFG, 3); ?></td>
   </tr>
@@ -92,20 +246,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
 	  echo $row_recipeRecalc[$keyWeight] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />';
 	}
       }
-      /*
-      if ($row_recipeRecalc['brewExtract2'] != "") { 
-	echo $row_recipeRecalc['brewExtract2Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract2']."<br />"; 
-      } 
-      if ($row_recipeRecalc['brewExtract3'] != "") { 
-	echo $row_recipeRecalc['brewExtract3Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract3']."<br />"; 
-      } 
-      if ($row_recipeRecalc['brewExtract4'] != "") { 
-	echo $row_recipeRecalc['brewExtract4Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract4']."<br />"; 
-      } 
-      if ($row_recipeRecalc['brewExtract5'] != "") { 
-	echo $row_recipeRecalc['brewExtract5Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewExtract5'];
-      }
-      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">';
@@ -114,13 +254,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
 	echo $extWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $extName[$i] . '<br />';
       } 
     }
-/*
-      if ($brewExtract1 != "") { echo $brewExtract1Weight." ".$row_pref['measWeight2']." ".$brewExtract1."<br />"; } 
-      if ($brewExtract2 != "") { echo $brewExtract2Weight." ".$row_pref['measWeight2']." ".$brewExtract2."<br />"; }  
-      if ($brewExtract3 != "") { echo $brewExtract3Weight." ".$row_pref['measWeight2']." ".$brewExtract3."<br />"; }  
-      if ($brewExtract4 != "") { echo $brewExtract4Weight." ".$row_pref['measWeight2']." ".$brewExtract4."<br />"; }  
-      if ($brewExtract5 != "") { echo $brewExtract5Weight." ".$row_pref['measWeight2']." ".$brewExtract5; }
-*/
     ?>
     </td>
   </tr>
@@ -136,10 +269,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
 	  echo $row_recipeRecalc[$keyWeight] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />' . "\n";;
 	}
       }
-      /*
-      if ($row_recipeRecalc['brewGrain1'] != "") echo $row_recipeRecalc['brewGrain1Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain1']."<br>";
-      if ($row_recipeRecalc['brewGrain15'] != "") echo $row_recipeRecalc['brewGrain15Weight']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewGrain15'];
-      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">' . "\n";
@@ -147,10 +276,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
       if ($grainName[$i] != "") {
 	echo $grainWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $grainName[$i] . '<br />' . "\n";
       }
-      /*
-      if ($brewGrain1 != "") echo $brewGrain1Weight." ".$row_pref['measWeight2']." ".$brewGrain1."<br>"; 
-      if ($brewGrain15 != "") echo $brewGrain15Weight." ".$row_pref['measWeight2']." ".$brewGrain15;
-      */
     }
      ?>
     </td>
@@ -167,10 +292,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
 	  echo $row_recipeRecalc[$keyAmt] . ' ' . $row_pref['measWeight2'] . ' ' . $row_recipeRecalc[$keyName] . '<br />' . "\n";
 	}
       }
-      /*
-      if ($row_recipeRecalc['brewAddition1'] != "") echo $row_recipeRecalc['brewAddition1Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition1']."<br>";
-      if ($row_recipeRecalc['brewAddition9'] != "") echo $row_recipeRecalc['brewAddition9Amt']." ".$row_pref['measWeight2']." ".$row_recipeRecalc['brewAddition9'];
-      */
       echo '</td>' . "\n";
     }
     echo '<td class="data">';
@@ -179,17 +300,6 @@ if ($assoc == "import") $importDB = $_POST['importDB'];
 	echo $adjWeight[$i] . ' ' . $row_pref['measWeight2'] . ' ' . $adjName[$i] . '<br />' . "\n";
       }
     }
-      /*
-      if ($brewAdjunct1 != "") echo $brewAdjunct1Weight." ".$row_pref['measWeight2']." ".$brewAdjunct1."<br>"; 
-      if ($brewAdjunct2 != "") echo $brewAdjunct2Weight." ".$row_pref['measWeight2']." ".$brewAdjunct2."<br>"; 
-      if ($brewAdjunct3 != "") echo $brewAdjunct3Weight." ".$row_pref['measWeight2']." ".$brewAdjunct3."<br>"; 
-      if ($brewAdjunct4 != "") echo $brewAdjunct4Weight." ".$row_pref['measWeight2']." ".$brewAdjunct4."<br>"; 
-      if ($brewAdjunct5 != "") echo $brewAdjunct5Weight." ".$row_pref['measWeight2']." ".$brewAdjunct5."<br>"; 
-      if ($brewAdjunct6 != "") echo $brewAdjunct6Weight." ".$row_pref['measWeight2']." ".$brewAdjunct6."<br>"; 
-      if ($brewAdjunct7 != "") echo $brewAdjunct7Weight." ".$row_pref['measWeight2']." ".$brewAdjunct7."<br>"; 
-      if ($brewAdjunct8 != "") echo $brewAdjunct8Weight." ".$row_pref['measWeight2']." ".$brewAdjunct8."<br>";
-      if ($brewAdjunct9 != "") echo $brewAdjunct9Weight." ".$row_pref['measWeight2']." ".$brewAdjunct9; 
-      */
     ?>
     </td>
   </tr>

@@ -92,7 +92,6 @@ function load_recipe_brewing_common_data($update) {
   $fieldData["brewStyle"]    = GetSQLValueString($_POST['brewStyle'], "text");
   $fieldData["brewYield"]    = GetSQLValueString($_POST['brewYield'], "text");
   $fieldData["brewBrewerID"] = GetSQLValueString($_POST['brewBrewerID'], "text");
-  $fieldData["brewLovibond"] = GetSQLValueString($_POST['brewLovibond'], "text");
 
   for ($i = 0; $i < MAX_EXT; $i++) {
     $key = "brewExtract" . ($i + 1);
@@ -101,19 +100,6 @@ function load_recipe_brewing_common_data($update) {
     $fieldData[$key] = GetSQLValueString($_POST['extWeight'][$i], "text");
   }
 
-  /*
-  $fieldData["brewExtract1"] = GetSQLValueString($_POST['brewExtract1'], "text");
-  $fieldData["brewExtract1Weight"] = GetSQLValueString($_POST['brewExtract1Weight'], "text");
-  $fieldData["brewExtract2"] = GetSQLValueString($_POST['brewExtract2'], "text");
-  $fieldData["brewExtract2Weight"] = GetSQLValueString($_POST['brewExtract2Weight'], "text");
-  $fieldData["brewExtract3"] = GetSQLValueString($_POST['brewExtract3'], "text");
-  $fieldData["brewExtract3Weight"] = GetSQLValueString($_POST['brewExtract3Weight'], "text");
-  $fieldData["brewExtract4"] = GetSQLValueString($_POST['brewExtract4'], "text");
-  $fieldData["brewExtract4Weight"] = GetSQLValueString($_POST['brewExtract4Weight'], "text");
-  $fieldData["brewExtract5"] = GetSQLValueString($_POST['brewExtract5'], "text");
-  $fieldData["brewExtract5Weight"] = GetSQLValueString($_POST['brewExtract5Weight'], "text");
-  */
-
   for ($i = 0; $i < MAX_GRAINS; $i++) {
     $key = "brewGrain" . ($i + 1);
     $fieldData[$key] = GetSQLValueString($_POST['grainName'][$i], "text");
@@ -121,66 +107,12 @@ function load_recipe_brewing_common_data($update) {
     $fieldData[$key] = GetSQLValueString($_POST['grainWeight'][$i], "text");
   }
 
-  /*
-  $fieldData["brewGrain1"] = GetSQLValueString($_POST['brewGrain1'], "text");
-  $fieldData["brewGrain1Weight"] = GetSQLValueString($_POST['brewGrain1Weight'], "text");
-  $fieldData["brewGrain2"] = GetSQLValueString($_POST['brewGrain2'], "text");
-  $fieldData["brewGrain2Weight"] = GetSQLValueString($_POST['brewGrain2Weight'], "text");
-  $fieldData["brewGrain3"] = GetSQLValueString($_POST['brewGrain3'], "text");
-  $fieldData["brewGrain3Weight"] = GetSQLValueString($_POST['brewGrain3Weight'], "text");
-  $fieldData["brewGrain4"] = GetSQLValueString($_POST['brewGrain4'], "text");
-  $fieldData["brewGrain4Weight"] = GetSQLValueString($_POST['brewGrain4Weight'], "text");
-  $fieldData["brewGrain5"] = GetSQLValueString($_POST['brewGrain5'], "text");
-  $fieldData["brewGrain5Weight"] = GetSQLValueString($_POST['brewGrain5Weight'], "text");
-  $fieldData["brewGrain6"] = GetSQLValueString($_POST['brewGrain6'], "text");
-  $fieldData["brewGrain6Weight"] = GetSQLValueString($_POST['brewGrain6Weight'], "text");
-  $fieldData["brewGrain7"] = GetSQLValueString($_POST['brewGrain7'], "text");
-  $fieldData["brewGrain7Weight"] = GetSQLValueString($_POST['brewGrain7Weight'], "text");
-  $fieldData["brewGrain8"] = GetSQLValueString($_POST['brewGrain8'], "text");
-  $fieldData["brewGrain8Weight"] = GetSQLValueString($_POST['brewGrain8Weight'], "text");
-  $fieldData["brewGrain9"] = GetSQLValueString($_POST['brewGrain9'], "text");
-  $fieldData["brewGrain9Weight"] = GetSQLValueString($_POST['brewGrain9Weight'], "text");
-  $fieldData["brewGrain10"] = GetSQLValueString($_POST['brewGrain10'], "text");
-  $fieldData["brewGrain10Weight"] = GetSQLValueString($_POST['brewGrain10Weight'], "text");
-  $fieldData["brewGrain11"] = GetSQLValueString($_POST['brewGrain11'], "text");
-  $fieldData["brewGrain11Weight"] = GetSQLValueString($_POST['brewGrain11Weight'], "text");
-  $fieldData["brewGrain12"] = GetSQLValueString($_POST['brewGrain12'], "text");
-  $fieldData["brewGrain12Weight"] = GetSQLValueString($_POST['brewGrain12Weight'], "text");
-  $fieldData["brewGrain13"] = GetSQLValueString($_POST['brewGrain13'], "text");
-  $fieldData["brewGrain13Weight"] = GetSQLValueString($_POST['brewGrain13Weight'], "text");
-  $fieldData["brewGrain14"] = GetSQLValueString($_POST['brewGrain14'], "text");
-  $fieldData["brewGrain14Weight"] = GetSQLValueString($_POST['brewGrain14Weight'], "text");
-  $fieldData["brewGrain15"] = GetSQLValueString($_POST['brewGrain15'], "text");
-  $fieldData["brewGrain15Weight"] = GetSQLValueString($_POST['brewGrain15Weight'], "text");
-  */
-
   for ($i = 0; $i < MAX_ADJ; $i++) {
     $key = "brewAddition" . ($i + 1);
     $fieldData[$key] = GetSQLValueString($_POST['adjName'][$i], "text");
     $key = "brewAddition" . ($i + 1) . "Amt";
     $fieldData[$key] = GetSQLValueString($_POST['adjWeight'][$i], "text");
   }
-
-  /*
-  $fieldData["brewAddition1"] = GetSQLValueString($_POST['brewAdjunct1'], "text");
-  $fieldData["brewAddition1Amt"] = GetSQLValueString($_POST['brewAdjunct1Weight'], "text");
-  $fieldData["brewAddition2"] = GetSQLValueString($_POST['brewAdjunct2'], "text");
-  $fieldData["brewAddition2Amt"] = GetSQLValueString($_POST['brewAdjunct2Weight'], "text");
-  $fieldData["brewAddition3"] = GetSQLValueString($_POST['brewAdjunct3'], "text");
-  $fieldData["brewAddition3Amt"] = GetSQLValueString($_POST['brewAdjunct3Weight'], "text");
-  $fieldData["brewAddition4"] = GetSQLValueString($_POST['brewAdjunct4'], "text");
-  $fieldData["brewAddition4Amt"] = GetSQLValueString($_POST['brewAdjunct4Weight'], "text");
-  $fieldData["brewAddition5"] = GetSQLValueString($_POST['brewAdjunct5'], "text");
-  $fieldData["brewAddition5Amt"] = GetSQLValueString($_POST['brewAdjunct5Weight'], "text");
-  $fieldData["brewAddition6"] = GetSQLValueString($_POST['brewAdjunct6'], "text");
-  $fieldData["brewAddition6Amt"] = GetSQLValueString($_POST['brewAdjunct6Weight'], "text");
-  $fieldData["brewAddition7"] = GetSQLValueString($_POST['brewAdjunct7'], "text");
-  $fieldData["brewAddition7Amt"] = GetSQLValueString($_POST['brewAdjunct7Weight'], "text");
-  $fieldData["brewAddition8"] = GetSQLValueString($_POST['brewAdjunct8'], "text");
-  $fieldData["brewAddition8Amt"] = GetSQLValueString($_POST['brewAdjunct8Weight'], "text");
-  $fieldData["brewAddition9"] = GetSQLValueString($_POST['brewAdjunct9'], "text");
-  $fieldData["brewAddition9Amt"] = GetSQLValueString($_POST['brewAdjunct9Weight'], "text");
-  */
 
   for ($i = 0; $i < MAX_HOPS; $i++) {
     $key = "brewHops" . ($i + 1);
@@ -203,10 +135,13 @@ function load_recipe_brewing_common_data($update) {
   }
 
   if (!$update) {
-    $fieldData["brewMethod"]     = GetSQLValueString($_POST['brewMethod'], "text");
-    $fieldData["brewProcedure"]  = GetSQLValueString($_POST['brewProcedure'], "text");
-    $fieldData["brewBitterness"] = GetSQLValueString($_POST['brewBitterness'], "text");
-    $fieldData["brewIBUFormula"] = GetSQLValueString($_POST['brewIBUFormula'], "text");
+    $fieldData["brewMethod"]       = GetSQLValueString($_POST['brewMethod'], "text");
+    $fieldData["brewProcedure"]    = GetSQLValueString($_POST['brewProcedure'], "text");
+    $fieldData["brewBitterness"]   = GetSQLValueString($_POST['brewBitterness'], "text");
+    $fieldData["brewIBUFormula"]   = GetSQLValueString($_POST['brewIBUFormula'], "text");
+    $fieldData["brewLovibond"]     = GetSQLValueString($_POST['brewLovibond'], "text");
+    $fieldData["brewColorFormula"] = GetSQLValueString($_POST['brewColorFormula'], "text");
+
     $fieldData["brewFeatured"]   = GetSQLValueString($_POST['brewFeatured'], "text");
     $fieldData["brewArchive"]    = GetSQLValueString($_POST['brewArchive'], "text");
     $fieldData["brewBoilTime"]   = GetSQLValueString($_POST['brewBoilTime'], "text");
@@ -340,6 +275,10 @@ function load_recipe_brewing_update_data($table) {
   $brewBitterness              = explode("-", $_POST['brewBitterness']);
   $fieldData["brewBitterness"] = GetSQLValueString($brewBitterness[0], "text");
   $fieldData["brewIBUFormula"] = GetSQLValueString($brewBitterness[1], "text");
+
+  $brewLovibond                  = explode("-", $_POST['brewLovibond']);
+  $fieldData["brewLovibond"]     = GetSQLValueString($brewLovibond[0], "text");
+  $fieldData["brewColorFormula"] = GetSQLValueString($brewLovibond[1], "text");
 
   // Hop Use and Type aren't considered in the calculator so we have to make some assumptions here.
   $boilTime = $_POST['brewBoilTime'];
@@ -480,7 +419,7 @@ if (($action == "update") && (($dbTable == "brewing") || ($dbTable == "recipes")
   header(sprintf("Location: %s", $updateGoTo));
 }
 
-// --------------------------- If Adding or Copying a Recipe ------------------------------ //
+// --------------------------- If Adding a new Recipe --------------------------------------- //
 
 if ((($action == "add") || ($action == "importRecipe") || ($action == "importCalc")  ||
      ($action == "reuse") || ($action == "import")) && ($dbTable=="recipes")) {
@@ -532,9 +471,9 @@ if (($action == "edit") && ($dbTable == "recipes")) {
   $fieldData["brewYeastAmount"]  = GetSQLValueString($_POST['brewYeastAmount'], "scrubbed");
   $fieldData["brewYeastProfile"] = GetSQLValueString($_POST['brewYeastProfile'], "text");
 
-  $insert = "";
-  $count  = count($fieldData);
-  $i      = 1;
+  $data  = "";
+  $count = count($fieldData);
+  $i     = 1;
 
   foreach ($fieldData as $k => $v) {
     $data .= "$k = $v";
@@ -759,187 +698,155 @@ if (($action == "edit") && ($dbTable == "brewerlinks")) {
 // --------------------------- If Adding a User ------------------------------ //
 
 if (($action == "add") && ($dbTable == "users")) {
-   $password = md5($_POST['password']);
-   $insertSQL = sprintf("INSERT INTO users (
-   user_name, 
-   password, 
-   realFirstName, 
-   realLastName, 
-   userLevel,
-    
-   userProfile, 
-   userPicURL, 
-   userFavStyles, 
-   userFavCommercial, 
-   userFavQuote,
-    
-   userDesignations, 
-   userOccupation,
-   userHobbies, 
-   userBirthdate, 
-   userHometown,
-    
-   userBrewingSince, 
-   userWebsiteName, 
-   userWebsiteURL, 
-   userPosition, 
-   userPastPosition,
-    
-   userInfoPrivate,
-   userAddress, 
-   userCity, 
-   userState, 
-   userZip, 
-   
-   userPhoneH, 
-   userPhoneW, 
-   userEmail,
-   defaultBoilTime,
-   defaultEquipProfile, 
-   
-   defaultMashProfile,
-   defaultWaterProfile,
-   defaultBitternessFormula,
-   defaultMethod,
-   defaultBatchSize,
-   defaultWaterRatio
-   ) 
-   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", 
-                       GetSQLValueString($_POST['user_name'], "text"),
-                       GetSQLValueString($password, "text"),
-					   GetSQLValueString($_POST['realFirstName'], "scrubbed"),
-					   GetSQLValueString($_POST['realLastName'], "scrubbed"),
-					   GetSQLValueString($_POST['userLevel'], "text"),
-					   
-					   GetSQLValueString($_POST['userProfile'], "text"),
-					   GetSQLValueString($_POST['userPicURL'], "text"),
-					   GetSQLValueString($_POST['userFavStyles'], "scrubbed"),
-					   GetSQLValueString($_POST['userFavCommercial'], "scrubbed"),
-					   GetSQLValueString($_POST['userFavQuote'], "scrubbed"),
-					   
-					   GetSQLValueString($_POST['userDesignations'], "scrubbed"),
-					   GetSQLValueString($_POST['userOccupation'], "scrubbed"),
-					   GetSQLValueString($_POST['userHobbies'], "scrubbed"),
-					   GetSQLValueString($_POST['userBirthdate'], "text"),
-					   GetSQLValueString($_POST['userHometown'], "scrubbed"),
-					   
-					   GetSQLValueString($_POST['userBrewingSince'], "text"),
-					   GetSQLValueString($_POST['userWebsiteName'], "scrubbed"),
-					   GetSQLValueString($_POST['userWebsiteURL'], "text"),
-					   GetSQLValueString($_POST['userPosition'], "scrubbed"),
-					   GetSQLValueString($_POST['userPastPosition'], "scrubbed"),
-					   
-					   GetSQLValueString($_POST['userInfoPrivate'], "text"),
-					   GetSQLValueString($_POST['userAddress'], "scrubbed"),
-					   GetSQLValueString($_POST['userCity'], "scrubbed"),
-					   GetSQLValueString($_POST['userState'], "scrubbed"),
-					   GetSQLValueString($_POST['userZip'], "text"),
-					   
-					   GetSQLValueString($_POST['userPhoneH'], "text"),
-					   GetSQLValueString($_POST['userPhoneW'], "text"),
-					   GetSQLValueString($_POST['userEmail'], "text"),
-					   GetSQLValueString($_POST['defaultBoilTime'], "text"),
-					   GetSQLValueString($_POST['defaultEquipProfile'], "text"), 
-					   
-					   GetSQLValueString($_POST['defaultMashProfile'], "text"),
-					   GetSQLValueString($_POST['defaultWaterProfile'], "text"),
-					   GetSQLValueString($_POST['defaultBitternessFormula'], "text"),
-					   GetSQLValueString($_POST['defaultMethod'], "text"),
-					   GetSQLValueString($_POST['defaultBatchSize'], "text"),
-					   GetSQLValueString($_POST['defaultWaterRatio'], "text")
-					   ); 
+   $password                              = md5($_POST['password']);
 
-  mysql_select_db($database_brewing, $brewing);
-  $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
+   $fieldData["user_name"]                = GetSQLValueString($_POST['user_name'], "text");
+   $fieldData["password"]                 = GetSQLValueString($password, "text");
+   $fieldData["realFirstName"]            = GetSQLValueString($_POST['realFirstName'], "scrubbed");
+   $fieldData["realLastName"]             = GetSQLValueString($_POST['realLastName'], "scrubbed");
+   $fieldData["userLevel"]                = GetSQLValueString($_POST['userLevel'], "text");
+   $fieldData["userProfile"]              = GetSQLValueString($_POST['userProfile'], "text");
+   $fieldData["userPicURL"]               = GetSQLValueString($_POST['userPicURL'], "text");
+   $fieldData["userFavStyles"]            = GetSQLValueString($_POST['userFavStyles'], "scrubbed");
+   $fieldData["userFavCommercial"]        = GetSQLValueString($_POST['userFavCommercial'], "scrubbed");
+   $fieldData["userFavQuote"]             = GetSQLValueString($_POST['userFavQuote'], "scrubbed");
+   $fieldData["userDesignations"]         = GetSQLValueString($_POST['userDesignations'], "scrubbed");
+   $fieldData["userOccupation"]           = GetSQLValueString($_POST['userOccupation'], "scrubbed");
+   $fieldData["userHobbies"]              = GetSQLValueString($_POST['userHobbies'], "scrubbed");
+   $fieldData["userBirthdate"]            = GetSQLValueString($_POST['userBirthdate'], "text");
+   $fieldData["userHometown"]             = GetSQLValueString($_POST['userHometown'], "scrubbed");
+   $fieldData["userBrewingSince"]         = GetSQLValueString($_POST['userBrewingSince'], "scrubbed");
+   $fieldData["userWebsiteName"]          = GetSQLValueString($_POST['userWebsiteName'], "scrubbed");
+   $fieldData["userWebsiteURL"]           = GetSQLValueString($_POST['userWebsiteURL'], "text");
+   $fieldData["userPosition"]             = GetSQLValueString($_POST['userPosition'], "scrubbed");
+   $fieldData["userPastPosition"]         = GetSQLValueString($_POST['userPastPosition'], "scrubbed");
+   $fieldData["userInfoPrivate"]          = GetSQLValueString($_POST['userInfoPrivate'], "text");
+   $fieldData["userAddress"]              = GetSQLValueString($_POST['userAddress'], "scrubbed");
+   $fieldData["userCity"]                 = GetSQLValueString($_POST['userCity'], "scrubbed");
+   $fieldData["userState"]                = GetSQLValueString($_POST['userState'], "scrubbed");
+   $fieldData["userZip"]                  = GetSQLValueString($_POST['userZip'], "text");
+   $fieldData["userPhoneH"]               = GetSQLValueString($_POST['userPhoneH'], "text");
+   $fieldData["userPhoneW"]               = GetSQLValueString($_POST['userPhoneW'], "text");
+   $fieldData["userEmail"]                = GetSQLValueString($_POST['userEmail'], "text");
+   $fieldData["defaultBoilTime"]          = GetSQLValueString($_POST['defaultBoilTime'], "text");
+   $fieldData["defaultEquipProfile"]      = GetSQLValueString($_POST['defaultEquipProfile'], "text");
+   $fieldData["defaultMashProfile"]       = GetSQLValueString($_POST['defaultMashProfile'], "text");
+   $fieldData["defaultWaterProfile"]      = GetSQLValueString($_POST['defaultWaterProfile'], "text");
+   $fieldData["defaultBitternessFormula"] = GetSQLValueString($_POST['defaultBitternessFormula'], "text");
+   $fieldData["defaultMethod"]            = GetSQLValueString($_POST['defaultMethod'], "text");
+   $fieldData["defaultBatchSize"]         = GetSQLValueString($_POST['defaultBatchSize'], "text");
+   $fieldData["defaultWaterRatio"]        = GetSQLValueString($_POST['defaultWaterRatio'], "text");
+   $fieldData["defaultColorFormula"]      = GetSQLValueString($_POST['defaultColorFormula'], "text");
 
-  $insertGoTo = "index.php?action=list&dbTable=users&confirm=true&msg=1";
-  header(sprintf("Location: %s", $insertGoTo));
+   $columns = array();
+   $data    = array();
+
+   foreach ($fieldData as $k => $v) {
+     $columns[] = $k;
+     if ($v != "") {
+       $data[] = $v;
+     } else {
+       $data[] = "NULL";
+     }
+   }
+   $cols = implode(",", $columns);
+   $vals = implode(",", $data);
+
+   $insertSQL = "INSERT INTO users ($cols) VALUES ($vals)";
+
+   mysql_select_db($database_brewing, $brewing);
+   $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
+
+   $insertGoTo = "index.php?action=list&dbTable=users&confirm=true&msg=1";
+   header(sprintf("Location: %s", $insertGoTo));
 }
 
 // --------------------------- If Editing a User ----------------------------- //
 
-if (($action == "edit") && ($dbTable == "users") && ($section == "password")) 
-{
-$admin = $_POST['admin'];
-mysql_select_db($database_brewing, $brewing);
-$query_user5 = sprintf("SELECT user_name,password FROM users WHERE id = '%s'", $id);
-$user5 = mysql_query($query_user5, $brewing) or die(mysql_error());
-$row_user5 = mysql_fetch_assoc($user5);
-$totalRows_user5 = mysql_num_rows($user5);
-
-  $password =   md5($_POST['password']);
-  if (($reset == "default") && ($admin == "nonpriv")){ 
-  $passwordOld = md5($_POST['passwordOld']); $confirmPass = $row_user5['password']; 
-  if ($confirmPass != $passwordOld) 
-  header ("Location: index.php?action=edit&dbTable=users&id=".$id."&confirm=false&section=password&msg=2"); 
-  } 
-  if (($confirmPass == $passwordOld) || ($reset == "true") || ($admin == "admin"))
-	   {
-  $updateSQL = sprintf("UPDATE users SET password=%s WHERE id=%s",
-                       GetSQLValueString($password, "text"),
-                       GetSQLValueString($id, "int")); 
-					   
+if (($action == "edit") && ($dbTable == "users") && ($section == "password")) {
+  $admin = $_POST['admin'];
   mysql_select_db($database_brewing, $brewing);
-  $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
+  $query_user5 = sprintf("SELECT user_name,password FROM users WHERE id = '%s'", $id);
+  $user5 = mysql_query($query_user5, $brewing) or die(mysql_error());
+  $row_user5 = mysql_fetch_assoc($user5);
+  $totalRows_user5 = mysql_num_rows($user5);
 
-  $updateGoTo = "index.php?action=list&dbTable=users&confirm=true&section=password&msg=2";
-  if ($admin == "admin") $updateGoTo .= "&filter=".$row_user5['user_name']."&assoc=".$_POST['password'];
-  header(sprintf("Location: %s", $updateGoTo));
-   }
-}
-if (($action == "edit") && ($dbTable == "users") && ($section == "default")) 
-{
-$updateSQL = sprintf("UPDATE users SET user_name=%s, realFirstName=%s, realLastName=%s, 
-  userLevel=%s, userProfile=%s, userPicURL=%s, userFavStyles=%s, userFavCommercial=%s, userFavQuote=%s, 
-  userDesignations=%s, userOccupation=%s, userHobbies=%s, userBirthdate=%s, userHometown=%s, 
-  userBrewingSince=%s, userWebsiteName=%s, userWebsiteURL=%s, userPosition=%s, userPastPosition=%s, userInfoPrivate=%s,
-  userAddress=%s, userCity=%s, userState=%s, userZip=%s, userPhoneH=%s, userPhoneW=%s, userEmail=%s,
-  defaultBoilTime=%s,
-  defaultEquipProfile=%s, 
-  defaultMashProfile=%s,
-  defaultWaterProfile=%s,
-  defaultBitternessFormula=%s,
-  defaultMethod=%s,
-  defaultBatchSize=%s,
-  defaultWaterRatio=%s
-  WHERE id=%s",
-                       GetSQLValueString($_POST['user_name'], "text"),
-					   GetSQLValueString($_POST['realFirstName'], "scrubbed"),
-					   GetSQLValueString($_POST['realLastName'], "scrubbed"),
-					   GetSQLValueString($_POST['userLevel'], "text"),
-					   GetSQLValueString($_POST['userProfile'], "text"),
-					   GetSQLValueString($_POST['userPicURL'], "text"),
-					   GetSQLValueString($_POST['userFavStyles'], "scrubbed"),
-					   GetSQLValueString($_POST['userFavCommercial'], "scrubbed"),
-					   GetSQLValueString($_POST['userFavQuote'], "scrubbed"),
-					   GetSQLValueString($_POST['userDesignations'], "scrubbed"),
-					   GetSQLValueString($_POST['userOccupation'], "scrubbed"),
-					   GetSQLValueString($_POST['userHobbies'], "scrubbed"),
-					   GetSQLValueString($_POST['userBirthdate'], "text"),
-					   GetSQLValueString($_POST['userHometown'], "scrubbed"),
-					   GetSQLValueString($_POST['userBrewingSince'], "scrubbed"),
-					   GetSQLValueString($_POST['userWebsiteName'], "scrubbed"),
-					   GetSQLValueString($_POST['userWebsiteURL'], "text"),
-					   GetSQLValueString($_POST['userPosition'], "scrubbed"),
-					   GetSQLValueString($_POST['userPastPosition'], "scrubbed"),
-					   GetSQLValueString($_POST['userInfoPrivate'], "text"),
-					   GetSQLValueString($_POST['userAddress'], "scrubbed"),
-					   GetSQLValueString($_POST['userCity'], "scrubbed"),
-					   GetSQLValueString($_POST['userState'], "scrubbed"),
-					   GetSQLValueString($_POST['userZip'], "text"),
-					   GetSQLValueString($_POST['userPhoneH'], "text"),
-					   GetSQLValueString($_POST['userPhoneW'], "text"),
-					   GetSQLValueString($_POST['userEmail'], "text"),
-					   GetSQLValueString($_POST['defaultBoilTime'], "text"),
-					   GetSQLValueString($_POST['defaultEquipProfile'], "text"), 
-					   GetSQLValueString($_POST['defaultMashProfile'], "text"),
-					   GetSQLValueString($_POST['defaultWaterProfile'], "text"),
-					   GetSQLValueString($_POST['defaultBitternessFormula'], "text"),
-					   GetSQLValueString($_POST['defaultMethod'], "text"),
-					   GetSQLValueString($_POST['defaultBatchSize'], "text"),
-					   GetSQLValueString($_POST['defaultWaterRatio'], "text"),
-                       GetSQLValueString($id, "int")); 
+  $password = md5($_POST['password']);
+  if (($reset == "default") && ($admin == "nonpriv")) { 
+    $passwordOld = md5($_POST['passwordOld']); $confirmPass = $row_user5['password']; 
+    if ($confirmPass != $passwordOld) {
+      header ("Location: index.php?action=edit&dbTable=users&id=".$id."&confirm=false&section=password&msg=2");
+    }
+  }
+  if (($confirmPass == $passwordOld) || ($reset == "true") || ($admin == "admin")) {
+    $updateSQL = sprintf("UPDATE users SET password=%s WHERE id=%s",
+			 GetSQLValueString($password, "text"),
+			 GetSQLValueString($id, "int")); 
 					   
+    mysql_select_db($database_brewing, $brewing);
+    $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
+
+    $updateGoTo = "index.php?action=list&dbTable=users&confirm=true&section=password&msg=2";
+    if ($admin == "admin") $updateGoTo .= "&filter=".$row_user5['user_name']."&assoc=".$_POST['password']; {
+      header(sprintf("Location: %s", $updateGoTo));
+    }
+  }
+}
+
+if (($action == "edit") && ($dbTable == "users") && ($section == "default")) {
+
+  $fieldData["user_name"]                = GetSQLValueString($_POST['user_name'], "text");
+  $fieldData["realFirstName"]            = GetSQLValueString($_POST['realFirstName'], "scrubbed");
+  $fieldData["realLastName"]             = GetSQLValueString($_POST['realLastName'], "scrubbed");
+  $fieldData["userLevel"]                = GetSQLValueString($_POST['userLevel'], "text");
+  $fieldData["userProfile"]              = GetSQLValueString($_POST['userProfile'], "text");
+  $filedData["userPicURL"]               = GetSQLValueString($_POST['userPicURL'], "text");
+  $fieldData["userFavStyles"]            = GetSQLValueString($_POST['userFavStyles'], "scrubbed");
+  $fieldData["userFavCommercial"]        = GetSQLValueString($_POST['userFavCommercial'], "scrubbed");
+  $fieldData["userFavQuote"]             = GetSQLValueString($_POST['userFavQuote'], "scrubbed");
+  $fieldData["userDesignations"]         = GetSQLValueString($_POST['userDesignations'], "scrubbed");
+  $fieldData["userOccupation"]           = GetSQLValueString($_POST['userOccupation'], "scrubbed");
+  $fieldData["userHobbies"]              = GetSQLValueString($_POST['userHobbies'], "scrubbed");
+  $fieldData["userBirthdate"]            = GetSQLValueString($_POST['userBirthdate'], "text");
+  $fieldData["userHometown"]             = GetSQLValueString($_POST['userHometown'], "scrubbed");
+  $fieldData["userBrewingSince"]         = GetSQLValueString($_POST['userBrewingSince'], "scrubbed");
+  $fieldData["userWebsiteName"]          = GetSQLValueString($_POST['userWebsiteName'], "scrubbed");
+  $fieldData["userWebsiteURL"]           = GetSQLValueString($_POST['userWebsiteURL'], "text");
+  $fieldData["userPosition"]             = GetSQLValueString($_POST['userPosition'], "scrubbed");
+  $fieldData["userPastPosition"]         = GetSQLValueString($_POST['userPastPosition'], "scrubbed");
+  $fieldData["userInfoPrivate"]          = GetSQLValueString($_POST['userInfoPrivate'], "text");
+  $fieldData["userAddress"]              = GetSQLValueString($_POST['userAddress'], "scrubbed");
+  $fieldData["userCity"]                 = GetSQLValueString($_POST['userCity'], "scrubbed");
+  $fieldData["userState"]                = GetSQLValueString($_POST['userState'], "scrubbed");
+  $fieldData["userZip"]                  = GetSQLValueString($_POST['userZip'], "text");
+  $fieldData["userPhoneH"]               = GetSQLValueString($_POST['userPhoneH'], "text");
+  $fieldData["userPhoneW"]               = GetSQLValueString($_POST['userPhoneW'], "text");
+  $fieldData["userEmail"]                = GetSQLValueString($_POST['userEmail'], "text");
+  $fieldData["defaultBoilTime"]          = GetSQLValueString($_POST['defaultBoilTime'], "text");
+  $fieldData["defaultEquipProfile"]      = GetSQLValueString($_POST['defaultEquipProfile'], "text");
+  $fieldData["defaultMashProfile"]       = GetSQLValueString($_POST['defaultMashProfile'], "text");
+  $fieldData["defaultWaterProfile"]      = GetSQLValueString($_POST['defaultWaterProfile'], "text");
+  $fieldData["defaultBitternessFormula"] = GetSQLValueString($_POST['defaultBitternessFormula'], "text");
+  $fieldData["defaultMethod"]            = GetSQLValueString($_POST['defaultMethod'], "text");
+  $fieldData["defaultBatchSize"]         = GetSQLValueString($_POST['defaultBatchSize'], "text");
+  $fieldData["defaultWaterRatio"]        = GetSQLValueString($_POST['defaultWaterRatio'], "text");
+  $fieldData["defaultColorFormula"]      = GetSQLValueString($_POST['defaultColorFormula'], "text");
+
+  $data  = "";
+  $count = count($fieldData);
+  $i     = 1;
+
+  foreach ($fieldData as $k => $v) {
+    $data .= "$k = $v";
+    if ($i < $count) {
+      $data .= ", ";
+    }
+
+    $i++;
+  }
+
+  $updateSQL = "UPDATE users SET $data WHERE id=" . GetSQLValueString($id, "int");
+  
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
 

@@ -1,4 +1,7 @@
-<?php mysql_select_db($database_brewing, $brewing);
+<?php
+require_once('admin/lib/color.lib.php');
+
+mysql_select_db($database_brewing, $brewing);
 $query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_log['brewStyle']);
 $styles = mysql_query($query_styles, $brewing) or die(mysql_error());
 $row_styles = mysql_fetch_assoc($styles);
@@ -44,39 +47,70 @@ $totalRows_styles = mysql_num_rows($styles);
     	   <td class="dataLabelLeft">Yield:</td>
 		   <td class="data"><?php if (($action == "default") || ($action == "print") || ($action == "reset")) echo $row_log['brewYield']; if ($action == "scale") echo $amt; echo "&nbsp;".$row_pref['measFluid2']; ?></td>
   	   </tr>
-	   <?php } // Yield ?>
-	   <?php if ($row_log['brewLovibond'] != "" ) {  ?>
-  	   <tr>
-  		   <td class="dataLabelLeft"><?php if (($page == "recipePrint") || ($page == "logPrint")) echo ""; else { ?><div id="help"><a href="sections/reference.inc.php?section=color&source=log&KeepThis=true&TB_iframe=true&height=350&width=600" title="SRM Color Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference"></a></div><?php } ?>Color (<?php if ($row_pref['measColor'] == "EBC") echo "EBC"; else echo "SRM"; ?>/<?php if ($row_pref['measColor'] == "EBC") echo "SRM"; else echo "EBC"; ?>):</td>
-		   <td class="data">
-		   <?php
-		   if (($page != "logPrint") && ($page != "recipePrint")) include (INCLUDES.'color_display.inc.php');
-		   if (($page == "logPrint") || ($page == "recipePrint")) {
-					if ($row_pref['measColor'] == "SRM") { echo round ($row_log['brewLovibond'], 1)."/"; echo colorconvert($row_log['brewLovibond'], "EBC"); }
-					if ($row_pref['measColor'] == "EBC") { echo round ($row_log['brewLovibond'], 1)."/"; echo colorconvert($row_log['brewLovibond'], "SRM"); }
-			}
-		   ?>
-           </td>
-  	   </tr>
-	   <?php } // Lovibond ?>
-	   <?php if ($row_log['brewBitterness'] != "") {  ?>
-  	   <tr>
-  		   <td class="dataLabelLeft">Bitterness (Calc):</td>
-		   <td class="data"><?php $IBU = ltrim ($row_log['brewBitterness'], "0"); echo round ($IBU,1)." ".$row_pref['measBitter']; if ($row_log['brewIBUFormula'] != "") echo " (".$row_log['brewIBUFormula'].")"; ?></td>
-  	   </tr>
-	   <?php } // Bitterness ?>
-	   <?php if (($row_log['brewOG'] == "" ) || ($row_log['brewFG'] == "" )) echo ""; else { ?>
-	   <?php if ($row_log['brewBitterness'] != "") { ?>
-       <tr>
-	     <td class="dataLabelLeft">BU/GU:</td>
-	     <td class="data"><?php $bugu = $row_log['brewBitterness']/(($row_log['brewOG'] - 1) * 1000); echo round ($bugu, 2); ?></td>
-	   </tr>
-       <?php } ?>
-	   <tr>
+	   <?php } // Yield
+
+           // Color
+	   if ($row_log['brewLovibond'] != "" ) {
+	     echo '<tr>' . "\n";
+  	     echo '<td class="dataLabelLeft">';
+	     if (($page == "recipePrint") || ($page == "logPrint")) {
+	       echo "";
+	     } else {
+	       echo '<div id="help"><a href="sections/reference.inc.php?section=color&source=log&KeepThis=true&TB_iframe=true&height=350&width=600" title="SRM Color Reference" class="thickbox"><img src="' . $imageSrc . 'information.png" align="absmiddle" border="0" alt="Reference"></a></div>';
+	     }
+	     echo 'Color (' . $row_pref['measColor'] . '):</td>' . "\n";
+	     echo '<td class="data">';
+	     if ($page == "logPrint" || $page == "recipePrint") {
+	       echo round($row_log['brewLovibond'], 1);
+	     } else {
+	       echo '<table><tr>' . "\n";
+	       $brewLov   = $row_log['brewLovibond'];
+	       if ($row_pref['measColor'] == "EBC")
+		 $brewLov = ebc_to_srm($brewLov);
+	       $fontColor = ($brewLov >= 15) ? "#ffffff" : "#000000";
+	       $bkColor   = get_display_color($brewLov);
+	       echo '<td class="colorTable" style="text-align: center; background: ' . $bkColor . '; color: ' . $fontColor . '; padding: 0 3px 0 3px">&nbsp;&nbsp;';
+	       echo round($row_log['brewLovibond'], 1);
+	       echo '&nbsp;&nbsp;</td>' . "\n";
+	       echo '<td>&nbsp;(';
+	       if ($row_log['brewColorFormula'] == "") {
+		 echo "formula unknown";
+	       } else {
+		 echo $row_log['brewColorFormula'];
+	       }
+	       echo ')</td>' . "\n";
+	       echo '</tr></table>' . "\n";
+	     }
+	     echo '</td>' . "\n";
+	     echo '</tr>' . "\n";
+	   }
+
+           // Bitterness
+	   if ($row_log['brewBitterness'] != "") {
+	     echo '<tr>' . "\n";
+  	     echo '<td class="dataLabelLeft">Bitterness:</td>' . "\n";
+	     echo '<td class="data">' . round(ltrim($row_log['brewBitterness'], "0"), 1) . ' ' . $row_pref['measBitter'];
+	     if ($row_log['brewIBUFormula'] != "")
+	       echo " (" . $row_log['brewIBUFormula'] . ")";
+	     echo '</td>' . "\n";
+             echo '</tr>' . "\n";
+	   }
+
+	   if (($row_log['brewOG'] == "" ) || ($row_log['brewFG'] == "" )) 
+	     echo "";
+	   else {
+	     if ($row_log['brewBitterness'] != "") { ?>
+               <tr>
+	         <td class="dataLabelLeft">BU/GU:</td>
+	         <td class="data"><?php $bugu = $row_log['brewBitterness']/(($row_log['brewOG'] - 1) * 1000); echo round ($bugu, 2); ?></td>
+	       </tr>
+             <?php } ?>
+	     <tr>
   	       <td class="dataLabelLeft">Calories:</td>
 	       <td class="data"><?php echo round ($calories, 0); ?> (12 ounces)</td>
-       </tr>
+             </tr>
 	   <?php } ?>
+
   <?php if (($page !="recipeDetail") && ($page !="recipePrint")) { ?>
 	   <?php if ($row_log['brewCondition'] != "" ) {  ?>
   	   <tr>
