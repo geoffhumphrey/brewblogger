@@ -10,20 +10,6 @@ if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 //echo $agent."<br>";
 //echo $printBrowser."<br>";
 
-// ---------------------------- Color Conversion ------------------------------------------------------------
-// Calculations based upon Daniels, R. (2000, pg. 44). Designing great beers. Boulder, CO: Brewer's Publications.
-function colorconvert($color, $c) {
-if ($c == "SRM") { // EBC to SRM
-	$ccon = $color / 1.97; 
-	return round ($ccon, 1);
-	}
-
-if ($c == "EBC") { // SRM to EBC
-	$ccon = $color * 1.97;
-	return round ($ccon, 1);
-	}
-}
-
 // ---------------------------- Temperature, Weight, and Volume Conversion ----------------------------------
 
 function tempconvert($temp,$t) { // $t = desired output, defined at function call

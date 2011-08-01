@@ -8,7 +8,7 @@
   
   <td class="dataHeadingList" width="25%">Style&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
   <td class="dataHeadingList" width="10%">Method&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
-  <td class="dataHeadingList" width="10%"><?php if ($row_pref['measColor'] == "EBC") echo "EBC"; else echo "SRM"; ?>/<?php if ($row_pref['measColor'] == "EBC") echo "SRM"; else echo "EBC";?>&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
+  <td class="dataHeadingList" width="10%"><?php if ($row_pref['measColor'] == "EBC") echo "EBC"; else echo "SRM"; ?>&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
   <td class="dataHeadingList" width="5%">IBU&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
   <td class="dataHeadingList" width="5%">ABV&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
   <?php if (($row_pref['mode'] == "2") && ($filter == "all")) { ?>

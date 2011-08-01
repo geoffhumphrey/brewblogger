@@ -9,169 +9,205 @@
 
 <div id="calculate">
 <div id="calculateInner">
-    <table class="dataTable">
-    <tr>
-    	<td colspan="2" class="text_14_bold">Predicted Results</td>
-		<td class="text_14_bold data">BJCP</td>
-    </tr>
-	<tr>
-		<td colspan="3"><hr></td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide">Name:</td>
-		<td class="data"><?php echo $brewName; ?></td>
-		<td class=" bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide">Style:</td>
-		<td class="data"><?php echo $brewStyle; ?></td>
-		<td class="data bdr1L_black"><a href="<?php echo $row_style1['brewStyleLink']; ?>" target="_blank"><?php echo $row_style1['brewStyleGroup'].$row_style1['brewStyleNum']; ?></a></td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide">Color:</td>
-		<td class="data">
-		<?php include ('../includes/color.inc.php'); ?>
-		      <table>
-		        <tr>
-		          <td class="colorTable" align="center" bgcolor="<?php echo $beercolor; ?>"><?php if ($SRM >= 15) echo "<font color=\"#ffffff\">"; else echo "<font color=\"#000000\">"; echo round ($SRM, 1)."/"; echo colorconvert($SRM, "EBC"); ?></td>
-		          <td class="data">SRM/EBC</td>
-                </tr>
-		      </table>
-		</td>
-		<td class="data bdr1L_black"><?php include ('../includes/colorStyle.inc.php'); ?>
-		<?php
-		if ($row_style1['brewStyleSRM'] == "") { echo "Varies"; }
-		elseif ($row_style1['brewStyleSRM'] == "N/A") { echo "N/A"; }
-		elseif ($row_style1['brewStyleSRM'] != "") 
-		{ 
-		$SRMmin = ltrim ($row_style1['brewStyleSRM'], "0"); 
-		$SRMmax = ltrim ($row_style1['brewStyleSRMMax'], "0"); 
-			echo "<table><tr><td align=\"center\" bgcolor=".$beercolorMin." class=\"colorTable\">"; 
-			if ($SRMmin > "15") echo "<font color=\"#ffffff\">"; 
-			else echo "<font color=\"#000000\">"; 
-			echo $SRMmin."/".round(colorconvert($SRMmin, "EBC"), 0)."</font></td>
-			<td width=\"2\">&ndash;</td>
-			<td align=\"center\" bgcolor=".$beercolorMax." class=\"colorTable\">"; 
-			if ($SRMmax > "15") echo "<font color=\"#ffffff\">"; 
-			else echo "<font color=\"#000000\">"; 
-			echo $SRMmax."/".round(colorconvert($SRMmax, "EBC"), 0)."</font></td></tr></table>";
-		} else { echo "&nbsp;"; }
-		?>
-		</td>
-        
-	</tr>
-		<tr>
-		<td class="dataLabelWide" nowrap>Bitterness:</td>
-		<td class="data" nowrap>
-			<table>
- 				<tr>
-    				<td>Garetz:&nbsp;</td>
-    				<td><?php echo round ($ibuG, 1); ?>&nbsp;</td>
-    				<td>IBU</td>
-  				</tr>
-  				<tr>
-    				<td>Rager:&nbsp;</td>
-    				<td><?php echo round ($ibuR, 1); ?>&nbsp;</td>
-    				<td>IBU</td>
-  				</tr>
-  				<tr>
-    				<td>Tinseth:&nbsp;</td>
-    				<td><?php echo round ($ibuT, 1); ?>&nbsp;</td>
-    				<td>IBU</td>
-  				</tr>
-  				<tr>
-    				<td>Daniels:&nbsp;</td>
-    				<td><?php echo round ($ibuD, 1); ?>&nbsp;</td>
-    				<td>IBU</td>
-  				</tr>
-  				<tr>
-   				 	<td>Avg:&nbsp;</td>
-    				<td><strong><?php echo round($ibuAvg, 1); ?></strong>&nbsp;</td>
-    				<td>IBU</td>
-  				</tr>
-			</table>
-        </td>
-		<td class="data bdr1L_black" nowrap><?php 
-		if ($row_style1['brewStyleIBU'] == "")  { echo "Varies"; }
-		elseif ($row_style1['brewStyleIBU'] == "N/A") { echo "N/A"; }
-		elseif ($row_style1['brewStyleIBU'] != "") { $IBUmin = ltrim ($row_style1['brewStyleIBU'], "0"); $IBUmax = ltrim ($row_style1['brewStyleIBUMax'], "0"); echo $IBUmin." - ".$IBUmax." IBU"; }
-		else { echo "&nbsp;"; }
-		?>
-		</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>ABV:</td>
-		<td class="data" nowrap><?php echo round ($abv, 1); ?>%</td>
-		<td class="data bdr1L_black" nowrap>
-		<?php 
-		if ($row_style1['brewStyleABV'] == "") { echo "Varies"; }
-		elseif ($row_style1['brewStyleABV'] != "" ) { echo $row_style1['brewStyleABV']." - ".$row_style1['brewStyleABVMax']."%"; } 
-		else { echo "&nbsp;"; } ?>
-		</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>ABW:</td>
-		<td class="data" nowrap><?php echo round ($abw, 1); ?>%</td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>OG:</td>
-		<td class="data" nowrap><?php echo number_format ($og, 3); ?></td>
-		<td class="data bdr1L_black" nowrap>
-		<?php 
-		if ($row_style1['brewStyleOG'] == "") { echo "Varies"; }
-		elseif ($row_style1['brewStyleOG'] != "") { echo $row_style1['brewStyleOG']." - ".$row_style1['brewStyleOGMax']; }
-		else { echo "&nbsp;"; }
-		?>
-		</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>FG:</td>
-		<td class="data" nowrap><?php echo number_format ($fg, 3); ?></td>
-		<td class="data bdr1L_black" nowrap>
-		<?php 
-		if ($row_style1['brewStyleFG'] == "") { echo "Varies"; }
-		elseif ($row_style1['brewStyleFG'] != "") { echo $row_style1['brewStyleFG']." - ".$row_style1['brewStyleFGMax']; }
-		else { echo "&nbsp;"; }
-		?>
-		</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>Plato (I):</td>
-		<td class="data" nowrap><?php echo round ($plato_i, 1); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>Plato (F):</td>
-		<td class="data" nowrap><?php echo round ($plato_f, 1); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>Real Ext:</td>
-		<td class="data" nowrap><?php echo round ($real_extract, 1); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>App. Atten.:</td>
-		<td class="data" nowrap><?php echo round ($aa, 1); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>Real Atten.:</td>
-		<td class="data" nowrap><?php echo round ($ra, 1); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>Calories:</td>
-		<td class="data" nowrap><?php echo round ($calories, 0); ?> per 12 oz.</td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	<tr>
-		<td class="dataLabelWide" nowrap>BU/GU:</td>
-		<td class="data" nowrap><?php echo round ($bugu, 2); ?></td>
-		<td class="bdr1L_black">&nbsp;</td>
-	</tr>
-	</table>
+<table class="dataTable">
+  <tr>
+    <td colspan="2" class="text_14_bold">Predicted Results</td>
+    <td class="text_14_bold data">BJCP</td>
+  </tr>
+  <tr>
+    <td colspan="3"><hr></td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide">Name:</td>
+    <td class="data"><?php echo $brewName; ?></td>
+    <td class=" bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide">Style:</td>
+    <td class="data"><?php echo $brewStyle; ?></td>
+    <td class="data bdr1L_black"><a href="<?php echo $row_style1['brewStyleLink']; ?>" target="_blank"><?php echo $row_style1['brewStyleGroup'] . $row_style1['brewStyleNum']; ?></a></td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide">Color:</td>
+    <td class="data">
+      <table>
+        <tr>
+          <td>Morey:&nbsp;</td>
+	  <?php
+	  $fontColor = ($srmMorey >= 15) ? "#ffffff" : "#000000";
+          $bkColor   = get_display_color($srmMorey);
+          ?>
+          <td class="colorTable" style="text-align: center; background: <?php echo $bkColor ?>; color: <?php echo $fontColor ?>;">
+            <?php echo round($srmMorey, 1) . '/' . srm_to_ebc($srmMorey); ?></td>
+	  <td>&nbsp;SRM/EBC</td>
+        </tr>
+        <tr>
+          <td>Daniels:&nbsp;</td>
+	  <?php
+	  $fontColor = ($srmDaniels >= 15) ? "#ffffff" : "#000000";
+          $bkColor   = get_display_color($srmDaniels);
+          ?>
+          <td class="colorTable" style="text-align: center; background: <?php echo $bkColor ?>; color: <?php echo $fontColor ?>;">
+            <?php echo round($srmDaniels, 1) . '/' . srm_to_ebc($srmDaniels); ?></td>
+	  <td>&nbsp;SRM/EBC</td>
+        </tr>
+        <tr>
+          <td>Moser:&nbsp;</td>
+	  <?php
+	  $fontColor = ($srmMoser >= 15) ? "#ffffff" : "#000000";
+          $bkColor   = get_display_color($srmMoser);
+          ?>
+	  <td class="colorTable" style="text-align: center; background: <?php echo $bkColor ?>; color: <?php echo $fontColor ?>;">
+            <?php echo round($srmMoser, 1) . '/' . srm_to_ebc($srmMoser); ?></td>
+	  <td>&nbsp;SRM/EBC</td>
+        </tr>
+      </table>
+      </td>
+    <td class="data bdr1L_black">
+      <?php
+      if ($row_style1['brewStyleSRM'] == "") {
+	echo "Varies";
+      } elseif ($row_style1['brewStyleSRM'] == "N/A") {
+	echo "N/A";
+      } elseif ($row_style1['brewStyleSRM'] != "") {
+	$SRMmin        = ltrim($row_style1['brewStyleSRM'], "0");
+	$SRMmax        = ltrim($row_style1['brewStyleSRMMax'], "0");
+	$bkColorMin    = get_display_color($SRMmin);
+	$bkColorMax    = get_display_color($SRMmax);
+	$fontColor     = ($SRMmin > "15") ? "#ffffff" : "#000000";
+	$fontColorMax  = ($SRMmax > "15") ? "#ffffff" : "#000000";
+	echo '<table><tr><td style="text-align: center; background: ' . $bkColorMin . '; color: ' . $fontColorMin . ';" class="colorTable">';
+	echo $SRMmin . '/' . round(srm_to_ebc($SRMmin), 0) . '</td>';
+	echo '<td width="2">&ndash;</td>';
+	echo '<td style="text-align: center; background: ' . $bkColorMax . '; color: ' . $fontColorMax . ';" class="colorTable">';
+	echo $SRMmax . '/' . round(srm_to_ebc($SRMmax), 0) . '</td></tr></table>';
+      } else {
+	echo "&nbsp;";
+      }
+      ?>
+      </td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Bitterness:</td>
+    <td class="data" nowrap>
+      <table>
+        <tr>
+          <td>Garetz:&nbsp;</td>
+    	  <td><?php echo round($ibuG, 1); ?>&nbsp;</td>
+    	  <td>IBU</td>
+  	</tr>
+  	<tr>
+    	  <td>Rager:&nbsp;</td>
+    	  <td><?php echo round($ibuR, 1); ?>&nbsp;</td>
+    	  <td>IBU</td>
+  	</tr>
+  	<tr>
+    	  <td>Tinseth:&nbsp;</td>
+    	  <td><?php echo round($ibuT, 1); ?>&nbsp;</td>
+    	  <td>IBU</td>
+  	</tr>
+  	<tr>
+    	  <td>Daniels:&nbsp;</td>
+    	  <td><?php echo round($ibuD, 1); ?>&nbsp;</td>
+    	  <td>IBU</td>
+  	</tr>
+  	<tr>
+   	  <td>Avg:&nbsp;</td>
+    	  <td style="font-weight: bold;"><?php echo round($ibuAvg, 1); ?>&nbsp;</td>
+    	  <td>IBU</td>
+  	</tr>
+      </table>
+      </td>
+    <td class="data bdr1L_black" nowrap>
+      <?php
+      if ($row_style1['brewStyleIBU'] == "") {
+	echo "Varies";
+      } elseif ($row_style1['brewStyleIBU'] == "N/A") {
+	echo "N/A";
+      } elseif ($row_style1['brewStyleIBU'] != "") {
+	$IBUmin = ltrim ($row_style1['brewStyleIBU'], "0");
+	$IBUmax = ltrim ($row_style1['brewStyleIBUMax'], "0");
+	echo $IBUmin . " - " . $IBUmax . " IBU";
+      } else {
+	echo "&nbsp;";
+      }
+      ?>
+      </td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>ABV:</td>
+    <td class="data" nowrap><?php echo round ($abv, 1); ?>%</td>
+    <td class="data bdr1L_black" nowrap>
+      <?php 
+      if ($row_style1['brewStyleABV'] == "") { echo "Varies"; }
+      elseif ($row_style1['brewStyleABV'] != "" ) { echo $row_style1['brewStyleABV']." - ".$row_style1['brewStyleABVMax']."%"; } 
+      else { echo "&nbsp;"; }
+      ?>
+      </td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>ABW:</td>
+    <td class="data" nowrap><?php echo round ($abw, 1); ?>%</td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>OG:</td>
+    <td class="data" nowrap><?php echo number_format ($og, 3); ?></td>
+    <td class="data bdr1L_black" nowrap>
+      <?php 
+      if ($row_style1['brewStyleOG'] == "") { echo "Varies"; }
+      elseif ($row_style1['brewStyleOG'] != "") { echo $row_style1['brewStyleOG']." - ".$row_style1['brewStyleOGMax']; }
+      else { echo "&nbsp;"; }
+      ?>
+      </td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>FG:</td>
+    <td class="data" nowrap><?php echo number_format ($fg, 3); ?></td>
+    <td class="data bdr1L_black" nowrap>
+      <?php 
+      if ($row_style1['brewStyleFG'] == "") { echo "Varies"; }
+      elseif ($row_style1['brewStyleFG'] != "") { echo $row_style1['brewStyleFG']." - ".$row_style1['brewStyleFGMax']; }
+      else { echo "&nbsp;"; }
+      ?>
+      </td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Plato (I):</td>
+    <td class="data" nowrap><?php echo round ($plato_i, 1); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Plato (F):</td>
+    <td class="data" nowrap><?php echo round ($plato_f, 1); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Real Ext:</td>
+    <td class="data" nowrap><?php echo round ($real_extract, 1); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>App. Atten.:</td>
+    <td class="data" nowrap><?php echo round ($aa, 1); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Real Atten.:</td>
+    <td class="data" nowrap><?php echo round ($ra, 1); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>Calories:</td>
+    <td class="data" nowrap><?php echo round ($calories, 0); ?> per 12 oz.</td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="dataLabelWide" nowrap>BU/GU:</td>
+    <td class="data" nowrap><?php echo round ($bugu, 2); ?></td>
+    <td class="bdr1L_black">&nbsp;</td>
+  </tr>
+</table>
 <?php if (isset($_SESSION["loginUsername"])) { ?>
   <table class="dataTable">
   <tr>

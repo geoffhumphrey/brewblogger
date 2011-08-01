@@ -6,7 +6,6 @@
  *              centralaized in a library.
  */
 
-
 /*
 $query_sugarPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_malt1['maltYield']);
 $sugarPPG1 = mysql_query($query_sugarPPG1, $brewing) or die(mysql_error());
@@ -31,7 +30,7 @@ $units = $row_pref['measFluid2'];
 $grainsPPG = array();
 for ($i = 0; $i < MAX_GRAINS; $i++) {
   $key              = "brewGrain" . ($i + 1);
-  $query            = "SELECT maltPPG FROM malt WHERE maltName=" . $row_log[$key];
+  $query            = 'SELECT maltPPG FROM malt WHERE maltName="' . $row_log[$key] . '"';
   $grainsPPG[$i]    = mysql_query($query, $brewing) or die(mysql_error());
   $key              = "brewGrain" . ($i + 1) . "Weight";
   $grainsWeight[$i] = $row_log[$key];

@@ -97,3 +97,12 @@ UPDATE adjuncts SET adjunctPPG = 43.00 WHERE adjunctName = "Lactose (Milk Sugar)
 --
 -- Don't drop sugar_type table yet. Leave it for reference in case we run in to bugs in this update.
 --
+
+--
+-- Updates to user table
+--
+ALTER TABLE users ADD defaultColorFormula VARCHAR(50) NOT NULL DEFAULT 'Morey';
+ALTER TABLE users MODIFY defaultBitternessFormula VARCHAR(50) NOT NULL DEFAULT 'Tinseth';
+
+ALTER TABLE recipes ADD brewColorFormula VARCHAR(50) AFTER brewLovibond;
+ALTER TABLE brewing ADD brewColorFormula VARCHAR(50) AFTER brewLovibond;

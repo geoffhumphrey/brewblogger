@@ -12,20 +12,21 @@
 
 // ----------------------------- General Information ---------------------
 require_once 'bitterness.lib.php';
+require_once 'color.lib.php';
 
-$brewName    = $_POST['brewName'];
-$efficiency  = ($_POST['efficiency'] * .01);
-$attenuation = ($_POST['attenuation'] * .01);
-$brewYield   = $_POST['brewYield'];
+$brewName       = $_POST['brewName'];
+$efficiency     = ($_POST['efficiency'] * .01);
+$attenuation    = ($_POST['attenuation'] * .01);
+$brewYield      = $_POST['brewYield'];
+$measureWeight1 = $row_pref['measWeight1'];
+$mcu            = 0;
 // $gravity = $_POST['gravity'];
-$measureWeight1 = $row_pref['measWeight1']; 
 
 // Style
-$brewStyle = $_POST['brewStyle'];
-
+$brewStyle    = $_POST['brewStyle'];
 $query_style1 = "SELECT * FROM styles WHERE brewStyle='$brewStyle'";
-$style1 = mysql_query($query_style1, $brewing);
-$row_style1 = mysql_fetch_array($style1);
+$style1       = mysql_query($query_style1, $brewing);
+$row_style1   = mysql_fetch_array($style1);
 
 
 // ------------------------------ Extracts -------------------------------
@@ -44,42 +45,14 @@ for ($i = 0; $i < MAX_EXT; $i++) {
   if ($row_pref['measWeight2'] == "kilograms") {
     $extGU[$i] *= 2.2046;
   }
+
+  $lov = ($extLovLow[$i] + $extLovHigh[$i]) / 2;
+  if ($row_pref['measWeight2'] == "pounds") {
+    $mcu += $lov * $extWeight[$i] / $brewYield;
+  } else {
+    $mcu += $lov * $extWeight[$i] * 2.2046 / ($brewYield * .2642);
+  }
 }
-
-  /*
-$brewExtract1 = $_POST['brewExtract1'];
-$brewExtract1Weight = $_POST['brewExtract1Weight'];
-
-for($i = 1; $i <= 15; ++$i) {
-    $query_extract = 'query_extract'.$i;
-    $extract = 'extract'.$i;
-    $row_extract = 'row_extract'.$i;
-    $totalRows_extract = 'totalRows_extract'.$i;
-	
-    mysql_select_db($database_brewing, $brewing);
-    $$query_extract = sprintf("SELECT extractYield, extractLovibond FROM extract WHERE extractName='%s'", $_POST['brewExtract'.$i]);
-    $$extract = mysql_query($$query_extract, $brewing);
-    $$row_extract = mysql_fetch_array($$extract);
-    $$totalRows_extract = mysql_num_rows($$extract);
-}
-
-mysql_select_db($database_brewing, $brewing);
-
-$query_extractPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_extract1['extractYield']);
-$extractPPG1 = mysql_query($query_extractPPG1, $brewing);
-$row_extractPPG1 = mysql_fetch_array($extractPPG1);
-
-// Extract Gravity Units (GU)
-if ($row_pref['measWeight2'] == "pounds") { 
-$extract1GU = $brewExtract1Weight * $row_extractPPG1['sugarPPG'];
-$extract5GU = $brewExtract5Weight * $row_extractPPG5['sugarPPG'];
-}
-
-if ($row_pref['measWeight2'] == "kilograms") { 
-$extract1GU = ($brewExtract1Weight * 2.2046) * $row_extractPPG1['sugarPPG'];
-$extract5GU = ($brewExtract5Weight * 2.2046) * $row_extractPPG5['sugarPPG'];
-}
-  */
 
 // ------------------------------ Grains ---------------------------------
 for ($i = 0; $i < MAX_GRAINS; $i++) {
@@ -97,45 +70,14 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
   if ($row_pref['measWeight2'] == "kilograms") {
     $grainGU[$i] *= 2.2046;
   }
+
+  $lov = ($grainLovLow[$i] + $grainLovHigh[$i]) / 2;
+  if ($row_pref['measWeight2'] == "pounds") {
+    $mcu += $lov * $grainWeight[$i] / $brewYield;
+  } else {
+    $mcu += $lov * $grainWeight[$i] * 2.2046 / ($brewYield * .2642);
+  }
 }
-
-/*
-$brewGrain1 = $_POST['brewGrain1'];
-$brewGrain15 = $_POST['brewGrain15'];
-
-$brewGrain1Weight = $_POST['brewGrain1Weight'];
-$brewGrain15Weight = $_POST['brewGrain15Weight'];
-
-for($i = 1; $i <= 15; ++$i) {
-	
-    $query_grain = 'query_grain'.$i;
-    $grain = 'grain'.$i;
-    $row_grain = 'row_grain'.$i;
-    $totalRows_grain = 'totalRows_grain'.$i;
-	
-    mysql_select_db($database_brewing, $brewing);
-    $$query_grain = sprintf("SELECT maltYield, maltLovibond FROM malt WHERE maltName='%s'", $_POST['brewGrain'.$i]);
-    $$grain = mysql_query($$query_grain, $brewing);
-    $$row_grain = mysql_fetch_array($$grain);
-    $$totalRows_grain = mysql_num_rows($$grain);
-}
-
-mysql_select_db($database_brewing, $brewing);
-$query_grainPPG1 = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_grain1['maltYield']);
-$grainPPG1 = mysql_query($query_grainPPG1, $brewing);
-$row_grainPPG1 = mysql_fetch_array($grainPPG1);
-
-// Grain Gravity Units (GU)
-if ($row_pref['measWeight2'] == "pounds") { 
-$grain1GU = $brewGrain1Weight * $row_grainPPG1['sugarPPG'];
-$grain15GU = $brewGrain15Weight * $row_grainPPG15['sugarPPG']; 
-}
-
-if ($row_pref['measWeight2'] == "kilograms") { 
-$grain1GU = ($brewGrain1Weight * 2.2046) * $row_grainPPG1['sugarPPG'];
-$grain15GU = ($brewGrain15Weight * 2.2046) * $row_grainPPG15['sugarPPG'];
-}
-*/
 
 // ------------------------------ Adjuncts -------------------------------
 for ($i = 0; $i < MAX_ADJ; $i++) {
@@ -153,35 +95,14 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
   if ($row_pref['measWeight2'] == "kilograms") {
     $adjGU[$i] *= 2.2046;
   }
+
+  $lov = ($adjLovLow[$i] + $adjLovHigh[$i]) / 2;
+  if ($row_pref['measWeight2'] == "pounds") {
+    $mcu += $lov * $adjWeight[$i] / $brewYield;
+  } else {
+    $mcu += $lov * $adjWeight[$i] * 2.2046 / ($brewYield * .2642);
+  }
 }
-
-/*
-$brewAdjunct1 = $_POST['brewAdjunct1'];
-$brewAdjunct9 = $_POST['brewAdjunct9'];
-
-$brewAdjunct1Weight = $_POST['brewAdjunct1Weight'];
-$brewAdjunct9Weight = $_POST['brewAdjunct9Weight'];
-
-
-$query_adjunct1 = "SELECT adjunctYield, adjunctLovibond FROM adjuncts WHERE adjunctName='$brewAdjunct1'";
-$adjunct1 = mysql_query($query_adjunct1, $brewing) or die(mysql_error());
-$row_adjunct1 = mysql_fetch_array($adjunct1);
-
-$query_adjunct1PPG = sprintf("SELECT sugarPPG FROM sugar_type WHERE id='%s'", $row_adjunct1['adjunctYield']);
-$adjunct1PPG = mysql_query($query_adjunct1PPG, $brewing) or die(mysql_error());
-$row_adjunct1PPG = mysql_fetch_array($adjunct1PPG);
-
-// Adjunct Gravity Units
-if ($row_pref['measWeight2'] == "pounds") {
-$adjunct1GU = $brewAdjunct1Weight * $row_adjunct1PPG['sugarPPG'];
-$adjunct9GU = $brewAdjunct9Weight * $row_adjunct9PPG['sugarPPG'];
-}
-
-if ($row_pref['measWeight2'] == "kilograms") {
-$adjunct1GU = ($brewAdjunct1Weight * 2.2046) * $row_adjunct1PPG['sugarPPG'];
-$adjunct9GU = ($brewAdjunct9Weight * 2.2046) * $row_adjunct9PPG['sugarPPG'];
-}
-*/
 
 // Total Gravity Units (GU) and grist weight.
 $totalGU    = 0;
@@ -244,7 +165,7 @@ for ($i = 0; $i < MAX_HOPS; $i++) {
   $hopsAA[$i]     = $_POST['hopsAA'][$i];
   $hopsTime[$i]   = $_POST['hopsTime'][$i];
   $hopsForm[$i]   = $_POST['hopsForm'][$i];
- }
+}
 
 // ------------------------------ Calculations ----------------------------------- //
 
@@ -286,121 +207,13 @@ if ($ibuAvg > 0) {
   }
 }
 
-// ---- Color needs to be reworked ------
-// Color (SRM)
-/*
-if ($row_pref['measWeight2'] == "pounds") { 
-$SRM1 = ($row_extract1['extractLovibond'] * $brewExtract1Weight) / $brewYield; 
-$SRM2 = ($row_extract2['extractLovibond'] * $brewExtract2Weight) / $brewYield; 
-$SRM3 = ($row_extract3['extractLovibond'] * $brewExtract3Weight) / $brewYield; 
-$SRM4 = ($row_extract4['extractLovibond'] * $brewExtract4Weight) / $brewYield;
-$SRM5 = ($row_extract5['extractLovibond'] * $brewExtract5Weight) / $brewYield; 
-$SRM6 = ($row_grain1['maltLovibond'] * $brewGrain1Weight) / $brewYield; 
-$SRM7 = ($row_grain2['maltLovibond'] * $brewGrain2Weight) / $brewYield; 
-$SRM8 = ($row_grain3['maltLovibond'] * $brewGrain3Weight) / $brewYield; 
-$SRM9 = ($row_grain4['maltLovibond'] * $brewGrain4Weight) / $brewYield; 
-$SRM10 = ($row_grain5['maltLovibond'] * $brewGrain5Weight) / $brewYield; 
-$SRM11 = ($row_grain6['maltLovibond'] * $brewGrain6Weight) / $brewYield; 
-$SRM12 = ($row_grain7['maltLovibond'] * $brewGrain7Weight) / $brewYield; 
-$SRM13 = ($row_grain8['maltLovibond'] * $brewGrain8Weight) / $brewYield; 
-$SRM14 = ($row_grain9['maltLovibond'] * $brewGrain9Weight) / $brewYield;
-$SRM24 = ($row_grain10['maltLovibond'] * $brewGrain10Weight) / $brewYield; 
-$SRM25 = ($row_grain11['maltLovibond'] * $brewGrain11Weight) / $brewYield; 
-$SRM26 = ($row_grain12['maltLovibond'] * $brewGrain12Weight) / $brewYield; 
-$SRM27 = ($row_grain13['maltLovibond'] * $brewGrain13Weight) / $brewYield; 
-$SRM28 = ($row_grain14['maltLovibond'] * $brewGrain14Weight) / $brewYield; 
-$SRM29 = ($row_grain15['maltLovibond'] * $brewGrain15Weight) / $brewYield;
-$SRM15 = ($row_adjunct1['adjunctLovibond'] * $brewAdjunct1Weight) / $brewYield;
-$SRM16 = ($row_adjunct2['adjunctLovibond'] * $brewAdjunct2Weight) / $brewYield;
-$SRM17 = ($row_adjunct3['adjunctLovibond'] * $brewAdjunct3Weight) / $brewYield;
-$SRM18 = ($row_adjunct4['adjunctLovibond'] * $brewAdjunct4Weight) / $brewYield;
-$SRM19 = ($row_adjunct5['adjunctLovibond'] * $brewAdjunct5Weight) / $brewYield;
-$SRM20 = ($row_adjunct6['adjunctLovibond'] * $brewAdjunct6Weight) / $brewYield;
-$SRM21 = ($row_adjunct7['adjunctLovibond'] * $brewAdjunct7Weight) / $brewYield;
-$SRM22 = ($row_adjunct8['adjunctLovibond'] * $brewAdjunct8Weight) / $brewYield;
-$SRM23 = ($row_adjunct9['adjunctLovibond'] * $brewAdjunct9Weight) / $brewYield;
-}
+// --------------------------- Color ------------------------------------
 
-if ($row_pref['measWeight2'] == "kilograms") { 
-$SRM1 = ($row_srm_extract1['extractLovibond'] * ($brewExtract1Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM2 = ($row_srm_extract2['extractLovibond'] * ($brewExtract2Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM3 = ($row_srm_extract3['extractLovibond'] * ($brewExtract3Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM4 = ($row_srm_extract4['extractLovibond'] * ($brewExtract4Weight * 2.2046)) / ($brewYield * .2642);
-$SRM5 = ($row_srm_extract5['extractLovibond'] * ($brewExtract5Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM6 = ($row_grain1['maltLovibond'] * ($brewGrain1Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM7 = ($row_grain2['maltLovibond'] * ($brewGrain2Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM8 = ($row_grain3['maltLovibond'] * ($brewGrain3Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM9 = ($row_grain4['maltLovibond'] * ($brewGrain4Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM10 = ($row_grain5['maltLovibond'] * ($brewGrain5Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM11 = ($row_grain6['maltLovibond'] * ($brewGrain6Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM12 = ($row_grain7['maltLovibond'] * ($brewGrain7Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM13 = ($row_grain8['maltLovibond'] * ($brewGrain8Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM14 = ($row_grain9['maltLovibond'] * ($brewGrain9Weight * 2.2046)) / ($brewYield * .2642);
-$SRM24 = ($row_grain10['maltLovibond'] * ($brewGrain10Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM25 = ($row_grain11['maltLovibond'] * ($brewGrain11Weight * 2.2046)) / ($brewYield * .2642);
-$SRM26 = ($row_grain12['maltLovibond'] * ($brewGrain12Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM27 = ($row_grain13['maltLovibond'] * ($brewGrain13Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM28 = ($row_grain14['maltLovibond'] * ($brewGrain14Weight * 2.2046)) / ($brewYield * .2642); 
-$SRM29 = ($row_grain15['maltLovibond'] * ($brewGrain15Weight * 2.2046)) / ($brewYield * .2642);
-$SRM15 = ($row_adjunct1['adjunctLovibond'] * ($brewAdjunct1Weight * 2.2046)) / ($brewYield * .2642);
-$SRM16 = ($row_adjunct2['adjunctLovibond'] * ($brewAdjunct2Weight * 2.2046)) / ($brewYield * .2642);
-$SRM17 = ($row_adjunct3['adjunctLovibond'] * ($brewAdjunct3Weight * 2.2046)) / ($brewYield * .2642);
-$SRM18 = ($row_adjunct4['adjunctLovibond'] * ($brewAdjunct4Weight * 2.2046)) / ($brewYield * .2642);
-$SRM19 = ($row_adjunct5['adjunctLovibond'] * ($brewAdjunct5Weight * 2.2046)) / ($brewYield * .2642);
-$SRM20 = ($row_adjunct6['adjunctLovibond'] * ($brewAdjunct6Weight * 2.2046)) / ($brewYield * .2642);
-$SRM21 = ($row_adjunct7['adjunctLovibond'] * ($brewAdjunct7Weight * 2.2046)) / ($brewYield * .2642);
-$SRM22 = ($row_adjunct8['adjunctLovibond'] * ($brewAdjunct8Weight * 2.2046)) / ($brewYield * .2642);
-$SRM23 = ($row_adjunct9['adjunctLovibond'] * ($brewAdjunct9Weight * 2.2046)) / ($brewYield * .2642);
-}
-
-$SRMTotal = 
-$SRM1 + 
-$SRM2 + 
-$SRM3 + 
-$SRM4 + 
-$SRM5 + 
-$SRM6 + 
-$SRM7 + 
-$SRM8 + 
-$SRM9 + 
-$SRM10 + 
-$SRM11 + 
-$SRM12 + 
-$SRM13 + 
-$SRM14 + 
-$SRM15 + 
-$SRM16 + 
-$SRM17 + 
-$SRM18 + 
-$SRM19 + 
-$SRM20 + 
-$SRM21 + 
-$SRM22 + 
-$SRM23 +
-$SRM24 + 
-$SRM25 + 
-$SRM26 + 
-$SRM27 + 
-$SRM28 + 
-$SRM29;
-*/
-
-// TMP amount until fix
-$SRMTotal = 1;
-
-if (($SRMTotal >= 1) && ($SRMTotal <= 11)) $SRM = $SRMTotal;
-if (($SRMTotal >= 11) && ($SRMTotal < 21)) $SRM = $SRMTotal * .66;
-if (($SRMTotal >= 21) && ($SRMTotal < 31)) $SRM = $SRMTotal * .51;
-if (($SRMTotal >= 31) && ($SRMTotal < 41)) $SRM = $SRMTotal * .44;
-if (($SRMTotal >= 41) && ($SRMTotal < 51)) $SRM = $SRMTotal * .41;
-if (($SRMTotal >= 51) && ($SRMTotal < 85)) $SRM = $SRMTotal * .375;
-if ($SRMTotal >= 85) $SRM = $SRMTotal * .35;
-
-if ($row_pref['measColor'] == "EBC") { 
-$EBC = (2.65 * $SRM) - 1.2;
-}
-
-// $SRM = $SRMTotal * $efficiency * .49 * 1.25;
-// formula from http://www.picobrewery.com/askarchive/color.html - best one I could find.
+$srmMorey   = calc_srm_morey($mcu);
+$ebcMorey   = srm_to_ebc($srmMorey);
+$srmDaniels = calc_srm_daniels($mcu);
+$ebcDaniels = srm_to_ebc($srmDaniels);
+$srmMoser   = calc_srm_moser($mcu);
+$ebcMoser   = srm_to_ebc($srmMoser);
 
 ?>

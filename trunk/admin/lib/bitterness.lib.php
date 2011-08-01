@@ -1,54 +1,57 @@
 <?php
+/**
+ * Module: bitterness.lib.php
+ * Description: This library includes functions necessary for performing IBU
+ *              calculations. Included formulas are: Tinseth, Garetz, Rager
+ *              and Daniels.
+ */
 
-//----------------------------------------------------------------//
-// This library includes functions necessary for performing IBU
-// calculations. Included formulas are: Tinseth, Garetz, Rager
-// and Daniels.
-//----------------------------------------------------------------//
+/*
+ $pelletFactor represents the utilization difference between
+ pellets and whole/plug hops. Depending on the 
+ utilization formula used, this value is either
+ multiplied or divided with the result. For example,
+ the Tinseth formula is based on whole hops so we need
+ to multiply the result of the formula with this factor
+ to produce a result for pellet hops.
 
-// $pelletFactor represents the utilization difference between
-// pellets and whole/plug hops. Depending on the 
-// utilization formula used, this value is either
-// multiplied or divided with the result. For example,
-// the Tinseth formula is based on whole hops so we need
-// to multiply the result of the formula with this factor
-// to produce a result for pellet hops.
-//
-// Hop Union has published data suggesting a 5% - 7% difference 
-// in utilization between whole and pellet (Type 90) hops. 
-// Most modern data I've seen supports this range. The 15% 
-// delta value is a left-over from the old days and appears to 
-// have been based on speculation at that time.
-//
-// Leaf, whole and plug can all be considered the same thing as
-// there's little difference between whole/leaf and plug, if 
-// any.
-// - Kevin
+ Hop Union has published data suggesting a 5% - 7% difference 
+ in utilization between whole and pellet (Type 90) hops. 
+ Most modern data I've seen supports this range. The 15% 
+ delta value is a left-over from the old days and appears to 
+ have been based on speculation at that time.
+
+ Leaf, whole and plug can all be considered the same thing as
+ there's little difference between whole/leaf and plug, if 
+ any.
+ - Kevin
+*/
 $pelletFactor = $row_pref['hopPelletFactor'];
 
-// --------------------------- Tinseth Method --------------------------- //
-// Reference: Tinseth, Glenn. www.realbeer.com/hops, 1995-1999.
-// Default form: whole
-// Tinseth based all of his data to produce this formula  on whole 
-// hops; Therefore, we produce the IBU result for whole hops first
-// and then apply the pelletFactor if needed for pellets.
-// 
-// IBUs = decimal alpha acid utilization * mg/l of added alpha acids
-//
-// metric
-// mg/l of added alpha acids = decimal AA rating * grams hops * 1000
-//                             -------------------------------------
-//                                       liters of wort
-//
-// non-metric
-// mg/l of added alpha acids = decimal AA rating * ozs hops * 7490
-//                             -------------------------------------
-//                                      gallons of wort
-//
-// Decimal Alpha Acid Utilization = Bigness Factor * Boil Time Factor
-//
-// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
-// $units = ('metric' || 'us')
+/* --------------------------- Tinseth Method ---------------------------
+ Reference: Tinseth, Glenn. www.realbeer.com/hops, 1995-1999.
+ Default form: whole
+ Tinseth based all of his data to produce this formula  on whole 
+ hops; Therefore, we produce the IBU result for whole hops first
+ and then apply the pelletFactor if needed for pellets.
+ 
+ IBUs = decimal alpha acid utilization * mg/l of added alpha acids
+
+ metric
+ mg/l of added alpha acids = decimal AA rating * grams hops * 1000
+                             -------------------------------------
+                                       liters of wort
+
+ non-metric
+ mg/l of added alpha acids = decimal AA rating * ozs hops * 7490
+                             -------------------------------------
+                                      gallons of wort
+
+ Decimal Alpha Acid Utilization = Bigness Factor * Boil Time Factor
+
+ $form  = ('pellet' || any other value is treated as whole/leaf/plug)
+ $units = ('metric' || 'us')
+*/
 function calc_bitter_tinseth($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
   global $pelletFactor;
 
@@ -202,22 +205,23 @@ function calc_bitter_garetz($boilTime, $sg, $aa, $weight, $postBoilVol, $form, $
   return $ibu;
 }
 
-// ----------------------------- Daniels Method ----------------------------- //
-// Reference: Daniels, Ray. Designing Great Beers, Brewers
-//            Publications, 2000.
-//
-// Equation - U.S.:
-//  IBU = Weight * Utilization % * Alpha % * 7,489
-//   -------------------------------------------
-// (Final Volume * (1 +[(Boil Time - 1.050) / 0.2)])
-//
-// Equation - Metric:
-//  IBU = Weight * Utilization % * Alpha % * 1,000
-//   -------------------------------------------
-// (Final Volume * (1 +[(Boil Time - 1.050) / 0.2)])
-//
-// $form  = ('pellet' || any other value is treated as whole/leaf/plug)
-// $units = ('metric' || 'us')
+/* ----------------------------- Daniels Method -----------------------------
+ Reference: Daniels, Ray. Designing Great Beers, Brewers
+            Publications, 2000.
+
+ Equation - U.S.:
+    IBU = Weight * Utilization % * Alpha % * 7,489
+   -------------------------------------------------
+   (Final Volume * (1 +[(Boil Time - 1.050) / 0.2)])
+
+ Equation - Metric:
+    IBU = Weight * Utilization % * Alpha % * 1,000
+   -------------------------------------------------
+   (Final Volume * (1 +[(Boil Time - 1.050) / 0.2)])
+
+ $form  = ('pellet' || any other value is treated as whole/leaf/plug)
+ $units = ('metric' || 'us')
+*/
 function calc_bitter_daniels($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
 
   $f = ($units == "us") ? 7489 : 1000;

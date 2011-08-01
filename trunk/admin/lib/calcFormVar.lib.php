@@ -269,70 +269,20 @@ if ($results == "true") {
   $brewOG       = $_POST['brewOG'];
   $brewFG       = $_POST['brewFG'];
 
-  /*
-  $brewExtract1 = $_POST['brewExtract1'];
-  $brewExtract2 = $_POST['brewExtract2'];
-  $brewExtract3 = $_POST['brewExtract3'];
-  $brewExtract4 = $_POST['brewExtract4'];
-  $brewExtract5 = $_POST['brewExtract5'];
+  for ($i = 0; $i < MAX_EXT; $i++) {
+    $extName[$i]   = $_POST['extName'][$i];
+    $extWeight[$i] = $_POST['extWeight'][$i];
+  }
 
-  $brewExtract1Weight = $_POST['brewExtract1Weight'];
-  $brewExtract2Weight = $_POST['brewExtract2Weight'];
-  $brewExtract3Weight = $_POST['brewExtract3Weight'];
-  $brewExtract4Weight = $_POST['brewExtract4Weight'];
-  $brewExtract5Weight = $_POST['brewExtract5Weight'];
-  
-  $brewGrain1 = $_POST['brewGrain1'];
-  $brewGrain2 = $_POST['brewGrain2'];
-  $brewGrain3 = $_POST['brewGrain3'];
-  $brewGrain4 = $_POST['brewGrain4'];
-  $brewGrain5 = $_POST['brewGrain5'];
-  $brewGrain6 = $_POST['brewGrain6'];
-  $brewGrain7 = $_POST['brewGrain7'];
-  $brewGrain8 = $_POST['brewGrain8'];
-  $brewGrain9 = $_POST['brewGrain9'];
-  $brewGrain10 = $_POST['brewGrain10'];
-  $brewGrain11 = $_POST['brewGrain11'];
-  $brewGrain12 = $_POST['brewGrain12'];
-  $brewGrain13 = $_POST['brewGrain13'];
-  $brewGrain14 = $_POST['brewGrain14'];
-  $brewGrain15 = $_POST['brewGrain15'];
+  for ($i = 0; $i < MAX_GRAINS; $i++) {
+    $grainName[$i]   = $_POST['grainName'][$i];
+    $grainWeight[$i] = $_POST['grainWeight'][$i];
+  }
 
-  $brewGrain1Weight = $_POST['brewGrain1Weight'];
-  $brewGrain2Weight = $_POST['brewGrain2Weight'];
-  $brewGrain3Weight = $_POST['brewGrain3Weight'];
-  $brewGrain4Weight = $_POST['brewGrain4Weight'];
-  $brewGrain5Weight = $_POST['brewGrain5Weight'];
-  $brewGrain6Weight = $_POST['brewGrain6Weight'];
-  $brewGrain7Weight = $_POST['brewGrain7Weight'];
-  $brewGrain8Weight = $_POST['brewGrain8Weight'];
-  $brewGrain9Weight = $_POST['brewGrain9Weight'];
-  $brewGrain10Weight = $_POST['brewGrain10Weight'];
-  $brewGrain11Weight = $_POST['brewGrain11Weight'];
-  $brewGrain12Weight = $_POST['brewGrain12Weight'];
-  $brewGrain13Weight = $_POST['brewGrain13Weight'];
-  $brewGrain14Weight = $_POST['brewGrain14Weight'];
-  $brewGrain15Weight = $_POST['brewGrain15Weight'];
-
-  $brewAdjunct1 = $_POST['brewAdjunct1'];
-  $brewAdjunct2 = $_POST['brewAdjunct2'];
-  $brewAdjunct3 = $_POST['brewAdjunct3'];
-  $brewAdjunct4 = $_POST['brewAdjunct4'];
-  $brewAdjunct5 = $_POST['brewAdjunct5'];
-  $brewAdjunct6 = $_POST['brewAdjunct6'];
-  $brewAdjunct7 = $_POST['brewAdjunct7'];
-  $brewAdjunct8 = $_POST['brewAdjunct8'];
-  $brewAdjunct9 = $_POST['brewAdjunct9'];
-
-  $brewAdjunct1Weight = $_POST['brewAdjunct1Weight'];
-  $brewAdjunct2Weight = $_POST['brewAdjunct2Weight'];
-  $brewAdjunct3Weight = $_POST['brewAdjunct3Weight'];
-  $brewAdjunct4Weight = $_POST['brewAdjunct4Weight'];
-  $brewAdjunct5Weight = $_POST['brewAdjunct5Weight'];
-  $brewAdjunct6Weight = $_POST['brewAdjunct6Weight'];
-  $brewAdjunct7Weight = $_POST['brewAdjunct7Weight'];
-  $brewAdjunct8Weight = $_POST['brewAdjunct8Weight'];
-  $brewAdjunct9Weight = $_POST['brewAdjunct9Weight'];
+  for ($i = 0; $i < MAX_ADJ; $i++) {
+    $adjName[$i]   = $_POST['adjName'][$i];
+    $adjWeight[$i] = $_POST['adjWeight'][$i];
+  }
 
   for ($i = 0; $i < MAX_HOPS; $i++) {
     $brewHopsName[$i]   = $_POST['brewHopsName'][$i];
@@ -341,6 +291,5 @@ if ($results == "true") {
     $brewHopsTime[$i]   = $_POST['brewHopsTime'][$i];
     $brewHopsForm[$i]   = $_POST['brewHopsForm'][$i];
   }
-  */
 }
 ?>

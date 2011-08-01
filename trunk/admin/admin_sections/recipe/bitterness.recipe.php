@@ -2,7 +2,7 @@
 <table class="dataTable">
 <tr>   
    <td class="dataLabelLeft" width="5%">Bitterness:</td>
-   <td class="data" width="15%"><input type="text" name="brewBitterness" size="5" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action == "reuse")) echo $row_log['brewBitterness']; if ($action == "importCalc") echo round ($brewBitterness[0], 1); ?>">&nbsp;<?php echo $row_pref['measBitter']; ?></td>
+   <td class="data" width="10%"><input type="text" name="brewBitterness" size="5" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action == "reuse")) echo $row_log['brewBitterness']; if ($action == "importCalc") echo round ($brewBitterness[0], 1); ?>">&nbsp;<?php echo $row_pref['measBitter']; ?></td>
    <td class="dataLabel" width="5%">Formula:</td>
    <td class="data">
    <select name="brewIBUFormula" id="brewIBUFormula">
