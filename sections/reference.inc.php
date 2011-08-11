@@ -24,14 +24,14 @@ if (isset($_GET['dir'])) {
   $dir = ($_GET['dir']);
 }
 
-$filterStyle = "brewStyleGroup";
+$filterStyle = mysql_real_escape_string("brewStyleGroup");
 if (isset($_GET['filterStyle'])) {
-  $filterStyle = ($_GET['filterStyle']);
+  $filterStyle = mysql_real_escape_string($_GET['filterStyle']);
 }
 
-$styleNumber = "LIKE '%'";
+$styleNumber = mysql_real_escape_string("LIKE '%'");
 if (isset($_GET['styleNumber'])) {
-  $styleNumber = ("=".$_GET['styleNumber']);
+  $styleNumber = mysql_real_escape_string("=".$_GET['styleNumber']);
 }
 
 mysql_select_db($database_brewing, $brewing);
@@ -51,7 +51,7 @@ if (isset($_GET['filterHopsCategory'])) {
 
 $filterHopsFeature = "LIKE '%'";
 if (isset($_GET['filterHopsFeature'])) {
-  $filterHopsFeature = ("LIKE '%".$_GET['filterHopsFeature']."%'");
+  $filterHopsFeature = mysql_real_escape_string("LIKE '%".$_GET['filterHopsFeature']."%'");
 }
 
 $sortHops = "hopsName";
@@ -78,9 +78,9 @@ if (isset($_GET['filterMaltCategory'])) {
   $filterMaltCategory = ($_GET['filterMaltCategory']);
 }
 
-$filterMaltFeature = "LIKE '%'";
+$filterMaltFeature = mysql_real_escape_string("LIKE '%'");
 if (isset($_GET['filterMaltFeature'])) {
-  $filterMaltFeature = ("LIKE '%".$_GET['filterMaltFeature']."%'");
+  $filterMaltFeature = mysql_real_escape_string("LIKE '%".$_GET['filterMaltFeature']."%'");
 }
 
 mysql_select_db($database_brewing, $brewing);
@@ -94,7 +94,7 @@ $totalRows_grains = mysql_num_rows($grains);
 if ($section == "yeast") {
 
 $yeastLab = "default";
-if (isset($_GET['yeastLab'])) { $yeastLab = ("LIKE '%".$_GET['yeastLab']."%'"); }
+if (isset($_GET['yeastLab'])) { $yeastLab = mysql_real_escape_string("LIKE '%".$_GET['yeastLab']."%'"); }
 
 $yeastType  = "default";
 if (isset($_GET['yeastType'])) { $yeastType = ($_GET['yeastType']); }

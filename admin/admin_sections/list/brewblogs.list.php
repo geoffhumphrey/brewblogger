@@ -12,6 +12,12 @@
 		<td width="10%" nowrap><?php include ('includes/list_add_link.inc.php'); ?></td>
 	</tr>
 </table>
+<table class="dataTable">
+	<tr>
+    	<td>&nbsp;</td>
+    	<td width="10%" nowrap><div class="right"><span class="data_icon_list"><img src="<?php echo $imageSrc; ?>calculator.png" align="absmiddle"/></span><a href="index.php?action=calculate">Recipe Calculator</a></div></td>
+    </tr>
+</table>
 <?php if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
