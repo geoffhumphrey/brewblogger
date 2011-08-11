@@ -12,6 +12,12 @@
 		<td width="10%" nowrap><?php include ('includes/list_add_link.inc.php'); ?></td>
 	</tr>
 </table>
+<table class="dataTable">
+	<tr>
+    	<td>&nbsp;</td>
+    	<td width="10%" nowrap><div class="right"><span class="data_icon_list"><img src="<?php echo $imageSrc; ?>calculator.png" align="absmiddle"/></span><a href="index.php?action=calculate">Recipe Calculator</a></div></td>
+    </tr>
+</table>
 <?php if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -23,7 +29,7 @@
 <table class="dataTable">
  <tr>
  		<td colspan="16" align="right" class="dataHeadingList"><input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_update_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Update" class="radiobutton" value="Update"></td>
-   	</tr>
+ </tr>
  <tr>
   <td class="dataHeadingList">Name&nbsp;<a href="index.php?action=list&dbTable=recipes&sort=brewName&dir=ASC"><img src="<?php echo $imageSrc; ?>sort_up.gif" border="0" title="Sort Ascending"></a><a href="index.php?action=list&dbTable=recipes&sort=brewName&dir=DESC"><img src="<?php echo $imageSrc; ?>sort_down.gif" border="0" title="Sort Descending"></a></td>
   <td class="dataHeadingList">Style&nbsp;<a href="index.php?action=list&dbTable=recipes&sort=brewStyle&dir=ASC"><img src="<?php echo $imageSrc; ?>sort_up.gif" border="0" title="Sort Ascending"></a><a href="index.php?action=list&dbTable=recipes&sort=brewStyle&dir=DESC"><img src="<?php echo $imageSrc; ?>sort_down.gif" border="0" title="Sort Descending"></a></td>
