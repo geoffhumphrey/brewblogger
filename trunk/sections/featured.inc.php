@@ -60,8 +60,8 @@
   	<?php if (!checkmobile()) { ?>
     <td class="dataList">
 		<?php if ($row_featured['brewLovibond'] != "") { ?>
-		<?php include (INCLUDES.'color.inc.php'); ?>
-		<?php include (INCLUDES.'color_display_featured.inc.php'); ?>
+		<?php include (INCLUDES.'color_display.inc.php'); ?>
+		<?php //include (INCLUDES.'color_display_featured.inc.php'); ?>
 		<?php } else echo "&nbsp;"; ?>
    	</td>
 	<?php } ?>

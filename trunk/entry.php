@@ -944,7 +944,7 @@ if ($action == "verify") { ?>
     <td>
     <table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -989,12 +989,12 @@ if ($action == "verify") { ?>
         <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" /></div></td>
       </tr>
     </table></td>
     <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1039,14 +1039,14 @@ if ($action == "verify") { ?>
         <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" /></div></td>
         </tr>
     </table></td>
   </tr>
   <tr>
     <td><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1091,12 +1091,12 @@ if ($action == "verify") { ?>
         <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" /></div></td>
       </tr>
     </table></td>
     <td width="50%"><table width="100%" border="0" cellpadding="8" cellspacing="8" class="bdr1_thick bottleLabel">
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID.jpg" alt="Bottle ID Form" /></div></td>
       </tr>
       <tr>
         <td width="5%" nowrap="nowrap">Name</td>
@@ -1141,7 +1141,7 @@ if ($action == "verify") { ?>
         <td colspan="3" class="bdr1B"><?php echo $brew_club; ?></td>
       </tr>
       <tr>
-        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" width="230" height="20" /></div></td>
+        <td colspan="4"><div align="center"><img src="images/bottleID_attach.jpg" alt="Attach To Each Bottle" /></div></td>
       </tr>
     </table></td>
   </tr>

@@ -84,7 +84,7 @@
               <?php if (!checkmobile()) { ?>
               <td class="dataList">
 			  		<?php if ($row_recipeList['brewLovibond'] != "") { ?>
-					<?php include (INCLUDES.'color.inc.php'); ?>
+					<?php //include (INCLUDES.'color.inc.php'); ?>
 					<?php include (INCLUDES.'color_display.inc.php'); ?>
 				   	<?php } else echo "&nbsp;"; ?>
 			  </td>
