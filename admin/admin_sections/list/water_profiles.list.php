@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php include ('includes/list_add_link.inc.php'); 
+<?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>

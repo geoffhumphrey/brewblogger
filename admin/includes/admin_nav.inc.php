@@ -1,4 +1,4 @@
-<?php if (!checkmobile()) include ('includes/menu.inc.php'); ?>
+<?php if (!checkmobile()) include (ADMIN_INCLUDES.'menu.inc.php'); ?>
 <ul id="navlist">
 <?php if ($row_user['userLevel'] == "2") { ?>
 <li><div class="menuBar"><?php if (!checkmobile()) { ?><a class="menuButton" href="#" onclick="" onmouseover="buttonMouseover(event, 'adminMenu8');"><?php echo $row_pref['menuBrewBlogs']."/".$row_pref['menuRecipes']; ?></a><?php } else echo ""; ?></div></li>

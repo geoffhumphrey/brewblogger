@@ -2,14 +2,15 @@
 // --------------------------- Globals ------------------------------------------------ //
 $page = "admin";
 $imageSrc = "../images/";
-require '../Connections/config.php';
-require '../includes/authentication.inc.php'; session_start(); sessionAuthenticate();
-include '../includes/check_mobile.inc.php';
-include '../includes/db_connect_universal.inc.php';
-include '../includes/db_connect_admin.inc.php';
-include '../includes/plug-ins.inc.php'; 
-include '../includes/version.inc.php';
-include_once 'includes/constants.inc.php';
+require ('../paths.php');
+require_once (CONFIG.'config.php'); 
+require (INCLUDES.'authentication.inc.php'); session_start(); sessionAuthenticate();
+include (INCLUDES.'check_mobile.inc.php');
+include (INCLUDES.'db_connect_universal.inc.php');
+include (INCLUDES.'db_connect_admin.inc.php');
+include (INCLUDES.'plug-ins.inc.php'); 
+include (INCLUDES.'version.inc.php');
+include_once (ADMIN_INCLUDES.'constants.inc.php');
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,24 +39,24 @@ if (($action == "edit") || ($action == "add") || ($action == "import") || ($acti
 <?php } ?>
 <script language="javascript" type="text/javascript" src="js_includes/delete.js"></script>
 </head>
-<body <?php include ('includes/focus.inc.php'); ?>>
+<body <?php include (ADMIN_INCLUDES.'focus.inc.php'); ?>>
 <div id="maincontainer">
 	<div id="header">
 		<div class="titleText"><?php if ($row_name['brewerFirstName'] != "") echo $row_name['brewerFirstName'];  if (($row_pref['mode'] == "1") && ($row_name['brewerFirstName'] != ""))  echo "'s"; echo "&nbsp;".$row_name['brewerLogName']; ?></div><div class="quoteText"><?php echo $row_name['brewerTagline']; ?></div>
 	</div>
-	<div id="nav"><?php include ('includes/admin_nav.inc.php'); ?></div>
+	<div id="nav"><?php include (ADMIN_INCLUDES.'admin_nav.inc.php'); ?></div>
 	<div id="contentwrapper">
 		<div id="contentWide">
 		<?php  
-		if ($action == "default") 								include ('admin_sections/main.admin.php'); 
-		if ($action == "list") 									include ('admin_sections/list.admin.php');
-		if (($action == "view") && ($dbTable == "mash_steps")) 	include ('admin_sections/add.admin.php');
-		if ($action == "chooseRecalc") 							include ('admin_sections/choose_recalc.admin.php'); 
-		if ($action == "exportSQL") 							include ('includes/sql_download.inc.php'); 
-		if ($action == "calculate")								include ('tools/recipe_calculator.php');  
-		if (($action == "view") && ($dbTable == "news")) 		include ('admin_sections/news_view.admin.php');
-		if ($action == "importXML") 							include ('includes/upload_xml.inc.php');
-		if ($action == "upload") 								include ('includes/upload_image.inc.php');
+		if ($action == "default") 								include (ADMIN_SECTIONS.'main.admin.php'); 
+		if ($action == "list") 									include (ADMIN_SECTIONS.'list.admin.php');
+		if (($action == "view") && ($dbTable == "mash_steps")) 	include (ADMIN_SECTIONS.'add.admin.php');
+		if ($action == "chooseRecalc") 							include (ADMIN_SECTIONS.'choose_recalc.admin.php'); 
+		if ($action == "exportSQL") 							include (ADMIN_INCLUDES.'sql_download.inc.php'); 
+		if ($action == "calculate")								include (ADMIN_TOOLS.'recipe_calculator.php');  
+		if (($action == "view") && ($dbTable == "news")) 		include (ADMIN_SECTIONS.'news_view.admin.php');
+		if ($action == "importXML") 							include (ADMIN_INCLUDES.'upload_xml.inc.php');
+		if ($action == "upload") 								include (ADMIN_INCLUDES.'upload_image.inc.php');
 		if 
 		(
 		($action == "add") || 
@@ -65,11 +66,11 @@ if (($action == "edit") || ($action == "add") || ($action == "import") || ($acti
 		($action == "importRecipe") || 
 		($action == "import")
 		) 
-		include ('admin_sections/add.admin.php');
+		include (ADMIN_SECTIONS.'add.admin.php');
 		?>
 		</div>
 	</div>
-	<div id="footer"><?php include ('../includes/footer.inc.php'); ?></div>
+	<div id="footer"><?php include (INCLUDES.'footer.inc.php'); ?></div>
 </div>
 </body>
 </html>

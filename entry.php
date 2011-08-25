@@ -1,12 +1,13 @@
 <?php 
-require ('Connections/config.php');
-require ('includes/authentication.inc.php'); session_start(); sessionAuthenticate();
-include ('includes/check_mobile.inc.php');
-include ('includes/url_variables.inc.php');
+require ('paths.php');
+require_once (CONFIG.'config.php');
+require (INCLUDES.'authentication.inc.php'); session_start(); sessionAuthenticate();
+include (INCLUDES.'check_mobile.inc.php');
+include (INCLUDES.'url_variables.inc.php');
 $page = "contestPrint";
-include ('includes/db_connect_universal.inc.php');
-include ('includes/db_connect_log.inc.php');
-include ('includes/plug-ins.inc.php');
+include (INCLUDES.'db_connect_universal.inc.php');
+include (INCLUDES.'db_connect_log.inc.php');
+include (INCLUDES.'plug-ins.inc.php');
 
 $dbTable = "brewing";
 if (isset($_GET['dbTable'])) {

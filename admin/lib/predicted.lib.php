@@ -222,7 +222,7 @@
     <td>
     <div id="hide">
     <input type="hidden" name="brewBrewerID" value="<?php echo $loginUsername; ?>">
-    <?php include ('importFormVar.lib.php'); ?>
+    <?php include (ADMIN_LIBRARY.'importFormVar.lib.php'); ?>
     <input type="hidden" name="brewOG" value="<?php echo $og; ?>">
     <input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
     </div>
@@ -235,7 +235,7 @@
         <form id="form1" action="index.php?action=calculate&results=verify&assoc=update&filter=<?php echo $filter; if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>"  method="post" name="form1">
         <div id="hide">
         <input type="hidden" name="brewBrewerID" value="<?php if ($row_user['userName'] == $loginUsername) echo $loginUsername; else echo $row_recipeRecalc['brewBrewerID']; ?>">
-        <?php include ('importFormVar.lib.php'); ?>
+        <?php include (ADMIN_LIBRARY.'importFormVar.lib.php'); ?>
         <input type="hidden" name="brewOG" value="<?php echo $og; ?>">
         <input type="hidden" name="brewFG" value="<?php echo $fg; ?>">
         </div>

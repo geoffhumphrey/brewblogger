@@ -19,4 +19,4 @@
       <td class="data"><input type="text" name="themeColor2" value="<?php if ($action == "edit") echo $row_log['themeColor2']; ?>" size="10">&nbsp;Use a single hex value</td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

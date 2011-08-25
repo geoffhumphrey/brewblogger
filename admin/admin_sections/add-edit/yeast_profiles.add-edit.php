@@ -100,9 +100,9 @@
 <?php //if ((($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) || ($row_pref['mode'] == "1")  || ($row_log['mashBrewerID'] == "brewblogger")) { ?>
 <input name="yeastBrewerID" type="hidden" value="<?php if (($action == "edit") && ($row_log['yeastBrewerID'] != "brewblogger")) echo $_SESSION["loginUsername"]; else echo "brewblogger"; if ($action == "add") echo $_SESSION["loginUsername"] ?>" />
 <?php //}
-include ('includes/add_edit_buttons.inc.php'); ?>
+include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } // end if (brewBrewerID == "brewblogger")
-// else include ('includes/error_core.inc.php'); 
+// else include (ADMIN_INCLUDES.'error_core.inc.php'); 
 //}  // end user priv check 
-else include ('includes/error_privileges.inc.php'); 
+else include (ADMIN_INCLUDES.'error_privileges.inc.php'); 
 ?>

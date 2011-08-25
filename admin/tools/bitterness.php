@@ -7,11 +7,11 @@
 // The file_exists.. statement helps determine what our CWD is since the getcwd()
 // function isn't entirely portable or may be disabled.
 if (file_exists("bitterness.php")) {
-  require_once "../lib/bitterness.lib.php";
-  require_once "../includes/constants.inc.php";
+  require_once (ADMIN_LIBRARY.'bitterness.lib.php');
+  require_once (ADMIN_INCLUDES.'constants.inc.php');
 } else {
-  require_once "admin/lib/bitterness.lib.php";
-  require_once "admin/includes/constants.inc.php";
+  require_once (ADMIN_LIBRARY.'bitterness.lib.php');
+  require_once (ADMIN_INCLUDES.'includes/constants.inc.php');
 }
 
 // This is the maximum number of hop entries we can 

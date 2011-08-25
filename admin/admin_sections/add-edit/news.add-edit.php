@@ -21,7 +21,7 @@
 	</td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } ?>
 <?php 
 if ($row_pref['allowNews'] == "N") echo "<span class=\"error\">This feature has been disabled by an Administrator.</span>"; 

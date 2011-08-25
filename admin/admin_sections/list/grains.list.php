@@ -6,7 +6,7 @@
  */
 
 echo '<div id="subtitleAdmin">' . $page_title . '</div>' . "\n";
-include ('includes/list_add_link.inc.php');
+include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") {
   echo '<table class="dataTable">' . "\n";
   echo '<tr>'. "\n";

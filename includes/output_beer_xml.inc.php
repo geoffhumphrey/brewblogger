@@ -1,4 +1,4 @@
-<?php require_once('../Connections/config.php'); 
+<?php require_once(CONFIG.'config.php'); 
 include('../includes/db_connect_universal.inc.php');
 include('../includes/check_mobile.inc.php');
 include('../includes/plug-ins.inc.php');

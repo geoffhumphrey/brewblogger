@@ -1,6 +1,6 @@
 <?php
 if ($phpVersion >= "5") { 
-include ('../includes/beerXMLparser/input_beer_xml.inc.php');
+include (INCLUDES.'includes/beerXMLparser/input_beer_xml.inc.php');
 
 //Mmaximum file size.
 $MAX_SIZE = 2000000;

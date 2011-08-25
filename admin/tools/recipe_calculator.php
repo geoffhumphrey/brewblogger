@@ -306,8 +306,8 @@ if ($action == "calculate") {
 
     <?php
     if ($results == "true") {
-      include 'lib/calculations.lib.php';
-      include 'lib/predicted.lib.php';
+      include (ADMIN_LIBRARY.'calculations.lib.php');
+      include (ADMIN_LIBRARY.'predicted.lib.php');
     }
     ?>
 						      
@@ -419,7 +419,7 @@ if ($action == "calculate") {
   <?php 
   } //end if ($results != "verify")
   else {
-    include 'lib/verify.lib.php';
+    include (ADMIN_LIBRARY.'verify.lib.php');
   }
 } // ends if ($action == "calculate")
 else { ?>

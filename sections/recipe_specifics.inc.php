@@ -1,5 +1,5 @@
 <?php
-require_once('admin/lib/color.lib.php');
+require_once(ADMIN_LIBRARY.'color.lib.php');
 
 mysql_select_db($database_brewing, $brewing);
 $query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_log['brewStyle']);

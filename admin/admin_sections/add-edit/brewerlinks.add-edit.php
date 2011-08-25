@@ -8,4 +8,4 @@
     <td class="data"><input type="text" name="brewerLinkURL" tooltipText="<?php echo $toolTip_URL; ?>" value="<?php if ($action == "edit") echo $row_log['brewerLinkURL']; ?>" size="60">&nbsp;e.g., http://www.brewblogger.net</td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

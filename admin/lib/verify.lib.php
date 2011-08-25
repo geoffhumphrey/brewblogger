@@ -7,7 +7,7 @@
  *              to the old values.
  */
 
-include_once 'lib/color.lib.php';
+include_once (ADMIN_LIBRARY.'color.lib.php');
 
 // Load form vars
 $brewBrewerID = $_POST['loginUsername'];

@@ -42,7 +42,7 @@
 <?php if ((($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) || ($row_pref['mode'] == "1")  || ($row_log['mashBrewerID'] == "brewblogger")) { ?>
 <input name="mashBrewerID" type="hidden" value="<?php if (($action == "edit") && ($row_log['mashBrewerID'] != "brewblogger")) echo $_SESSION["loginUsername"]; elseif (($action == "reuse") || ($action == "add")) echo $_SESSION["loginUsername"]; else echo $row_log['mashBrewerID']; ?>" />
 <?php } 
-include ('includes/add_edit_buttons.inc.php'); ?>
+include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php  
 if ($action == "edit") { 
 mysql_select_db($database_brewing, $brewing);
@@ -84,7 +84,7 @@ $totalRows_mash_steps = mysql_num_rows($mash_steps);
 <?php }
   }
 } // end if (brewBrewerID == "brewblogger")
-else include ('includes/error_core.inc.php'); 
+else include (ADMIN_INCLUDES.'error_core.inc.php'); 
 }  // end user priv check
-else include ('includes/error_privileges.inc.php'); 
+else include (ADMIN_INCLUDES.'error_privileges.inc.php'); 
 ?>

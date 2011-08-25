@@ -1,6 +1,6 @@
 <?php if ($row_user['userLevel'] == "2") { ?><div id="RightAlign"><a href="index.php?action=edit&dbTable=users&section=password&filter=<?php echo $row_user['user_name']; ?>&id=<?php echo $row_user['id']; ?>">Change My Password</a></div><?php } ?>
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php if  ($row_user['userLevel'] == "1") include ('includes/list_add_link.inc.php');  
+<?php if  ($row_user['userLevel'] == "1") include (ADMIN_INCLUDES.'list_add_link.inc.php');  
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>

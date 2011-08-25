@@ -32,4 +32,4 @@
     <td class="data"><input type="text" name="hopsSub" value="<?php if ($action == "edit") echo $row_log['hopsSub']; ?>" size="50"></td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

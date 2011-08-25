@@ -45,7 +45,7 @@ class InputBeerXML {
 	
 	//{{{ convertUnit()
     function convertUnit($value,$type){
-	    include('../Connections/config.php');
+	    include(CONFIG.'config.php');
 		mysql_select_db($database_brewing, $brewing);
 		$query_pref_xml = "SELECT measWeight1,measTemp,measFluid2,measWeight2 FROM preferences";
 		$pref_xml = mysql_query($query_pref_xml, $brewing) or die(mysql_error());

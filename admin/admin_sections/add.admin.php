@@ -31,7 +31,7 @@ $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
 }
 
-if ($action == "importCalc") include ('lib/importFormVar.lib.php'); 
+if ($action == "importCalc") include (ADMIN_LIBRARY.'importFormVar.lib.php'); 
 
 ?>
 <script type="text/javascript" src="js_includes/rounded-corners.js"></script>

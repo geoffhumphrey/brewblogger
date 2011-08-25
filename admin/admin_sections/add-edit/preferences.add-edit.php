@@ -360,4 +360,4 @@ if ($row_pref['mode'] == "1") {  ?>
 <input type="hidden" name="menuMembers" value="<?php echo $row_log['menuMembers']; ?>">
 <?php } ?>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

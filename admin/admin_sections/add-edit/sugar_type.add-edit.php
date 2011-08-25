@@ -8,4 +8,4 @@
     <td class="data">Also called "potential" - express here as a whole number (e.g., if potential is 1.046 the PPG is 46 - drop the 1.0)</td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

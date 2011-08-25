@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php if ($row_user['userLevel'] == "1") include ('includes/list_add_link.inc.php'); ?>
+<?php if ($row_user['userLevel'] == "1") include (ADMIN_INCLUDES.'list_add_link.inc.php'); ?>
 <?php if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>

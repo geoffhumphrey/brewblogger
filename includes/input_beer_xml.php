@@ -26,7 +26,8 @@
 // +------------------------------------------------------------------------+
 //}}}
 
-require ('../../Connections/config.php');
+require ('../../paths.php');
+require_once (CONFIG.'config.php'); 
 include ('parse_beer_xml.inc.php');
 
 //{{{ InputBeerXML

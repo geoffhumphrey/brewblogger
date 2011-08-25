@@ -66,9 +66,9 @@ $row_mash_profiles = mysql_fetch_assoc($mash_profiles); ?>
 </tr>
 </table>
 <input name="stepMashProfileID" type="hidden" value="<?php if ($action == "add") echo $id; if ($action == "edit") echo $row_log['stepMashProfileID']; ?>" />
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } else { ?>
-<?php include ('includes/error_privileges.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'error_privileges.inc.php'); ?>
 <?php } 
 } 
 if ($action == "view") { ?>
