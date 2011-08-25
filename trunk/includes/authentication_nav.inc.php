@@ -30,7 +30,7 @@ function authenticateUserNav($connection, $username, $password)
 
 function sessionAuthenticateNav()
 {
-include ('Connections/config.php');
+include (CONFIG.'config.php');
 mysql_select_db($database_brewing, $brewing);
 $query_prefs = "SELECT menuLogin, menuLogout FROM preferences";
 $prefs = mysql_query($query_prefs, $brewing) or die(mysql_error());

@@ -9,7 +9,7 @@
 	<?php if ($row_pref['mode'] == "2") { ?>
 		<td><?php if (($row_user['userLevel'] == "1") && ($totalRows_brewing > 0))  { echo "There "; if ($totalRows_brewing > 1 )  echo "are "; else echo "is ";  echo $totalRows_brewing; if ($totalRows_brewing > 1 ) echo " BrewBlogs "; else echo " BrewBlog ";  echo "in the database.<br><br>"; } elseif (($row_user['userLevel'] == "2") && ($totalRows_brewing > 0 )) { echo $row_user['realFirstName'].", there "; if ($totalRows_brewing > 1 ) echo "are "; else echo "is ";  echo $totalRows_brewing; if ($totalRows_brewing > 1 ) echo " logs "; else echo " log "; echo  "in your personal database.<br><br>"; } else echo "There are no logs found in the database.<br><br>"; ?></td>
 	<?php } ?>
-		<td width="10%" nowrap><?php include ('includes/list_add_link.inc.php'); ?></td>
+		<td width="10%" nowrap><?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); ?></td>
 	</tr>
 </table>
 <table class="dataTable">
@@ -81,5 +81,5 @@
 </form>
 <?php } ?>
 <?php } // end if ((($row_user['userLevel'] == "2") && ($filter == $_SESSION['loginUsername'])) || ($row_user['userLevel'] == "1")) 
-else include('includes/error_privileges.inc.php');
+else include(ADMIN_INCLUDES.'error_privileges.inc.php');
 ?>

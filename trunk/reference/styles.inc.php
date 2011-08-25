@@ -173,7 +173,7 @@ else { ?>
       <?php
       if (($page == "reference") || ($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail")  || 
 	  ($page == "recipeList")  || ($page == "brewBlogList") || ($page == "awardsList")) {
-	include ('includes/colorStyle.inc.php');
+	include (INCLUDES.'colorStyle.inc.php');
       } else {
 	include ('../includes/colorStyle.inc.php');
       }

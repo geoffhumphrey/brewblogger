@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php if  ($row_user['userLevel'] == "1") include ('includes/list_add_link.inc.php'); 
+<?php if  ($row_user['userLevel'] == "1") include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -88,7 +88,7 @@ if ($confirm == "true") { ?>
     </td>
     <td class="dataList" >
 	<?php
-						  if ($page == "reference") { if (!checkmobile()) { include ('includes/colorStyle.inc.php'); } else { include ('../includes/colorStyle.inc.php'); } }
+						  if ($page == "reference") { if (!checkmobile()) { include (ADMIN_INCLUDES.'colorStyle.inc.php'); } else { include ('../includes/colorStyle.inc.php'); } }
 						  if ($row_styles['brewStyleSRM'] == "") { echo "Varies"; }
 						  elseif ($row_styles['brewStyleSRM'] == "N/A") { echo "N/A"; }
 						  elseif ($row_styles['brewStyleSRM'] != "") { $SRMmin = ltrim ($row_styles['brewStyleSRM'], "0"); $SRMmax = ltrim ($row_styles['brewStyleSRMMax'], "0"); echo $SRMmin."-".$SRMmax; }

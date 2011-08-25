@@ -7,7 +7,7 @@
 	<?php if ($row_pref['mode'] == "2") { ?>
 		<td><?php if (($row_user['userLevel'] == "1") && ($totalRows_upcoming > 0))  { echo "There "; if ($totalRows_upcoming > 1 )  echo "are "; else echo "is ";  echo $totalRows_upcoming; if ($totalRows_upcoming > 1 ) echo " upcoming brews "; else echo " upcoming brew ";  echo "in the database.<br><br>"; } elseif (($row_user['userLevel'] == "2") && ($totalRows_upcoming > 0)) { echo $row_user['realFirstName'].", there "; if ($totalRows_upcoming > 1 ) echo "are "; else echo "is ";  echo $totalRows_upcoming; if ($totalRows_upcoming > 1 ) echo " upcoming brews "; else echo " upcoming brew "; echo  "in your personal database.<br><br>"; } else echo "There are no upcoming brews found in the database.<br><br>"; ?></td>
 	<?php } ?>
-		<td><?php include ('includes/list_add_link.inc.php'); ?></td>
+		<td><?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); ?></td>
 	</tr>
 </table>
 <?php if ($confirm == "true") { ?>

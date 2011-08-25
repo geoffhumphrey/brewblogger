@@ -4,7 +4,7 @@
  * Description: 
  */
 
-include ('includes/add_edit_buttons.inc.php');
+include (ADMIN_INCLUDES.'add_edit_buttons.inc.php');
 if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
   <table class="dataTable">
     <tr>
@@ -79,5 +79,5 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
   include('recipe/related.recipe.php'); 
 }
 
-include ('includes/add_edit_buttons.inc.php'); 
+include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); 
 ?>

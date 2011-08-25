@@ -75,4 +75,4 @@
     <td class="data"><textarea name="brewStyleInfo" cols="67" rows="15"><?php if ($action == "edit") echo $row_log['brewStyleInfo']; ?></textarea></td>
 </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

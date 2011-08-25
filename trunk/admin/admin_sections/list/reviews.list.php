@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php include ('includes/list_add_link.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); ?>
 <table class="dataTable">
 	<?php if ($row_pref['mode'] == "1") { ?>
 	<tr>

@@ -11,8 +11,8 @@
 // perform calculations from the HTML form.
 
 // ----------------------------- General Information ---------------------
-require_once 'bitterness.lib.php';
-require_once 'color.lib.php';
+require_once (ADMIN_LIBRARY.'bitterness.lib.php');
+require_once (ADMIN_LIBRARY.'color.lib.php');
 
 $brewName       = $_POST['brewName'];
 $efficiency     = ($_POST['efficiency'] * .01);

@@ -1,17 +1,6 @@
 <?php 
-// Set up a root path constant
-define('ROOT', getcwd().'/');
- 
-// Define the config, includes, connections, and application folders
-define('CONFIG', ROOT.'config/');
-define('IMAGES', ROOT.'images/');
-define('INCLUDES', ROOT.'includes/');
-define('SECTIONS', ROOT.'sections/');
-define('CONNECTIONS', ROOT.'Connections/');
-define('LABELS', ROOT.'label_images/');
-
-//image dir / SQL information and connect to MySQL server
-require_once (CONNECTIONS.'config.php'); 
+require ('paths.php');
+require_once (CONFIG.'config.php'); 
 
 //choose SQL table and set up functions to user authentication and
 //navbar configuration for login/logout links
@@ -43,13 +32,13 @@ include (INCLUDES.'plug-ins.inc.php');
 //include (INCLUDES.'color.inc.php');
 
 // Load color library functions
-require_once ('admin/lib/color.lib.php');
+require_once (ADMIN_LIBRARY.'color.lib.php');
 
 //determine if club edition or personal edition is in use
 include (INCLUDES.'version.inc.php'); 
 
 // Load constants
-require_once ('admin/includes/constants.inc.php');
+require_once (ADMIN_INCLUDES.'constants.inc.php');
 
 $imageSrc = "images/";
 
@@ -105,7 +94,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 	<div id="header">
 		<div class="titleText"><?php if ($row_name['brewerFirstName'] != "") echo $row_name['brewerFirstName'];  if (($row_pref['mode'] == "1") && ($row_name['brewerFirstName'] != ""))  echo "'s"; echo "&nbsp;".$row_name['brewerLogName']; ?></div><div class="quoteText"><?php echo $row_name['brewerTagline']; ?></div>
 	</div>
-	<div id="nav"><?php include ('includes/navigation.inc.php'); ?></div>
+	<div id="nav"><?php include (INCLUDES.'navigation.inc.php'); ?></div>
 <!-- End Header -->
 <!-- Begin Main Content -->
 <div id="contentwrapper">
@@ -212,7 +201,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 		   if (checkmobile()) echo ""; else {
 		     // Include printing, BeerXML buttons according to preferences
 		     if ($row_pref['allowPrintLog'] == "Y") 		{ include (SECTIONS.'printLog.inc.php'); }
-		     if ($row_pref['allowPrintRecipe'] == "Y") 	{ include (SECTIONS.'printRecipe.inc.php');  echo "&nbsp;"; }
+		     if ($row_pref['allowPrintRecipe'] == "Y") 		{ include (SECTIONS.'printRecipe.inc.php');  echo "&nbsp;"; }
 		     if ($row_pref['allowPrintXML'] == "Y") 		{ include (SECTIONS.'printXML.inc.php'); }
 		   }
 		   if (($row_pref['mode'] == "2") && ($filter != "all")) echo "<div id=\"sidebarWrapper\"><span class=\"text_9\"><span class=\"data_icon\"><img src = \"".$imageSrc."calendar_view_month.png\" alt=\"Calendar\" border=\"0\" align=\"absmiddle\"></span><span class=\"data\"><a href=\"index.php?page=calendar&filter=".$filter."\">View ".$row_user2['realFirstName']."'s Brewing Calendar</a></span></span></div>"; { include (SECTIONS.'quick_edit.inc.php'); }
@@ -244,7 +233,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 <!-- End Main Content -->
 
 <!-- Begin Footer -->
-<div id="footer"><?php include ('includes/footer.inc.php'); ?></div>
+<div id="footer"><?php include (INCLUDES.'footer.inc.php'); ?></div>
 <!-- End Footer -->
 
 </div><!-- End Main Container -->

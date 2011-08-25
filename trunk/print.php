@@ -1,17 +1,6 @@
 <?php 
-// Set up a root path constant
-define('ROOT', getcwd().'/');
- 
-// Define the config, includes, connections, and application folders
-define('CONFIG', ROOT.'config/');
-define('IMAGES', ROOT.'images/');
-define('INCLUDES', ROOT.'includes/');
-define('SECTIONS', ROOT.'sections/');
-define('CONNECTIONS', ROOT.'Connections/');
-define('LABELS', ROOT.'label_images/');
-
-//image dir / SQL information and connect to MySQL server
-require_once (CONNECTIONS.'config.php'); 
+require ('paths.php');
+require_once (CONFIG.'config.php'); 
 include (INCLUDES.'url_variables.inc.php');
 
 $page = "logPrint";
@@ -57,7 +46,7 @@ include (SECTIONS.'water_amounts_calc.inc.php');
 <body <?php if ($view == "print") echo "onload=\"javascript:window.print()\""; ?>>
 <div id="maincontainer">
 <?php if ($view == "limited") { // if auto print turned off ?>
-<p><img src="../images/printer.png"><span class="data"><a href="javascript:window.print()">Print</a></span></p>
+<p><img src="images/printer.png"><span class="data"><a href="javascript:window.print()">Print</a></span></p>
 <?php } ?>
    <div id="subtitle"><?php echo $row_log['brewName']; ?></div>
 	<p>From the BrewBlog of <?php echo $row_name['brewerFirstName']; if ($row_name['brewerLastName'] != "" ) echo "&nbsp;".$row_name['brewerLastName'];  if ($row_name['brewerCity'] != "" ) echo " &ndash; ".$row_name['brewerCity']; if ($row_name['brewerState'] != "" ) echo ", ".$row_name['brewerState']; if ($row_name['brewerCountry'] != "" )  echo " ".$row_name['brewerCountry']; ?>

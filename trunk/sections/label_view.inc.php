@@ -1,4 +1,6 @@
-<?php require_once('../Connections/config.php'); ?>
+<?php 
+require ('../paths.php');
+require_once (CONFIG.'config.php');  ?>
 <?php
 mysql_select_db($database_brewing, $brewing);
 $query_theme = "SELECT * FROM brewingcss";

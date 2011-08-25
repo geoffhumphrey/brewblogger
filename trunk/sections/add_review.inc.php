@@ -1,4 +1,6 @@
-<?php require_once('../Connections/config.php'); 
+<?php 
+require ('../paths.php');
+require_once (CONFIG.'config.php'); 
 include ('../includes/url_variables.inc.php');
 $currentPage = $_SERVER["PHP_SELF"]; 
 $imageSrc = "../images/";

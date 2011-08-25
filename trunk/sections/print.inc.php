@@ -1,6 +1,6 @@
 <?php 
-require ('../Connections/bootstrap.php');
-require_once(CONNECTIONS.'config.php'); 
+require ('../paths.php');
+require_once (CONFIG.'config.php'); 
 include (INCLUDES.'url_variables.inc.php');
 include (INCLUDES.'db_connect_log.inc.php');
 $page = "logPrint";

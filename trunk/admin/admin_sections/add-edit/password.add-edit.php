@@ -32,5 +32,5 @@ if ((($row_log['user_name'] == $loginUsername) && ($row_user['userLevel'] == "2"
 <input type="hidden" name="userLevel" value="<?php echo $row_log['userLevel']; ?>">
 <?php } ?>
 <input type="hidden" name="admin" value="<?php if ($row_user['userLevel'] == "1") echo "admin"; else echo "nonpriv"; ?>">
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } ?>

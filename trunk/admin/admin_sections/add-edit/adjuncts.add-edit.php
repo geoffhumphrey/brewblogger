@@ -34,4 +34,4 @@
     <td class="data"><textarea name="adjunctInfo" cols="67" rows="10"><?php if ($action == "edit") echo $row_log['adjunctInfo']; ?></textarea></td>
   </tr>
 </table>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

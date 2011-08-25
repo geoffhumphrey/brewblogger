@@ -147,4 +147,4 @@
      </tr>
 </table>
 <?php if ($row_user['userLevel'] == "2") { ?><input name="brewBrewerID" type="hidden" value="<?php echo $loginUsername; ?>" /><?php } ?>
-<?php include ('includes/add_edit_buttons.inc.php'); ?>
+<?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

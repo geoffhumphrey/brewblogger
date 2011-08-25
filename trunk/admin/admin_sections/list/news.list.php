@@ -9,7 +9,7 @@
 <table class="dataTable">
 	<tr>
 		<td><?php if (($row_user['userLevel'] == "1") && ($totalRows_news > 0))  { echo "There "; if ($totalRows_news > 1 )  echo "are "; else echo "is ";  echo $totalRows_news; if ($totalRows_news > 1 ) echo " news items "; else echo " news item ";  echo "in the database.<br><br>"; }  else echo "There are no news entries found in the database."; ?></td>
-		<td width="10%" nowrap><?php include ('includes/list_add_link.inc.php'); ?></td>
+		<td width="10%" nowrap><?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); ?></td>
 	</tr>
 </table>
 <?php if ($totalRows_news != 0) { ?>

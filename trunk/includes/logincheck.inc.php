@@ -3,9 +3,10 @@ $source = "default";
 if (isset($_GET['source'])) {
   $source = (get_magic_quotes_gpc()) ? $_GET['source'] : addslashes($_GET['source']);
 }
+require ('../paths.php');
 require 'authentication.inc.php';
 require 'login_check.inc.php';
-require '../Connections/config.php';
+require_once (CONFIG.'config.php'); 
 $connection = $brewing;
 
 // Clean the data collected in the <form>
@@ -59,7 +60,7 @@ else
 //}
 
 /* if ($source == "calc") { 
-include ('../admin/lib/importFormVar.lib.php');
+include (ADMIN_LIBRARY.'importFormVar.lib.php');
 if (!mysql_selectdb($database_brewing, $connection))
   showerror();
 session_start();

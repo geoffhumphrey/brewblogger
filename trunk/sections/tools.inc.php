@@ -26,16 +26,16 @@ $imageSrc = "images/";
  <tr>
   <td colspan="2">
     <?php 
-    if ($section == "calories") include ('admin/tools/gravity.php'); 
-    elseif ($section == "bitterness") include ('admin/tools/bitterness.php'); 
-    elseif ($section == "efficiency") include ('admin/tools/efficiency.php'); 
-    elseif ($section == "water") include ('admin/tools/water_amounts.php'); 
-    elseif ($section == "sugar") include ('admin/tools/priming.php'); 
-    elseif ($section == "force_carb") include ('admin/tools/force_carb.php'); 
-    elseif ($section == "plato") include ('admin/tools/sg.php'); 
-    elseif ($section == "strike") include ('admin/tools/strike.php'); 
-    elseif ($section == "hyd") include ('admin/tools/hydrometer.php');
-    // elseif ($section == "recipe") include ('admin/tools/recipe_calculator.php'); 
+    if ($section == "calories") 		include (ADMIN_TOOLS.'gravity.php'); 
+    elseif ($section == "bitterness") 	include (ADMIN_TOOLS.'bitterness.php'); 
+    elseif ($section == "efficiency") 	include (ADMIN_TOOLS.'efficiency.php'); 
+    elseif ($section == "water") 		include (ADMIN_TOOLS.'water_amounts.php'); 
+    elseif ($section == "sugar") 		include (ADMIN_TOOLS.'priming.php'); 
+    elseif ($section == "force_carb") 	include (ADMIN_TOOLS.'force_carb.php'); 
+    elseif ($section == "plato") 		include (ADMIN_TOOLS.'sg.php'); 
+    elseif ($section == "strike") 		include (ADMIN_TOOLS.'strike.php'); 
+    elseif ($section == "hyd") 			include (ADMIN_TOOLS.'hydrometer.php');
+    // elseif ($section == "recipe") 	include (ADMIN_TOOLS.'recipe_calculator.php'); 
     ?>   
   </td>
  </tr>

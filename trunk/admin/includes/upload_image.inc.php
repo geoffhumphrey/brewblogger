@@ -1,12 +1,11 @@
 <?php 
-
-require_once ('../../Connections/config.php'); 
-require ('../../includes/authentication.inc.php'); session_start(); sessionAuthenticate(); 
-include ('../../includes/db_connect_universal.inc.php');
-include ('../../includes/db_connect_admin.inc.php');
-include ('../../includes/db_connect_log.inc.php');
+require ('../../paths.php');
+require_once (CONFIG.'config.php'); 
+require (INCLUDES.'authentication.inc.php'); session_start(); sessionAuthenticate(); 
+include (INCLUDES.'db_connect_universal.inc.php');
+include (INCLUDES.'db_connect_admin.inc.php');
+include (INCLUDES.'db_connect_log.inc.php');
 $imageSrc = "../../images/";
-
 $action = "default";
 if (isset($_GET['action'])) {
   $action = (get_magic_quotes_gpc()) ? $_GET['action'] : addslashes($_GET['action']);
@@ -35,7 +34,8 @@ $site_name = $_SERVER['HTTP_HOST'];
 $url_dir = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 $url_this =  "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
-$upload_dir = $images_dir."/label_images/";
+$upload_dir = (LABEL_IMAGES);
+//echo $upload_dir;
 $upload_url = $url_dir."/label_images/";
 $message ="";
 
@@ -182,7 +182,7 @@ unlink($upload_dir.$fileConfirm);
 </td>
 </table>
 <?php } ?>
-<?php include('../../includes/footer2.inc.php'); ?>
+<?php include (INCLUDES.'footer2.inc.php'); ?>
 </div>
 </body>
 </html>
