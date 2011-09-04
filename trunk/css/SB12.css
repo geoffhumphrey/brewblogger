@@ -43,65 +43,71 @@ border: 1px solid #01214f;
 
 /* ------------------ Global links ------------------  */
 
-a:link, .add_button, .update_button, .button { 
-color: #02429C; text-decoration: none; 
+a:link, 
+.add_button, 
+.update_button, 
+.button { 
+	color: #02429C; 
+	text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
-color: #02429C; text-decoration: none; 
+
+a:visited, 
+.add_button:visited, 
+.update_button:visited, 
+.button:visited	{ 
+	color: #02429C; 
+	text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{
-color: #777777; text-decoration: none;
+
+a:hover, 
+.add_button:hover, 
+.add_button:focus, 
+.update_button:hover,
+.update_button:focus, 
+.button:hover, 
+.button:focus {
+	color: #777777;
+	text-decoration: none;
 }
-a:active, .add_button:active, update_button:active, .button:active { 
+
+a:active, 
+.add_button:active, 
+update-button:active, 
+.button:active { 
 color: #990000; text-decoration: none; 
 }
 
-/* ------------------  layout divs ------------------  */
-#maincontainer {
-width: 990px;
-margin-right: auto;
-margin-left: auto;
-padding: 0px;
-text-align: left;
+/* ------------------ customize layout divs from layout.css ------------------  */
+#main-container {
+	width: 990px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-#contentwrapper {
-float: left;
-width: 990px;
-background-image:  url(../images/SB12/mainbknd.png);
-margin: 0;
-padding: 0;
-overflow: hidden;
+#content-wrapper {
+	float: left;
+	width: 990px;
+	background-image:  url(../images/SB12/mainbknd.png);
 }
 
-/*
-#contentwrapperAdmin {
-float: left;
-width: 990px;
-background-image:  url(../images/SB12/mainbknd.png); 
-margin-top: 0px;
-padding: 0px 0px 0px 0px;
-}
-*/
-
-#contentcolumn { 		
-margin: 0px -250px 12px 24px; 
-width: 685px;
-border-right: 250px solid #ffffff; /* The width and color of the right*/
+#left-column { 		
+	margin: 0px -250px 12px 24px; 
+	width: 685px;
+	border-right: 250px solid #ffffff; /* The width and color of the right*/
 }
 
-#contentWide { 			/* if no sidebar content */
-width: 940px;
-margin-right: auto;
-margin-left: auto;
-margin-bottom: 25px;
+#content-wide { 			/* if no sidebar content */
+	width: 940px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 25px;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
-float: left;
-width: 250px;
-margin:  0 0 0 12px;
-padding: 5px;
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+	float: left;
+	width: 250px;
+	margin:  0 0 0 12px;
+	padding: 5px;
 }
 
 

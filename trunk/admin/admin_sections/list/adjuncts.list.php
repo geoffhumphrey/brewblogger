@@ -45,13 +45,13 @@ if ($confirm == "true") {
     echo '<td class="dataList">' . $row_adjuncts['adjunctName'] . '</td>' . "\n";
     $lovHigh = $row_adjuncts['adjunctLovibondHigh'] > 0 ? $row_adjuncts['adjunctLovibondHigh'] : $row_adjuncts['adjunctLovibondLow'];
     echo '<td class="dataList">' . $row_adjuncts['adjunctLovibondLow'] . '&deg; - ' . $lovHigh. '&deg; L</td>' . "\n";
-    echo '<td class="dataList">' . Truncate3($row_adjuncts['adjunctInfo']) . '</td>' . "\n";
+    echo '<td class="dataList">' . truncate_string($row_adjuncts['adjunctInfo'],50,'...') . '</td>' . "\n";
     echo '<td class="dataList">' . $row_adjuncts['adjunctPPG'] . '</td>' . "\n";
     echo '<td class="dataList">' . $row_adjuncts['adjunctSupplier'] . '</td>' . "\n";
     echo '<td class="dataList">' . $row_adjuncts['adjunctOrigin'] . '</td>' . "\n";
-    echo '<td class="data_icon_list"><a href="index.php?action=edit&dbTable=adjuncts&id=' . $row_adjuncts['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_adjuncts['adjunctName'] . '" title="Edit ' . $row_adjuncts['adjunctName'] . '"></a></td>' . "\n";
+    echo '<td class="data-icon_list"><a href="index.php?action=edit&dbTable=adjuncts&id=' . $row_adjuncts['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_adjuncts['adjunctName'] . '" title="Edit ' . $row_adjuncts['adjunctName'] . '"></a></td>' . "\n";
     if ($row_user['userLevel'] == "1") { ?>
-      <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=adjuncts','id',<?php echo $row_adjuncts['id']; ?>,'Are you sure you want to delete this adjunct?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['extractName']; ?>" title="Delete <?php echo $row_grains['extractName']; ?>"></a></td>
+      <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=adjuncts','id',<?php echo $row_adjuncts['id']; ?>,'Are you sure you want to delete this adjunct?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['extractName']; ?>" title="Delete <?php echo $row_grains['extractName']; ?>"></a></td>
     <?php }
     echo '</tr>' . "\n";
     if ($color == $color1) {

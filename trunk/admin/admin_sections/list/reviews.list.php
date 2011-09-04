@@ -43,9 +43,9 @@ $totalRows_log_review = mysql_num_rows($log_review);
 	<td class="dataList"><?php echo $row_review['brewScoredBy']; ?></td>
     <td class="dataList"><?php $date = $row_review['brewScoreDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td>
 	<td class="dataList"><?php echo $row_review['brewScorerLevel']; ?></td>
-    <td class="data_icon_list"><a href="../index.php?page=brewBlogDetail&id=<?php echo $row_review['brewID'] ?>#tasting"><img src="<?php echo $imageSrc; ?>monitor.png" align="absmiddle" border="0" alt="View the reviews for <?php echo $row_log_review['brewName'] ?>" title="View the reviews <?php echo $row_log_review['brewName'] ?>"></a></td>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=reviews&id=<?php echo $row_review['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit This Review" title="Edit This Review"></a></td>
-  	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=reviews','id',<?php echo $row_review['id']; ?>,'Are you sure you want to delete this review?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete this Review" title="Delete this Review"></a></td>
+    <td class="data-icon_list"><a href="../index.php?page=brewBlogDetail&id=<?php echo $row_review['brewID'] ?>#tasting"><img src="<?php echo $imageSrc; ?>monitor.png" align="absmiddle" border="0" alt="View the reviews for <?php echo $row_log_review['brewName'] ?>" title="View the reviews <?php echo $row_log_review['brewName'] ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=reviews&id=<?php echo $row_review['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit This Review" title="Edit This Review"></a></td>
+  	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=reviews','id',<?php echo $row_review['id']; ?>,'Are you sure you want to delete this review?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete this Review" title="Delete this Review"></a></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
 <?php } while ($row_review = mysql_fetch_assoc($review)); ?>

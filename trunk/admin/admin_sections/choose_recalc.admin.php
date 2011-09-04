@@ -8,7 +8,7 @@
 <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
 	<option value=""></option>
   	<?php if ($totalRows_brewBlogs > 0) do { ?>
-    <option value="index.php?action=calculate&source=brewing&results=false&filter=<?php echo $row_brewBlogs['brewBrewerID']; ?>&id=<?php echo $row_brewBlogs['id']; ?>"><?php echo $row_brewBlogs['brewName']." [";  $date = $row_brewBlogs['brewDate']; $realdate = dateconvert2($date,3); echo $realdate; if ($row_pref['mode'] == "2") echo " &ndash; ".$row_brewBlogs['brewBrewerID']; echo "]"; ?></option>
+    <option value="index.php?action=calculate&source=brewing&results=false&filter=<?php echo $row_brewBlogs['brewBrewerID']; ?>&id=<?php echo $row_brewBlogs['id']; ?>"><?php echo $row_brewBlogs['brewName']." [";  $date = $row_brewBlogs['brewDate']; $realdate = dateconvert($date,3); echo $realdate; if ($row_pref['mode'] == "2") echo " &ndash; ".$row_brewBlogs['brewBrewerID']; echo "]"; ?></option>
 	<?php } while ($row_brewBlogs = mysql_fetch_assoc($brewBlogs)); $rows = mysql_num_rows($brewBlogs);	if($rows > 0) {	mysql_data_seek($brewBlogs, 0); $row_brewBlogs = mysql_fetch_assoc($brewBlogs); } ?>
   </select>
   </form>

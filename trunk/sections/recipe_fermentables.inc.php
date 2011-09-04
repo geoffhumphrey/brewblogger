@@ -7,7 +7,7 @@
 if ($row_log['brewYield'] != "" && $page != "logPrint" && $page != "recipePrint" && 
     (($row_log['brewExtract1'] != "" || $row_log['brewGrain1'] != "") && $row_log['brewHops1'] != ""))  { ?>
   <div class="headerContent"><a name="recipe" id="recipe"></a>Scale Recipe</div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table>
   <tr>
     <td class="dataLeft" width="5%" nowrap>Enter desired final yield (volume): </td>
@@ -25,7 +25,7 @@ if ($row_log['brewYield'] != "" && $page != "logPrint" && $page != "recipePrint"
 <?php // ------------------------ EXTRACT SECTION ------------------------ 
 if ($row_log['brewExtract1'] != "" ) { // hide entire set of extract rows if first not present (1)  ?>
   <div class="headerContent"><a name="recipe" id="recipe"></a>Extract</div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table class="dataTable">
 
   <?php
@@ -71,7 +71,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
     <div id="help"><a href="sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div>
   <?php } ?>
   <div class="headerContent"><a name="recipe" id="recipe"></a>Malts and Grains</div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table class="dataTable">
 
   <?php
@@ -165,7 +165,7 @@ if ($row_log['brewGrain1'] != "" ) { // hide entire set of grain rows if first n
 <?php // ------------------------ ADJUNCT SECTION ------------------------ 
 if ($row_log['brewAddition1'] != "") { // hide entire set of Adjunct table rows (3) ?>
   <div class="headerContent"><a name="recipe" id="recipe"></a><?php if ($row_styles['brewStyleGroup'] > 23) echo "Ingredients"; else echo "Adjuncts"; ?></div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table>
 
   <?php

@@ -1,6 +1,6 @@
 <?php if ($row_log['brewEquipProfile'] != "") { ?>
 <div class="headerContent">Equipment Profile</div>
-<div class="dataContainer">
+<div class="data-container">
 <h3><em><?php echo $row_equip_profiles['equipProfileName']; ?></em></h3>
 <table class="dataTable">
 <tr>

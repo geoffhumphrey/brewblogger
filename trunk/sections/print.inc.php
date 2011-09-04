@@ -42,12 +42,12 @@ include (INCLUDES.INCLUDES.'version.inc.php');
 <link href="../css/print.css" rel="stylesheet" type="text/css">
 </head>
 <body <?php if ($view == "print") echo "onload=\"javascript:window.print()\""; ?>>
-<div id="maincontainer">
+<div id="main-container">
 <div id="contentWrapper">
 <?php if ($view == "limited") { // if auto print turned off ?>
 <p><img src="../images/printer.png"><span class="data"><a href="javascript:window.print()">Print</a></span></p>
 <?php } ?>
-   <div id="contentcolumn">
+   <div id="left-column">
    <div id="subtitle"><?php echo $row_log['brewName']; ?></div>
   <table class="dataTable">
   <tr>
@@ -71,7 +71,7 @@ include (INCLUDES.INCLUDES.'version.inc.php');
   
  </div>
 <?php include ('water_amounts_calc.inc.php'); ?>
-<div id="rightcolumn">
+<div id="right-column">
 <div id="sidebarWrapper">
 <div id="sidebarHeader">BJCP Style Info</div>
    <table class="dataTable text_10">

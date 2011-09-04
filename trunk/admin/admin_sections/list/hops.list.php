@@ -30,9 +30,9 @@
 	<td class="dataList"><?php echo $row_hops['hopsExample']; ?></td>
 	<td class="dataList" ><?php echo $row_hops['hopsAAULow']."-".$row_hops['hopsAAUHigh']."%"; ?></td>
     <td class="dataList"><?php echo $row_hops['hopsSub']; ?></td>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=hops&id=<?php echo $row_hops['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_hops['hopsName']; ?>" title="Edit <?php echo $row_hops['hopsName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=hops&id=<?php echo $row_hops['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_hops['hopsName']; ?>" title="Edit <?php echo $row_hops['hopsName']; ?>"></a></td>
   	<?php if  ($row_user['userLevel'] == "1") { ?>
-	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=hops','id',<?php echo $row_hops['id']; ?>,'Are you sure you want to delete this hop?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_hops['hopsName']; ?>" title="Delete <?php echo $row_hops['hopsName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=hops','id',<?php echo $row_hops['id']; ?>,'Are you sure you want to delete this hop?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_hops['hopsName']; ?>" title="Delete <?php echo $row_hops['hopsName']; ?>"></a></td>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

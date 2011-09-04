@@ -22,16 +22,16 @@ input:focus {
 }
 
 /* ------------------ global link styles ------------------  */
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #0000FF; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	 { 
+a:visited, .add-button:visited, .update-button:visited, .button:visited	 { 
 color: #0000FF; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 { 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	 { 
 color: #990000; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active { 
+a:active, .add-button:active, update-button:active, .button:active { 
 color: #990000; text-decoration: none; 
 }
 

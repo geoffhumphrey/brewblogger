@@ -1,6 +1,6 @@
 <?php if (($row_log['brewMisc1Name'] != "") && ($row_log['brewMisc1Amount'] != "")) { // hide entire set of misc rows if first is not present (4) ?>
 <div class="headerContent"><a name="recipe" id="recipe"></a>Non-Fermentables</div>
-<div class="dataContainer">
+<div class="data-container">
 <table>
  <tr>
   <td class="dataLeft"><?php echo $row_log['brewMisc1Amount']; ?></td>

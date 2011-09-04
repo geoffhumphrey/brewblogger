@@ -267,7 +267,7 @@ setTimeout('eval(s)',500);
 <?php } ?>
 <?php if ($page == "reviewsView") { ?>
 <div id="wideWrapperReference">	
-<div id="referenceHeader"><span class="data_icon"><img src="<?php echo $imageSrc; ?>tick.png" align="absmiddle" border="0"></span><span class="data dk">Scores</span></div>
+<div id="referenceHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>tick.png" align="absmiddle" border="0"></span><span class="data dk">Scores</span></div>
 <table class="text_10 dataTable">
  <tr>
   <td class="dataLeft" width="1%"><img src="<?php echo $imageSrc; ?>star.png" align="absmiddle" border="0" /></td>
@@ -287,8 +287,8 @@ setTimeout('eval(s)',500);
 </tr>
 </table>
 <?php do { ?>
-<?php include ('../includes/taste_calc.inc.php'); ?>
-<div id="referenceHeader"><span class="data_icon"><img src="<?php echo $imageSrc; ?>page_edit.png" align="absmiddle" border="0"></span><span class="data dk">Review by <?php echo $row_review['brewScoredBy'];  if ($row_review['brewScorerLevel'] != "") echo " (".$row_review['brewScorerLevel'].")"; ?></span></div>
+<?php $taste_calc = ($row_review['brewAromaScore'] + $row_review['brewAppearanceScore'] + $row_review['brewFlavorScore'] + $row_review['brewMouthfeelScore'] + $row_review['brewOverallScore']); ?>
+<div id="referenceHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>page_edit.png" align="absmiddle" border="0"></span><span class="data dk">Review by <?php echo $row_review['brewScoredBy'];  if ($row_review['brewScorerLevel'] != "") echo " (".$row_review['brewScorerLevel'].")"; ?></span></div>
 <table class="dataTableAltColors">
       <tr>
         <td class="dataLabelLeft"  width="5%">Aroma: </td>
@@ -320,12 +320,12 @@ setTimeout('eval(s)',500);
         <td class="data" nowrap><?php echo $taste_calc; ?> / 50 </td>
         <td class="data">
 		<?php 
-		if ($taste_calc >= 45) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>star.png" align="absmiddle" border="0"></span><span  class="data">Outstanding</span><?php } 
-		if ($taste_calc >= 38 && $taste_calc <= 44) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>award_star_gold_2.png" align="absmiddle" border="0"></span><span class="data dk">Excellent</span><?php } 
-		if ($taste_calc >= 30 && $taste_calc <= 37) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>award_star_silver_2.png" align="absmiddle" border="0"></span><span class="data dk">Very Good</span><?php } 
-		if ($taste_calc >= 21 && $taste_calc <= 29) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>award_star_bronze_2.png" align="absmiddle" border="0"></span><span class="data dk">Good</span><?php } 
-		if ($taste_calc >= 14 && $taste_calc <= 20) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>bell.png" align="absmiddle" border="0"></span><span class="data dk">Fair</span><?php }
-		if ($taste_calc >= 00 && $taste_calc <= 13) { ?><span class="data_icon"><img src="<?php echo $imageSrc; ?>bell_error.png" align="absmiddle" border="0"></span><span class="data dk">Problematic</span><?php }
+		if ($taste_calc >= 45) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>star.png" align="absmiddle" border="0"></span><span  class="data">Outstanding</span><?php } 
+		if ($taste_calc >= 38 && $taste_calc <= 44) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_gold_2.png" align="absmiddle" border="0"></span><span class="data dk">Excellent</span><?php } 
+		if ($taste_calc >= 30 && $taste_calc <= 37) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_silver_2.png" align="absmiddle" border="0"></span><span class="data dk">Very Good</span><?php } 
+		if ($taste_calc >= 21 && $taste_calc <= 29) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_bronze_2.png" align="absmiddle" border="0"></span><span class="data dk">Good</span><?php } 
+		if ($taste_calc >= 14 && $taste_calc <= 20) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>bell.png" align="absmiddle" border="0"></span><span class="data dk">Fair</span><?php }
+		if ($taste_calc >= 00 && $taste_calc <= 13) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>bell_error.png" align="absmiddle" border="0"></span><span class="data dk">Problematic</span><?php }
 		?>
 		</td>
       </tr>

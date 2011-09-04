@@ -19,8 +19,8 @@ if ($confirm == "true") { ?>
 	<td class="dataList" ><?php echo $row_theme['themeName']; ?></td>
 	<td class="dataList" ><?php echo $row_theme['theme'];  ?></a></td>
 	<?php if  ($row_user['userLevel'] == "1") { ?>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=brewingcss&id=<?php echo $row_theme['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_theme['themeName']; ?>" title="Edit <?php echo $row_theme['themeName']; ?>"></a></td>
-  	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=brewingcss','id',<?php echo $row_theme['id']; ?>,'Are you sure you want to delete this theme?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_theme['themeName']; ?>" title="Delete <?php echo $row_theme['themeName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=brewingcss&id=<?php echo $row_theme['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_theme['themeName']; ?>" title="Edit <?php echo $row_theme['themeName']; ?>"></a></td>
+  	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=brewingcss','id',<?php echo $row_theme['id']; ?>,'Are you sure you want to delete this theme?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_theme['themeName']; ?>" title="Delete <?php echo $row_theme['themeName']; ?>"></a></td>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

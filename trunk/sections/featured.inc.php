@@ -44,7 +44,7 @@
 <?php if (isset($_SESSION["loginUsername"])) { if (($row_user['userLevel'] == "1") || ($row_featured['brewBrewerID'] == $loginUsername)) echo "<td class=\"dataList\"><a href=\"admin/index.php?action=edit&dbTable=".$dbTable."&id=".$row_featured['id']."\"><img src=\"".$imageSrc."pencil.png\" alt=\"Edit ".$row_featured['brewName']."\" title=\"Edit ".$row_featured['brewName']."\" border=\"0\" align=\"absmiddle\"></a></td>"; else echo "<td>&nbsp;</td>"; } ?>
   <?php if (!checkmobile()) { ?><td class="dataList"><a href="#" onClick="window.open(INCLUDES.'output_beer_xml.inc.php?id=<?php echo $row_featured['id']; ?>&source=<?php echo $source; ?>&brewStyle=<?php echo $row_featured['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a><?php } ?>
   <td class="dataList"><a href="index.php?page=<?php echo $destination; ?>&filter=<?php echo $row_featured['brewBrewerID']; ?>&id=<?php echo $row_featured['id']; ?>"><?php echo $row_featured['brewName']; ?></a></td>
-  <?php if ($page == "brewBlogList") { ?><td class="dataList" nowrap="nowrap"><?php $date = $row_featured['brewDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td><?php } ?>
+  <?php if ($page == "brewBlogList") { ?><td class="dataList" nowrap="nowrap"><?php $date = $row_featured['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td><?php } ?>
 	  <td class="dataList">
 	  <div id="moreInfo"><?php if (($totalRows_styles > 0) && (!checkmobile())) { ?><a href="#"><?php } echo $row_featured['brewStyle']; if (($totalRows_styles > 0) && (!checkmobile())) { ?>
 	  <span>

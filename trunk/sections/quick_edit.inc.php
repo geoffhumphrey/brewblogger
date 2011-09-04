@@ -6,17 +6,17 @@
 <link rel="stylesheet" href="admin/css/calendar_control.css" media="screen" type="text/css">
 <form action="admin/process.php?action=editPub&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&section=public&id=<?php echo $row_log['id']; ?>" method="POST" name="form1">
 <div id="sidebarWrapper">
-<div id="sidebarHeader"><span class="data_icon"><img src="<?php echo $imageSrc; ?>user_go.png" align="absmiddle"></span><span class="data">Admin Actions</span></div>
+<div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>user_go.png" align="absmiddle"></span><span class="data">Admin Actions</span></div>
 <div id="sidebarInnerWrapper">
 <table class="dataTable">
     <tr>
-        <td class="data_icon_list"><a href="admin/index.php?action=edit&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" alt="Edit <?php echo $row_log['brewName']; ?>" title="Edit <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
-        <td class="data_icon_list"><a href="admin/index.php?action=reuse&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" alt="Reuse/Copy <?php echo $row_log['brewName']; ?>" title="Reuse/Copy <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
-		<td class="data_icon_list"><a href="admin/index.php?action=import<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "Recipe"; ?>&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "recipes"; if ($page == "recipeDetail") echo "brewing"; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_lightning.png" alt="Import <?php echo $row_log['brewName']; ?> to <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo $row_pref['menuRecipes']; else echo $row_pref['menuBrewBlogss']; ?>" title="Import <?php echo $row_log['brewName']; ?> to <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo $row_pref['menuRecipes']; else echo $row_pref['menuBrewBlogss']; ?>" border="0" align="absmiddle"></a></td>
-        <td class="data_icon_list"><a href="admin/index.php?action=calculate&source=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&results=false&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>calculator.png" alt="Recalculate <?php echo $row_log['brewName']; ?>" title="Recalculate <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
-		<td class="data_icon_list"><a href="admin/index.php?action=add&dbTable=awards&assoc=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>medal_gold_3.png" alt="Add Awards for <?php echo $row_log['brewName']; ?>" title="Add Awards for <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
+        <td class="data-icon_list"><a href="admin/index.php?action=edit&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" alt="Edit <?php echo $row_log['brewName']; ?>" title="Edit <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
+        <td class="data-icon_list"><a href="admin/index.php?action=reuse&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" alt="Reuse/Copy <?php echo $row_log['brewName']; ?>" title="Reuse/Copy <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
+		<td class="data-icon_list"><a href="admin/index.php?action=import<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "Recipe"; ?>&dbTable=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "recipes"; if ($page == "recipeDetail") echo "brewing"; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_lightning.png" alt="Import <?php echo $row_log['brewName']; ?> to <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo $row_pref['menuRecipes']; else echo $row_pref['menuBrewBlogss']; ?>" title="Import <?php echo $row_log['brewName']; ?> to <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo $row_pref['menuRecipes']; else echo $row_pref['menuBrewBlogss']; ?>" border="0" align="absmiddle"></a></td>
+        <td class="data-icon_list"><a href="admin/index.php?action=calculate&source=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&results=false&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>calculator.png" alt="Recalculate <?php echo $row_log['brewName']; ?>" title="Recalculate <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
+		<td class="data-icon_list"><a href="admin/index.php?action=add&dbTable=awards&assoc=<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "brewing"; if ($page == "recipeDetail") echo "recipes"; ?>&filter=<?php echo $filter; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>medal_gold_3.png" alt="Add Awards for <?php echo $row_log['brewName']; ?>" title="Add Awards for <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
 		<?php if (($page == "brewBlogDetail") || ($page == "brewBlogCurrent")) { ?>
-        <td class="data_icon_list"><a href="entry.php?style=<?php echo $row_log['brewStyle']; ?>&filter=<?php if ($row_pref['mode'] == "2") echo $filter; else echo $loginUsername; ?>&id=<?php echo $row_log['id']; ?>&KeepThis=true&TB_iframe=true&height=450&width=700" class="thickbox"><img src="<?php echo $imageSrc; ?>award_star_add.png" alt="Add Awards for <?php echo $row_log['brewName']; ?>" title="Print a contest entry sheet for <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
+        <td class="data-icon_list"><a href="entry.php?style=<?php echo $row_log['brewStyle']; ?>&filter=<?php if ($row_pref['mode'] == "2") echo $filter; else echo $loginUsername; ?>&id=<?php echo $row_log['id']; ?>&KeepThis=true&TB_iframe=true&height=450&width=700" class="thickbox"><img src="<?php echo $imageSrc; ?>award_star_add.png" alt="Add Awards for <?php echo $row_log['brewName']; ?>" title="Print a contest entry sheet for <?php echo $row_log['brewName']; ?>" border="0" align="absmiddle"></a></td>
 		<?php } ?>
         <td class="data">&nbsp;</td>
    	</tr>
@@ -24,7 +24,7 @@
 </div>
 </div>
 <div id="sidebarWrapper">
-<div id="sidebarHeader"><span class="data_icon"><img src="<?php echo $imageSrc; ?>page_edit.png" align="absmiddle"></span><span class="data">Quick Edit</span></div>
+<div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>page_edit.png" align="absmiddle"></span><span class="data">Quick Edit</span></div>
 <div id="sidebarInnerWrapper">
 <table class="dataTable quickEdit2">
    	<tr>
@@ -110,7 +110,7 @@
     </tr>
    	<tr>
    	  	<td class="dataLabelLeft">&nbsp;</td>
-   	  	<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input type="submit" value="Update" class="update_button"></td>
+   	  	<td class="data" <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) echo "colspan=\"3\""; ?>><input type="submit" value="Update" class="update-button"></td>
  		<td class="data"></td>
         <td class="data"></td>
     </tr>

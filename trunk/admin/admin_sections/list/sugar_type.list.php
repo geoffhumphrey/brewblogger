@@ -20,9 +20,9 @@
 <tr <?php echo " style=\"background-color:$color\"";?>>
 	<td class="dataList" nowrap width="5%"><?php echo $row_sugar_type['sugarName']; ?></td>
 	<td class="dataList" nowrap><?php echo $row_sugar_type['sugarPPG']; ?></td>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=sugar_type&id=<?php echo $row_sugar_type['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_sugar_type['sugarName']; ?>" title="Edit <?php echo $row_sugar_type['sugarName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=sugar_type&id=<?php echo $row_sugar_type['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_sugar_type['sugarName']; ?>" title="Edit <?php echo $row_sugar_type['sugarName']; ?>"></a></td>
   	<?php if  ($row_user['userLevel'] == "1") { ?>
-	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=sugar_type','id',<?php echo $row_sugar_type['id']; ?>,'Are you sure you want to delete this sugar type?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_sugar_type['sugarName']; ?>" title="Delete <?php echo $row_sugar_type['sugarName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=sugar_type','id',<?php echo $row_sugar_type['id']; ?>,'Are you sure you want to delete this sugar type?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_sugar_type['sugarName']; ?>" title="Delete <?php echo $row_sugar_type['sugarName']; ?>"></a></td>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

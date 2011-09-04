@@ -5,7 +5,7 @@
 		$row_styles = mysql_fetch_assoc($styles);
 		$totalRows_styles = mysql_num_rows($styles);
 		?>
-		<div id="contentWide">
+		<div id="content-wide">
 		<?php
 		 
 		if ($total == 0) 
@@ -60,7 +60,7 @@
 			  </div>
 			  </td>
               <td class="dataListLeft"><?php if ($row_awardsList['awardContestURL'] != "") { ?><a href="<?php echo $row_awardsList['awardContestURL']; ?>" target="_blank"><?php } echo $row_awardsList['awardContest']; if ($row_awardsList['awardContestURL'] != "") { ?></a><?php } ?></td>
-              <td class="dataList" nowrap="nowrap"><?php  $date = $row_awardsList['awardDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td>
+              <td class="dataList" nowrap="nowrap"><?php  $date = $row_awardsList['awardDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td>
 			  <td class="dataList" width="16"><img src="<?php echo $imageSrc; ?><?php if ($row_awardsList['awardPlace'] == "best") echo "award_star_gold_3.png"; elseif ($row_awardsList['awardPlace'] == "1") echo "medal_gold_3.png"; elseif ($row_awardsList['awardPlace'] == "2") echo "medal_silver_3.png"; elseif ($row_awardsList['awardPlace'] == "3") echo "medal_bronze_3.png"; elseif ($row_awardsList['awardPlace'] == "entry") echo "tag_blue.png";  else echo "star.png";  ?>" border="0"/></td>
 			  <td class="dataList" nowrap="nowrap"><?php if ($row_awardsList['awardPlace'] == "best") echo "Best In Show"; elseif ($row_awardsList['awardPlace'] == "1") echo "1st (Gold)"; elseif ($row_awardsList['awardPlace'] == "2") echo "2nd (Silver)"; elseif ($row_awardsList['awardPlace'] == "3") echo "3rd (Bronze)"; elseif ($row_awardsList['awardPlace'] == "honMen") echo "Honorable Mention"; else echo "Entry Only"; ?></td>
               <?php if (($row_pref['mode'] == "2") && ($filter == "all")) { ?><td  class="dataList"><a href="?page=awardsList&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $row_user2['user_name']; ?>&view=limited"><?php echo $row_user2['realFirstName']."&nbsp;".$row_user2['realLastName']; ?></a></td><?php } ?>

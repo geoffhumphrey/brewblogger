@@ -17,13 +17,13 @@ if ($confirm == "true") { ?>
 <?php do {  ?>
 <tr <?php echo " style=\"background-color:$color\"";?>>
    	<td class="data" colspan="8"><h3><?php echo $row_equip_profiles['equipProfileName']; ?></h3></td>
-    <td class="data_icon_list"><a href="index.php?action=reuse&dbTable=equip_profiles&id=<?php echo $row_equip_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" align="absmiddle" border="0" alt="Copy the <?php echo $row_equip_profiles['equipProfileName']; ?> Equipment Profile" title="Copy the <?php echo $row_equip_profiles['equipProfileName']; ?> Equipment Profile"></a></td>
+    <td class="data-icon_list"><a href="index.php?action=reuse&dbTable=equip_profiles&id=<?php echo $row_equip_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" align="absmiddle" border="0" alt="Copy the <?php echo $row_equip_profiles['equipProfileName']; ?> Equipment Profile" title="Copy the <?php echo $row_equip_profiles['equipProfileName']; ?> Equipment Profile"></a></td>
     <?php if (($row_equip_profiles['equipBrewerID'] != "brewblogger") &&  (($row_user['userLevel'] == "1") || ($row_equip_profiles['equipBrewerID'] == $_SESSION['loginUsername']))) { ?>
-    <td class="data_icon_list"><a href="index.php?action=edit&dbTable=equip_profiles&id=<?php echo $row_equip_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_equip_profiles['equipProfileName']; ?>" title="Edit <?php echo $row_equip_profiles['equipProfileName']; ?>"></a></td>
-   	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=equip_profiles','id',<?php echo $row_equip_profiles['id']; ?>,'Are you sure you want to delete this equipment profile? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_equip_profiles['equipProfileName']; ?>" title="Delete <?php echo $row_equip_profiles['equipProfileName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="index.php?action=edit&dbTable=equip_profiles&id=<?php echo $row_equip_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_equip_profiles['equipProfileName']; ?>" title="Edit <?php echo $row_equip_profiles['equipProfileName']; ?>"></a></td>
+   	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=equip_profiles','id',<?php echo $row_equip_profiles['id']; ?>,'Are you sure you want to delete this equipment profile? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_equip_profiles['equipProfileName']; ?>" title="Delete <?php echo $row_equip_profiles['equipProfileName']; ?>"></a></td>
    	<?php } else { ?>
-   	<td class="data_icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
-    <td class="data_icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
+   	<td class="data-icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
+    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    	<?php } ?>
 </tr>
 <tr <?php echo " style=\"background-color:$color\"";?>>

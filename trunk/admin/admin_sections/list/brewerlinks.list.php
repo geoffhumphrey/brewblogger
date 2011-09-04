@@ -19,10 +19,10 @@
 <?php do { ?>
 <tr <?php echo " style=\"background-color:$color\"";?>>
 	<td class="dataList" ><?php echo $row_links['brewerLinkName']; ?></td>
-	<td class="dataList"><a href="<?php echo $row_links['brewerLinkURL']; ?>" target="_blank"><?php $str = $row_links['brewerLinkURL']; echo Truncate3($str); ?></a></td>
+	<td class="dataList"><a href="<?php echo $row_links['brewerLinkURL']; ?>" target="_blank"><?php echo truncate_string($row_links['brewerLinkURL'],50,'...'); ?></a></td>
 	<?php if  ($row_user['userLevel'] == "1") { ?>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=brewerlinks&id=<?php echo $row_links['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_links['brewerLinkName']; ?>" title="Edit <?php echo $row_links['brewerLinkName']; ?>"></a></td>
-  	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=brewerlinks','id',<?php echo $row_links['id']; ?>,'Are you sure you want to delete this link?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_links['brewerLinkName']; ?>" title="Delete <?php echo $row_links['brewerLinkName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=brewerlinks&id=<?php echo $row_links['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_links['brewerLinkName']; ?>" title="Edit <?php echo $row_links['brewerLinkName']; ?>"></a></td>
+  	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=brewerlinks','id',<?php echo $row_links['id']; ?>,'Are you sure you want to delete this link?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_links['brewerLinkName']; ?>" title="Delete <?php echo $row_links['brewerLinkName']; ?>"></a></td>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

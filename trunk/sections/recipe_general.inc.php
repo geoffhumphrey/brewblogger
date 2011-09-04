@@ -1,6 +1,6 @@
 <?php if ($row_log['brewMethod'] != "" ) {  ?>
 <div class="headerContent">General Information</div>
-<div class="dataContainer">
+<div class="data-container">
     <table class="dataTable">
      <tr>
       <td class="dataLabelLeft">Method:</td>

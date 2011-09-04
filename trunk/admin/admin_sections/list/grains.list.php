@@ -43,13 +43,13 @@ do {
   echo '<td class="dataList" nowrap>' . $row_grains['maltName'] . '</td>' . "\n";
   $lovHigh = $row_grains['maltLovibondHigh'] > 0 ? $row_grains['maltLovibondHigh'] : $row_grains['maltLovibondLow'];
   echo '<td class="dataList" nowrap>' . $row_grains['maltLovibondLow'] . '&deg; - ' . $lovHigh . '&deg; L</td>' . "\n";
-  echo '<td class="dataList">' . Truncate3($row_grains['maltInfo']) . '</td>' . "\n";
+  echo '<td class="dataList">' . truncate_string($row_grains['maltInfo'],50,'...') . '</td>' . "\n";
   echo '<td class="dataList">' . $row_grains['maltPPG'] . '</td>' . "\n";
   echo '<td class="dataList">' . $row_grains['maltSupplier'] . '</td>' . "\n";
   echo '<td class="dataList">' . $row_grains['maltOrigin'] . '</td>' . "\n";
-  echo '<td class="data_icon_list"><a href="index.php?action=edit&dbTable=malt&id=' . $row_grains['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_grains['maltName'] . '" title="Edit ' . $row_grains['maltName'] . '"></a></td>' . "\n";
+  echo '<td class="data-icon_list"><a href="index.php?action=edit&dbTable=malt&id=' . $row_grains['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_grains['maltName'] . '" title="Edit ' . $row_grains['maltName'] . '"></a></td>' . "\n";
   if ($row_user['userLevel'] == "1") { ?>
-    <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=malt','id',<?php echo $row_grains['id']; ?>,'Are you sure you want to delete this grain?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['maltName']; ?>" title="Delete <?php echo $row_grains['maltName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=malt','id',<?php echo $row_grains['id']; ?>,'Are you sure you want to delete this grain?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['maltName']; ?>" title="Delete <?php echo $row_grains['maltName']; ?>"></a></td>
   <?php }
   echo '</tr>' . "\n";
   if ($color == $color1) {

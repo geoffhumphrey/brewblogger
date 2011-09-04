@@ -16,17 +16,19 @@ include (INCLUDES.'db_connect_universal.inc.php');
 include (INCLUDES.'db_connect_log.inc.php');
 
 //include function to check for mobile browsers
-include (INCLUDES.'check_mobile.inc.php');
+//include (INCLUDES.'check_mobile.inc.php');
 
 //do various abv calculations related to the currently viewed recipe (if any)
-include (INCLUDES.'abv.inc.php');
+//include (INCLUDES.'abv.inc.php');
+
 
 //include various conversions functions, date functions and truncate functions
 //plus additional libs for 
 //    titles.inc.php - set up the navigation?
 //    messages.inc.php - tooltips and a few messages
 //    scrubber.inc.php - a few arrays for character replacement
-include (INCLUDES.'plug-ins.inc.php');
+include (INCLUDES.'plug-ins.inc.php'); // Deprecated --> Transition functions to 'functions.inc.php' file keep here for now
+include (INCLUDES.'functions.inc.php');
 
 //figure out SRM and a hex value for displaying beer color
 //include (INCLUDES.'color.inc.php');
@@ -53,7 +55,6 @@ $imageSrc = "images/";
 <meta name="robots" content="index,follow,noarchive"> 
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
 <title><?php if ($row_pref['mode'] == "1") { if ($row_name['brewerFirstName'] != "") echo $row_name['brewerFirstName']."&nbsp;"; if ($row_name['brewerLastName'] != "") echo $row_name['brewerLastName']."'s "; echo "BrewBlog &gt; ".$page_title.$page_title_extension; } if ($row_pref['mode'] == "2") echo $row_name['brewerFirstName']."&nbsp;".$row_name['brewerLogName']." &gt; ".$page_title.$page_title_extension; if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail")) echo " [".$row_log['brewStyle']."]"; ?></title>
-<link rel="stylesheet" href="css/html_elements.css" type="text/css">
 <link rel="stylesheet" href="css/universal_elements.css" type="text/css">
 <?php 
 if (checkmobile()) {
@@ -89,7 +90,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 </head>
 <body <?php if (($printBrowser == "IE") && ($page == "reference") && ($section == "carbonation")) echo "onLoad=\"javascript:popUp('reference/carbonation.php')\""; ?>>
 
-<div id="maincontainer">
+<div id="main-container">
 <!-- Begin Header -->
 	<div id="header">
 		<div class="titleText"><?php if ($row_name['brewerFirstName'] != "") echo $row_name['brewerFirstName'];  if (($row_pref['mode'] == "1") && ($row_name['brewerFirstName'] != ""))  echo "'s"; echo "&nbsp;".$row_name['brewerLogName']; ?></div><div class="quoteText"><?php echo $row_name['brewerTagline']; ?></div>
@@ -97,8 +98,8 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 	<div id="nav"><?php include (INCLUDES.'navigation.inc.php'); ?></div>
 <!-- End Header -->
 <!-- Begin Main Content -->
-<div id="contentwrapper">
-    <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "about") || ($page == "recipeDetail") || ($page == "profile")) echo "contentcolumn"; else echo "contentWide"; ?>">
+<div id="content-wrapper">
+    <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "about") || ($page == "recipeDetail") || ($page == "profile")) echo "left-column"; else echo "content-wide"; ?>">
     <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "about") || ($page == "profile")) echo "breadcrumb"; else echo "breadcrumbWide"; ?>"><?php echo $breadcrumb; ?></div>
 	<?php if (($row_pref['mode'] == "2") && ($row_pref['home'] == $page) && ($row_pref['allowNews'] == "Y") && ($totalRows_newsGen > 0)) include (SECTIONS.'news.inc.php'); ?>
     <div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "about") || ($page == "profile")) echo "subtitle"; else echo "subtitleWide"; ?>">
@@ -192,9 +193,9 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
     }
     ?>  
     <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis pharetra elit non porta. Nullam vel ipsum turpis, quis volutpat odio. Nullam posuere fringilla lacus eget vulputate. Nullam at eros sit amet est iaculis egestas sit amet quis nunc. Sed pretium laoreet neque sed fringilla. Mauris rutrum vulputate velit, eu tincidunt orci rhoncus nec. Suspendisse adipiscing massa vitae purus egestas fermentum. Cras pulvinar, velit ac commodo posuere, dui felis aliquet tellus, quis pulvinar quam urna pellentesque justo. Aenean mattis tellus ipsum, venenatis vehicula diam. Curabitur quis ipsum ante, ullamcorper commodo nulla. Curabitur ultrices egestas libero a sagittis.</p>-->
-    </div><!-- End contentcolumn -->
+    </div><!-- End left-column -->
     <?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "about") || ($page == "recipeDetail") || ($page == "profile")) { ?>
-      <div id="rightcolumn">
+      <div id="right-column">
       <?php 
 	     if ($page == "about") { include (SECTIONS.'list.inc.php'); }
 		 if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) { 
@@ -204,7 +205,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
 		     if ($row_pref['allowPrintRecipe'] == "Y") 		{ include (SECTIONS.'printRecipe.inc.php');  echo "&nbsp;"; }
 		     if ($row_pref['allowPrintXML'] == "Y") 		{ include (SECTIONS.'printXML.inc.php'); }
 		   }
-		   if (($row_pref['mode'] == "2") && ($filter != "all")) echo "<div id=\"sidebarWrapper\"><span class=\"text_9\"><span class=\"data_icon\"><img src = \"".$imageSrc."calendar_view_month.png\" alt=\"Calendar\" border=\"0\" align=\"absmiddle\"></span><span class=\"data\"><a href=\"index.php?page=calendar&filter=".$filter."\">View ".$row_user2['realFirstName']."'s Brewing Calendar</a></span></span></div>"; { include (SECTIONS.'quick_edit.inc.php'); }
+		   if (($row_pref['mode'] == "2") && ($filter != "all")) echo "<div id=\"sidebarWrapper\"><span class=\"text_9\"><span class=\"data-icon\"><img src = \"".$imageSrc."calendar_view_month.png\" alt=\"Calendar\" border=\"0\" align=\"absmiddle\"></span><span class=\"data\"><a href=\"index.php?page=calendar&filter=".$filter."\">View ".$row_user2['realFirstName']."'s Brewing Calendar</a></span></span></div>"; { include (SECTIONS.'quick_edit.inc.php'); }
 		   if (checkmobile()) echo ""; else {
 		     // Include sidebar sections according to preferences
 		     if ($row_pref['allowLabel'] == "Y") 		{ include (SECTIONS.'label.inc.php'); }
@@ -227,7 +228,7 @@ tb_show('Carbonation Chart','reference/carbonation.php?KeepThis=true&TB_iframe=t
         
         if ($page == "profile") include (SECTIONS.'userPic.inc.php'); 
 	?>
-	</div><!-- End rightcolumn -->
+	</div><!-- End right-column -->
     <?php } ?>
 </div><!-- End contentWrapper -->
 <!-- End Main Content -->

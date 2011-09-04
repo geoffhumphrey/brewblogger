@@ -6,7 +6,7 @@
 		$totalRows_styles = mysql_num_rows($styles);
 		*/
 		?>
-		<div id="contentWide">
+		<div id="content-wide">
        <?php 
 		 
 		if ($total == 0) 

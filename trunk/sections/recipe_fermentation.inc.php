@@ -1,6 +1,6 @@
 <?php if ($row_log['brewPrimary'] != "") { ?>
 <div class="headerContent">Fermentation</div>
-<div class="dataContainer">
+<div class="data-container">
 <div class="dataTable">
 <table>
  <tr>

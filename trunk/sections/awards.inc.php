@@ -16,7 +16,7 @@
 	 </tr>
 	 <tr>
 	  <td class="dataLabelLeft">Date:</td>
-	  <td class="data"><?php  $date = $row_awards['awardDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td>
+	  <td class="data"><?php  $date = $row_awards['awardDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td>
 	 </tr>
 	 <tr>
 	  <td class="dataLabelLeft">Style:</td>

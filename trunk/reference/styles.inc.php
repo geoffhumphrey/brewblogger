@@ -170,13 +170,7 @@ else { ?>
       ?>
       </td>
       <td nowrap="nowrap" class="data">
-      <?php
-      if (($page == "reference") || ($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail")  || 
-	  ($page == "recipeList")  || ($page == "brewBlogList") || ($page == "awardsList")) {
-	include (INCLUDES.'colorStyle.inc.php');
-      } else {
-	include ('../includes/colorStyle.inc.php');
-      }
+      <?php	include (INCLUDES.'colorStyle.inc.php');
       if ($row_styles['brewStyleSRM'] == "") {
 	echo "Varies";
       } elseif ($row_styles['brewStyleSRM'] == "N/A") {

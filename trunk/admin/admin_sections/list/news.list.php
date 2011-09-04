@@ -26,13 +26,13 @@
  </tr>
  <?php do { ?>
  <tr <?php echo " style=\"background-color:$color\"";?>>
-  <td class="dataList"><?php  $date = $row_news['newsDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td>
+  <td class="dataList"><?php  $date = $row_news['newsDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td>
   <td class="dataList"><?php  echo $row_news['newsHeadline']; ?></td>
-  <td class="dataList" ><?php $str = $row_news['newsText']; $truncate = Truncate2($str); echo $truncate; ?></td>
+  <td class="dataList"><?php echo truncate_string($row_news['newsText'],100,'...'); ?></td>
   <td class="dataList"><?php echo $row_news['newsPoster']; ?></td>
   <?php if  ($row_user['userLevel'] == "1") { ?>
-  <td class="data_icon_list"><a href="index.php?action=edit&dbTable=news&id=<?php echo $row_news['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_news['newsHeadline']; ?>" title="Edit <?php echo $row_news['newsHeadline']; ?>"></a></td>
-  <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=news','id',<?php echo $row_news['id']; ?>,'Are you sure you want to delete this news item?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_news['newsHeadline']; ?>" title="Delete <?php echo $row_news['newsHeadline']; ?>"></a></td>
+  <td class="data-icon_list"><a href="index.php?action=edit&dbTable=news&id=<?php echo $row_news['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_news['newsHeadline']; ?>" title="Edit <?php echo $row_news['newsHeadline']; ?>"></a></td>
+  <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=news','id',<?php echo $row_news['id']; ?>,'Are you sure you want to delete this news item?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_news['newsHeadline']; ?>" title="Delete <?php echo $row_news['newsHeadline']; ?>"></a></td>
   <?php } ?>
   </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

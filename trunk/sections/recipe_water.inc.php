@@ -1,6 +1,6 @@
 <?php if (($row_pref['waterDisplayMethod'] == "1") && ($row_log['brewWaterProfile'] != "")) { // Use water profiles tables ?>
 <div class="headerContent">Water Profile</div>
-<div class="dataContainer">
+<div class="data-container">
 <h3><em><?php echo $row_water_profiles['waterName']; ?></em></h3>
 <table class="dataTable">
 <?php if ($row_water_profiles['waterCalcium'] != "") { ?>
@@ -64,7 +64,7 @@ if ($row_water_profiles['waterNotes'] != "") {
 <?php if ($row_pref['waterDisplayMethod'] == "2") { ?>
 <?php if ($row_log['brewWaterName'] != "" ) { // (1) hide entire water rows if name not present ?>
 <div class="headerContent">Water Profile</div>
-<div class="dataContainer">
+<div class="data-container">
 <table class="dataTable">
 <tr>
 <td width="50%">
