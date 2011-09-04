@@ -6,7 +6,7 @@
 		$totalRows_styles_filter = mysql_num_rows($styles_filter);
 		*/
 		?>
-		<div id="contentWide">
+		<div id="content-wide">
         <?php 
 		 
 		if ($totalRows_log == 0) { 
@@ -76,7 +76,7 @@
             <?php if (isset($_SESSION["loginUsername"])) { if (($row_user['userLevel'] == "1") || ($row_log['brewBrewerID'] == $loginUsername)) echo "<td class=\"dataList\"><a href=\"admin/index.php?action=edit&dbTable=brewing&id=".$row_log['id']."\"><img src=\"".$imageSrc."pencil.png\" alt=\"Edit ".$row_log['brewName']."\" title=\"Edit ".$row_log['brewName']."\" border=\"0\" align=\"absmiddle\"></a></td>"; else echo "<td>&nbsp;</td>"; } ?>
               <?php if (!checkmobile()) { ?><td class="dataList"><a href="#" onclick="window.open(INCLUDES.'output_beer_xml.inc.php?id=<?php echo $row_log['id']; ?>&source=<?php echo $source; ?>&brewStyle=<?php echo $row_log['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a><?php } ?>
               <td class="dataList"><a href="index.php?page=<?php echo $destination; ?>&filter=<?php echo $row_log['brewBrewerID']; ?>&id=<?php echo $row_log['id']; ?>"><?php echo $row_log['brewName']; ?></a></td>
-              <td class="dataList" nowrap="nowrap"><?php $date = $row_log['brewDate']; $realdate = dateconvert2($date,3); echo $realdate; ?></td>
+              <td class="dataList" nowrap="nowrap"><?php $date = $row_log['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td>
 			  <td class="dataList">
 			  <div id="moreInfo"><?php if (($totalRows_styles > 0) && (!checkmobile())) { ?><a href="<?php if ($style == "all") echo "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."?page=".$page."&filter=".$filter."&style=".$row_log['brewStyle']."&sort=".$sort."&dir=".$dir."&view=".$view."&pg=1"; else echo "#"; ?>" title="Filter by style: <?php echo $row_log['brewStyle']; ?>"><?php } echo $row_log['brewStyle']; if (($totalRows_styles > 0) && (!checkmobile())) { ?>
 			  <span>

@@ -30,6 +30,7 @@
 // | Author: Oskar Stephens <oskar.stephens@gmail.com>	                    |
 // +------------------------------------------------------------------------+
 //}}}
+include ('../paths.php');
 include ('parse_beer_xml.inc.php');
 //{{{ InputBeerXML
 class InputBeerXML {

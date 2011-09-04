@@ -41,21 +41,21 @@ border: 1px solid #39294a;
 
 /* ------------------ Global links ------------------  */
 
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #d16c00; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited { 
+a:visited, .add-button:visited, .update-button:visited, .button:visited { 
 color: #d16c00; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	{ 
 color: #0e0545; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active	{ 
+a:active, .add-button:active, update-button:active, .button:active	{ 
 color: #0e0545; text-decoration: none; 
 }
 
 /* ------------------  layout divs ------------------  */
-#maincontainer {
+#main-container {
 width: 990px;
 margin-right: auto;
 margin-left: auto;
@@ -63,7 +63,7 @@ padding: 0px;
 text-align: left;
 }
 
-#contentwrapper {
+#content-wrapper {
 float: left;
 width: 990px;
 background-image:  url(../images/Haze/mainbknd.png); 
@@ -73,7 +73,7 @@ overflow: hidden;
 }
 
 /*
-#contentwrapperAdmin {
+#content-wrapperAdmin {
 float: left;
 width: 990px;
 background-image:  url(../images/Haze/mainbknd.png); 
@@ -82,20 +82,20 @@ padding: 0px 0px 0px 0px;
 }
 */
 
-#contentcolumn { 		
+#left-column { 		
 margin: 0px -250px 12px 24px; 
 width: 685px;
 border-right: 250px solid #ffffff; /* The width and color of the right*/
 }
 
-#contentWide { 			/* if no sidebar content */
+#content-wide { 			/* if no sidebar content */
 width: 940px;
 margin-right: auto;
 margin-left: auto;
 margin-bottom: 25px;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
 float: left;
 width: 250px;
 margin:  0 0 0 12px;

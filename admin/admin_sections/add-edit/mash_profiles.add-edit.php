@@ -75,8 +75,8 @@ $totalRows_mash_steps = mysql_num_rows($mash_steps);
     <td class="dataList"><?php if ($row_mash_steps['stepTemp'] != "") echo $row_mash_steps['stepTemp']."&deg; ".$row_pref['measTemp']; ?></td>
     <td class="dataList"><?php echo $row_mash_steps['stepWaterGrainRatio']; if ($row_mash_steps['stepWaterGrainRatio'] != "") { if ($row_pref['measFluid2'] == "liters") echo " lt/kg"; else echo " qt/lb"; } ?></td>
     <td class="dataList"><?php echo $row_mash_steps['stepDescription']; ?></td>
-    <td class="data_icon_list"><a href="index.php?action=edit&dbTable=mash_steps&id=<?php echo $row_mash_steps['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_mash_steps['stepName']; ?>" title="Edit <?php echo $row_mash_steps['stepName']; ?>"></a></td>
-    <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_steps','id',<?php echo $row_mash_steps['id']; ?>,'Are you sure you want to delete this mash step? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_steps['stepName']; ?>" title="Delete <?php echo $row_mash_steps['stepName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="index.php?action=edit&dbTable=mash_steps&id=<?php echo $row_mash_steps['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_mash_steps['stepName']; ?>" title="Edit <?php echo $row_mash_steps['stepName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_steps','id',<?php echo $row_mash_steps['id']; ?>,'Are you sure you want to delete this mash step? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_steps['stepName']; ?>" title="Delete <?php echo $row_mash_steps['stepName']; ?>"></a></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
 <?php } while ($row_mash_steps = mysql_fetch_assoc($mash_steps)); ?>

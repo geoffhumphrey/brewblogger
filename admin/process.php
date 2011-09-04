@@ -384,11 +384,13 @@ if (($action == "edit") && ($dbTable == "brewing")) {
 
   $updateSQL = "UPDATE brewing SET $data WHERE id=" . GetSQLValueString($id, "int");
 
+  echo $updateSQL;
+	
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
 
-  $updateGoTo = "index.php?action=list&dbTable=brewing&id=".$id."&confirm=true&msg=2";
-  header(sprintf("Location: %s", $updateGoTo));
+  //$updateGoTo = "index.php?action=list&dbTable=brewing&id=".$id."&confirm=true&msg=2";
+  // header(sprintf("Location: %s", $updateGoTo));
 }
 
 // --------------------------- If Updating Calculations ------------------------------- //

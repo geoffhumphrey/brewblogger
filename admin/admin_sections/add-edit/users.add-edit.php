@@ -110,7 +110,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
 	<option value="<?php echo $row_equip_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultEquipProfile'], $row_equip_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_equip_profiles['equipProfileName']; ?></option>
       <?php } while ($row_equip_profiles = mysql_fetch_assoc($equip_profiles))?>
     </select></td>
-    <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Equipment Profile?" title="Add Equipment Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=equip_profiles">Add Equipment Profiles?</a></span></td>
+    <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Equipment Profile?" title="Add Equipment Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=equip_profiles">Add Equipment Profiles?</a></span></td>
   </tr>
 
   <tr>
@@ -122,7 +122,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
 	<option value="<?php echo $row_mash_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultMashProfile'], $row_mash_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_mash_profiles['mashProfileName']; ?></option>
       <?php } while ($row_mash_profiles = mysql_fetch_assoc($mash_profiles))?>
     </select></td>
-    <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Mash Profile?" title="Add Mash Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=mash_profiles">Add Mash Profiles?</a></span></td>
+    <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Mash Profile?" title="Add Mash Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=mash_profiles">Add Mash Profiles?</a></span></td>
   </tr>
 
   <tr>
@@ -140,7 +140,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
 	<option value="<?php echo $row_water_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultWaterProfile'], $row_water_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_water_profiles['waterName']; ?></option>
       <?php } while ($row_water_profiles = mysql_fetch_assoc($water_profiles))?>
     </select></td>
-    <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Water Profile?" title="Add Water Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=water_profiles">Add Water Profiles?</a></span></td>
+    <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Water Profile?" title="Add Water Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=water_profiles">Add Water Profiles?</a></span></td>
   </tr>
 
   <tr>

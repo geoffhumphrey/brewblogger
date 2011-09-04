@@ -202,7 +202,7 @@ foreach($weeks AS $week){
 			 echo "<table class=\"none\">";
 			   do { 
 			   if ($row_calDays['brewArchive'] != "Y") {
-			   $str0 = $row_calDays['brewName']; $brewName0 = Truncate6($str0);
+			   $brewName0 = truncate_string($row_calDays['brewName'],12,'...');
 			   $MySqlDate0 = $row_calDays['brewDate']; 
 			   $planned0 = GetTimeStamp($MySqlDate0);
 			   $brewday0 = GetTimeStamp($MySqlDate0);
@@ -240,8 +240,7 @@ foreach($weeks AS $week){
 			   	$MySqlDate_0 = $row_upDays['upcomingDate'];
 			   	$upcoming0 = GetTimeStamp($MySqlDate_0);
 				if ($todaysDate < $upcoming0) {
-			   	  $str_0 = $row_upDays['upcoming']; 
-			   	  $upBrewName0 = Truncate6($str_0);
+			   	  $upBrewName0 = truncate_string($row_upDays['upcoming'],12,'...');
 			      if ($upcoming0 == $today0) { echo "<tr><td valign=\"top\" class=\"none\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName0."</a>"; else echo $upBrewName0; echo "</td></tr>"; }
 			   	}
 			   }
@@ -277,7 +276,7 @@ foreach($weeks AS $week){
 			   echo "<table class=\"none\">";
 			   do { 
 			   if ($row_calDays['brewArchive'] != "Y") {
-			   $str1 = $row_calDays['brewName']; $brewName1 = Truncate6($str1);
+			   $brewName1 = truncate_string($row_calDays['brewName'],12,'...');
 			   $MySqlDate1 = $row_calDays['brewDate']; 
 			   $planned1 = GetTimeStamp($MySqlDate1);
 			   $brewday1 = GetTimeStamp($MySqlDate1);
@@ -315,8 +314,7 @@ foreach($weeks AS $week){
 			   	$MySqlDate_1 = $row_upDays['upcomingDate'];
 			   	$upcoming1 = GetTimeStamp($MySqlDate_1);
 				if ($todaysDate < $upcoming1) { 
-			   	 $str_1 = $row_upDays['upcoming']; 
-			   	 $upBrewName1 = Truncate6($str_1);
+			   	 $upBrewName1 = truncate_string($row_upDays['upcoming'],12,'...');
 			     if ($upcoming1 == $today1) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName1."</a>"; else echo $upBrewName1; echo "</td></tr>"; }
 			     }
 			   }
@@ -340,7 +338,7 @@ foreach($weeks AS $week){
 			   echo "<table class=\"none\">";
 			   do { 
 			   if ($row_calDays['brewArchive'] != "Y") {
-			   $str2 = $row_calDays['brewName']; $brewName2 = Truncate6($str2);
+			   $brewName2 = truncate_string($row_calDays['brewName'],12,'...');
 			   $MySqlDate2 = $row_calDays['brewDate']; 
 			   $planned2 = GetTimeStamp($MySqlDate2);
 			   $brewday2 = GetTimeStamp($MySqlDate2);
@@ -379,8 +377,7 @@ foreach($weeks AS $week){
 			   	$upcoming2 = GetTimeStamp($MySqlDate_2);
 				
 				if ($todaysDate < $upcoming2) {
-			   	 $str_2 = $row_upDays['upcoming']; 
-			   	 $upBrewName2 = Truncate6($str_2);
+			   	 $upBrewName2 = truncate_string($row_upDays['upcoming'],12,'...');
 			     if ($upcoming2 == $today2) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName2."</a>"; else echo $upBrewName2; echo "</td></tr>"; }
 			     }
 			   }
@@ -406,7 +403,7 @@ foreach($weeks AS $week){
 			echo "<table class=\"none\">";
 			   do { 
 			   		if ($row_calDays['brewArchive'] != "Y") {
-			   $str3 = $row_calDays['brewName']; $brewName3 = Truncate6($str3);
+			   $brewName3 = truncate_string($row_calDays['brewName'],12,'...');
 			   $MySqlDate3 = $row_calDays['brewDate']; 
 			   $planned3 = GetTimeStamp($MySqlDate3);
 			   $brewday3 = GetTimeStamp($MySqlDate3);
@@ -445,8 +442,7 @@ foreach($weeks AS $week){
 			   	$MySqlDate_3 = $row_upDays['upcomingDate'];
 			   	$upcoming3 = GetTimeStamp($MySqlDate_3);
 			   	if ($todaysDate < $upcoming3) {
-				 $str_3 = $row_upDays['upcoming']; 
-			   	 $upBrewName3 = Truncate6($str_3);
+				 $upBrewName3 = truncate_string($row_upDays['upcoming'],12,'...');
 			     if ($upcoming3 == $today3) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName3."</a>"; else echo $upBrewName3; echo "</td></tr>"; }
 			     }
 			   }

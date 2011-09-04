@@ -39,10 +39,10 @@
 	<td class="dataList"><a href="index.php?action=list&dbTable=<?php echo $dbTable; ?>&filter=<?php echo $row_upcoming['brewBrewerID']; ?>"><?php echo $row_upcoming['brewBrewerID']; ?></a></td>
 	<?php } ?>
 	<?php if ($row_upcoming['upcomingRecipeID'] != "") { ?>
-    <td class="data_icon_list"><a href="../index.php?page=recipeDetail&id=<?php echo $row_upcoming['upcomingRecipeID']; if ($row_pref['mode'] == "2") echo "&filter=".$row_upcoming['brewBrewerID'];  ?>"><img src="<?php echo $imageSrc; ?>monitor.png" align="absmiddle" border="0" alt="View <?php echo $row_upcoming['upcoming']; ?>" title="View <?php echo $row_upcoming['upcoming']; ?>"></a></td>
+    <td class="data-icon_list"><a href="../index.php?page=recipeDetail&id=<?php echo $row_upcoming['upcomingRecipeID']; if ($row_pref['mode'] == "2") echo "&filter=".$row_upcoming['brewBrewerID'];  ?>"><img src="<?php echo $imageSrc; ?>monitor.png" align="absmiddle" border="0" alt="View <?php echo $row_upcoming['upcoming']; ?>" title="View <?php echo $row_upcoming['upcoming']; ?>"></a></td>
     <?php } else { ?><td class="dataLabel">&nbsp;</td><?php } ?>
-    <td class="data_icon_list"><a href="index.php?action=edit&dbTable=upcoming&id=<?php echo $row_upcoming['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_upcoming['upcoming']; ?>" title="Edit <?php echo $row_upcoming['upcoming']; ?>"></a></td>
-  	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=upcoming','id',<?php echo $row_upcoming['id']; ?>,'Are you sure you want to delete this upcoming brew?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_upcoming['upcoming']; ?>" title="Delete <?php echo $row_upcoming['upcoming']; ?>"></a></td>
+    <td class="data-icon_list"><a href="index.php?action=edit&dbTable=upcoming&id=<?php echo $row_upcoming['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_upcoming['upcoming']; ?>" title="Edit <?php echo $row_upcoming['upcoming']; ?>"></a></td>
+  	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=upcoming','id',<?php echo $row_upcoming['id']; ?>,'Are you sure you want to delete this upcoming brew?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_upcoming['upcoming']; ?>" title="Delete <?php echo $row_upcoming['upcoming']; ?>"></a></td>
 	
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

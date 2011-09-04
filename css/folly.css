@@ -12,28 +12,28 @@ background-repeat: repeat-x;
 
 
 /* ------------------ global link styles ------------------  */
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #000099; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	 { 
+a:visited, .add-button:visited, .update-button:visited, .button:visited	 { 
 color: #000099; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	 
 { color: #9C2023; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active	{ 
+a:active, .add-button:active, update-button:active, .button:active	{ 
 color: #9C2023; text-decoration: none; 
 }
 
 /* ------------------  layout divs ------------------  */
 
-#maincontainer {
+#main-container {
 width: 764px;
 margin-right: auto;
 margin-left: auto;
 }
 
-#contentwrapper {
+#content-wrapper {
 padding: 5px;
 border-left: 2px solid #000000;
 border-right: 2px solid #000000;
@@ -43,7 +43,7 @@ width: 750px;
 }
 
 /*
-#contentwrapperAdmin { 
+#content-wrapperAdmin { 
 float: left;
 width: 750px;
 padding: 8px 5px 5px 5px;
@@ -54,7 +54,7 @@ border-right: 2px solid #000000;
 }
 */
 
-#contentcolumn { 		/* main content - holds procedure, recipe, mash, etc. */
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
 background-color:#ffffff;
 width: 500px;
 border-right: 243px solid #ffffff; /* The width and color of the right*/
@@ -62,12 +62,12 @@ margin-right: -243px;
 padding: 0;
 }
 
-#contentWide { 			/* if no sidebar content */
+#content-wide { 			/* if no sidebar content */
 background-color:#ffffff;
 width: 750px;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
 background-color:#ffffff;
 width: 243px;
 padding: 0 0 0 5px;

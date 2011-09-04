@@ -48,12 +48,12 @@ if ($confirm == "true") {
     echo '<td class="dataList">' . $row_extracts['extractPPG'] . '</td>' . "\n";
     $form = $row_extracts['extractLME'] ? "Liquid" : "Dry";
     echo '<td class="dataList">' . $form . '</td>' . "\n";
-    echo '<td class="dataList">' . Truncate3($row_extracts['extractInfo']) . '</td>' . "\n";
+    echo '<td class="dataList">' . truncate_string($row_extracts['extractInfo'],50,'...') . '</td>' . "\n";
     echo '<td class="dataList">' . $row_extracts['extractSupplier'] . '</td>' . "\n";
     echo '<td class="dataList">' . $row_extracts['extractOrigin'] . '</td>' . "\n";
-    echo '<td class="data_icon_list"><a href="index.php?action=edit&dbTable=extract&id=' . $row_extracts['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_extracts['extractName'] . '" title="Edit ' . $row_extracts['extractName'] . '"></a></td>' . "\n";
+    echo '<td class="data-icon_list"><a href="index.php?action=edit&dbTable=extract&id=' . $row_extracts['id'] . '"><img src="' . $imageSrc . 'pencil.png" align="absmiddle" border="0" alt="Edit ' . $row_extracts['extractName'] . '" title="Edit ' . $row_extracts['extractName'] . '"></a></td>' . "\n";
     if  ($row_user['userLevel'] == "1") { ?>
-      <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=extract','id',<?php echo $row_extracts['id']; ?>,'Are you sure you want to delete this extract?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['extractName']; ?>" title="Delete <?php echo $row_grains['extractName']; ?>"></a></td>
+      <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=extract','id',<?php echo $row_extracts['id']; ?>,'Are you sure you want to delete this extract?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['extractName']; ?>" title="Delete <?php echo $row_grains['extractName']; ?>"></a></td>
     <?php } ?>
     </tr>
     <?php 

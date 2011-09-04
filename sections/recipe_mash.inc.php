@@ -4,7 +4,7 @@ if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && 
 
 <?php if (($row_pref['mashDisplayMethod'] == "1") && ($row_log['brewMashProfile'] != "")) { // Use mash profiles DB ?>
 <div class="headerContent">Mash Profile</div>
-<div class="dataContainer">
+<div class="data-container">
 <h3><em><?php echo $row_mash_profiles['mashProfileName']; ?></em></h3>
 <table class="dataTable">
 	<tr>
@@ -58,7 +58,7 @@ if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && 
 if (($row_pref['mashDisplayMethod'] == "2") || (($row_pref['mashDisplayMethod'] == "1")  && ($row_log['brewMashProfile'] == ""))) { // unique mash profiles for every log
 if ($row_log['brewMashType'] != "" ) { // hide entire set of mash rows if first is not present ?>
 <div class="headerContent">Mash</div>
-<div class="dataContainer">
+<div class="data-container">
 <table class="dataTable">
 	<tr>
 	<td width="50%">

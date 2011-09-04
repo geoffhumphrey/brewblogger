@@ -95,12 +95,12 @@ if ($action == "view") { ?>
     <td class="dataList"><?php if ($row_mash_steps['stepTemp'] != "") echo $row_mash_steps['stepTemp']."&deg; ".$row_pref['measTemp']; ?></td>
     <td class="dataList"><?php echo $row_mash_steps['stepDescription']; ?></td>
     <?php  if (($row_mash_profiles['mashBrewerID'] != "brewblogger") && (($row_user['userLevel'] == "1") || ($row_mash_profiles['mashBrewerID'] == $_SESSION['loginUsername']))) { ?>
-    <td class="data_icon_list"><a href="index.php?action=edit&dbTable=mash_steps&id=<?php echo $row_mash_steps['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_mash_steps['stepName']; ?>" title="Edit <?php echo $row_mash_steps['stepName']; ?>"></a></td>
-    <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_steps','id',<?php echo $row_mash_steps['id']; ?>,'Are you sure you want to delete this mash step? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_steps['stepName']; ?>" title="Delete <?php echo $row_mash_steps['stepName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="index.php?action=edit&dbTable=mash_steps&id=<?php echo $row_mash_steps['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_mash_steps['stepName']; ?>" title="Edit <?php echo $row_mash_steps['stepName']; ?>"></a></td>
+    <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_steps','id',<?php echo $row_mash_steps['id']; ?>,'Are you sure you want to delete this mash step? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_steps['stepName']; ?>" title="Delete <?php echo $row_mash_steps['stepName']; ?>"></a></td>
     <?php } 
 	else { ?>
-   <td class="data_icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
-   <td class="data_icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
+   <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
+   <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

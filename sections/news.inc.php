@@ -36,7 +36,7 @@
     <td class="text_9 right bknd_ultra_lt" width="10%" nowrap="nowrap">&nbsp;Posted <?php $date = $row_news['newsDate']; $realdate = dateconvert($date,2); echo $realdate; ?> by <?php echo $row_news['newsPoster']; ?>&nbsp;</td>
   </tr>
   <tr>
-  	<td colspan="2" style="padding-top: 5px;"><?php if ($page == "news") echo $row_news['newsText']; else { $str = $row_news['newsText']; echo Truncate5($str); } ?></td>
+  	<td colspan="2" style="padding-top: 5px;"><?php if ($page == "news") echo $row_news['newsText']; else { echo truncate_string($row_news['newsText'],500,'...'); } ?></td>
   </tr>
   <?php if ($page != "news") { ?>
   <tr>

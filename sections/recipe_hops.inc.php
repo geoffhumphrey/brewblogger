@@ -11,7 +11,7 @@ if ($row_log['brewHops1'] != "" ) { // hide entire set of hops rows if first is 
     <div id="help"><a href="sections/reference.inc.php?section=hops&amp;source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Hops Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Reference" /></a></div>
   <?php } ?>
   <div class="headerContent"><a name="recipe" id="recipe"></a>Hops</div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table class="dataTable">
 
   <?php
@@ -174,7 +174,7 @@ if ($row_log['brewHops1'] != "" ) { // hide entire set of hops rows if first is 
 
 if ($row_log['brewBoilTime'] != "") { ?>
   <div class="headerContent">Boil</div>
-  <div class="dataContainer">
+  <div class="data-container">
   <table class="dataTable">
   <tr>
     <td class="dataLabelLeft">Total Boil Time:</td>

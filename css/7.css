@@ -33,28 +33,28 @@ input, select, textarea		{ font-family: inherit; font-size: 11px; }
 
 
 /* ------------------ global link styles ------------------  */
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #005295; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
+a:visited, .add-button:visited, .update-button:visited, .button:visited	{ 
 color: #005295; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	{ 
 color: #ff7200; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active { 
+a:active, .add-button:active, update-button:active, .button:active { 
 color: #ff7200; text-decoration: none; 
 }
 
 /* ------------------  layout divs ------------------  */
-#maincontainer {
+#main-container {
 width: 760px;
 margin-top: 5px;
 margin-right: auto;
 margin-left: auto;
 }
 
-#contentwrapper {
+#content-wrapper {
 padding: 5px;
 background-color:#ffffff;
 overflow: hidden;
@@ -65,7 +65,7 @@ background-position: top left;
 }
 
 /*
-#contentwrapperAdmin {
+#content-wrapperAdmin {
 background-image:  url("../images/StylizedBlue/stylized_2_body.jpg"); 
 background-repeat: no-repeat; 
 background-position: top left;
@@ -78,7 +78,7 @@ margin-top: 0px;
 }
 */ 
 
-#contentcolumn { 		/* main content - holds procedure, recipe, mash, etc. */
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
 background-color:#ffffff;
 width: 500px;
 border-right: 245px solid #ffffff; /* The width and color of the right*/
@@ -86,12 +86,12 @@ margin-right: -245px;
 padding: 0;
 }
 
-#contentWide { 			/* if no sidebar content */
+#content-wide { 			/* if no sidebar content */
 background-color:#ffffff;
 width: 750px;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
 background-color:#ffffff;
 width: 245px;
 padding: 0 0 0 5px;

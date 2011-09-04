@@ -11,16 +11,16 @@ font-family: Arial, Helvetica, sans-serif;
 
 /* ------------------ global link styles ------------------  */
 
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #000000; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	 { 
+a:visited, .add-button:visited, .update-button:visited, .button:visited	 { 
 color: #000000; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	{ 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	{ 
 color: #000000; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active	{ 
+a:active, .add-button:active, update-button:active, .button:active	{ 
 color: #000000; text-decoration: none; 
 }
 
@@ -35,7 +35,7 @@ font-weight: bold;
 }
 
 
-#maincontainer {
+#main-container {
 width: 100%;
 padding: 0px;
 text-align: left;
@@ -50,14 +50,14 @@ margin-top: 0px;
 margin-left: 0px;
 }
 
-#contentcolumn { 		/* main content - holds procedure, recipe, mash, etc. */
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
 width: 450px;
 margin-right: 10px;
 float: left;
 text-align: left;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
 float: left;
 width: 190px;
 text-align: left;
@@ -68,7 +68,7 @@ margin-top: 25px;
 }
 
 
-.dataContainer {		 /* container for main content - holds procedure, recipe, mash, etc. */
+.data-container {		 /* container for main content - holds procedure, recipe, mash, etc. */
 width: inherit;
 margin-left: 0px;
 padding: 0px 0px 0px 0px;

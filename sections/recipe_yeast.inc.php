@@ -3,7 +3,7 @@
 if ((($row_log['brewYeast'] != "") && ($row_log['brewYeastProfile'] == "")) || (($row_log['brewYeast'] == "") && ($row_log['brewYeastProfile'] != ""))) { ?>
 <div class="headerContent">Yeast</div>
 <?php if ($row_log['brewYeast'] != "") { // hide Yeast section if none listed (6) ?>
-<div class="dataContainer">
+<div class="data-container">
 <table class="dataTable">
   <td class="dataLeft">
   <?php 
@@ -23,7 +23,7 @@ $query_yeast_profiles = sprintf("SELECT * FROM yeast_profiles WHERE id='%s'", $r
 $yeast_profiles = mysql_query($query_yeast_profiles, $brewing) or die(mysql_error());
 $row_yeast_profiles = mysql_fetch_assoc($yeast_profiles);
 ?>
-<div class="dataContainer">
+<div class="data-container">
 <table class="dataTable">
 <?php if ($row_yeast_profiles['yeastName'] != "") { ?>
 <tr>

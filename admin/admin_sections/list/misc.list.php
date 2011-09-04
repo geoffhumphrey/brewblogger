@@ -24,9 +24,9 @@
 	<td class="dataList" nowrap><?php echo $row_misc['miscType']; ?></td>
     <td class="dataList"><?php echo $row_misc['miscUse']; ?></td>
 	<td class="dataList"><?php echo $row_misc['miscNotes']; ?></td>
-	<td class="data_icon_list"><a href="index.php?action=edit&dbTable=misc&id=<?php echo $row_misc['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_misc['miscName']; ?>" title="Edit <?php echo $row_misc['miscName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="index.php?action=edit&dbTable=misc&id=<?php echo $row_misc['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_misc['miscName']; ?>" title="Edit <?php echo $row_misc['miscName']; ?>"></a></td>
   	<?php if  ($row_user['userLevel'] == "1") { ?>
-	<td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=misc','id',<?php echo $row_misc['id']; ?>,'Are you sure you want to delete this grain?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_misc['miscName']; ?>" title="Delete <?php echo $row_misc['miscName']; ?>"></a></td>
+	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=misc','id',<?php echo $row_misc['id']; ?>,'Are you sure you want to delete this grain?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_misc['miscName']; ?>" title="Delete <?php echo $row_misc['miscName']; ?>"></a></td>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

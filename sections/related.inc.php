@@ -1,6 +1,6 @@
 <?php if ($row_log['brewLink1'] != "" ) { ?>
 <div id="sidebarWrapper">
-  <div id="sidebarHeader"><span class="data_icon"><img src="<?php echo $imageSrc; ?>link.png" align="texttop"></span><span class="data">Related Link<?php if ($row_log['brewLink2'] != "" ) echo "s"; ?></span></div>
+  <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>link.png" align="texttop"></span><span class="data">Related Link<?php if ($row_log['brewLink2'] != "" ) echo "s"; ?></span></div>
     <div id="sidebarInnerWrapper">
       <table>
 	  	  <tr>

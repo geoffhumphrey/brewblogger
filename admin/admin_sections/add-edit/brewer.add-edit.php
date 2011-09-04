@@ -72,7 +72,7 @@
 <tr>
       <td class="dataLabelLeft"><?php if ($row_pref['mode'] == "1") echo "Image Name:"; else echo "Logo Image Name:"; ?></td>
       <td class="data"><input name="brewerImage" type="text" value="<?php if ($action == "edit") echo $row_log['brewerImage']; ?>" size="60"> 
-      &nbsp;<span class="data_icon"><img src="<?php echo $imageSrc; ?>picture_add.png" align="absmiddle"/></span><span class="data"><a href="includes/upload_image.inc.php?KeepThis=true&TB_iframe=true&height=450&width=800" class="thickbox" title="Upload">Upload</a></span></td>
+      &nbsp;<span class="data-icon"><img src="<?php echo $imageSrc; ?>picture_add.png" align="absmiddle"/></span><span class="data"><a href="includes/upload_image.inc.php?KeepThis=true&TB_iframe=true&height=450&width=800" class="thickbox" title="Upload">Upload</a></span></td>
 </tr>
 <tr>
       <td class="dataLabelLeft">Misc. Info:</td>

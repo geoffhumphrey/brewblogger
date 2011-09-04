@@ -1,4 +1,4 @@
-<div class="dataContainer">
+<div class="data-container">
 <table class="dataTable">
  <tr>
 	<td valign="top" class="dataLabelLeft"><?php if ($row_pref['mode'] == "2") echo "Club "; ?>Name:</td>

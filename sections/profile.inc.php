@@ -13,17 +13,17 @@ $totalRows_count2 = mysql_num_rows($count2);
 
 ?>
 
-<div class="dataContainer">
+<div class="data-container">
 <table>
 <?php if ($totalRows_count1 > 0) { ?>
 <tr>
-	<td class="data_icon"><img src="<?php echo $imageSrc; ?>book.png"></td>
+	<td class="data-icon"><img src="<?php echo $imageSrc; ?>book.png"></td>
 	<td class="data"><a href="index.php?page=brewBlogList&filter=<?php echo $filter; ?>&sort=brewDate&dir=DESC">View <?php echo $row_members['realFirstName']; ?>'s <?php echo $row_pref['menuBrewBlogs']; ?></a></td>
 </tr>
 <?php } ?>
 <?php if ($totalRows_count2 > 0) { ?>
 <tr>
-	<td class="data_icon"><img src="<?php echo $imageSrc; ?>script.png"></td>
+	<td class="data-icon"><img src="<?php echo $imageSrc; ?>script.png"></td>
 	<td class="data"><a href="index.php?page=recipeList&filter=<?php echo $filter; ?>">View <?php echo $row_members['realFirstName']; ?>'s <?php echo $row_pref['menuRecipes']; ?></a></td>
 </tr>
 <?php } ?>

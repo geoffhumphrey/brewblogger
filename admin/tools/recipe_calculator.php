@@ -354,7 +354,7 @@ if ($action == "calculate") {
     <div class="headerContentAdmin">Malt Extracts</div>
     <table>
       <tr>
-        <td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Extracts?" title="Add Extracts?"></span>&nbsp;<a href="index.php?action=add&dbTable=extract">Add Extracts?</a></td>
+        <td colspan="5" class="dataListLeft"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Extracts?" title="Add Extracts?"></span>&nbsp;<a href="index.php?action=add&dbTable=extract">Add Extracts?</a></td>
       </tr>
       <?php create_extract_entries(0, MAX_EXT); ?>
     </table>
@@ -366,7 +366,7 @@ if ($action == "calculate") {
     <div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Grains</div>
     <table>
       <tr>
-        <td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Grains?" title="Add Grains?"></span>&nbsp;<a href="index.php?action=add&dbTable=malt">Add Grains?</a></td>
+        <td colspan="5" class="dataListLeft"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Grains?" title="Add Grains?"></span>&nbsp;<a href="index.php?action=add&dbTable=malt">Add Grains?</a></td>
       </tr>
       <?php create_grain_entries(0, MAX_GRAINS); ?>
     </table>
@@ -378,7 +378,7 @@ if ($action == "calculate") {
     <div class="headerContentAdmin">Adjuncts</div>
     <table>
       <tr>
-        <td colspan="5" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Adjuncts?" title="Add Adjuncts?"></span>&nbsp;<a href="index.php?action=add&dbTable=adjuncts">Add Adjuncts?</a></td>
+        <td colspan="5" class="dataListLeft"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Adjuncts?" title="Add Adjuncts?"></span>&nbsp;<a href="index.php?action=add&dbTable=adjuncts">Add Adjuncts?</a></td>
       </tr>
       <?php create_adj_entries(0, MAX_ADJ); ?>
     </table>
@@ -391,7 +391,7 @@ if ($action == "calculate") {
     <div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=hops&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Hops Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Hops</div>
     <table>
       <tr>
-        <td colspan="11" class="dataListLeft"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Hops?" title="Add Hops?"></span>&nbsp;<a href="index.php?action=add&dbTable=hops">Add Hops?</a></td>
+        <td colspan="11" class="dataListLeft"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add Hops?" title="Add Hops?"></span>&nbsp;<a href="index.php?action=add&dbTable=hops">Add Hops?</a></td>
       </tr>
       <tr>
         <td>&nbsp;</td>

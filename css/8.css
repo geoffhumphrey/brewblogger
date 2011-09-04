@@ -29,21 +29,21 @@ input, select, textarea		{ font-family: inherit; font-size: 11px; }
 .radiobutton		        { border: none; padding-bottom: 2px;}
 
 /* ------------------ global link styles ------------------  */
-a:link, .add_button, .update_button, .button { 
+a:link, .add-button, .update-button, .button { 
 color: #362CA0; text-decoration: none; 
 }
-a:visited, .add_button:visited, .update_button:visited, .button:visited	{ 
+a:visited, .add-button:visited, .update-button:visited, .button:visited	{ 
 color: #362CA0; text-decoration: none; 
 }
-a:hover, .add_button:hover, .add_button:focus, .update_button:hover, .update_button:focus, .button:hover, .button:focus	 { 
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	 { 
 color: #7A2821; text-decoration: none; 
 }
-a:active, .add_button:active, update_button:active, .button:active	{ 
+a:active, .add-button:active, update-button:active, .button:active	{ 
 color: #7A2821; text-decoration: none; 
 }
 
 /* ------------------  layout divs ------------------  */
-#maincontainer {
+#main-container {
 width: 760px;
 margin-top: 5px;
 margin-right: auto;
@@ -51,7 +51,7 @@ margin-left: auto;
 border: 3px solid #000000;
 }
 
-#contentwrapper {
+#content-wrapper {
 padding: 45px 5px 5px 5px;
 overflow: hidden;
 width: 750px;
@@ -62,7 +62,7 @@ background-color:#ffffff;
 }
 
 /*
-#contentwrapperAdmin {
+#content-wrapperAdmin {
 float: left;
 width: 750px;
 padding: 40px 5px 5px 5px;
@@ -74,7 +74,7 @@ margin-top: 0px;
 }
 */
 
-#contentcolumn { 		/* main content - holds procedure, recipe, mash, etc. */
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
 background-color:#ffffff;
 width: 500px;
 border-right: 245px solid #ffffff; /* The width and color of the right*/
@@ -82,11 +82,11 @@ margin: 0 -245px 0 0;
 padding: 0;
 }
 
-#contentWide { 			/* if no sidebar content */
+#content-wide { 			/* if no sidebar content */
 width: 750px;
 }
 
-#rightcolumn {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
 background-color:#ffffff;
 width: 245px;
 padding: 0 0 0 5px;

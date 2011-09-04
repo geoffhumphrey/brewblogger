@@ -1,7 +1,42 @@
 <?php 
 require ('paths.php');
-require_once (CONFIG.'config.php'); 
 include (INCLUDES.'url_variables.inc.php');
+
+//navbar configuration for login/logout links
+require (INCLUDES.'authentication_nav.inc.php'); session_start();
+
+//set up brewers, themes, etc.
+include (INCLUDES.'db_connect_universal.inc.php');
+
+//set up recipes, brewlogs, etc.
+include (INCLUDES.'db_connect_log.inc.php');
+
+//include function to check for mobile browsers
+include (INCLUDES.'check_mobile.inc.php');
+
+//do various abv calculations related to the currently viewed recipe (if any)
+include (INCLUDES.'abv.inc.php');
+include (INCLUDES.'functions.inc.php'); 
+
+//include various conversions functions, date functions and truncate functions
+//plus additional libs for 
+//    titles.inc.php - set up the navigation?
+//    messages.inc.php - tooltips and a few messages
+//    scrubber.inc.php - a few arrays for character replacement
+include (INCLUDES.'plug-ins.inc.php');
+
+//figure out SRM and a hex value for displaying beer color
+//include (INCLUDES.'color.inc.php');
+
+// Load color library functions
+require_once (ADMIN_LIBRARY.'color.lib.php');
+
+//determine if club edition or personal edition is in use
+include (INCLUDES.'version.inc.php'); 
+
+// Load constants
+require_once (ADMIN_INCLUDES.'constants.inc.php');
+
 
 $page = "logPrint";
 if (isset($_GET['page'])) {
@@ -21,14 +56,7 @@ $style = mysql_query($query_style, $brewing) or die(mysql_error());
 $row_style = mysql_fetch_assoc($style);
 $totalRows_style = mysql_num_rows($style);
 
-include (INCLUDES.'db_connect_universal.inc.php');
-include (INCLUDES.'db_connect_log.inc.php');
-include (INCLUDES.'abv.inc.php');
-include (INCLUDES.'color.inc.php');
-include (INCLUDES.'check_mobile.inc.php');
-include (INCLUDES.'plug-ins.inc.php');
-include (INCLUDES.'version.inc.php');
-include (SECTIONS.'water_amounts_calc.inc.php');
+$imageSrc = "images/";
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +72,7 @@ include (SECTIONS.'water_amounts_calc.inc.php');
 <link href="css/print.css" rel="stylesheet" type="text/css">
 </head>
 <body <?php if ($view == "print") echo "onload=\"javascript:window.print()\""; ?>>
-<div id="maincontainer">
+<div id="main-container">
 <?php if ($view == "limited") { // if auto print turned off ?>
 <p><img src="images/printer.png"><span class="data"><a href="javascript:window.print()">Print</a></span></p>
 <?php } ?>
@@ -172,7 +200,7 @@ include (SECTIONS.'water_amounts_calc.inc.php');
 	<?php } ?>
 	<tr>
 	 <td class="dataLabel bdr1B_black">Boil Time:</td>
-	 <td class="data bdr1B_black bdr1L_black"><?php if ($dbTable == "recipes") echo $boilTime; echo $row_log['brewBoilTime']; ?></td>
+	 <td class="data bdr1B_black bdr1L_black"><?php if ($dbTable == "recipes") echo $boilTime; else echo $row_log['brewBoilTime']; ?></td>
      <td class="data bdr1B_black bdr1L_black">&nbsp;</td>
 	</tr>
 	<tr>

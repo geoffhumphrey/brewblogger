@@ -8,7 +8,7 @@
 	  <?php } while ($row_theme = mysql_fetch_assoc($theme)); $rows = mysql_num_rows($theme); if ($rows > 0) { mysql_data_seek($theme, 0); $row_theme = mysql_fetch_assoc($grains); }	?>
 	</select>
 	</td>
-    <td class="data"><span class="data_icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Themes?" title="Add Themes?"></span><span class="data"><a href="index.php?action=add&dbTable=brewingcss">Add Themes?</a></span></td>
+    <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Themes?" title="Add Themes?"></span><span class="data"><a href="index.php?action=add&dbTable=brewingcss">Add Themes?</a></span></td>
 </tr>
 </table>
 

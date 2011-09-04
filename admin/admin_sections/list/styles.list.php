@@ -88,7 +88,7 @@ if ($confirm == "true") { ?>
     </td>
     <td class="dataList" >
 	<?php
-						  if ($page == "reference") { if (!checkmobile()) { include (ADMIN_INCLUDES.'colorStyle.inc.php'); } else { include ('../includes/colorStyle.inc.php'); } }
+						  if ($page == "reference") include (INCLUDES.'colorStyle.inc.php');
 						  if ($row_styles['brewStyleSRM'] == "") { echo "Varies"; }
 						  elseif ($row_styles['brewStyleSRM'] == "N/A") { echo "N/A"; }
 						  elseif ($row_styles['brewStyleSRM'] != "") { $SRMmin = ltrim ($row_styles['brewStyleSRM'], "0"); $SRMmax = ltrim ($row_styles['brewStyleSRMMax'], "0"); echo $SRMmin."-".$SRMmax; }
@@ -96,8 +96,8 @@ if ($confirm == "true") { ?>
 						  ?>
      </td>
 	 <?php if  ($row_user['userLevel'] == "1") { ?>
-	 <td class="data_icon_list"><a href="index.php?action=edit&dbTable=styles&id=<?php echo $row_styles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_styles['brewStyle']; ?>" title="Edit <?php echo $row_styles['brewStyle']; ?>"></a></td>
-  	 <td class="data_icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=styles','id',<?php echo $row_styles['id']; ?>,'Are you sure you want to delete this style?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_styles['brewStyle']; ?>" title="Delete <?php echo $row_styles['brewStyle']; ?>"></a></td>
+	 <td class="data-icon_list"><a href="index.php?action=edit&dbTable=styles&id=<?php echo $row_styles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_styles['brewStyle']; ?>" title="Edit <?php echo $row_styles['brewStyle']; ?>"></a></td>
+  	 <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=styles','id',<?php echo $row_styles['id']; ?>,'Are you sure you want to delete this style?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_styles['brewStyle']; ?>" title="Delete <?php echo $row_styles['brewStyle']; ?>"></a></td>
 	 <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

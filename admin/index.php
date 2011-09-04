@@ -40,13 +40,13 @@ if (($action == "edit") || ($action == "add") || ($action == "import") || ($acti
 <script language="javascript" type="text/javascript" src="js_includes/delete.js"></script>
 </head>
 <body <?php include (ADMIN_INCLUDES.'focus.inc.php'); ?>>
-<div id="maincontainer">
+<div id="main-container">
 	<div id="header">
 		<div class="titleText"><?php if ($row_name['brewerFirstName'] != "") echo $row_name['brewerFirstName'];  if (($row_pref['mode'] == "1") && ($row_name['brewerFirstName'] != ""))  echo "'s"; echo "&nbsp;".$row_name['brewerLogName']; ?></div><div class="quoteText"><?php echo $row_name['brewerTagline']; ?></div>
 	</div>
 	<div id="nav"><?php include (ADMIN_INCLUDES.'admin_nav.inc.php'); ?></div>
-	<div id="contentwrapper">
-		<div id="contentWide">
+	<div id="content-wrapper">
+		<div id="content-wide">
 		<?php  
 		if ($action == "default") 								include (ADMIN_SECTIONS.'main.admin.php'); 
 		if ($action == "list") 									include (ADMIN_SECTIONS.'list.admin.php');
