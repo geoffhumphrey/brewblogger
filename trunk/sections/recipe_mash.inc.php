@@ -1,7 +1,3 @@
-<?php 
-if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && (($page == "brewBlogCurrent") || ($page == "brewBlogDetail"))) { include (INCLUDES.'efficiency.inc.php'); }
-if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && ($page == "logPrint")) { include (INCLUDES.'efficiency.inc.php'); } ?>
-
 <?php if (($row_pref['mashDisplayMethod'] == "1") && ($row_log['brewMashProfile'] != "")) { // Use mash profiles DB ?>
 <div class="headerContent">Mash Profile</div>
 <div class="data-container">
@@ -21,9 +17,9 @@ if (($row_log['brewPreBoilAmt'] != "") && ($row_log['brewMashGravity'] !="") && 
     </tr>
     <tr>
   		<td class="dataLabelLeft"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) { if ($row_pref['measFluid2'] == "liters") echo "PPK:"; else echo "PPG:"; } elseif ($row_log['brewPPG'] != "") { if ($row_pref['measFluid2'] == "liters") echo "PPK:"; else echo "PPG:"; } else echo ""; ?></td>
-  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($ppg_display, 1); ?></td>
+  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo calc_ppg($row_log['brewMashGravity'],$row_log['brewPreBoilAmt'],$totalGrain,$row_pref['measFluid2']); ?></td>
   		<td class="dataLabel data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo "Efficiency:"; elseif ($row_log['brewEfficiency'] != "") echo "Efficiency:"; else echo ""; ?></td>
-  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo round ($efficiency, 1)."%"; ?></td>
+  		<td class="data"><?php if (($row_log['brewMashGravity'] != "" ) && ($row_log['brewPreBoilAmt'] != "") && ($row_log['brewGrain1'] != "")) echo calc_efficiency($row_log['brewMashGravity'],$row_log['brewPreBoilAmt'],$totalGrain,$row_pref['measFluid2'],$row_log['id']); ?></td>
  	</tr>
     <tr>
     	<td class="dataLabelLeft">Notes:</td>

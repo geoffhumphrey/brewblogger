@@ -94,6 +94,74 @@ function calc_bugu($bitterness,$og) {
 	return $calc;
 }
 
+function calc_ppg($gravity,$wort,$grain,$units) {
+	$ppg = (($gravity - 1) * 1000 * $wort) / $grain;
+	switch ($units) {
+ 		case "gallons": 
+   		$ppg = $ppg;
+   		break;
+ 		case "liters":
+   		$ppg = ($ppg / 10);
+   		break;
+		}
+	$ppg = round($ppg,0);
+	return $ppg;
+}
+
+function calc_efficiency($gravity,$wort,$grain,$units,$log_id) {
+	include(CONFIG.'config.php');
+	include(ADMIN_INCLUDES.'constants.inc.php');
+	
+	$query_log = sprintf("SELECT * FROM brewing WHERE id='%s'",$log_id);
+	$log = mysql_query($query_log, $brewing) or die(mysql_error());
+	$row_log = mysql_fetch_assoc($log);
+	
+	$grainsPPG = array();
+	
+	$efficiency_sum = 0;
+	switch ($units) {
+ 		case "gallons": 
+   		for ($i = 0; $i < MAX_GRAINS; $i++) {
+  			$key              = "brewGrain" . ($i + 1);
+  			$query            = 'SELECT maltPPG FROM malt WHERE maltName="' . $row_log[$key] . '"';
+  			$grainsPPG[$i]    = mysql_query($query, $brewing) or die(mysql_error());
+			$row_grainsPPG[$i]= mysql_fetch_assoc($grainsPPG[$i]);
+			$key              = "brewGrain" . ($i + 1) . "Weight";
+			$grainsWeight[$i] = $row_log[$key];
+			if ($grainsWeight[$i] > 0) {
+				$ppg = array_sum($row_grainsPPG[$i]);
+    			$efficiency_sum = ($ppg * $grainsWeight[$i]) / $wort;
+				$efficiency[] = $efficiency_sum;
+				}
+   			}
+   		break;
+ 		case "liters":
+   		for ($i = 0; $i < MAX_GRAINS; $i++) {
+			$key              = "brewGrain" . ($i + 1);
+			$query            = 'SELECT maltPPG FROM malt WHERE maltName="' . $row_log[$key] . '"';
+			$grainsPPG[$i]    = mysql_query($query, $brewing) or die(mysql_error());
+			$row_grainsPPG[$i]= mysql_fetch_assoc($grainsPPG[$i]);
+			$key              = "brewGrain" . ($i + 1) . "Weight";
+			$grainsWeight[$i] = $row_log[$key];
+			if ($grainsWeight[$i] > 0) {
+				$ppg = array_sum($row_grainsPPG[$i]);
+				$efficiency_sum = ($ppg * ($grainsWeight[$i] * 2.202)) / ($wort * .264);
+				$efficiency[] = $efficiency_sum;
+				}
+   		}
+   	break;
+	}
+	
+	$efficiency_sum = array_sum($efficiency);
+
+	if (($efficiency_sum != 0) && ($gravity != ""))  {
+  		$efficiency = round(((($gravity - 1) * 1000) / $efficiency_sum * 100),1)."%";
+		}
+	else $efficiency = '';
+	
+	return $efficiency;	
+}
+
 // ---------------------------- Date Conversion -----------------------------------------
 // http://www.phpbuilder.com/annotate/message.php3?id=1031006
 function dateconvert($date,$func) {
