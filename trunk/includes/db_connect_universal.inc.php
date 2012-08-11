@@ -2,11 +2,14 @@
 // Get server's PHP version
 $phpVersion = phpversion();
 //echo $phpVersion;
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 $currentPage = "http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
 if (!empty($_SERVER["QUERY_STRING"])) $currentPage .= "?".$_SERVER['QUERY_STRING'];
-if (!empty($_SESSION["loginUsername"])) $loginUsername = $_SESSION["loginUsername"];
-$loginUsername = $_SESSION["loginUsername"];
+$loginUsername = NULL;
+if (isset($_SESSION['loginUsername']) && !empty($_SESSION["loginUsername"])) $loginUsername = $_SESSION["loginUsername"];
 
 // Universal DB Connections
 mysql_select_db($database_brewing, $brewing);
@@ -28,6 +31,12 @@ $pref = mysql_query($query_pref, $brewing) or die(mysql_error());
 $row_pref = mysql_fetch_assoc($pref);
 $totalRows_pref = mysql_num_rows($pref);
 
+if (!isset($page)) {
+  $page = $row_pref['home'];
+}
+if (isset($_GET['page'])) {
+  $page = (get_magic_quotes_gpc()) ? $_GET['page'] : addslashes($_GET['page']);
+}
 // -----------------------------------------------------------------------------------------------
 // Theme
 

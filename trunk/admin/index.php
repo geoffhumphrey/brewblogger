@@ -5,12 +5,15 @@ $imageSrc = "../images/";
 require ('../paths.php');
 require_once (CONFIG.'config.php'); 
 require (INCLUDES.'authentication.inc.php'); session_start(); sessionAuthenticate();
-include (INCLUDES.'check_mobile.inc.php');
+
+//override various default settings with GET parameters, if they exist
+include (INCLUDES.'url_variables.inc.php');
+
 include (INCLUDES.'db_connect_universal.inc.php');
 include (INCLUDES.'db_connect_admin.inc.php');
-include (INCLUDES.'plug-ins.inc.php'); 
 include (INCLUDES.'version.inc.php');
 include_once (ADMIN_INCLUDES.'constants.inc.php');
+include (INCLUDES.'functions.inc.php');
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

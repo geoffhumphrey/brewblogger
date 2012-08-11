@@ -165,6 +165,9 @@ function calc_efficiency($gravity,$wort,$grain,$units,$log_id) {
 // ---------------------------- Date Conversion -----------------------------------------
 // http://www.phpbuilder.com/annotate/message.php3?id=1031006
 function dateconvert($date,$func) {
+	if (empty($date)) {
+		return '';
+	}
 	
 	if ($func == 1){ //insert conversion
 		list($day, $month, $year) = explode("/", $date);
@@ -365,5 +368,3 @@ function output_print_log($id, $source, $dbTable, $page, $style, $scale, $amt, $
 	
 	return $output;
 }
-
-?>

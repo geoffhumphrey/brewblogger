@@ -1,6 +1,6 @@
 <?php if ($row_members['userPicURL'] != "") {
 $img = $row_members['userPicURL'];
-$file = rtrim($images_dir."/label_images/".$img, " ");
+$file = rtrim(IMAGES_DIR."/label_images/".$img, " ");
 
 $max_width = 225;
 $max_height = 450;

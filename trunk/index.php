@@ -15,19 +15,11 @@ include (INCLUDES.'db_connect_universal.inc.php');
 //set up recipes, brewlogs, etc.
 include (INCLUDES.'db_connect_log.inc.php');
 
-//include function to check for mobile browsers
-//include (INCLUDES.'check_mobile.inc.php');
-
-//do various abv calculations related to the currently viewed recipe (if any)
-//include (INCLUDES.'abv.inc.php');
-
-
 //include various conversions functions, date functions and truncate functions
 //plus additional libs for 
 //    titles.inc.php - set up the navigation?
 //    messages.inc.php - tooltips and a few messages
 //    scrubber.inc.php - a few arrays for character replacement
-include (INCLUDES.'plug-ins.inc.php'); // Deprecated --> Transition functions to 'functions.inc.php' file keep here for now
 include (INCLUDES.'functions.inc.php');
 
 //figure out SRM and a hex value for displaying beer color

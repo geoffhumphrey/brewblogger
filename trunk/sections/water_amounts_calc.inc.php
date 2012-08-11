@@ -2,15 +2,15 @@
 $grainWeight = $totalGrain;
 if (isset($_SESSION["loginUsername"])) { 
 	if (($row_user['defaultWaterRatio'] != "") && ($row_log['brewWaterRatio'] == "")) $thickness = $row_user['defaultWaterRatio'];
-	elseif ($row_log['brewWaterRatio'] != "") $thickness = $row_log['brewWaterRatio'];
+	elseif (isset($row_log['brewWaterRatio']) && $row_log['brewWaterRatio'] != "") $thickness = $row_log['brewWaterRatio'];
 	else $thickness = "1.33";
 	}
 else $thickness = "1.33";
 
-if     (($row_log['brewEquipProfile'] != "") && ($row_pref['measFluid2'] == "gallons")) { $evapRate = round(($row_equip_profiles['equipBoilVolume'] / $row_equip_profiles['equipEvapRate']), 2) ; $equipLoss = $row_equip_profiles['equipLoss']; }
-elseif (($row_log['brewEquipProfile'] != "") && ($row_pref['measFluid2'] == "liters"))  { $evapRate = round((($row_equip_profiles['equipBoilVolume'] / $row_equip_profiles['equipEvapRate']) * 3.78), 2); $equipLoss = round($row_equip_profiles['equipLoss'] * 3.78, 2); }
-elseif (($row_pref['measFluid2'] == "gallons") && ($row_log['brewEquipProfile'] == "")) { $evapRate = 1.5; $equipLoss = 1; }
-elseif (($row_pref['measFluid2'] == "liters")  && ($row_log['brewEquipProfile'] == "")) { $evapRate = 5.6; $equipLoss = 3.8; }
+if     ((isset($row_log['brewEquipProfile']) && $row_log['brewEquipProfile'] != "") && ($row_pref['measFluid2'] == "gallons")) { $evapRate = round(($row_equip_profiles['equipBoilVolume'] / $row_equip_profiles['equipEvapRate']), 2) ; $equipLoss = $row_equip_profiles['equipLoss']; }
+elseif ((isset($row_log['brewEquipProfile']) && $row_log['brewEquipProfile'] != "") && ($row_pref['measFluid2'] == "liters"))  { $evapRate = round((($row_equip_profiles['equipBoilVolume'] / $row_equip_profiles['equipEvapRate']) * 3.78), 2); $equipLoss = round($row_equip_profiles['equipLoss'] * 3.78, 2); }
+elseif (($row_pref['measFluid2'] == "gallons") && (!isset($row_log['brewEquipProfile']) || $row_log['brewEquipProfile'] == "")) { $evapRate = 1.5; $equipLoss = 1; }
+elseif (($row_pref['measFluid2'] == "liters")  && (!isset($row_log['brewEquipProfile']) || $row_log['brewEquipProfile'] == "")) { $evapRate = 5.6; $equipLoss = 3.8; }
 else $evapRate = 1.5;
 
 if ($row_log['brewBoilTime'] != "") $boilTime = $row_log['brewBoilTime'];

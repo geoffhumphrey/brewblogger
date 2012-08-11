@@ -1,5 +1,5 @@
 <?php 
-$filename = $images_dir."/label_images/".$row_log['brewLabelImage'];
+$filename = IMAGES_DIR."/label_images/".$row_log['brewLabelImage'];
 if (($row_log['brewLabelImage'] != "") && (file_exists($filename))) { 
 function getFileSizeW($file) 
 	{

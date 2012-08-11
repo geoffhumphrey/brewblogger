@@ -1,13 +1,12 @@
 <?php 
 require ('../../paths.php');
 require_once (CONFIG.'config.php'); 
-include ('../../includes/check_mobile.inc.php');
+include ('../../includes/functions.inc.php');
 include ('../../includes/url_variables.inc.php');
 include ('../../includes/db_connect_universal.inc.php');
 if ($action != "default") include ('../../includes/db_connect_log.inc.php');
 include ('../../includes/abv.inc.php');
 include ('../../includes/color.inc.php');
-include ('../../includes/plug-ins.inc.php');
 $page = "calculate";
 $imageSrc = "../../images/";
 ?>

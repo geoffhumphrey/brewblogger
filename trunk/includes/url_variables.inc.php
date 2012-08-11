@@ -75,7 +75,7 @@ if (isset($_GET['amt'])) {
 }
 
 $colname_log = "-1";
-if (is_numeric($_GET['id'])) {
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 	$colname_log = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
 }
 

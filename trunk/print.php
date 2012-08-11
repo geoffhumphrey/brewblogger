@@ -12,10 +12,7 @@ include (INCLUDES.'db_connect_universal.inc.php');
 include (INCLUDES.'db_connect_log.inc.php');
 
 //include function to check for mobile browsers
-include (INCLUDES.'check_mobile.inc.php');
-
 //do various abv calculations related to the currently viewed recipe (if any)
-include (INCLUDES.'abv.inc.php');
 include (INCLUDES.'functions.inc.php'); 
 
 //include various conversions functions, date functions and truncate functions
@@ -23,7 +20,6 @@ include (INCLUDES.'functions.inc.php');
 //    titles.inc.php - set up the navigation?
 //    messages.inc.php - tooltips and a few messages
 //    scrubber.inc.php - a few arrays for character replacement
-include (INCLUDES.'plug-ins.inc.php');
 
 //figure out SRM and a hex value for displaying beer color
 //include (INCLUDES.'color.inc.php');

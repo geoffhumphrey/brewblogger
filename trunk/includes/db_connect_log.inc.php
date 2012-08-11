@@ -1,10 +1,6 @@
 <?php
 //if ($row_pref['mode'] == "1") $page = "brewBlogCurrent";
 //elseif ($row_pref['mode'] == "2") $page = "about";
-$page = $row_pref['home'];
-if (isset($_GET['page'])) {
-  $page = (get_magic_quotes_gpc()) ? $_GET['page'] : addslashes($_GET['page']);
-}
 
 if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "recipeList")) $sort = "brewName";
 elseif ($page == "awardsList") $sort = "awardBrewName";
@@ -592,11 +588,13 @@ $totalRows_awards = mysql_num_rows($awards);
 
 // -----------------------------------------------------------------------------------------------
 // User Breadcrumb
+if (($page == "recipeDetail") && ($row_log['brewBrewerID'] != "")) {
 mysql_select_db($database_brewing, $brewing);
 $query_user3 = sprintf("SELECT * FROM users WHERE user_name = '%s'", $row_log['brewBrewerID']);
 $user3 = mysql_query($query_user3, $brewing) or die(mysql_error());
 $row_user3 = mysql_fetch_assoc($user3);
 $totalRows_user3 = mysql_num_rows($user3);
+}
 
 // Members
 if (($page == "members") || ($page == "calendar") || ($page == "profile")) { 

@@ -31,14 +31,14 @@ $totalGrist = ($totalExtract + $totalGrain);
 
 for ($i = 0; $i <= MAX_EXT; $i++) {
   $key = 'brewExtract' . ($i + 1) . 'Weight';
-  if ($row_log[$key] != "" && $row_log[$key] > 0) { 
+  if (isset($row_log[$key]) && $row_log[$key] != "" && $row_log[$key] > 0) { 
     $extractPer[$i] = (($row_log[$key] / $totalGrist) * 100); 
   }
 }
 
 for ($i = 0; $i <= MAX_GRAINS; $i++) {
   $key = 'brewGrain' . ($i + 1) . 'Weight';
-  if ($row_log[$key] != "" && $row_log[$key] > 0) { 
+  if (isset($row_log[$key]) && $row_log[$key] != "" && $row_log[$key] > 0) { 
     $grainPer[$i] = (($row_log[$key] / $totalGrist) * 100); 
   }
 }

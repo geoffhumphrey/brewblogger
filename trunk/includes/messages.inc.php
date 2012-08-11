@@ -11,9 +11,11 @@ $toolTip_name = "DO NOT use an apostrophe (') as it will cause functionality to 
 $toolTip_filename = "Names entered here must be exactly the same as the actual file name.";
 
 // ---------------------------- Messages ------------------------------------------------
-$msg1 = "The ".$msgName." has been added!";
-$msg2 = "The ".$msgName." has been updated!";
-$msg3 = "The ".$msgName." has been deleted!";
-$msg9 = "The ".$msgName."s have been updated!";
+if (isset($msgName)) {
+	$msg1 = "The ".$msgName." has been added!";
+	$msg2 = "The ".$msgName." has been updated!";
+	$msg3 = "The ".$msgName." has been deleted!";
+	$msg9 = "The ".$msgName."s have been updated!";
+}
 
 ?>

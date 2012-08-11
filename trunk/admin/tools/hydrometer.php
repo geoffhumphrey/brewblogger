@@ -15,10 +15,10 @@
 // This needs to be a user profile variable.
 $CAL_TEMP_DEFAULT = 60;
 
-$calTemp = $_POST["calTemp"];
-$temp    = $_POST["temp"];
-$sg      = $_POST["sg"];
-$units   = $_POST["units"];
+$calTemp = isset($_POST["calTemp"])?$_POST["calTemp"]:$CAL_TEMP_DEFAULT;
+$temp    = isset($_POST["temp"])?$_POST["temp"]:NULL;
+$sg      = isset($_POST["sg"])?$_POST["sg"]:NULL;
+$units   = isset($_POST["units"])?$_POST["units"]:NULL;
 
 if (($action == "default") || ($action == "entry")) { ?>
 <script type="text/javascript" language="JavaScript">

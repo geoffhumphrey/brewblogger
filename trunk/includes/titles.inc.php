@@ -1,4 +1,5 @@
 <?php
+$dbName = '';
 // ---------------------------- Friendly Names------------------------------------------
 if (($dbTable == "recipes") || ($source == "recipes") || ($page == "recipeList") || ($page == "recipeDetail")) 		{ 
 $dbName = $row_pref['menuRecipes'];
@@ -169,6 +170,7 @@ if ($dbTable == "preferences") { $dbName = "Preferences"; $icon = "cog"; }
 
 
 // ---------------------------- Titles --------------------------------------------------
+
 if 	($page == "brewBlogCurrent") 	{ if ($row_pref['mode'] == "1") $page_title = "Current "; if ($row_pref['mode'] == "2")  $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = " &gt; ".$row_log['brewName']; $icon = "book"; }
 if 	($page == "members") 			{ $page_title = $row_pref['menuMembers']; $icon = "group"; }
 if 	($page == "news") 				{ $page_title = "News/Announcements"; $icon = "newspaper";}

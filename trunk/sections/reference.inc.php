@@ -10,8 +10,7 @@ require_once (CONFIG.'config.php');
 require_once (ADMIN_LIBRARY.'color.lib.php');
 include (INCLUDES.'url_variables.inc.php');
 include (INCLUDES.'db_connect_universal.inc.php');  
-include (INCLUDES.'check_mobile.inc.php'); 
-include (INCLUDES.'plug-ins.inc.php'); 
+include (INCLUDES.'functions.inc.php'); 
 $imageSrc = "../images/"; 
 //echo (REFERENCE.'color.inc.php');
 }

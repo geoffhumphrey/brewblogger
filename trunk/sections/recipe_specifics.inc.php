@@ -39,7 +39,7 @@ $totalRows_styles = mysql_num_rows($styles);
         		<div class="data-regular"><?php echo dateconvert($row_log['brewDate'],2);?></div>
         	</div>
             <?php } ?>
-            <?php if ($row_log['brewTapDate'] != "") { ?>
+            <?php if (isset($row_log['brewTapDate']) && $row_log['brewTapDate'] != "") { ?>
             <div class="data-item-container">
     			<div class="data-label">Tap Date:</div>
         		<div class="data-regular"><?php echo dateconvert($row_log['brewTapDate'],2); ?></div>

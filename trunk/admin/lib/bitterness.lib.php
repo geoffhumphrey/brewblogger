@@ -120,8 +120,8 @@ function calc_bitter_rager($boilTime, $sg, $aa, $weight, $vol, $form, $units) {
   else
     $u = "0";
     
-  if ($gravity > 1.050)
-    $ga = (($gravity - 1.050) / .2);
+  if ($sg > 1.050)
+    $ga = (($sg - 1.050) / .2);
   else
     $ga = 0;
 
@@ -263,10 +263,10 @@ function calc_bitter_daniels($boilTime, $sg, $aa, $weight, $vol, $form, $units) 
   }
 
   // Correct gravity
-  if ($gravity < 1.050)
+  if ($sg < 1.050)
     $cGravity = 1;
   else
-    $cGravity = 1 + (($gravity - 1.050) / 0.2);
+    $cGravity = 1 + (($sg - 1.050) / 0.2);
 
   // Calculate
   $ibu = ($weight * $u * ($aa * .01) * $f) / ($vol * $cGravity);
