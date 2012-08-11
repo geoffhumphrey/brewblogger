@@ -90,7 +90,7 @@
 			  </td>
 			  <?php } ?>
               <td class="dataList"><?php if ($row_recipeList['brewBitterness'] != "") { echo round ($row_recipeList['brewBitterness'], 1); } else echo "&nbsp;" ?></td>
-              <td class="dataList"><?php if (($row_recipeList['brewOG'] != "") && ($row_recipeList['brewFG'] != "")) { include (INCLUDES.'abv.inc.php'); echo round ($abv, 1)."%"; } else echo "&nbsp;"; ?></td>
+              <td class="dataList"><?php if (($row_recipeList['brewOG'] != "") && ($row_recipeList['brewFG'] != "")) { echo round (calc_abv($row_recipeList['brewOG'], $row_recipeList['brewFG']), 1)."%"; } else echo "&nbsp;"; ?></td>
               <?php if (($row_pref['mode'] == "2") && ($filter == "all")) { ?><td  class="dataList"><a href="?page=<?php echo $page; ?>&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $row_user2['user_name']; ?>&view=limited"><?php echo $row_user2['realFirstName']."&nbsp;".$row_user2['realLastName']; ?></a></td><?php } ?>
               <td class="dataList center"><?php if ($totalRows_awards2 > 0) echo $totalRows_awards2; else echo "&nbsp;"; ?></td>
             </tr>

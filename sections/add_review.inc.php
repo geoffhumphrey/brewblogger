@@ -87,8 +87,7 @@ $totalRows_review = mysql_num_rows($review);
 
 }
 include ('../includes/db_connect_universal.inc.php');
-include ('../includes/check_mobile.inc.php');
-include ('../includes/plug-ins.inc.php');
+include ('../includes/functions.inc.php');
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

@@ -1,7 +1,7 @@
 <?php
-include ('../includes/check_mobile.inc.php'); 
-include ('../includes/plug-ins.inc.php'); 
 $imageSrc = "../images/";
+$agent = $_SERVER['HTTP_USER_AGENT']; 
+if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 ?>
 <html>
 <head>

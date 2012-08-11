@@ -1,10 +1,4 @@
 <?php
-mysql_select_db($database_brewing, $brewing);
-$query_user = sprintf("SELECT * FROM users WHERE user_name = '%s'", $loginUsername);
-$user = mysql_query($query_user, $brewing) or die(mysql_error());
-$row_user = mysql_fetch_assoc($user);
-$totalRows_user = mysql_num_rows($user);
-
 function authenticateUserNav($connection, $username, $password)
 {
   // Test the username and password parameters

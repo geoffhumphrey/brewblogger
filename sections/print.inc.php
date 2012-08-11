@@ -21,12 +21,11 @@ $style = mysql_query($query_style, $brewing) or die(mysql_error());
 $row_style = mysql_fetch_assoc($style);
 $totalRows_style = mysql_num_rows($style);
 
-include (INCLUDES.INCLUDES.'db_connect_universal.inc.php');
-include (INCLUDES.INCLUDES.'abv.inc.php');
-include (INCLUDES.INCLUDES.'color.inc.php');
-include (INCLUDES.INCLUDES.'check_mobile.inc.php');
-include (INCLUDES.INCLUDES.'plug-ins.inc.php');
-include (INCLUDES.INCLUDES.'version.inc.php');
+include (INCLUDES.'db_connect_universal.inc.php');
+include (INCLUDES.'abv.inc.php');
+include (INCLUDES.'color.inc.php');
+include (INCLUDES.'functions.inc.php');
+include (INCLUDES.'version.inc.php');
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

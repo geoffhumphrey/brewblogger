@@ -7,7 +7,7 @@ if ($row_pref['mode'] == "1")
   <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></span><span class="data"><?php echo "More"; if ($page != "recipeDetail") echo " ".$row_pref['menuBrewBlogs']; else echo " ".$row_pref['menuRecipes']; ?></span></div>
   	<div id="sidebarInnerWrapper" >
       <table width="100%">
-	    <?php do { 
+	    <?php while ($row_list = mysql_fetch_assoc($list)) { 
 			if ($row_list['brewArchive'] != "Y") { 
 		?>
 		  <tr>
@@ -16,7 +16,7 @@ if ($row_pref['mode'] == "1")
 		 </tr> 
 	    <?php
 			}
-		} while ($row_list = mysql_fetch_assoc($list)); ?>
+		}  ?>
 		<tr>
 			<td colspan="2"><div align="center"><?php if (($page == "recipeDetail") && ($total > $display)) { paginate($display, $pg, $total); } elseif ((($page == "brewBlogDetail") || ($page == "brewBlogCurrent")) && ($total > $display)) { paginate($display, $pg, $total); } ?></div></td>
 		</tr>

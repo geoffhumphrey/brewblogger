@@ -7,14 +7,14 @@ evaporation rate to be in volume
 instead of a percentage.
 **********************************
 */
-$units = $_POST["units"];
-$grainWeight = $_POST["grainWeight"];
-$grainRetainCoeff = $_POST["grainRetainCoeff"];
-$finalBoilVol = $_POST["finalBoilVol"];
-$equipLoss = $_POST["equipLoss"];
-$evapRate = $_POST["evapRate"];
-$boilTime = $_POST["boilTime"];
-$thickness = $_POST["thickness"];
+$units            = isset($_POST["units"])?$_POST["units"]:NULL;
+$grainWeight      = isset($_POST["grainWeight"])?$_POST["grainWeight"]:NULL;
+$grainRetainCoeff = isset($_POST["grainRetainCoeff"])?$_POST["grainRetainCoeff"]:NULL;
+$finalBoilVol     = isset($_POST["finalBoilVol"])?$_POST["finalBoilVol"]:NULL;
+$equipLoss        = isset($_POST["equipLoss"])?$_POST["equipLoss"]:NULL;
+$evapRate         = isset($_POST["evapRate"])?$_POST["evapRate"]:NULL;
+$boilTime         = isset($_POST["boilTime"])?$_POST["boilTime"]:NULL;
+$thickness        = isset($_POST["thickness"])?$_POST["thickness"]:NULL;
 ?> 
 <script type="text/javascript" language="JavaScript">
 <!-- Copyright 2003 Bontrager Connection, LLC

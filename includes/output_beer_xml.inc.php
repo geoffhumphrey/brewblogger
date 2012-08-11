@@ -1,7 +1,6 @@
 <?php require_once(CONFIG.'config.php'); 
 include('../includes/db_connect_universal.inc.php');
-include('../includes/check_mobile.inc.php');
-include('../includes/plug-ins.inc.php');
+include('../includes/functions.inc.php');
 
 $colname_log = "-1";
 if (isset($_GET['id'])) {

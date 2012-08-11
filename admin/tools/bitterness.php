@@ -3,16 +3,8 @@
 // Bitterness Calculator //
 //-----------------------//
 
-// Load the library of bitterness formula functions
-// The file_exists.. statement helps determine what our CWD is since the getcwd()
-// function isn't entirely portable or may be disabled.
-if (file_exists("bitterness.php")) {
-  require_once (ADMIN_LIBRARY.'bitterness.lib.php');
-  require_once (ADMIN_INCLUDES.'constants.inc.php');
-} else {
-  require_once (ADMIN_LIBRARY.'bitterness.lib.php');
-  require_once (ADMIN_INCLUDES.'includes/constants.inc.php');
-}
+require_once (ADMIN_LIBRARY.'bitterness.lib.php');
+require_once (ADMIN_INCLUDES.'constants.inc.php');
 
 // This is the maximum number of hop entries we can 
 // process in this calculator.
@@ -34,53 +26,75 @@ if ($row_user['defaultBatchSize'] > 0) {
     $DEFAULT_BATCH_SZ = 19;
  }
 
+$gravity = (isset($_POST['gravity']))?$_POST['gravity']:'';
+
 if (($action == "calculate") || ($action == "entry")) {
 // The $form variable and 'form' $_POST key are in reference to
 // the format of the hops, i.e. whole/plug or pellet.
 // It's easy to confuse this with fact that it's being 
 // submitted via an HTML form.
 
+  // @TODO: Format this form as $_POST['hops'][$i]['weight|aa|utilization|form'] so we can foreach over it
+  $submittedHops = 0;
   for ($i = 0; $i < MAX_HOPS; $i++) {
-    $hopWeight[$i]   = $_POST['hopWeight'][$i];
-    $hopAA[$i]       = $_POST['hopAA'][$i];
-    $utilization[$i] = $_POST['utilization'][$i];
-    $form[$i]        = $_POST['form'][$i];
+    if (isset($_POST['hopWeight'][$i])) {
+      $submittedHops = $i + 1;
+    }
+    $hopWeight[$i]   = isset($_POST['hopWeight'][$i])?$_POST['hopWeight'][$i]:NULL;
+    $hopAA[$i]       = isset($_POST['hopAA'][$i])?$_POST['hopAA'][$i]:NULL;
+    $utilization[$i] = isset($_POST['utilization'][$i])?$_POST['utilization'][$i]:NULL;
+    $form[$i]        = isset($_POST['form'][$i])?$_POST['form'][$i]:NULL;
   }
 
   $preBoilVol  = $_POST['preBoilVol'];
   $finalVol    = $_POST['finalVol'];
-  $gravity     = $_POST['gravity'];
   $desiredIBUs = $_POST['desiredIBUs'];
   $elevation   = $_POST['elevation'];
   $units       = $_POST['units'];
 
   // Tinseth method
   $ibuT = 0;
+  $ibu_T = array_fill(0, MAX_HOPS, NULL);
   for ($i = 0; $i < MAX_HOPS; $i++) {
+    if (!isset($hopWeight[$i])) {
+      continue;
+    }
     $ibu_T[$i] = calc_bitter_tinseth($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuT     += $ibu_T[$i];
   }
 
   // Rager Method
   $ibuR = 0;
+  $ibu_R = array_fill(0, MAX_HOPS, NULL);
   for ($i = 0; $i < MAX_HOPS; $i++) {
+    if (!isset($hopWeight[$i])) {
+      continue;
+    }
     $ibu_R[$i] = calc_bitter_rager($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuR     += $ibu_R[$i];
   }
 
   // Daniels Method
   $ibuD = 0;
+  $ibu_D = array_fill(0, MAX_HOPS, NULL);
   for ($i = 0; $i < MAX_HOPS; $i++) {
+    if (!isset($hopWeight[$i])) {
+      continue;
+    }
     $ibu_D[$i] = calc_bitter_daniels($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units);
     $ibuD     += $ibu_D[$i];
   }
 
   // Garetz Method
   $ibuG = 0;
+  $ibu_G = array_fill(0, MAX_HOPS, NULL);
   if (($preBoilVol > 0) && ($desiredIBUs > 0) && ($elevation >= 0)) {
     for ($i = 0; $i < MAX_HOPS; $i++) {
+      if (!isset($hopWeight[$i])) {
+        continue;
+      }
       $ibu_G[$i] = calc_bitter_garetz($utilization[$i], $gravity, $hopAA[$i], $hopWeight[$i], $finalVol, $form[$i], $units,
-				      $preBoilVol, $desiredIBUs, $elevation);
+                                      $preBoilVol, $desiredIBUs, $elevation);
       $ibuG     += $ibu_G[$i];
     }
   }
@@ -94,7 +108,7 @@ if (($action == "default") || ($action == "entry")) {
   <div id="wideWrapper<?php if ($page == "tools") echo "Reference"; ?>">
   <div id="referenceHeader">International Bitterness Unit (IBU) Calculator</div>
   <table id="hop_entries">
-	
+  
   <?php
   function create_hop_entries($start, $end) {
     global $action, $hopWeight, $hopAA, $utilization, $form, $DEFAULT_FORM;
@@ -225,7 +239,7 @@ for ($i = 0; $i < MAX_HOPS; $i++) {
 <?php
   $endHopEntries = 0;
   for ($i = 0; $i < MAX_HOPS; $i++) {
-    if ($ibu_T[$i] > 0) $endHopEntries = $i;
+    if (isset($ibu_T[$i]) && $ibu_T[$i] > 0) $endHopEntries = $i;
   }
 
   for ($i = 0; $i <= $endHopEntries; $i++) {
@@ -250,27 +264,27 @@ for ($i = 0; $i < MAX_HOPS; $i++) {
      <td class="dataLabelLeft">Average IBUs:</td>
      <?php
        if ($ibuG > 0) { 
-	 echo '<td class="data" colspan="4">'; 
-	 $ibuAverage = ($ibuG + $ibuR + $ibuT + $ibuD) / 4;
-	 echo round ($ibuAverage, 1) . '</td>';
+   echo '<td class="data" colspan="4">'; 
+   $ibuAverage = ($ibuG + $ibuR + $ibuT + $ibuD) / 4;
+   echo round ($ibuAverage, 1) . '</td>';
        } else { 
-	 echo '<td class="data">'; 
-	 $ibuAverage = ($ibuR + $ibuT + $ibuD) / 3; 
-	 echo round ($ibuAverage, 1);
-	 echo '<td class="data" colspan="3">(Garetz formula excluded from avg.)</td>';
+   echo '<td class="data">'; 
+   $ibuAverage = ($ibuR + $ibuT + $ibuD) / 3; 
+   echo round ($ibuAverage, 1);
+   echo '<td class="data" colspan="3">(Garetz formula excluded from avg.)</td>';
        }
      ?>
    </tr>
       <?php
        if ($desiredIBUs > 0) {
-	 echo '<tr>';
-	 echo '<td class="dataLabelLeft">Target IBUs:</td>';
-	 echo '<td class="data" colspan="4">' . $desiredIBUs . '</td>';
-	 echo '</tr>';
+   echo '<tr>';
+   echo '<td class="dataLabelLeft">Target IBUs:</td>';
+   echo '<td class="data" colspan="4">' . $desiredIBUs . '</td>';
+   echo '</tr>';
        }
       ?>
    </table>
    </div>
-										       
+                           
 <?php if (!checkmobile()) { ?><input type="image" src="<?php echo $imageSrc."Brilliant"; ?>/button_back_Brilliant.png" alt="Re-Enter Values" class="calcButton" value="Re-Enter Values" /><? } else { ?><input type="submit" class="calcButton" value="Go Back" /><?php } ?></div>
 <?php } ?>
