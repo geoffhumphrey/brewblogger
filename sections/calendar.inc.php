@@ -1,3 +1,4 @@
+<a class="webcalSubscribe" href="webcal://<?= $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) ?>ical.php<? if (!empty($filter)) echo "?filter=$filter"; ?>">Subscribe to Calendar</a>
 <?php if ($row_pref['mode'] == "2") { ?>
 <form name="form" id="form">
 <table class="dataTable">
