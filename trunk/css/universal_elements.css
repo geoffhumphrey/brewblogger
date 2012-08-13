@@ -487,3 +487,11 @@ div.menu div.menuItemSep {
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
+
+.webcalSubscribe { 
+    float: right; 
+    background-image: url(../images/calendar.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    height: 16px;
+}

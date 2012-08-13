@@ -22,6 +22,6 @@ define('RECIPE',ROOT.'sections'.DIRECTORY_SEPARATOR.'recipe'.DIRECTORY_SEPARATOR
 define('TEMPLATES',ROOT.'templates'.DIRECTORY_SEPARATOR);
 define('CLASSES',ROOT.'classes'.DIRECTORY_SEPARATOR);
 define('IMAGES_DIR',ROOT.'images'.DIRECTORY_SEPARATOR);
-
+define('VENDORS_DIR', ROOT.'vendor'.DIRECTORY_SEPARATOR);
 require(CONFIG.'config.php');
 ?>
