@@ -1,0 +1,12 @@
+/* CSS Document */
+
+/* tinymce styles */
+TR, TD, P, BLOCKQUOTE, LI	{ font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; color: #000000; font-size: 11px;  }
+HR 							{ height:1px; width:100%; color:#000000; }
+body 						{ font-family: Verdana, Verdana, Arial, Helvetica, sans-serif; color: #000000; font-size: 11px; }
+h1							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bold; }
+h2							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 24px; font-weight: bold; }
+h3							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 22px; font-weight: bold; }
+h4 							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; }
+h5							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; }
+h6							{ font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; }

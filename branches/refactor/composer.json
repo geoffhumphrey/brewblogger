@@ -1,0 +1,30 @@
+{
+    "name": "brewblogger/brewblogger",
+    "description": "PHP/MySQL-based Logging System for Homebrewers",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Geoff Humphrey",
+            "email": "gpzhumphrey@gmail.com"
+        },
+        {
+            "name": "Kevin Masaryk",
+            "email": "kevin.masaryk@gmail.com"
+        },
+        {
+            "name": "George Hotelling",
+            "email": "george@hotelling.net"
+        }
+    ],
+    "require-dev": {
+        "phpmd/phpmd": "1.5.0",
+        "sebastian/phpcpd": "*",
+        "behat/behat": "2.4.*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink": "1.4@stable",
+        "behat/mink-goutte-driver": "*"
+    },
+    "require": {
+
+    }
+}

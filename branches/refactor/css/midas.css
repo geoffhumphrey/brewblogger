@@ -1,0 +1,553 @@
+/* CSS Document
+
+Colors
+Yellow: #ffcd34
+Purple: #39294a
+Gray: #d1d2d4
+
+Alternating row colors
+#baa076
+#e8dabe
+
+ */
+body { 
+background-color: #baa076;
+color: #050117;
+margin: 0;
+padding: 0;
+line-height: 1.25; 
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+font-size: 11px;
+background-image: url(../images/Midas/page_bknd.png);
+background-repeat: repeat-x;
+}
+
+/* ***************************** Custom Theme Elements ***************************** */
+
+button, textarea, select {
+border: 1px solid #9a9a9a;
+}
+
+input:focus {
+border: 1px solid #39294a;
+}
+
+/* ------------------ Global links ------------------  */
+
+a:link, .add-button, .button { 
+color: #990000; text-decoration: none; 
+}
+a:visited, .add-button:visited, .update-button:visited, .button:visited	{ 
+color: #990000; text-decoration: none; 
+}
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	{ 
+color: #39294a; text-decoration: none; 
+}
+a:active, .add-button:active, update-button:active, .button:active { 
+color: #39294a; text-decoration: none; 
+}
+
+/* ------------------ Main Container ------------------  */
+
+#main-container {
+width: 990px;
+margin-right: auto;
+margin-left: auto;
+}
+
+#content-wrapper {
+float: left;
+width: 990px;
+background-image:  url(../images/Midas/mainbknd.png); 
+margin: 0px;
+padding: 0;
+overflow: hidden;
+}
+/*
+#content-wrapperAdmin {
+float: left;
+width: 990px;
+background-image:  url(../images/Midas/mainbknd.png); 
+margin-top: 0px;
+padding: 0px 0px 0px 0px;
+}
+*/
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
+margin: 0px -250px 12px 24px; 
+width: 685px;
+border-right: 250px solid #ffffff; /* The width and color of the right*/
+}
+
+#content-wide { 			/* if no sidebar content */
+width: 940px;
+margin-right: auto;
+margin-left: auto;
+margin-bottom: 25px;
+}
+
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+float: left;
+width: 250px;
+margin:  0 0 0 12px;
+padding: 5px;
+}
+
+
+/* ------------------ Header  ------------------  */
+
+#header {
+background-image: url(../images/Midas/header.png);
+background-repeat: no-repeat;
+height: 110px;
+background-position: bottom left;
+text-align: right;
+}
+
+.titleText {
+font-size: 20px; 
+color: #ffffff; 
+font-weight: bold;
+padding-left: 0px;
+padding-top: 35px;
+padding-bottom: 0px;
+padding-right: 25px;
+}
+
+.quoteText {				
+padding-left: 10px;
+padding-right: 25px;
+font-size: .85em;
+font-style: italic;
+color: #ffffff;
+}
+
+#subtitle, #subtitleAdmin, #subtitleWide {				/* UNIVERSAL */
+height: 50px;
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+font-size: 150%;
+font-weight: bold;
+}
+
+#breadcrumbWide, #breadcrumb , #breadcrumbAdmin {
+height: 25px;
+padding: 0;
+font-size: .8em;
+margin-top: 10px;
+}
+
+
+#paginate {						/* UNIVERSAL */
+text-align: right;
+padding: 8px 0px 0px 3px;
+font-size: .8em;
+}
+
+/* *****************************  Theme-Specific Main Navigation Elements *****************************  */
+#nav {
+background-image:  url(../images/Midas/nav.png); 
+background-repeat: no-repeat; 
+background-position: middle left;
+padding: 15px 25px 0px 25px;
+height: 30px;
+}
+
+#nav ul 
+{
+
+}
+
+#nav li
+{
+
+}
+
+#nav a:link 		{ color: #39294a; text-decoration: none; }
+#nav a:visited 		{ color: #39294a; text-decoration: none; }
+#nav a:hover 		{ color: #990000; text-decoration: none; }
+#nav a:active 		{ color: #990000; text-decoration: none; }
+#nav .ultra_lt		{ color: #39294a; } 
+
+
+/* ------------------ drop-down menu elements ------------------ */
+
+div.menuBar, div.menuBar a.menuButton, div.menu, div.menu a.menuItem {
+}
+
+div.menuBar {
+}
+
+div.menuBar a.menuButton {
+}
+
+div.menuBar a.menuButton:hover {
+}
+
+div.menuBar a.menuButtonActive, div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #FFDF80;
+  border: 1px solid #553e2a;
+}
+
+div.menu a.menuItem {
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  background-color: #ffcd34;
+}
+
+div.menu a.menuItem span.menuItemText {
+}
+
+div.menu a.menuItem span.menuItemArrow {
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+}
+
+/* Legacy
+#dropmenudiv			{ position: absolute; border: 1px solid #553e2a; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #baa076; }
+#dropmenudiv a 			{ color: #610800; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #553e2a; padding: 1px 0; text-decoration: none; }
+#dropmenudiv a:hover	{ background-color: #E5D4BD; text-decoration: none; color: #000099; }
+*/
+
+/* ***************************** Footer Elements *****************************  */
+
+#footer {
+background-image: url(../images/Midas/footer.png);
+background-repeat: no-repeat;
+background-position: top;
+clear: left;
+width: 100%;
+height: 35px;
+padding: 5px 0px 0px 0px;
+text-align: center;
+font-size: 90%;
+color: #FFFFFF;
+margin: 0;
+}
+
+#footer a { 
+color: #FFFFFF; 
+}
+
+#footerInclude {
+font-size: .8em;
+margin-top: 5px;
+}
+
+/* ***************************** Header Elements *****************************  */
+
+.headerContent {
+clear: left;
+width: 690px;
+height: 20px; 
+border-bottom: 1px dashed #39294a;
+padding: 5px 5px 5px 0px;
+text-align: left;
+font-size: 125%;
+color: #39294a;
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+.headerContentAdmin {
+clear: left;
+width: 940px;
+height: 20px;
+border-bottom: 1px dashed #39294a;
+padding: 5px 5px 5px 0px;
+text-align: left;
+font-size: 125%;
+color: #39294a;
+font-weight: bold;
+margin-bottom: 10px;
+margin-top: 15px;
+}
+
+/* ***************************** Tools/Reference Elements *****************************  */
+
+#wideWrapper {  				/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #E5D4BD;
+border: 1px solid #553e2a;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#wideWrapperReference {  		/* Use for tools and reference pages */
+width: 100%;
+text-align: left;
+background: #E5D4BD;
+border: 1px solid #553e2a;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#wideWrapperCalc {  			/* Use for tools and reference pages */
+width: 740px;
+text-align: left;
+background: #E5D4BD;
+border: 1px solid #553e2a;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#wideWrapperReview {  			/* Use for reviews */
+width: 100%;
+text-align: left;
+background: #E5D4BD;
+border: 1px solid #553e2a;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+.carbonationTable { 			/* specialized style for carbonation tables */
+text-align: center;
+font-size: .90em;
+background: #FFFFFF;
+width: 100%;
+border-collapse: collapse;
+}
+
+#referenceHeader {
+background-color: #9A713C;
+font-weight: bold;
+padding: 4px;
+color: #FFFFFF;
+margin: 0 0 5px 0;
+}
+
+
+/* ***************************** Sidebar Elements *****************************  */
+
+#sidebarWrapper {
+width: 235px;
+padding: 0px;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+#sidebarHeader {
+height: 22px;
+font-weight: bold;
+color: #39294a;
+margin-bottom: 5px;
+font-size: 115%;
+}
+
+#sidebarHeaderSmall {			/* use for inner table div within dataTables */
+background: #baa076;
+padding: 2px 2px 2px 4px;
+font-weight: bold;
+color: #050117;
+}
+
+#sidebarInnerWrapper {
+width: 235px;
+font-size: 90%;
+}
+
+/* ***************************** Theme Specific Color Elements *****************************  */
+
+.ultra_lt	 		{ color: #E5D4BD; }
+.lt	 				{ color: #baa076; }
+.mid		 		{ color: #9A713C; }
+.dk			 		{ color: #553e2a; }
+.bknd_white			{ background-color: #FFFFFF; }
+.bknd_ultra_lt		{ background-color: #E5D4BD; }
+.bknd_lt			{ background-color: #baa076; }
+.bknd_mid			{ background-color: #9A713C; }
+.bknd_dk			{ background-color: #553e2a; }
+
+/* ultra light border styles */
+.bdr1_ultra_lt			{ border: 1px solid #E5D4BD; }
+.bdr1_ultra_lt_dashed 	{ border: 1px dashed #E5D4BD; }
+.bdr1_ultra_lt_dotted	{ border: 1px dotted #E5D4BD; }
+.bdr2_ultra_lt			{ border: 2px solid #E5D4BD; }
+.bdr2_ultra_lt_dashed 	{ border: 2px dashed #E5D4BD; }
+.bdr2_ultra_lt_dotted 	{ border: 2px dotted #E5D4BD; }
+.bdr1L_ultra_lt			{ border-left: 1px solid #E5D4BD; }
+.bdr1L_ultra_lt_dashed	{ border-left: 1px dashed #E5D4BD; }
+.bdr1L_ultra_lt_dotted	{ border-left: 1px dotted #E5D4BD; }
+.bdr1R_ultra_lt			{ border-right: 1px solid #E5D4BD; }
+.bdr1R_ultra_lt_dashed	{ border-right: 1px dashed #E5D4BD; }
+.bdr1R_ultra_lt_dotted	{ border-right: 1px dotted #E5D4BD; }
+.bdr1T_ultra_lt			{ border-top: 1px solid #E5D4BD; }
+.bdr1T_ultra_lt_dashed	{ border-top: 1px dashed #E5D4BD; }
+.bdr1T_ultra_lt_dotted	{ border-top: 1px dotted #E5D4BD; }
+.bdr1B_ultra_lt			{ border-bottom: 1px solid #E5D4BD; }
+.bdr1B_ultra_lt_dashed	{ border-bottom: 1px dashed #E5D4BD; }
+.bdr1B_ultra_lt_dotted	{ border-bottom: 1px dotted #E5D4BD; }
+
+/* light border styles */
+.bdr1_light				{ border: 1px solid #baa076; }
+.bdr1_light_dashed 		{ border: 1px dashed #baa076; }
+.bdr1_light_dotted		{ border: 1px dotted #baa076; }
+.bdr2_light				{ border: 2px solid #baa076; }
+.bdr2_light_dashed 		{ border: 2px dashed #baa076; }
+.bdr2_light_dotted 		{ border: 2px dotted #baa076; }
+.bdr1L_light			{ border-left: 1px solid #baa076; }
+.bdr1L_light_dashed		{ border-left: 1px dashed #baa076; }
+.bdr1L_light_dotted		{ border-left: 1px dotted #baa076; }
+.bdr1R_light			{ border-right: 1px solid #baa076; }
+.bdr1R_light_dashed		{ border-right: 1px dashed #baa076; }
+.bdr1R_light_dotted		{ border-right: 1px dotted #baa076; }
+.bdr1T_light			{ border-top: 1px solid #baa076; }
+.bdr1T_light_dashed		{ border-top: 1px dashed #baa076; }
+.bdr1T_light_dotted		{ border-top: 1px dotted #baa076; }
+.bdr1B_light			{ border-bottom: 1px solid #baa076; }
+.bdr1B_light_dashed		{ border-bottom: 1px dashed #baa076; }
+.bdr1B_light_dotted		{ border-bottom: 1px dotted #baa076; }
+
+/* midtone border styles */
+.bdr1_mid				{ border: 1px solid #9A713C; }
+.bdr1_mid_dashed 		{ border: 1px dashed #9A713C; }
+.bdr1_mid_dotted		{ border: 1px dotted #9A713C; }
+.bdr2_mid				{ border: 2px solid #9A713C; }
+.bdr2_mid_dashed 		{ border: 2px dashed #9A713C; }
+.bdr2_mid_dotted 		{ border: 2px dotted #9A713C; }
+.bdr1L_mid				{ border-left: 1px solid #9A713C; }
+.bdr1L_mid_dashed		{ border-left: 1px dashed #9A713C; }
+.bdr1L_mid_dotted		{ border-left: 1px dotted #9A713C; }
+.bdr1R_mid				{ border-right: 1px solid #9A713C; }
+.bdr1R_mid_dashed		{ border-right: 1px dashed #9A713C; }
+.bdr1R_mid_dotted		{ border-right: 1px dotted #9A713C; }
+.bdr1T_mid				{ border-top: 1px solid #9A713C; }
+.bdr1T_mid_dashed		{ border-top: 1px dashed #9A713C; }
+.bdr1T_mid_dotted		{ border-top: 1px dotted #9A713C; }
+.bdr1B_mid				{ border-bottom: 1px solid #9A713C; }
+.bdr1B_mid_dashed		{ border-bottom: 1px dashed #9A713C; }
+.bdr1B_mid_dotted		{ border-bottom: 1px dotted #9A713C; }
+
+/* dark border styles */
+.bdr1_dark				{ border: 1px solid #553e2a; }
+.bdr1_dark_dashed 		{ border: 1px dashed #553e2a; }
+.bdr1_dark_dotted		{ border: 1px dotted #553e2a; }
+.bdr2_dark				{ border: 2px solid #553e2a; }
+.bdr2_dark_dashed 		{ border: 2px dashed #553e2a; }
+.bdr2_dark_dotted 		{ border: 2px dotted #553e2a; }
+.bdr1L_dark				{ border-left: 1px solid #553e2a; }
+.bdr1L_dark_dashed		{ border-left: 1px dashed #553e2a; }
+.bdr1L_dark_dotted		{ border-left: 1px dotted #553e2a; }
+.bdr1R_dark				{ border-right: 1px solid #553e2a; }
+.bdr1R_dark_dashed		{ border-right: 1px dashed #553e2a; }
+.bdr1R_dark_dotted		{ border-right: 1px dotted #553e2a; }
+.bdr1T_dark				{ border-top: 1px solid #553e2a; }
+.bdr1T_dark_dashed		{ border-top: 1px dashed #553e2a; }
+.bdr1T_dark_dotted		{ border-top: 1px dotted #553e2a; }
+.bdr1B_dark				{ border-bottom: 1px solid #553e2a; }
+.bdr1B_dark_dashed		{ border-bottom: 1px dashed #553e2a; }
+.bdr1B_dark_dotted		{ border-bottom: 1px dotted #553e2a; }
+
+/* non-theme specific border styles */
+.bdr1_black				{ border: 1px solid #000000; }
+.bdr1_white				{ border: 1px solid #FFFFFF; }
+.bdr1_red				{ border: 1px solid #FF0000; }
+
+
+
+
+#shadowbox {
+width: 250px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 235px;
+right: 235px;
+}
+
+#caution {
+top: -4px;
+left: -4px;
+background-color: #FFFAE5;
+border-top: 3px solid #FFcc00;
+border-left: 3px solid #FFcc00;
+border-right: 3px solid #E6B800;
+border-bottom: 3px solid #E6B800;
+padding: 10px 10px 10px 10px;
+text-align: justify;
+font-size: 90%;
+background-repeat: no-repeat;
+position: relative;
+}
+
+/* ***************************** More Info Rollover Elements *****************************  */
+
+#moreInfo a span {
+display: none;
+}
+
+#moreInfo a:hover span {
+display: block;
+position: absolute; 
+height: auto;
+padding: 5px; 
+z-index: 100;
+color: #050117;
+}
+
+#moreInfoWrapper {  				/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #E5D4BD;
+border: 1px solid #553e2a;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#psiWrapper {
+width: 99%;
+background: #ffffff;
+border: 1px solid #9A713C;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+margin-right: 5px;
+font-size: inherit;
+}
+
+/* ***************************** Calendar Display Elements *****************************  */
+
+.calendar 		{ border: 1px solid #050117; border-collapse: collapse; color: #050117; width: 100%; font-size: 9px; }
+.tableContain 	{ color: #050117; font-size: 9px; }
+.none 			{ color: #050117; font-size: 9px; }
+.today 			{ border: 1px solid #050117; color: #050117; background:#cfcfcf; font-size: 9px; padding: 2px;}
+.monthdays 		{ border: 1px solid #050117; color: #050117; font-size: 9px; padding: 2px; height: 100px; } 
+.nonmonthdays 	{ border: 1px solid #050117; color: #050117; background: #efefef; font-size: 9px; padding: 2px; height: 100px; } 
+.day 			{ vertical-align:top; font-size: 9px;}
+.header			{ border: 1px solid #050117; color: #050117; background-color:#cfcfcf; padding: 2px; font-size: 9px; }
+.weekdays		{ border: 1px solid #050117; background-color: #dddddd; color: #050117; font-size: 9px; padding: 2px; }
+.calInfo		{ padding-left: 2px; font-size: 9px; }
+
+/* Recipe Calculator Styles */
+
+#calculate {
+width: 350px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 165px;
+right: 60px;
+z-index: 2;
+}
+
+#calculateInner {
+top: -4px;
+left: -4px;
+background-color: #E5D4BD;
+border-top: 3px solid #9A713C;
+border-left: 3px solid #9A713C;
+border-right: 3px solid #553e2a;
+border-bottom: 3px solid #553e2a;
+padding: 10px 10px 10px 10px;
+text-align: left;
+font-size: 90%;
+background-repeat: no-repeat;
+position: relative;
+}

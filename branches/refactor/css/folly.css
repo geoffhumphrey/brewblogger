@@ -1,0 +1,643 @@
+body { 
+background-color: #a7a7a7;
+color: #000000;
+margin:0;
+padding:0;
+line-height: 1.4; 
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+font-size: 11px;
+background-image:url(../images/Folly/bknd.png);
+background-repeat: repeat-x;
+}
+
+
+/* ------------------ global link styles ------------------  */
+a:link, .add-button, .update-button, .button { 
+color: #000099; text-decoration: none; 
+}
+a:visited, .add-button:visited, .update-button:visited, .button:visited	 { 
+color: #000099; text-decoration: none; 
+}
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	 
+{ color: #9C2023; text-decoration: none; 
+}
+a:active, .add-button:active, update-button:active, .button:active	{ 
+color: #9C2023; text-decoration: none; 
+}
+
+/* ------------------  layout divs ------------------  */
+
+#main-container {
+width: 764px;
+margin-right: auto;
+margin-left: auto;
+}
+
+#content-wrapper {
+padding: 5px;
+border-left: 2px solid #000000;
+border-right: 2px solid #000000;
+background-color:#ffffff;
+overflow: hidden;
+width: 750px;
+}
+
+/*
+#content-wrapperAdmin { 
+float: left;
+width: 750px;
+padding: 8px 5px 5px 5px;
+background-color: #FFFFFF;
+border-left: 2px solid #000000;
+border-right: 2px solid #000000;
+ margin-left: 1px;  hack for new theme 
+}
+*/
+
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
+background-color:#ffffff;
+width: 500px;
+border-right: 243px solid #ffffff; /* The width and color of the right*/
+margin-right: -243px; 
+padding: 0;
+}
+
+#content-wide { 			/* if no sidebar content */
+background-color:#ffffff;
+width: 750px;
+}
+
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+background-color:#ffffff;
+width: 243px;
+padding: 0 0 0 5px;
+margin: 0;
+}
+
+
+
+/* ------------------  header elements ------------------  */
+#header {
+background-image: url(../images/Folly/top.png);
+background-repeat: no-repeat;
+height: 100px;
+background-position: bottom left;
+text-align: right;
+}
+
+.titleText {
+font-size: 2em; 
+color: #ffffff; 
+font-weight: bold;
+padding-left: 10px;
+padding-top: 32px;
+padding-bottom: 0px;
+padding-right: 25px;
+}
+
+.quoteText {
+padding-left: 10px;
+padding-right: 25px;
+font-size: .90em;
+font-style: italic;
+color: #ffffff;
+ 
+}
+
+#subtitle {
+height: 50px;
+width: 500px;
+padding: 5px 0px 0px 3px;
+margin-top: 0px;
+margin-bottom: 0px;
+font-size: 1.75em;
+font-weight: bold;
+}
+
+#subtitleWide, #subtitleAdmin {
+height: 50px;
+padding: 5px 0px 0px 3px;
+margin-top: 0px;
+margin-bottom: 0px;
+font-size: 1.75em;
+font-weight: bold;
+}
+
+#breadcrumb {
+height: 25px;
+width: 500px;
+padding: 0px 0px 0px 3px;
+font-size: .90em;
+}
+
+#breadcrumbWide, #breadcrumbAdmin {
+height: 25px;
+padding: 0px 0px 0px 3px;
+font-size: .90em;
+}
+
+#paginate {
+text-align: right;
+padding: 8px 0px 0px 3px;
+font-size: .90em;
+}
+
+/* ------------------ main navigation ------------------ */
+#nav {
+background-image:  url(../images/Folly/nav.png); 
+background-repeat: no-repeat; 
+background-position: middle left;
+margin-top: 5px;
+padding: 12px 10px 0px 10px;
+font-size: .85em;
+height: 25px;
+}
+
+
+#nav a:link		{ color: #FFFFFF; text-decoration: none; }
+#nav a:visited 		{ color: #FFFFFF; text-decoration: none; }
+#nav a:hover 		{ color: #000099; text-decoration: none; }
+#nav a:active 		{ color: #000099; text-decoration: none; }
+
+
+/* ------------------ drop-down menu elements ------------------ */
+div.menuBar, div.menuBar a.menuButton, div.menu, div.menu a.menuItem {
+}
+
+div.menuBar {
+}
+
+div.menuBar a.menuButton {
+}
+
+div.menuBar a.menuButton:hover {
+}
+
+div.menuBar a.menuButtonActive, div.menuBar a.menuButtonActive:hover {
+  color: #ffffff;
+}
+
+div.menu {
+  background-color: #cb7b29;
+  border: 1px solid #985E25;
+}
+
+div.menu a.menuItem {
+}
+
+div.menu a.menuItem:hover, div.menu a.menuItemHighlight {
+  background-color: #FBC737;
+}
+
+div.menu a.menuItem span.menuItemText {
+}
+
+div.menu a.menuItem span.menuItemArrow {
+}
+
+div.menu div.menuItemSep {
+  border: 1px solid #e0e0e0;
+}
+
+/* Legacy
+#dropmenudiv			{ position: absolute; border: 1px solid #985E25; border-bottom-width: 0;  line-height:15px; z-index:100;  background-color: #cb7b29; }
+#dropmenudiv a 			{ color: #610800; width: 100%; display: block; text-indent: 2px; border-bottom: 1px solid #985E25; padding: 1px 0; text-decoration: none; }
+#dropmenudiv a:hover	{ background-color: #fee39a; text-decoration: none; color: #000099; }
+*/
+
+
+/* ***************************** Theme-Specific Content Elements ***************************** */ 
+
+
+
+#dataWrapperInner {		 	/* for Typical CO2 Saturation and any other table within the main data table. */
+width: inherit;
+background-color: #efefef;
+border: 1px solid #cb7b29;
+padding: 2px 2px 2px 2px;
+font-size: .95em;
+}
+
+
+/* ------------------ footer elements ------------------ */
+#footer {
+background-image: url(../images/Folly/footer.png);
+background-repeat: no-repeat;
+background-position: bottom;
+clear: left;
+width: 100%;
+padding: 5px 0px 5px 0px;
+text-align: center;
+font-size: .90em;
+color: #FFFFFF;
+margin: 0;
+}
+
+#footer a { 
+color: #FFFFFF; 
+}
+
+#footerInclude {
+font-size: .90em;
+margin-top: 5px;
+}
+
+
+/* ------------------ content display ------------------ */
+
+.headerContent {
+width: 100%;
+height: 20px; 
+/* 
+background-image:  url(../images/Folly/content_header.png); 
+background-repeat: no-repeat;
+*/
+padding: 5px 5px 5px 3px;
+text-align: left;
+border-bottom: 1px dashed #cb7b29;
+font-size: 1.30em;
+color: #000000;
+font-weight: bold;
+margin-bottom: 5px;
+}
+
+.headerContentAdmin {
+clear: left;
+width: 738px;
+height: 20px;
+/*
+background-image:  url(../images/Folly/content_header.png); 
+background-repeat: no-repeat;
+*/
+padding: 5px 5px 5px 3px;
+text-align: left;
+border-bottom: 1px dashed #cb7b29;
+font-size: 1.30em;
+color: #000000;
+font-weight: bold;
+margin-bottom: 15px;
+margin-top: 15px;
+}
+
+/* ------------------ tools and reference elements  ------------------ */
+
+#wideWrapper {  			/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #fee39a;
+border: 1px solid #cb7b29;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+}
+
+#referenceWrapper{
+text-align: left;
+margin-left: 5px;
+margin-top: 5px;
+}
+
+#wideWrapperReference  {  			/* Use for reviews, tools and reference pages */
+width:740px;
+text-align: left;
+background: #fee39a;
+border: 1px solid #cb7b29;
+padding: 2px 2px 2px 2px;
+margin: 5px 0 5px 0;
+}
+
+#wideWrapperReview   {  			/* Use for reviews, tools and reference pages */
+width:493px;
+text-align: left;
+background: #fee39a;
+border: 1px solid #cb7b29;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+}
+
+.carbonationTable { 				/* specialized style for carbonation tables */
+text-align: center;
+font-size: .90em;
+background: #FFFFFF;
+width: 100%;
+border-collapse: collapse;
+}
+
+#referenceHeader {
+background-color: #cb7b29;
+width: 100%;
+font-weight: bold;
+padding: 2px 0 2px 1px;
+}
+
+
+/* ------------------ sidebar elements  ------------------ */
+
+#sidebarWrapper {
+width: 237px;
+padding: 0px;
+margin-top: 0px;
+margin-bottom: 5px;
+margin-top: 5px;
+}
+
+#sidebarHeader {
+height: 22px;
+padding: 7px 5px 5px 5px;
+font-size: 1.20em;
+font-weight: bold;
+color: #000000;
+margin-bottom: 0px;
+background-image:  url(../images/Folly/sidebar_header.png); 
+background-repeat: no-repeat; 
+}
+
+#sidebarHeaderSmall {			/* use for inner table div within dataTables */
+background: #ffe19f;
+padding: 2px 2px 2px 4px;
+font-weight: bold;
+color: #000000;
+}
+
+#sidebarInnerWrapper {
+width: 229px;
+background-image:  url(../images/Folly/sidebar_bknd.png); 
+background-repeat: repeat-x; 
+background-color: #fee39a;
+border-right: 1px solid #000000;
+border-left: 1px solid #000000;
+border-bottom: 1px solid #000000;
+padding: 2px 3px 2px 3px;
+font-size: .95em;
+}
+
+#labelImageLarge {
+margin-top: 15px;
+margin-bottom: 10px;
+}
+
+.labelImage {
+width: 225px;
+border: 1px solid #000000;
+}
+
+.listLeftAlign {
+width: 95%;
+text-align: left;
+}
+
+.listRightAlign {
+white-space: nowrap;
+text-align: right;
+}
+
+
+/* ------------------ overall theme colors ------------------ */
+.ultra_lt	 		{ color: #fee39a; }
+.lt	 				{ color: #ffe19f; }
+.mid		 		{ color: #cb7b29; }
+.dk			 		{ color: #985E25; }
+.bknd_white			{ background-color: #FFFFFF; }
+.bknd_ultra_lt		{ background-color: #fee39a; }
+.bknd_lt			{ background-color: #ffe19f; }
+.bknd_mid			{ background-color: #cb7b29; }
+.bknd_dk			{ background-color: #985E25; }
+
+/* ultra light border styles */
+.bdr1_ultra_lt			{ border: 1px solid #fee39a; }
+.bdr1_ultra_lt_dashed 	{ border: 1px dashed #fee39a; }
+.bdr1_ultra_lt_dotted	{ border: 1px dotted #fee39a; }
+.bdr2_ultra_lt			{ border: 2px solid #fee39a; }
+.bdr2_ultra_lt_dashed 	{ border: 2px dashed #fee39a; }
+.bdr2_ultra_lt_dotted 	{ border: 2px dotted #fee39a; }
+.bdr1L_ultra_lt			{ border-left: 1px solid #fee39a; }
+.bdr1L_ultra_lt_dashed	{ border-left: 1px dashed #fee39a; }
+.bdr1L_ultra_lt_dotted	{ border-left: 1px dotted #fee39a; }
+.bdr1R_ultra_lt			{ border-right: 1px solid #fee39a; }
+.bdr1R_ultra_lt_dashed	{ border-right: 1px dashed #fee39a; }
+.bdr1R_ultra_lt_dotted	{ border-right: 1px dotted #fee39a; }
+.bdr1T_ultra_lt			{ border-top: 1px solid #fee39a; }
+.bdr1T_ultra_lt_dashed	{ border-top: 1px dashed #fee39a; }
+.bdr1T_ultra_lt_dotted	{ border-top: 1px dotted #fee39a; }
+.bdr1B_ultra_lt			{ border-bottom: 1px solid #fee39a; }
+.bdr1B_ultra_lt_dashed	{ border-bottom: 1px dashed #fee39a; }
+.bdr1B_ultra_lt_dotted	{ border-bottom: 1px dotted #fee39a; }
+
+/* light border styles */
+.bdr1_light				{ border: 1px solid #ffe19f; }
+.bdr1_light_dashed 		{ border: 1px dashed #ffe19f; }
+.bdr1_light_dotted		{ border: 1px dotted #ffe19f; }
+.bdr2_light				{ border: 2px solid #ffe19f; }
+.bdr2_light_dashed 		{ border: 2px dashed #ffe19f; }
+.bdr2_light_dotted 		{ border: 2px dotted #ffe19f; }
+.bdr1L_light			{ border-left: 1px solid #ffe19f; }
+.bdr1L_light_dashed		{ border-left: 1px dashed #ffe19f; }
+.bdr1L_light_dotted		{ border-left: 1px dotted #ffe19f; }
+.bdr1R_light			{ border-right: 1px solid #ffe19f; }
+.bdr1R_light_dashed		{ border-right: 1px dashed #ffe19f; }
+.bdr1R_light_dotted		{ border-right: 1px dotted #ffe19f; }
+.bdr1T_light			{ border-top: 1px solid #ffe19f; }
+.bdr1T_light_dashed		{ border-top: 1px dashed #ffe19f; }
+.bdr1T_light_dotted		{ border-top: 1px dotted #ffe19f; }
+.bdr1B_light			{ border-bottom: 1px solid #ffe19f; }
+.bdr1B_light_dashed		{ border-bottom: 1px dashed #ffe19f; }
+.bdr1B_light_dotted		{ border-bottom: 1px dotted #ffe19f; }
+
+/* midtone border styles */
+.bdr1_mid				{ border: 1px solid #cb7b29; }
+.bdr1_mid_dashed 		{ border: 1px dashed #cb7b29; }
+.bdr1_mid_dotted		{ border: 1px dotted #cb7b29; }
+.bdr2_mid				{ border: 2px solid #cb7b29; }
+.bdr2_mid_dashed 		{ border: 2px dashed #cb7b29; }
+.bdr2_mid_dotted 		{ border: 2px dotted #cb7b29; }
+.bdr1L_mid				{ border-left: 1px solid #cb7b29; }
+.bdr1L_mid_dashed		{ border-left: 1px dashed #cb7b29; }
+.bdr1L_mid_dotted		{ border-left: 1px dotted #cb7b29; }
+.bdr1R_mid				{ border-right: 1px solid #cb7b29; }
+.bdr1R_mid_dashed		{ border-right: 1px dashed #cb7b29; }
+.bdr1R_mid_dotted		{ border-right: 1px dotted #cb7b29; }
+.bdr1T_mid				{ border-top: 1px solid #cb7b29; }
+.bdr1T_mid_dashed		{ border-top: 1px dashed #cb7b29; }
+.bdr1T_mid_dotted		{ border-top: 1px dotted #cb7b29; }
+.bdr1B_mid				{ border-bottom: 1px solid #cb7b29; }
+.bdr1B_mid_dashed		{ border-bottom: 1px dashed #cb7b29; }
+.bdr1B_mid_dotted		{ border-bottom: 1px dotted #cb7b29; }
+
+/* dark border styles */
+.bdr1_dark				{ border: 1px solid #985E25; }
+.bdr1_dark_dashed 		{ border: 1px dashed #985E25; }
+.bdr1_dark_dotted		{ border: 1px dotted #985E25; }
+.bdr2_dark				{ border: 2px solid #985E25; }
+.bdr2_dark_dashed 		{ border: 2px dashed #985E25; }
+.bdr2_dark_dotted 		{ border: 2px dotted #985E25; }
+.bdr1L_dark				{ border-left: 1px solid #985E25; }
+.bdr1L_dark_dashed		{ border-left: 1px dashed #985E25; }
+.bdr1L_dark_dotted		{ border-left: 1px dotted #985E25; }
+.bdr1R_dark				{ border-right: 1px solid #985E25; }
+.bdr1R_dark_dashed		{ border-right: 1px dashed #985E25; }
+.bdr1R_dark_dotted		{ border-right: 1px dotted #985E25; }
+.bdr1T_dark				{ border-top: 1px solid #985E25; }
+.bdr1T_dark_dashed		{ border-top: 1px dashed #985E25; }
+.bdr1T_dark_dotted		{ border-top: 1px dotted #985E25; }
+.bdr1B_dark				{ border-bottom: 1px solid #985E25; }
+.bdr1B_dark_dashed		{ border-bottom: 1px dashed #985E25; }
+.bdr1B_dark_dotted		{ border-bottom: 1px dotted #985E25; }
+
+/* non-theme specific border styles */
+.bdr1_black				{ border: 1px solid #000000; }
+.bdr1_white				{ border: 1px solid #FFFFFF; }
+.bdr1_red				{ border: 1px solid #FF0000; }
+
+
+
+
+
+/* ------------------ error or caution colors ------------------ */
+.red		 		{ color: #FF0000 }
+.error              { padding-bottom: 10px; text-align: left; font-weight: bold; font-size: 1.15em; color: #FF0000; }
+
+#shadowbox {
+width: 250px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 245px;
+right: 235px;
+}
+
+#caution {
+top: -4px;
+left: -4px;
+background-color: #FFFAE5;
+border-top: 3px solid #FFcc00;
+border-left: 3px solid #FFcc00;
+border-right: 3px solid #E6B800;
+border-bottom: 3px solid #E6B800;
+padding: 10px;
+text-align: justify;
+font-size: .90em;
+position: relative;
+}
+
+#labelImageEnlarge {
+text-align: center; 
+padding: 5px 0px 5px 0px;
+}
+
+#labelImageEnlarge a {
+border-width: 0;
+}
+
+#labelImageEnlarge a img {
+height: 0px; 
+width: 0px; 
+border-width: 0;
+}
+
+#labelImageEnlarge a:hover img {
+position: absolute; 
+top: 75px; 
+right: 50px;
+border: 2px #000000;
+height: auto;
+width: auto;
+z-index: 100;
+}
+
+#moreInfoWrapper {  				/* Use for tools and reference pages */
+width: 450px;
+text-align: left;
+background: #fee39a;
+border: 1px solid #985E25;
+padding: 2px 2px 2px 2px;
+margin-top: 10px;
+}
+
+#moreInfo a span {
+display: none;
+}
+
+#moreInfo a:hover span {
+display: block;
+position: absolute; 
+height: auto;
+padding: 5px; 
+z-index: 100;
+color: #000000;
+}
+
+#psiWrapper {
+width: 99%;
+background: #ffffff;
+border: 1px solid #cb7b29;
+padding: 2px 2px 2px 2px;
+margin-top: 3px;
+margin-right: 5px;
+font-size: inherit;
+}
+
+
+/* ------------- New as of 2.1.x ----------------- */
+
+#calculateContainer {		 	/* container for calculator popups content */
+width: 743px;
+padding: 3px 5px 0px 5px;
+margin-bottom: 10px;
+margin-top: 10px;
+margin-left: 5px;
+margin-right: 5px;
+font-size: inherit;
+}
+
+/* Calendar classes */
+
+.calendar 		{ border: 1px solid #000000; border-collapse: collapse; color: #000000; width: 100%; font-size: 9px; }
+.tableContain 	{ color: #000000; font-size: 9px; }
+.none 			{ color: #000000; font-size: 9px; }
+.today 			{ border: 1px solid #000000; color: #000000; background: #cb7b29; font-size: 9px; padding: 2px;}
+.monthdays 		{ border: 1px solid #000000; color: #000000; font-size: 9px; padding: 2px; height: 100px; } 
+.nonmonthdays 	{ border: 1px solid #000000; color: #000000; background: #fee39a; font-size: 9px; padding: 2px; height: 100px; } 
+.day 			{ vertical-align:top; height: 50px; }
+.header			{ border: 1px solid #000000; color: #ffffff; background-color: #985E25; padding: 2px; }
+.header a:link 	{ color: #FFFFFF; }
+.header a:visited { color: #FFFFFF; }
+.header a:hover { color: #ffe19f; }
+.header a:active { color: #FFFFFF; }
+.weekdays		{ border: 1px solid #000000; background-color: #ffe19f; color: #000000; font-size: 9px; padding: 2px; }
+.calInfo		{ padding-left: 2px; }
+
+.bknd_ultra_lt		{ background-color: #fee39a; }
+.bknd_lt			{ background-color: #ffe19f; }
+.bknd_mid			{ background-color: #cb7b29; }
+.bknd_dk			{ background-color: #985E25; }
+
+/* Recipe Calculator Styles */
+hr { 
+color: #000000;
+height: 1px;
+width: 100%;
+}
+
+#calculate {
+width: 350px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 155px;
+right: 100px;
+z-index: 2;
+}
+
+#calculateInner {
+top: -4px;
+left: -4px;
+background-color: #fee39a;
+border-top: 3px solid #cb7b29;
+border-left: 3px solid #cb7b29;
+border-right: 3px solid #985E25;
+border-bottom: 3px solid #985E25;
+padding: 10px 10px 10px 10px;
+text-align: left;
+font-size: .95em;
+background-repeat: no-repeat;
+position: relative;
+}

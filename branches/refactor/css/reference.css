@@ -1,0 +1,116 @@
+body { 
+background-color: #ffffff;
+color: #000000;
+margin: 0px;
+padding: 0px;
+line-height: 1.4; 
+font-size: 11px;
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+
+}
+
+/* ***************************** Custom Theme Elements ***************************** */
+
+input, button, textarea, menu, select {
+border: 1px solid #9a9a9a;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 11px;
+}
+
+input:focus {
+
+}
+
+/* ------------------ global link styles ------------------  */
+a:link, .add-button, .update-button, .button { 
+color: #0000FF; text-decoration: none; 
+}
+a:visited, .add-button:visited, .update-button:visited, .button:visited	 { 
+color: #0000FF; text-decoration: none; 
+}
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	 { 
+color: #990000; text-decoration: none; 
+}
+a:active, .add-button:active, update-button:active, .button:active { 
+color: #990000; text-decoration: none; 
+}
+
+#wideWrapperReference   {  			
+margin: 10px;
+font-family: inherit;
+font-size: 11px;
+}
+
+#referenceHeader {				
+background: #cccccc;
+border: 1px solid #333333;			
+padding: 4px;
+font-size: 11px;
+font-weight: bold;
+color: #000000;
+margin: 12px 0 3px -4px;
+}
+
+#footerInclude {
+font-size: 9px;
+margin: 15px 10px;
+text-align: center;
+}
+
+.colorTable {				/* Use for display of SRM color  */
+width: 35px;
+height: 10px;
+border-collapse: collapse;
+border: 1px solid #000000;
+padding: 0;
+text-align: center;
+}
+
+.referenceTop { 
+margin: 10px; 
+}
+
+.colorTableRef {				/* Use for display of SRM color on Reference page  */
+width: 100%;
+height: auto;
+border-collapse: collapse;
+margin: 2px -2px 0 -2px;
+padding: 10px;
+text-align: center;
+border: 1px solid #000000;
+}
+
+.colorTableRef2 {				
+height: 25px;
+padding: 10px;
+text-align: center;
+}
+
+.colorTableRef3 {				
+height: 25px;
+padding: 10px;
+text-align: center;
+color: #FFFFFF;
+}
+
+.carbonationTable { 				/* specialized style for carbonation tables */
+text-align: center;
+font-size: 9px;
+background: #FFFFFF;
+width: 100%;
+border-collapse: collapse;
+}
+
+.dataLabelLeft, dataLeft {
+font-weight: bold;
+white-space: nowrap;
+}
+
+.text_9_bold		{ font-weight: bold; }
+.bdr1L_mid			{ border-left: 1px solid #aaaaaa; }
+.bknd_ultra_lt		{ background-color: #dedede; }
+.calcButton 		{ margin: 0; border: 0; }
+.bdr1T_dark			{ border-top: 1px solid #aaaaaa; }
+.bdr1B_dark			{ border-top: 1px solid #aaaaaa; }
+.dataTable			{ font-size: 11px; width: 50%; } 
+.dk					{ font-weight: bold; }

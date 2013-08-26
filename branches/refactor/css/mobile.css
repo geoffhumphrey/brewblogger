@@ -1,0 +1,396 @@
+body {
+margin: 0;
+padding: 0;
+line-height: 1.25; 
+font-family: Verdana, Arial, Helvetica, sans-serif; 
+color: #000000; 
+font-size: 18px; 
+background-color: #FFFFFF;  
+text-align: center;
+}
+
+/* ------------------ global link styles ------------------  */
+a:link, .add-button, .update-button, .button { 
+color: #0000FF; text-decoration: none; 
+}
+a:visited, .add-button:visited, .update-button:visited, .button:visited	{ 
+color: #990099; text-decoration: none; 
+}
+a:hover, .add-button:hover, .add-button:focus, .update-button:hover, .update-button:focus, .button:hover, .button:focus	{ 
+color: #FF0000; text-decoration: underline; 
+}
+a:active, .add-button:active, update-button:active, .button:active { 
+color: #FF0000; text-decoration: none; 
+}
+
+/* ------------------  header elements ------------------  */
+#header {
+margin: 0 0 1em 0;
+}
+
+.titleText {
+font-size: 2em;  
+font-weight: bold;
+padding: 0 0 .5em 0;
+}
+
+.quoteText {
+font-style: italic;
+}
+
+#subtitle, #subtitleWide, #subtitleAdmin  {
+padding: .5em .25em .5em .25em;
+margin: 0 0 1em 0;
+font-size: 1.6em;
+font-weight: bold;
+background-color: #000000;
+color: #FFFFFF;
+}
+
+
+#breadcrumb {
+padding: 1.25em 0 1.25em 0;
+font-size: .8em;
+}
+
+#breadcrumbWide, #breadcrumbAdmin {
+padding: 1.25em 0 1.25em 0;
+font-size: .8em;
+}
+
+#paginate {
+text-align: right;
+padding: 3px 0px 0px 3px;
+}
+
+/* ------------------ main navigation ------------------ */
+#nav {
+margin: 0 0 0 0;
+padding: 1em 0 1em 0;
+font-size: .8em;
+}
+
+#nav li
+{
+display: inline;
+list-style-type: none;
+padding: 0 8px 0 0;
+margin: 0;
+}
+
+#nav a:link		{ text-decoration: none; }
+#nav a:visited 		{ text-decoration: none; }
+#nav a:hover 		{ text-decoration: underline; }
+#nav a:active 		{ text-decoration: none; }
+
+
+/* ------------------ drop-down menu elements ------------------ */
+#dropmenudiv			{ display: none; }
+#dropmenudiv a 			{ display: none; }
+#dropmenudiv a:hover	{ display: none; }
+
+
+/* ------------------ content elements ------------------ */
+#main-container {
+padding: 1.25em;
+text-align: left;
+}
+
+#contentWrapper {
+float: left;
+width: 100%;
+padding: 1em;
+background-color: #FFFFFF;
+margin-top: 0px;
+margin-left: 0px;
+}
+
+#left-column { 		/* main content - holds procedure, recipe, mash, etc. */
+display: block;
+text-align: left;
+padding: 1em;
+}
+
+#right-column {  		/* sidebar content - holds links, brewlog lists, recipe lists, upcoming brewing sessions, etc. */
+display: block;
+text-align: left;
+padding: 1em;
+}
+
+.include {
+margin-top: 2em;
+}
+
+
+.data-container {		 /* container for main content - holds procedure, recipe, mash, etc. */
+margin-left: 0;
+padding: 0;
+}
+
+.dataHeading {			 /* header element for data includes - procedure, recipe, mash, etc. */
+font-weight: bold;
+padding: 1em .3em .3em 0;
+white-space: nowrap;
+vertical-align: middle;
+}
+
+.dataLabel {			 /* data label style for two column layout */
+font-weight: bold;
+padding: .25em;
+white-space: nowrap;
+vertical-align: middle;
+width: 5%;
+}
+
+
+.dataLabelWide {		 /* data label if only one column layout */
+font-weight: bold;
+padding: .25em;
+white-space: nowrap;
+vertical-align: middle;
+width: 5%;
+}
+
+.dataTable {			 /* for all data tables - procedure, etc. */
+border-collapse: collapse;
+border-style: none;
+border-width: 0px;
+margin: 0 0 1em 0;
+}
+
+#dataWrapperInner {		 	/* for Typical CO2 Saturation and any other table within the main data table. */
+width: inherit;
+background-color: #efefef;
+border: 1px solid #dddddd;
+padding: .25em;
+}
+
+
+/* ------------------ footer elements ------------------ */
+#footer {
+padding: 1em 0px 0px 0px;
+font-size: .8em;
+text-align: center;
+}
+
+#footerInclude {
+
+}
+
+
+/* ------------------ content display ------------------ */
+
+.headerContent {
+clear: left;
+width: inherit;
+padding: .5em 0 .5em 0;
+text-align: left;
+border-bottom: 1px solid #000000;
+font-size: 1.4em;
+font-weight: bold;
+}
+
+
+.headerContentAdmin {
+clear: left;
+width: inherit;
+padding: .5em 0 .5em 0;
+text-align: left;
+border-bottom: 1px solid #000000;
+font-size: 1.4em;
+font-weight: bold;
+}
+
+/* ------------------ tools and reference elements  ------------------ */
+
+#wideWrapper {  			/* Use for tools and reference pages */
+width: 100%;
+text-align: left;
+background: #eeeeee;
+border: 1px solid #aaaaaa;
+padding: .25em .25em .25em .25em;
+margin-top: 1em;
+}
+
+#referenceWrapper{
+text-align: left;
+margin-left: 1em;
+margin-top: 1em;
+}
+
+#wideWrapperReference   {  			/* Use for reviews, tools and reference pages */
+width: 100%;
+text-align: left;
+background: #eeeeee;
+border: 1px solid #aaaaaa;
+padding: .25em .25em .25em .25em;
+margin: 5px 0 5px 0;
+}
+
+#wideWrapperReview   {  			/* Use for reviews, tools and reference pages */
+display: none;
+}
+
+.carbonationTable { 				/* specialized style for carbonation tables */
+text-align: center;
+background: #FFFFFF;
+width: 100%;
+border-collapse: collapse;
+}
+
+
+/* ------------------ sidebar elements  ------------------ */
+
+#sidebarWrapper {
+width: inherit;
+background: #eeeeee;
+border: 1px solid #aaaaaa;
+padding: .25em;
+margin: 1em 0 1em 0;
+}
+
+#sidebarHeader, #sidebarHeaderSmall {
+background: #dddddd;
+padding: 1em 0 1em .25em;
+font-size: 1.1em;
+font-weight: bold;
+color: #000000;
+}
+
+#sidebarInnerWrapper {
+width: inherit;
+padding: .25em;
+}
+
+.listLeftAlign {
+width: 95%;
+text-align: left;
+}
+
+.listRightAlign {
+white-space: nowrap;
+text-align: right;
+}
+
+.text_10 { 
+ 
+padding: 0 0 0 1em;
+}
+
+.center {
+text-align: center;
+}
+
+
+/* ------------------ error or caution colors ------------------ */
+.red		 		{ color: #FF0000 }
+.error              { padding-bottom: 1.25em; text-align: left; font-weight: bold; font-size: 1.25em; color: #FF0000; }
+
+#shadowbox {
+width: 250px;
+position: absolute;
+background: url(../images/25black.png) repeat;
+float: right;
+top: 231em;
+right: 231em;
+}
+
+#caution {
+top: -4px;
+left: -4px;
+background-color: #FFFAE5;
+border-top: 3px solid #FFcc00;
+border-left: 3px solid #FFcc00;
+border-right: 3px solid #E6B800;
+border-bottom: 3px solid #E6B800;
+padding: 1.25em 1.25em 1.25em 1.25em;
+text-align: justify;
+background-repeat: no-repeat;
+position: relative;
+}
+
+#labelImageEnlarge {
+display: none;
+}
+
+#labelImageEnlarge a {
+display: none;
+}
+
+#labelImageEnlarge a img {
+display: none;
+}
+
+#labelImageEnlarge a:hover img {
+display: none;
+}
+
+
+#moreInfo a span {
+display: none;
+}
+
+#moreInfo a:hover span {
+display: none;
+}
+
+#psiWrapper {
+width: 99%;
+background: #ffffff;
+border: 1px solid #aaaaaa;
+padding: .25em .25em .25em .25em;
+margin-top: 1em;
+margin-right: 1em;
+}
+
+
+/* ------------- New as of 2.0.3 ----------------- */
+
+#calculateContainer {		 	/* (v2.1) container for calculator popups content */
+width: 743px;
+padding: 3px 1em 0px 1em;
+margin: 1.25em 1em 1.25em 1em;
+}
+
+/* Calendar classes */
+
+.calendar 		{ border: 1px solid #aaaaaa; border-collapse: collapse; color: #000000; width: 100%;  }
+.tableContain 	{ color: #000000;  }
+.none 			{ color: #000000;  }
+.today 			{ border: 1px solid #000000; color: #000000; background: #cccccc;  padding: .25em;}
+.monthdays 		{ border: 1px solid #000000; color: #000000; padding: .25em; height: 50px; } 
+.nonmonthdays 	{ border: 1px solid #000000; color: #000000; background: #dddddd;  padding: .25em; height: 50px; } 
+.day 			{ vertical-align:top; height: 50px; }
+.header			{ border: 1px solid #000000; color: #ffffff; background-color: #999999; padding: .25em; }
+.header a:link 	{ color: #FFFFFF; }
+.header a:visited { color: #FFFFFF; }
+.header a:hover { color: #cccccc; }
+.header a:active { color: #FFFFFF; }
+.weekdays		{ border: 1px solid #000000; background-color: #eeeeee; color: #000000;  padding: .25em; }
+.calInfo		{ padding-left: .25em; }
+
+
+/* Recipe Calculator Styles */
+hr { 
+color: #000000;
+height: 1px;
+width: 100%;
+}
+
+#calculate {
+position: absolute;
+float: right;
+top: 150px;
+right: 10px;
+z-index: 2;
+border: 1px solid #000000;
+background-color: #eeeeee;
+padding: 3px;
+width: 40%;
+}
+
+#calculateInner {
+text-align: left;
+font-size: .85em;
+position: relative;
+}

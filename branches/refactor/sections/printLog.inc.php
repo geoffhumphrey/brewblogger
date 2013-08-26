@@ -1,0 +1,1 @@
+<?php if ($action == "scale") $scale = "Y"; else $scale = "N"; echo output_print_log($row_log['id'], "log", "brewing", "logPrint", $row_log['brewStyle'], $scale, $amt, $row_log['brewName'], $imageSrc, $row_colorChoose['themeName']); ?>
