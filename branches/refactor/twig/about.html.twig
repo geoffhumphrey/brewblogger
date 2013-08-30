@@ -1,0 +1,52 @@
+<div class="data-container">
+    <table class="dataTable">
+        <tr>
+            <td valign="top" class="dataLabelLeft">{% if pref.mode == 2 %}Club {% endif %}Name:</td>
+            <td valign="top" class="data">{{ name.brewerPrefix }} {{ name.brewerFirstName }} {{ name.brewerMiddleName }} {{ name.brewerLastName }} {{ name.brewerSuffix }}</td>
+        </tr>
+        {% if pref.mode == 1 and (name.brewerAge is not empty) %}
+        <tr>
+            <td valign="top" class="dataLabelLeft">Age:</td>
+            <td valign="top" class="data">{{ name.brewerAge }}</td>
+        </tr>
+        {% endif %}
+        {% if name.brewerCity is not empty %}
+        <tr>
+            <td valign="top" class="dataLabelLeft">Hometown:</td>
+            <td valign="top" class="data">{{ name.brewerCity }}{% if (name.brewerCity is not empty) and (name.brewerState is not empty) %}, {% endif %}{{ name.brewerState }} {{ name.brewerCountry }}</td>
+        </tr>
+        {% endif %}
+        {% if pref.mode == 1 %}
+            {% if name.brewerClubs is not empty %}
+            <tr>
+                <td valign="top" class="dataLabelLeft">Clubs:</td>
+                <td valign="top" class="data">{{ name.brewerClubs }}</td>
+            </tr>
+            {% endif %}
+            {% if name.brewerFavStyles is not empty %}
+            <tr>
+                <td valign="top" class="dataLabelLeft">Fav Styles:</td>
+                <td valign="top" class="data">{{ name.brewerFavStyles }}</td>
+            </tr>
+            {% endif %}
+            {% if name.brewerPrefMethod is not empty %}
+            <tr>
+                <td valign="top" class="dataLabelLeft">Method:</td>
+                <td valign="top" class="data">{{ name.brewerPrefMethod }}</td>
+            </tr>
+            {% endif %}
+        {% endif %}
+        {% if name.brewerAbout is not empty %}
+        <tr>
+            <td valign="top" class="dataLabelLeft">Info:</td>
+            <td valign="top" class="data">{{ name.brewerAbout }}</td>
+        </tr>
+        {% endif %}
+        {% if name.brewerOther is not empty %}
+        <tr>
+            <td valign="top" class="dataLabelLeft">Other Info:</td>
+            <td valign="top" class="data">{{ name.brewerOther }}</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>

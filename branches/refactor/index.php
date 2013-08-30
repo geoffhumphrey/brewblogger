@@ -43,6 +43,7 @@ $twig = new Twig_Environment($loader, array(
     'debug' => true,
     'autoescape' => false,
 ));
+$twig->addExtension(new Twig_Extension_Debug());
 
 $tplVars = array();
 $tplVars['name'] = isset($row_name)?$row_name:null;
@@ -172,9 +173,7 @@ if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
     include(SECTIONS . 'tools.inc.php');
     $content .= ob_get_clean();
 } elseif ($page == "about") {
-    ob_start();
-    include(SECTIONS . 'about.inc.php');
-    $content .= ob_get_clean();
+    $content .= include(SECTIONS . 'about.inc.php');
 } elseif ($page == "reference") {
     ob_start();
     include(SECTIONS . 'reference.inc.php');
