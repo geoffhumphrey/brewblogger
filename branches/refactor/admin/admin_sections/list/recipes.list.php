@@ -68,7 +68,7 @@
   <?php } ?>
  </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_log = mysql_fetch_assoc($log)); ?>
+<?php } while ($row_log = mysql_fetch_assoc($brew)); ?>
   <tr>
    <td colspan="16" align="right" class="dataHeadingList"><input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_update_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Update" class="radiobutton" value="Update"></td>
   </tr>
@@ -100,7 +100,7 @@ else include(ADMIN_INCLUDES.'error_privileges.inc.php');
   <?php } ?>
  </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_log = mysql_fetch_assoc($log)); ?>
+<?php } while ($row_log = mysql_fetch_assoc($brew)); ?>
 </table>
 <?php } ?>
 

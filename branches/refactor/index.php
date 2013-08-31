@@ -153,9 +153,11 @@ if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
     }
 
 } elseif ($page == "brewBlogList") {
+    $content .= include(SECTIONS . 'brewblogList.inc.php');
     ob_start();
     include(SECTIONS . 'brewblogList.inc.php');
     $content .= ob_get_clean();
+    $tplVars['page_title'] = 'BrewBlogs';
 } elseif ($page == "recipeList") {
     ob_start();
     include(SECTIONS . 'recipeList.inc.php');
