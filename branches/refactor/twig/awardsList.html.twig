@@ -1,0 +1,94 @@
+{% set total = awards|length %}
+<div id="content-wide">
+    {% if awards is empty %}
+    <table class="dataTable">
+        <tr>
+            <td class="dataHeadingList">There are currently no awards/competition entries in the database{% if filter != "all" %} for this member{% endif %}.<br><br></td>
+        </tr>
+    </table>
+</div>
+{% else %}
+    {{ dump(awards) }}
+    {% if filter == "defualt" %}
+        {% set columns = 7 %}
+    {% else %}
+        {% set columns = 8 %}
+    {% endif %}
+<table class="dataTable">
+    <tr>
+        <td colspan="{{ columns }}"><div id="paginate">
+                {{ total }} Total Awards/Competition Entries
+                {% if total > display %}echo "&nbsp;&nbsp;&nbsp;&#8226";{% endif %}
+                {% if view == "all" %}&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;{% endif %}
+                {% if total > display %}
+                    &nbsp;&nbsp;&nbsp;
+                    {{ paginate }}
+                    {% if view == "limited" %}
+                        &nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;<a href="?page=awardsList&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&view=all">Entire List of
+                        {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}
+                        Awards/Competition Entries</span></a>
+                    {% endif %}
+                {% endif %}
+                {% if view == "all" %}
+                    <a href="?page=awardsList&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&view=limited">Limited List of
+                    {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}
+                    Award/Competition Entries</a>
+                {% endif %}
+        </div></td>
+    </tr>
+    <tr>
+        {% if login_username is not empty %}<td class="dataList"><img src="{{ image_src }}pencil.png" border="0" align="absmiddle"></td>{% endif %}
+        <td class="dataHeadingList">Entered Name&nbsp;<a href="?page=awardsList&sort=awardBrewName&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=awardBrewName&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>
+        <td class="dataHeadingList">Style&nbsp;<a href="?page=awardsList&sort=awardStyle&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=awardStyle&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>
+        <td class="dataHeadingList">Competition&nbsp;<a href="?page=awardsList&sort=awardContest&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=awardContest&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>
+        <td class="dataHeadingList">Date&nbsp;<a href="?page=awardsList&sort=awardDate&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=awardDate&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>
+        <td class="dataHeadingList" colspan="2">Place&nbsp;<a href="?page=awardsList&sort=awardPlace&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=awardPlace&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>
+        {% if (pref.mode == "2") and (filter != "all") %}<td class="dataHeadingList">Brewer&nbsp;<a href="?page=awardsList&sort=brewBrewerID&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a href="?page=awardsList&sort=brewBrewerID&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a></td>{% endif %}
+    </tr>
+    {% for award in awards %}
+    <tr style="background-color: {{ cycle([color1, color2], loop.index) }}">
+        {% if login_username is not empty %}
+            {% if (user.userLevel == "1") or (recipe.brewBrewerID == login_username) %}
+                <td class="dataList"><a href="admin/index.php?action=edit&dbTable=awards&id={{ award.id|url_encode }}"><img src="{{ image_src }}pencil.png" alt="Edit {{ award.awardBrewName }}" title="Edit {{ award.awardBrewName }}" border="0" align="absmiddle"></a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+        {% endif %}
+    <td class="dataList"><a href="index.php?page={% if db_go == "r" %}recipe{% else %}brewBlog{% endif %}Detail&filter={{ award.brewBrewerId|url_encode }}&id={{ award.rbtrim_brew_id|url_encode }}">{{ award.awardBrewName }}</a></td>
+    <td class="dataList">
+        <div id="moreInfo"><a href="#">{{ award.awardStyle }}
+			  <span><div id="wideWrapper">{{ award.style_include }}</div></span>
+            </a>
+        </div>
+    </td>
+    <td class="dataListLeft">{% if award.awardContestURL is not empty %}<a href="{{ award.awardContestURL }}" target="_blank">{% endif %}{{ award.awardContest }}{% if award.awardContestURL is not empty %}</a>{% endif %}</td>
+    <td class="dataList" nowrap="nowrap">{{ award.awardDate|date("M j, Y") }}</td>
+    <td class="dataList" width="16"><img src="{{ image_src }}{% if award.awardPlace == "best" %}award_star_gold_3.png{% elseif award.awardPlace == "1" %}medal_gold_3.png{% elseif award.awardPlace == "2" %}medal_silver_3.png{% elseif award.awardPlace == "3" %}medal_bronze_3.png{% elseif award.awardPlace == "entry" %}tag_blue.png{% else %}star.png{% endif %}" border="0"/></td>
+    <td class="dataList" nowrap="nowrap">{% if award.awardPlace == "best" %}Best In Show{% elseif award.awardPlace == "1" %}1st (Gold){% elseif award.awardPlace == "2" %}2nd (Silver){% elseif award.awardPlace == "3" %}3rd (Bronze){% elseif award.awardPlace == "honMen" %}Honorable Mention{% else %}Entry Only{% endif %}</td>
+    {% if (pref.mode == "2") and (filter != "all") %}<td  class="dataList"><a href="?page=awardsList&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ award.user.user_name|url_encode }}&view=limited">{{ award.user.realFirstName }} {{ award.user.realLastName }}</a></td>{% endif %}
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="{{ columns }}"><div id="paginate">
+                {{ total }} Total Awards/Competition Entries
+                {% if total > display %}echo "&nbsp;&nbsp;&nbsp;&#8226";{% endif %}
+                {% if view == "all" %}&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;{% endif %}
+                {% if total > display %}
+                    &nbsp;&nbsp;&nbsp;
+                    {{ paginate }}
+                    {% if view == "limited" %}
+                        &nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;<a href="?page=awardsList&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&view=all">Entire List of
+                        {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}
+                        Awards/Competition Entries</span></a>
+                    {% endif %}
+                {% endif %}
+                {% if view == "all" %}
+                    <a href="?page=awardsList&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&view=limited">Limited List of
+                        {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}
+                        Award/Competition Entries</a>
+                {% endif %}
+            </div></td>
+    </tr>
+</table>
+</div>
+{% endif %}

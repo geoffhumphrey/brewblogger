@@ -159,15 +159,13 @@ if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
     $content .= include(SECTIONS . 'recipeList.inc.php');
     $tplVars['page_title'] = 'Recipes';
 } elseif ($page == "awardsList") {
-    ob_start();
-    include(SECTIONS . 'awardsList.inc.php');
-    $content .= ob_get_clean();
+    $content .= include(SECTIONS . 'awardsList.inc.php');
+    $tplVars['page_title'] = 'Awards-Competitions';
 } elseif ($page == "login") {
     $content .= include(SECTIONS . 'login.inc.php');
 } elseif ($page == "tools") {
-    ob_start();
-    include(SECTIONS . 'tools.inc.php');
-    $content .= ob_get_clean();
+    $tplVars['page_title'] = 'Calculators';
+    $content .= include(SECTIONS . 'tools.inc.php');
 } elseif ($page == "about") {
     $content .= include(SECTIONS . 'about.inc.php');
     $tplVars['page_title'] = 'About';

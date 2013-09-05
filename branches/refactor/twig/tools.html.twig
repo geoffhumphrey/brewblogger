@@ -1,0 +1,41 @@
+<table>
+    {% if not checkmobile %}
+    <?php if (!checkmobile()) { ?>
+    <tr>
+        <td class="dataLabelLeft">Choose:</td>
+        <td class="data">
+            <form name="form" id="form">
+                <select name="jumpMenu" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)">
+                    <option value="?page=tools"></option>
+                    {% for section, name in sections %}
+                    <option value="?page=tools&section={{ section|url_encode }}" {% if section == current_section %}selected="selected"{% endif %}>{{ name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td colspan="2">
+            {{ content }}
+        </td>
+    </tr>
+</table>
+<div class="calcNav">
+    {# Maybe move to batch? #}
+    {% for section, name in sections -%}
+        {%- if section == current_section -%}
+            <strong>{{ name }}</strong>
+        {%- else -%}
+            <a href="?page=tools&section={{ section|url_encode }}">{{ name }}</a>
+        {%- endif -%}
+
+        {%- if section == "force_carb" -%}
+            <br />
+        {%- elseif section == "hyd" -%}{# no output#}
+        {%- else -%}
+            &nbsp;|&nbsp;
+        {%- endif -%}
+    {%- endfor %}
+</div>
+

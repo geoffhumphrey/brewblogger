@@ -36,7 +36,7 @@ class FeatureContext extends MinkContext
      * Opens specified regular brewblogger page (not URL).
      *
      * @Given /^(?:|I )am on the page "(?P<page>[^"]+)"$/
-     * @When /^(?:|I )go to page "(?P<page>[^"]+)"$/
+     * @When /^(?:|I )go to the page "(?P<page>[^"]+)"$/
      */
     public function goToBrewBloggerPage($page)
     {
@@ -56,5 +56,14 @@ class FeatureContext extends MinkContext
             $message = sprintf("Current BrewBlogger page %s not found in current url %s", $page, $actual );
             throw new \Behat\Mink\Exception\ExpectationException($message, $this->getSession());
         }
+    }
+
+
+    /**
+     * @Given /^there are no awards$/
+     */
+    public function thereAreNoAwards()
+    {
+        // Nothing to do here yet
     }
 }
