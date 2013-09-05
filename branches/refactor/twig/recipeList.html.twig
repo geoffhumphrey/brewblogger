@@ -1,0 +1,186 @@
+{#
+    Why yes, we are setting recipe up here and then reusing it in the loop. That's how the old code works and we're not
+    refactoring logic yet.
+#}
+{% set recipe = recipes|first %}
+{% set total = recipes|length %}
+
+<div id="content-wide">
+    {% if recipes is empty %}
+    <table class="dataTable">
+        <tr>
+            <td class="dataHeadingList">There are currently no recipes in the
+                database{% if filter != "all" %} for this member{% endif %}.<br><br></td>
+        </tr>
+    </table>
+    {% else %}
+</div>
+    {% if featured is not empty %}
+        {% if (pref.mode == "1") or ((pref.mode == "2") and (filter == "all")) %}
+            {{ featured }}
+            <div class="headerContentAdmin">All {{ db_name }}</div>
+        {% endif %}
+    {% endif %}
+    <table class="dataTable">
+        <tr>
+            {% if style != "all" %}
+                <td>
+                    <div id="breadcrumb">Filter: {{ recipe.brewStyle }} | <a
+                                href="?page={{ page|url_encode }}&filter={{ filter|url_encode }}&style=all&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&view={{ view|url_encode }}&pg={{ pg|url_encode }}">See
+                            all
+                            styles{% if (pref.mode == "2") and (filter != "all") %} of recipes entered by {{ recipe.user.realFirstName }}{% endif %}</a>
+                    </div>
+                </td>
+            {% endif %}
+            <td>
+                <div id="paginate">
+                    {{ total }} {{ pref.menuRecipes }} Total
+                    {% if total > display %}&nbsp;&nbsp;&nbsp;&#8226;{% endif %}
+                    {% if view == "all" %}&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;{% endif %}
+                    {% if total > display %}
+                        &nbsp;&nbsp;&nbsp;
+                        {{ pagination }}
+                        {% if view == "limited" %}
+                            &nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a
+                                href="?page={{ page|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ filter|url_encode }}&style={{ style|url_encode }}&view=all">
+                            Entire List
+                            of {% if (pref.mode == "2") and (filter != "all") %}{{ recipe.user.realFirstName }}'s {% endif %}{{ pref.menuRecipes }}</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if (view == "all") and (total < display) %}<a
+                        href="?page={{ page|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ filter|url_encode }}&style={{ style|url_encode }}&view=limited">
+                        Limited List
+                        of {% if (pref.mode == "2") and (filter != "all") %}{{ recipe.user.realFirstName }}'s {% endif %}{{ pref.menuRecipes }}</a>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <table class="dataTable">
+        <tr>
+            {% if login_username is not empty %}
+                <td class="dataList" width="1%"><img src="{{ image_src }}pencil.png" border="0" align="absmiddle">
+                </td>{% endif %}
+            {% if not checkmobile %}
+                <td class="dataHeadingList" width="1%">XML</td>{% endif %}
+            <td class="dataHeadingList" width="25%">{{ db_name }}{% if not checkmobile %}&nbsp;<a
+                        href="?page={{ page|url_encode }}&sort=brewName&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                            src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewName&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending">{% endif %}</td>
+            <td class="dataHeadingList" width="25%">Style{% if not checkmobile %}&nbsp;<a
+                    href="?page={{ page|url_encode }}&sort=brewStyle&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                        src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewStyle&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            <td class="dataHeadingList" width="10%">Method{% if not checkmobile %}&nbsp;<a
+                    href="?page={{ page|url_encode }}&sort=brewMethod&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                        src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewMethod&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            <td class="dataHeadingList"
+                width="10%">{% if pref.measColor == "EBC" %}EBC{% else %}SRM{% endif %}{% if not checkmobile %}&nbsp;<a
+                        href="?page={{ page|url_encode }}&sort=brewLovibond&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                            src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewLovibond&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            <td class="dataHeadingList" width="5%">IBU{% if not checkmobile %}&nbsp;<a
+                    href="?page={{ page|url_encode }}&sort=brewBitterness&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                        src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewBitterness&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            <td class="dataHeadingList" width="5%">ABV{% if not checkmobile %}&nbsp;<a
+                    href="?page={{ page|url_encode }}&sort=brewOG&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                        src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                        href="?page={{ page|url_encode }}&sort=brewOG&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                    <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            {% if (pref.mode == "2") and (filter != "all") %}
+                <td class="dataHeadingList">Contributor{% if not checkmobile %}&nbsp;<a
+                        href="?page={{ page|url_encode }}&sort=brewBrewerID&dir=ASC&filter={{ filter|url_encode }}&view={{ view|url_encode }}"><img
+                            src="{{ image_src }}sort_up.gif" border="0" alt="Sort Ascending"></a><a
+                            href="?page={{ page|url_encode }}&sort=brewBrewerID&dir=DESC&filter={{ filter|url_encode }}&view={{ view|url_encode }}">
+                        <img src="{{ image_src }}sort_down.gif" border="0" alt="Sort Descending"></a>{% endif %}</td>
+            {% endif %}
+            <td class="dataHeadingList center" width="1%"><img src="{{ image_src }}medal_gold_3.png" border="0"
+                                                               alt="Awards/Competition Entires" align="baseline"></td>
+        </tr>
+        {% for recipe in recipes %}
+            {% if recipe.brewArchive != "Y" %}
+                <tr style="background-color: {{ cycle([color1, color2], loop.index) }}">
+                    {% if login_username is not empty %}
+                        {% if (user.userLevel == "1") or (recipe.brewBrewerID == login_username) %}
+                            <td class="dataList"><a
+                                        href="admin/index.php?action=edit&dbTable=recipes&id={{ recipe.id|url_encode }}"><img
+                                            src="{{ image_src }}pencil.png" alt="Edit {{ recipe.brewName }}"
+                                            title="Edit {{ recipe.brewName }}" border="0" align="absmiddle"></a></td>
+                        {% else %}
+                            <td>&nbsp;</td>
+                        {% endif %}
+                    {% endif %}
+                    {% if not checkmobile %}
+                        <td class="dataList"><a href="#"
+                                                onclick="window.open('{{ includes }}output_beer_xml.inc.php?id={{ recipe.id }}&source={{ source }}&brewStyle={{ recipe.brewStyle }}','','height=5,width=5, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img
+                                        src="{{ image_src }}page_white_code.png" title="Download BeerXML"
+                                        align="absmiddle" border="0"/></a></td>
+                    {% endif %}
+                    <td class="dataList"><a
+                                href="index.php?page={{ destination }}&filter={{ recipe.brewBrewerID|url_encode }}&id={{ recipe.id|url_encode }}">{{ recipe.brewName }}</a>
+                    </td>
+                    <td class="dataList">
+                        <div id="moreInfo">{% if (recipe.brewStyle is not empty) and (not checkmobile) %}<a href="
+                    {%- if style == "all" %}?page={{ page|url_encode }}&filter={{ filter|url_encode }}&style={{ recipe.brewStyle|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}view={{ view|url_encode }}&pg=1{% else %}#{% endif -%}
+                    "
+                                                                                                        title="Filter by style: {{ recipe.brewStyle }}">{% endif %}{{ recipe.brewStyle }}{% if (recipe.style is not empty) and (not checkmobile) %}
+                                <span>
+                            <div id="wideWrapper">
+                                {{ recipe.style_include }}
+                            </div>
+                        </span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td class="dataList">{{ recipe.brewMethod }}</td>
+                    {% if not checkmobile %}
+                        <td class="dataList">{{ recipe.color_display }}</td>
+                    {% endif %}
+                    <td class="dataList">{{ recipe.brewBitterness|number_format(1) }}</td>
+                    <td class="dataList">{{ recipe.calcABV|number_format(1) }}</td>
+                    {% if (pref.mode == "2") and (filter != "all") %}
+                        <td class="dataList"><a
+                                    href="?page={{ page|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ recipe.user.user_name|url_encode }}&view=limited">{{ recipe.user.realFirstName }} {{ recipe.user.realLastName }}</a>
+                        </td>
+                    {% endif %}
+                    <td class="dataList center">{{ recipe.award_count }}</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    <table class="dataTable">
+        <tr>
+            <td>
+                <div id="paginate">
+                    {{ total }} {{ pref.menuRecipes }} Total
+                    {% if total > display %}&nbsp;&nbsp;&nbsp;&#8226;{% endif %}
+                    {% if view == "all" %}&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;{% endif %}
+                    {% if total > display %}
+                        &nbsp;&nbsp;&nbsp;
+                        {{ pagination }}
+                        {% if view == "limited" %}
+                            &nbsp;&nbsp;&nbsp;&#8226&nbsp;&nbsp;&nbsp;<a
+                                href="?page={{ page|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ filter|url_encode }}&style={{ style|url_encode }}&view=all">
+                            Entire List
+                            of {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}{{ pref.menuRecipes }}</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if (view == "all") and (total < display) %}<a
+                        href="?page={{ page|url_encode }}&sort={{ sort|url_encode }}&dir={{ dir|url_encode }}&filter={{ filter|url_encode }}&style={{ style|url_encode }}&view=limited">
+                        Limited List
+                        of {% if (pref.mode == "2") and (filter != "all") %}{{ user2.realFirstName }}'s {% endif %}{{ pref.menuRecipes }}</a>
+                    {% endif %}
+                </div>
+            </td>
+        </tr>
+    </table>
+    </div>
+{% endif %}

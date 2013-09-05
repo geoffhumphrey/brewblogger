@@ -1,7 +1,7 @@
 Feature:
   As a visitor
   I want to see brewblogs
-  So that I can see the recipes for beers
+  So that I can see information about batches of beer
 
 Scenario: Visit Brewblog list page
   When I am on the page "brewBlogList"

@@ -156,9 +156,8 @@ if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
     $content .= include(SECTIONS . 'brewblogList.inc.php');
     $tplVars['page_title'] = 'BrewBlogs';
 } elseif ($page == "recipeList") {
-    ob_start();
-    include(SECTIONS . 'recipeList.inc.php');
-    $content .= ob_get_clean();
+    $content .= include(SECTIONS . 'recipeList.inc.php');
+    $tplVars['page_title'] = 'Recipes';
 } elseif ($page == "awardsList") {
     ob_start();
     include(SECTIONS . 'awardsList.inc.php');
