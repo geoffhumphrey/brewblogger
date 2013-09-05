@@ -164,9 +164,7 @@ if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
     include(SECTIONS . 'awardsList.inc.php');
     $content .= ob_get_clean();
 } elseif ($page == "login") {
-    ob_start();
-    include(SECTIONS . 'login.inc.php');
-    $content .= ob_get_clean();
+    $content .= include(SECTIONS . 'login.inc.php');
 } elseif ($page == "tools") {
     ob_start();
     include(SECTIONS . 'tools.inc.php');
