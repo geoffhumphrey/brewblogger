@@ -32,11 +32,11 @@
        <option value="about" <?php if (!(strcmp($row_log['home'], "about" ))) {echo "SELECTED";} ?>>About <?php if ($row_pref['mode'] == "2") echo "(Default)"; ?> </option>
        <option value="tools" <?php if (!(strcmp($row_log['home'], "tools" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuCalculators'];?></option>
        <option value="calendar" <?php if (!(strcmp($row_log['home'], "calendar" ))) {echo "SELECTED";} ?>>Calendar</option>
-	   <option value="brewBlogList" <?php if (!(strcmp($row_log['home'], "brewBlogList" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuBrewBlogs']; ?></option>
-	 <?php if ($row_pref['mode'] == "1") { ?><option value="brewBlogCurrent" <?php if (!(strcmp($row_log['home'], "brewBlogCurrent" ))) {echo "SELECTED";} ?>>Current <?php echo $row_pref['menuBrewBlogs']; ?> (Default)</option><?php } ?>
+	   <option value="brewblog-list" <?php if (!(strcmp($row_log['home'], "brewblog-list" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuBrewBlogs']; ?></option>
+	 <?php if ($row_pref['mode'] == "1") { ?><option value="current" <?php if (!(strcmp($row_log['home'], "current" ))) {echo "SELECTED";} ?>>Current <?php echo $row_pref['menuBrewBlogs']; ?> (Default)</option><?php } ?>
        <option value="login" <?php if (!(strcmp($row_log['home'], "login" ))) {echo "SELECTED";} ?>>Login</option>
 	 <?php if ($row_pref['mode'] == "2") { ?><option value="members" <?php if (!(strcmp($row_log['home'], "members" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuMembers']; ?></option><?php } ?>
-	 <option value="recipeList" <?php if (!(strcmp($row_log['home'], "recipeList" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuRecipes']; ?></option>
+	 <option value="recipe-list" <?php if (!(strcmp($row_log['home'], "recipe-list" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuRecipes']; ?></option>
        <option value="reference" <?php if (!(strcmp($row_log['home'], "reference" ))) {echo "SELECTED";} ?>><?php echo $row_pref['menuReference']; ?></option>
       </select>
       </td>

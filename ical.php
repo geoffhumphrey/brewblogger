@@ -55,7 +55,7 @@ class BrewDate extends DateTime
  * @param string $page
  * @return string
  */
-function urlForBrew($id, $brewer, $page = 'brewBlogDetail')
+function urlForBrew($id, $brewer, $page = 'brewblog')
 {
     return 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 
             'index.php?page=' . urlencode($page) . '&filter=' . urlencode($brewer) . 
@@ -153,8 +153,8 @@ while ($row = mysql_fetch_assoc($upcoming)) {
     $upcomingDate = new BrewDate($row['upcomingDate']);
     $event = $upcomingDate->createVevent($cal);
     $event->setProperty('summary', 'Upcoming: ' . $row['upcoming']);
-    echo urlForBrew($row['upcomingRecipeID'], $row['brewBrewerID'], 'recipeDetail');
-    $event->setProperty('description', urlForBrew($row['upcomingRecipeID'], $row['brewBrewerID'], 'recipeDetail'));
+    echo urlForBrew($row['upcomingRecipeID'], $row['brewBrewerID'], 'recipe');
+    $event->setProperty('description', urlForBrew($row['upcomingRecipeID'], $row['brewBrewerID'], 'recipe'));
 }
 
 $cal->returnCalendar();

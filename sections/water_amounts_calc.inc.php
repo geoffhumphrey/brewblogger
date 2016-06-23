@@ -39,7 +39,7 @@ if (($action == "default") || ($action == "reset")) $mashWaterMet = ($totalGrain
 $spargeWater = ($totalWater - $mashWater);
 $spargeWaterMet = ($totalWaterMet - $mashWaterMet);
 
-if (($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "brewBlogCurrent"))  
+if (($page == "brewblog") || ($page == "recipe") || ($page == "current"))  
 {
 echo "<div id=\"moreInfo\">Total Grain Weight (<a href=\"#\">Water Amounts";
 echo "<span>

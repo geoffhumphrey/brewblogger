@@ -1,143 +1,94 @@
 <?php if (($row_pref['waterDisplayMethod'] == "1") && ($row_log['brewWaterProfile'] != "")) { // Use water profiles tables ?>
-<div class="headerContent">Water Profile</div>
-<div class="data-container">
-<h3><em><?php echo $row_water_profiles['waterName']; ?></em></h3>
-<table class="dataTable">
-<?php if ($row_water_profiles['waterCalcium'] != "") { ?>
-<tr> 
-   <td class="dataLabelLeft" width="10%">Calicum:</td>
-   <td class="data"><?php echo $row_water_profiles['waterCalcium']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterBicarbonate'] != "") {
-?>
-<tr> 
-   <td class="dataLabelLeft" width="10%">Bicarbonate:</td>
-   <td class="data"><?php echo $row_water_profiles['waterBicarbonate']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterSulfate'] != "") {
-?>
-<tr> 
-   <td class="dataLabelLeft" width="10%">Sulfate:</td>
-   <td class="data"><?php echo $row_water_profiles['waterSulfate']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterChloride'] != "") {
-?>
-<tr> 
-   <td class="dataLabelLeft" width="10%">Chloride:</td>
-   <td class="data"><?php echo $row_water_profiles['waterChloride']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterSodium'] != "") {
-?>
-<tr>  
-   <td class="dataLabelLeft" width="10%">Sodium:</td>
-   <td class="data"><?php echo $row_water_profiles['waterSodium']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterMagnesium'] != "") {
-?>
-<tr>   
-   <td class="dataLabelLeft" width="10%">Magnesium:</td>
-   <td class="data"><?php echo $row_water_profiles['waterMagnesium']; ?> ppm</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterPH'] != "") {
-?>
-<tr> 
-   <td class="dataLabelLeft">PH:</td>
-   <td class="data"><?php echo $row_water_profiles['waterPH']; ?>%</td>
-</tr>
-<?php } 
-if ($row_water_profiles['waterNotes'] != "") {
-?>
-<tr> 
-   <td class="dataLabelLeft">Notes:</td>
-   <td class="data"><?php echo $row_water_profiles['waterNotes']; ?></td>
-</tr>
-<?php } ?>
-</table>
+<h3>Water Profile <small><em><?php echo $row_water_profiles['waterName']; ?></em></small></h3>
+
+<div class="row bcoem-account-info">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    	<div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Calcium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterCalcium'])) echo $row_water_profiles['waterCalcium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Bicarbonate:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterBicarbonate'])) echo $row_water_profiles['waterBicarbonate']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Sulfate:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterSulfate'])) echo $row_water_profiles['waterSulfate']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Chloride:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterChloride'])) echo $row_water_profiles['waterChloride']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+    </div><!-- /column 1 -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    	<div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Sodium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterSodium'])) echo $row_water_profiles['waterSodium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Magnesium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterMagnesium'])) echo $row_water_profiles['waterMagnesium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>PH:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_water_profiles['waterPH'])) echo $row_water_profiles['waterPH']; else echo "Not Provided"; ?></div>
+        </div>
+    </div><!-- /column 1 -->
+</div><!-- /row -->
+<?php if ($row_water_profiles['waterNotes'] != "") { ?>
+<div class="row bcoem-account-info">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><strong>Notes:</strong></div>
+    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6"><?php echo $row_water_profiles['waterNotes']; ?></div>
 </div>
 <?php } ?>
+<?php } ?>
+
+
+
+
+
 <?php if ($row_pref['waterDisplayMethod'] == "2") { ?>
 <?php if ($row_log['brewWaterName'] != "" ) { // (1) hide entire water rows if name not present ?>
-<div class="headerContent">Water Profile</div>
-<div class="data-container">
-<table class="dataTable">
-<tr>
-<td width="50%">
- <table>
- <?php if ($row_log['brewWaterName'] != "")  { ?>
- <tr>
-  <td class="dataLabelLeft">Source:</td>
-  <td class="dataLeft"><?php echo $row_log['brewWaterName'];  ?></td>
- </tr>
- <?php } ?>
-  <?php if ($row_log['brewWaterSulfate'] != "") { ?>
- <tr>
-  <td class="dataLabelLeft">Sulfate:</td>
-  <td class="data"><?php echo $row_log['brewWaterSulfate']; ?>&nbsp;ppm</td>
- </tr>
- <?php } ?>
- <?php if ($row_log['brewWaterPH'] != "") {  ?>
- <tr>
-  <td class="dataLabelLeft">PH:</td>
-  <td class="data"><?php echo $row_log['brewWaterPH']; ?></td>
- </tr>
- <?php } ?>
- <?php if ($row_log['brewWaterCalcium'] != "") { ?>
- <tr>
-  <td class="dataLabelLeft">Calcium:</td>
-  <td class="data"><?php echo $row_log['brewWaterCalcium']; ?>&nbsp;ppm</td>
- </tr>
- <?php } ?>
- <?php if ($row_log['brewWaterMagnesium'] != "") {  ?>
- <tr>
-  <td class="dataLabelLeft">Magnesium:</td>
-  <td class="data"><?php echo $row_log['brewWaterMagnesium']; ?>&nbsp;ppm</td>
- </tr>
- <?php } ?>
- </table>
-</td>
-
-<td width="50%"> 
- <table>
- <?php if ($row_log['brewWaterAmount'] != "")  { ?>
- <tr>
-  <td class="dataLabelLeft">Amount:</td>
-  <td class="data"><?php echo $row_log['brewWaterAmount']; ?>&nbsp;<?php echo $row_pref['measFluid2']; ?></td>
- </tr>
- <?php } ?>
-
-  <?php if ($row_log['brewWaterChloride'] != "") { ?>
-  <tr>
-  <td class="dataLabelLeft">Chloride:</td>
-  <td class="data"><?php echo $row_log['brewWaterChloride']; ?>&nbsp;ppm</td>
-  </tr>
-  <?php }  ?>
-  <?php if ($row_log['brewWaterSodium'] != "") {  ?>
-  <tr>
-  <td class="dataLabelLeft">Sodium:</td>
-  <td class="data"><?php echo $row_log['brewWaterSodium']; ?>&nbsp;ppm</td>
-  </tr>
-  <?php }  ?>
-  </table>
-</td>
-</tr>
-<tr>
-<td colspan="2">
- <table> 
- <?php if ($row_log['brewWaterNotes'] != "") { ?>
- <tr>
-  <td class="dataLabelLeft">Notes:</td>
-  <td class="data" colspan="3"><?php echo $row_log['brewWaterNotes']; ?></td>
- </tr>
- <?php } ?>
- </table>
-</td>
-</tr>
-</table>
+<h3>Water Profile <small><em><?php echo $row_log['brewWaterName'];  ?></em></small></h3>
+<div class="row bcoem-account-info">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Calcium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterCalcium'])) echo $row_log['brewWaterCalcium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Bicarbonate:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterBicarbonate'])) echo $row_log['brewWaterBicarbonate']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Sulfate:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterSulfate'])) echo $row_log['brewWaterSulfate']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Chloride:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterChloride'])) echo $row_log['brewWaterChloride']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+	</div><!-- /column 1 -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+		<div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Sodium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterSodium'])) echo $row_log['brewWaterSodium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Magnesium:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterMagnesium'])) echo $row_log['brewWaterMagnesium']." ppm"; else echo "Not Provided"; ?></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>PH:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (!empty($row_log['brewWaterPH'])) echo $row_log['brewWaterPH']; else echo "Not Provided"; ?></div>
+        </div>
+	</div><!-- /column 1 -->
+</div><!-- /row -->
+<?php if ($row_log['brewWaterNotes'] != "") { ?>
+<div class="row bcoem-account-info">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><strong>Notes:</strong></div>
+    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6"><?php echo $row_log['brewWaterNotes']; ?></div>
 </div>
-<?php } } ?>
+<?php } ?>
+<?php } ?>
+<?php } ?>

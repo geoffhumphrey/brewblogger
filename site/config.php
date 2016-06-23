@@ -10,21 +10,21 @@ INSERT YOUR USERNAME BETWEEN THE DOUBLE-QUOTATION MARKS ("").
 For example, if your username is fred then the line should read $username_brewblog = "fred".
 */
 
-$username_brewblog = "";
+$username_brewblog = "zkdigita_zkdigit";
 
 /* 
 INSERT YOUR PASSWORD BETWEEN THE DOUBLE-QUOTATION MARKS ("").
 For example, if your password is flintstone then the line should read $password_brewblog = "flintsone".
 */
 
-$password_brewblog = "";
+$password_brewblog = "zakary";
 
 /*
 The following line is the name of your MySQL database you set up already.  
 If you haven't set up the database yet, please refer to http://www.brewblogger.net/ for setup instructions. 
 */
 
-$database_brewing = "";
+$database_brewing = "zkdigita_brewblog";
 
 /* 
 This line strings the information together and connects to MySQL.  
@@ -36,6 +36,15 @@ $brewblog = mysql_connect($hostname_brewblog, $username_brewblog, $password_brew
 /* 
 Do not change the following line.
 */
-$brewing = $brewblog; 
+$brewing = $brewblog;
+
+
+$base_url = ""; 
+if ((!empty($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== "off")) || ($_SERVER['SERVER_PORT'] == 443)) $base_url .= "https://"; 
+else $base_url .= "http://";
+
+// ONLY alter this line if needed (see above): 
+$base_url .= $_SERVER['SERVER_NAME'].$sub_directory."/";
+
 
 ?>

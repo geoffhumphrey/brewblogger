@@ -28,9 +28,9 @@
                <td width="1%" 	class="dataList"><?php if ($row_members['userInfoPrivate'] == "Y") { ?><img src="<?php echo $imageSrc; ?>user.png"><?php } else echo "&nbsp;"; ?></td>
                <td width="34%" 	class="dataList"><?php if ($row_members['userInfoPrivate'] == "Y") { ?><a href="index.php?page=profile&filter=<?php echo $row_members['user_name']; ?>"><?php } echo $row_members['realFirstName']."&nbsp;".$row_members['realLastName'];  if ($row_members['userInfoPrivate'] != "") { ?></a><?php if ($row_members['userPosition'] != "") echo "<span class=\"text_9\">&nbsp;&nbsp;<em>".$row_members['userPosition']."</em></span>"; } ?></td>
 			   <td 	class="dataList"><?php echo $totalRows_count1."&nbsp;&nbsp;"; ?></td>
-			   <td width="25%" 	class="dataList"><?php if ($totalRows_count1 > 0) { ?><a href="index.php?page=brewBlogList&filter=<?php echo $row_members['user_name']; ?>&sort=brewDate&dir=DESC">View &raquo;</a><?php } else echo "&nbsp;"; ?></td>
+			   <td width="25%" 	class="dataList"><?php if ($totalRows_count1 > 0) { ?><a href="index.php?page=brewblog-list&filter=<?php echo $row_members['user_name']; ?>&sort=brewDate&dir=DESC">View &raquo;</a><?php } else echo "&nbsp;"; ?></td>
 			   <td 	class="dataList"><?php echo $totalRows_count2."&nbsp;&nbsp;"; ?></td>
-               <td width="25%" 	class="dataList"><?php if ($totalRows_count2 > 0) { ?><a href="index.php?page=recipeList&filter=<?php echo $row_members['user_name']; ?>">View &raquo;</a><?php } else echo "&nbsp;"; ?></td>
+               <td width="25%" 	class="dataList"><?php if ($totalRows_count2 > 0) { ?><a href="index.php?page=recipe-list&filter=<?php echo $row_members['user_name']; ?>">View &raquo;</a><?php } else echo "&nbsp;"; ?></td>
 			   <td 	class="dataList"><?php echo $totalRows_count3; ?></td>
                <td width="25%" 	class="dataList"><?php if ($totalRows_count3 > 0) { ?><a href="index.php?page=awardsList&sort=awardBrewName&dir&ASC&filter=<?php echo $row_members['user_name']; ?>">View &raquo;</a><?php } else echo "&nbsp;"; ?></td>
 			   

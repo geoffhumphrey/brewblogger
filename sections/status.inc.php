@@ -3,7 +3,7 @@
     <div id="sidebarInnerWrapper">
       	<table width="100%">
         <?php do { 
-		echo "<tr><td class=\"listLeftAlign\">"; if ($row_status['id'] != $id) echo "<a href=\"index.php?page=brewBlogDetail&filter=".$row_status['brewBrewerID']."&id=".$row_status['id']."\">"; echo truncate_string($row_status['brewName'],25,'...'); if ($row_status['id'] != $id) echo "</a>"; echo "</td><td class=\"listRightAlign\">".$row_status['brewStatus']."</td></tr>\n";
+		echo "<tr><td class=\"listLeftAlign\">"; if ($row_status['id'] != $id) echo "<a href=\"index.php?page=brewblog&filter=".$row_status['brewBrewerID']."&id=".$row_status['id']."\">"; echo truncate_string($row_status['brewName'],25,'...'); if ($row_status['id'] != $id) echo "</a>"; echo "</td><td class=\"listRightAlign\">".$row_status['brewStatus']."</td></tr>\n";
 		} while ($row_status = mysql_fetch_assoc($status));  ?>
 		</table>
      </div>

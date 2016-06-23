@@ -11,10 +11,7 @@ if ($amt != 0) {
 
 mysql_select_db($database_brewing, $brewing);
 
-//
 // Grist percentage calculations
-//
-
 $totalExtract = 0;
 for ($i = 1; $i <= MAX_EXT; $i++) {
   $key           = 'brewExtract' . $i . 'Weight';

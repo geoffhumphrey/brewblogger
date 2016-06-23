@@ -1,8 +1,8 @@
 <?php
 
-$brewColor = ($page == "recipeList") ? $row_recipeList['brewLovibond'] : $row_log['brewLovibond'];
+$brewColor = ($page == "recipe-list") ? $row_recipeList['brewLovibond'] : $row_log['brewLovibond'];
 
-if ($page == "recipeList") {
+if ($page == "recipe-list") {
   $color        = $row_recipeList['brewLovibond'];
   $colorFormula = ($row_recipeList['brewColorFormula'] != "") ? $row_recipeList['brewColorFormula'] : "formula unknkown";
 } else {
@@ -23,7 +23,7 @@ echo '<table>' . "\n";
 echo '<tr>' . "\n";
 echo '<td class="colorTable" style="background: ' . $bkColor . '; color: ' . $fontColor . '; padding: 0 3px 0 3px">';
 echo '&nbsp;&nbsp;' . round($color, 1) . '&nbsp;&nbsp;</td>' . "\n";
-if ($page != "recipeList" && $page != "brewBlogList")
+if ($page != "recipe-list" && $page != "brewblog-list")
   echo '<td>&nbsp;(' . $colorFormula . ')</td>' . "\n";
 echo '</tr>' . "\n";
 echo '</table>' . "\n";

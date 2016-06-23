@@ -22,7 +22,7 @@ if ($row_pref['mode'] == "2") {
 			$totalRows_brewerID = mysql_num_rows($brewerID);
 	  ?>
 		  <tr>
-    	     <td class="listLeftAlign"><?php if ($row_upcoming['upcomingRecipeID'] != "") { ?><a href="index.php?page=recipeDetail&filter=<?php echo $row_brewerID['brewBrewerID']; ?>&id=<?php echo $row_upcoming['upcomingRecipeID']; ?>"><?php } echo truncate_string($row_upcoming['upcoming'],25,'...'); if ($row_upcoming['upcomingRecipeID'] != "") echo "</a>"; ?></td>
+    	     <td class="listLeftAlign"><?php if ($row_upcoming['upcomingRecipeID'] != "") { ?><a href="index.php?page=recipe&filter=<?php echo $row_brewerID['brewBrewerID']; ?>&id=<?php echo $row_upcoming['upcomingRecipeID']; ?>"><?php } echo truncate_string($row_upcoming['upcoming'],25,'...'); if ($row_upcoming['upcomingRecipeID'] != "") echo "</a>"; ?></td>
 			 <td class="listRightAlign"><?php if ($row_upcoming['upcomingDate'] != "")  { $date = $row_upcoming['upcomingDate']; $realdate = dateconvert($date,3); echo $realdate; } else echo "&nbsp;"; ?></td>
 		  </tr>
 	  <?php } while ($row_upcoming = mysql_fetch_assoc($upcoming)); ?>

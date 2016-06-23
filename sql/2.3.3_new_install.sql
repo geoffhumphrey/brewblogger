@@ -625,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `preferences` (
 --
 
 INSERT INTO `preferences` (`id`, `measFluid1`, `measFluid2`, `measWeight1`, `measWeight2`, `measWaterGrainRatio`, `measTemp`, `measColor`, `measBitter`, `measAbbrev`, `allowReviews`, `allowPrintLog`, `allowPrintRecipe`, `allowPrintXML`, `allowSpecifics`, `allowGeneral`, `allowComments`, `allowRecipe`, `allowMash`, `allowWater`, `allowProcedure`, `allowSpecialProcedure`, `allowFermentation`, `allowLabel`, `allowRelated`, `allowList`, `allowStatus`, `allowUpcoming`, `allowAwards`, `allowCalendar`, `allowNews`, `allowProfile`, `theme`, `mode`, `home`, `menuHome`, `menuBrewBlogs`, `menuRecipes`, `menuAwards`, `menuAbout`, `menuReference`, `menuCalculators`, `menuCalendar`, `menuLogin`, `menuLogout`, `menuMembers`, `mashDisplayMethod`, `waterDisplayMethod`, `hopPelletFactor`) VALUES
-(1, 'ounces', 'gallons', 'ounces', 'pounds', 'qt/lb', 'F', 'SRM', 'IBU', 'o', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'midas.css', '1', 'brewBlogCurrent', 'Home', 'BrewBlogs', 'Recipes', 'Awards-Competitions', 'About', 'Reference', 'Calculators', 'Calendar', 'Login', 'Log Out', 'Members', '1', '1', 1.06);
+(1, 'ounces', 'gallons', 'ounces', 'pounds', 'qt/lb', 'F', 'SRM', 'IBU', 'o', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'Y', 'midas.css', '1', 'current', 'Home', 'BrewBlogs', 'Recipes', 'Awards-Competitions', 'About', 'Reference', 'Calculators', 'Calendar', 'Login', 'Log Out', 'Members', '1', '1', 1.06);
 
 -- --------------------------------------------------------
 

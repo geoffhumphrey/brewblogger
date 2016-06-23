@@ -212,13 +212,13 @@ foreach($weeks AS $week){
 			   if ($tertiary0 > 0) $lager0 = $tertiary0 + ($row_calDays['brewTertiary'] * 86400); else $lager0 = "0";
 			   if ($lager0 > 0) $age0 = $lager0 + ($row_calDays['brewLager'] * 86400); else $age0 = "0";
 			   if ($row_calDays['brewTapDate'] != "") $tap0 = GetTimeStamp($row_calDays['brewTapDate']); else { if ($age0 > 0) $tap0 = $age0 + ($row_calDays['brewAge'] * 86400); else $tap0 = "0"; }
-			   if (($row_calDays['brewStatus'] == "Planned") && (($planned0 == $today0))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday0 == $today0))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if (($secondary0 == $today0) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if (($tertiary0 == $today0)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if (($lager0 == $today0)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if (($age0 == $today0) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
-			   if ($tap0 == $today0) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] == "Planned") && (($planned0 == $today0))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday0 == $today0))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($secondary0 == $today0) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($tertiary0 == $today0)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($lager0 == $today0)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if (($age0 == $today0) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
+			   if ($tap0 == $today0) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
 					}
 				} 
 			   while ($row_calDays = mysql_fetch_assoc($calDays));
@@ -242,7 +242,7 @@ foreach($weeks AS $week){
 			   	$upcoming0 = GetTimeStamp($MySqlDate_0);
 				if ($todaysDate < $upcoming0) {
 			   	  $upBrewName0 = truncate_string($row_upDays['upcoming'],12,'...');
-			      if ($upcoming0 == $today0) { echo "<tr><td valign=\"top\" class=\"none\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName0."</a>"; else echo $upBrewName0; echo "</td></tr>"; }
+			      if ($upcoming0 == $today0) { echo "<tr><td valign=\"top\" class=\"none\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName0."</a>"; else echo $upBrewName0; echo "</td></tr>"; }
 			   	}
 			   }
 			   while ($row_upDays = mysql_fetch_assoc($upDays));
@@ -286,13 +286,13 @@ foreach($weeks AS $week){
 			   if ($tertiary1 > 0) $lager1 = $tertiary1 + ($row_calDays['brewTertiary'] * 86400); else $lager1 = "0";
 			   if ($lager1 > 0) $age1 = $lager1 + ($row_calDays['brewLager'] * 86400); else $age1 = "0";
 			   if ($row_calDays['brewTapDate'] != "") $tap1 = GetTimeStamp($row_calDays['brewTapDate']); else { if ($age1 > 0) $tap1 = $age1 + ($row_calDays['brewAge'] * 86400); else $tap1 = "0"; }
-			   if (($row_calDays['brewStatus'] == "Planned") && (($planned1 == $today1))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday1 == $today1))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if (($secondary1 == $today1) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if (($tertiary1 == $today1)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if (($lager1 == $today1)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if (($age1 == $today1) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
-			   if ($tap1 == $today1) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] == "Planned") && (($planned1 == $today1))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday1 == $today1))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($secondary1 == $today1) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($tertiary1 == $today1)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($lager1 == $today1)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if (($age1 == $today1) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
+			   if ($tap1 == $today1) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
 					}
 				} 
 			   while ($row_calDays = mysql_fetch_assoc($calDays));
@@ -316,7 +316,7 @@ foreach($weeks AS $week){
 			   	$upcoming1 = GetTimeStamp($MySqlDate_1);
 				if ($todaysDate < $upcoming1) { 
 			   	 $upBrewName1 = truncate_string($row_upDays['upcoming'],12,'...');
-			     if ($upcoming1 == $today1) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName1."</a>"; else echo $upBrewName1; echo "</td></tr>"; }
+			     if ($upcoming1 == $today1) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName1."</a>"; else echo $upBrewName1; echo "</td></tr>"; }
 			     }
 			   }
 			   while ($row_upDays = mysql_fetch_assoc($upDays));
@@ -348,13 +348,13 @@ foreach($weeks AS $week){
 			   if ($tertiary2 > 0) $lager2 = $tertiary2 + ($row_calDays['brewTertiary'] * 86400); else $lager2 = "0";
 			   if ($lager2 > 0) $age2 = $lager2 + ($row_calDays['brewLager'] * 86400); else $age2 = "0";
 			   if ($row_calDays['brewTapDate'] != "") $tap2 = GetTimeStamp($row_calDays['brewTapDate']); else { if ($age2 > 0) $tap2 = $age2 + ($row_calDays['brewAge'] * 86400); else $tap2 = "0"; }
-			   if (($row_calDays['brewStatus'] == "Planned") && (($planned2 == $today2))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday2 == $today2))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if (($secondary2 == $today2) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if (($tertiary2 == $today2)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if (($lager2 == $today2)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if (($age2 == $today2) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
-			   if ($tap2 == $today2) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] == "Planned") && (($planned2 == $today2))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday2 == $today2))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($secondary2 == $today2) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($tertiary2 == $today2)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($lager2 == $today2)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if (($age2 == $today2) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
+			   if ($tap2 == $today2) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
 			   	}
 			   } 
 			   while ($row_calDays = mysql_fetch_assoc($calDays));
@@ -379,7 +379,7 @@ foreach($weeks AS $week){
 				
 				if ($todaysDate < $upcoming2) {
 			   	 $upBrewName2 = truncate_string($row_upDays['upcoming'],12,'...');
-			     if ($upcoming2 == $today2) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName2."</a>"; else echo $upBrewName2; echo "</td></tr>"; }
+			     if ($upcoming2 == $today2) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName2."</a>"; else echo $upBrewName2; echo "</td></tr>"; }
 			     }
 			   }
 			   while ($row_upDays = mysql_fetch_assoc($upDays));
@@ -413,13 +413,13 @@ foreach($weeks AS $week){
 			   if ($tertiary3 > 0) $lager3 = $tertiary3 + ($row_calDays['brewTertiary'] * 86400); else $lager3 = "0";
 			   if ($lager3 > 0) $age3 = $lager3 + ($row_calDays['brewLager'] * 86400); else $age3 = "0";
 			   if ($row_calDays['brewTapDate'] != "") $tap3 = GetTimeStamp($row_calDays['brewTapDate']); else { if ($age3 > 0) $tap3 = $age3 + ($row_calDays['brewAge'] * 86400); else $tap3 = "0"; }
-			   if (($row_calDays['brewStatus'] == "Planned") && (($planned3 == $today3))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday3 == $today3))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if (($secondary3 == $today3) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if (($tertiary3 == $today3)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if (($lager3 == $today3)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if (($age3 == $today3) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
-			   if ($tap3 == $today3) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewBlogDetail&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] == "Planned") && (($planned3 == $today3))) echo "<tr><td valign=\"top\" class=\"calInfo\">Plan: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($row_calDays['brewStatus'] != "Planned") && (($brewday3 == $today3))) echo "<tr><td valign=\"top\" class=\"calInfo\">Brew: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($secondary3 == $today3) && ($row_calDays['brewSecondary'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Sec: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($tertiary3 == $today3)  && ($row_calDays['brewTertiary'] > 0))  echo "<tr><td valign=\"top\" class=\"calInfo\">Ter: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($lager3 == $today3)  && ($row_calDays['brewLager'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Lag: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if (($age3 == $today3) && ($row_calDays['brewAge'] > 0)) echo "<tr><td valign=\"top\" class=\"calInfo\">Age: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
+			   if ($tap3 == $today3) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
 					}
 				} 
 			   while ($row_calDays = mysql_fetch_assoc($calDays));
@@ -444,7 +444,7 @@ foreach($weeks AS $week){
 			   	$upcoming3 = GetTimeStamp($MySqlDate_3);
 			   	if ($todaysDate < $upcoming3) {
 				 $upBrewName3 = truncate_string($row_upDays['upcoming'],12,'...');
-			     if ($upcoming3 == $today3) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipeDetail&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName3."</a>"; else echo $upBrewName3; echo "</td></tr>"; }
+			     if ($upcoming3 == $today3) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName3."</a>"; else echo $upBrewName3; echo "</td></tr>"; }
 			     }
 			   }
 			   while ($row_upDays = mysql_fetch_assoc($upDays));

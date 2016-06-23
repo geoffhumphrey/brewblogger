@@ -1,17 +1,17 @@
 <?php
-//if ($row_pref['mode'] == "1") $page = "brewBlogCurrent";
+//if ($row_pref['mode'] == "1") $page = "current";
 //elseif ($row_pref['mode'] == "2") $page = "about";
 
-if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "recipeList")) $sort = "brewName";
+if (($page == "current") || ($page == "brewblog") || ($page == "recipe") || ($page == "recipe-list")) $sort = "brewName";
 elseif ($page == "awardsList") $sort = "awardBrewName";
 elseif ($page == "members") $sort = "realLastName";
-elseif ($page == "brewBlogList") $sort = "brewDate";
+elseif ($page == "brewblog-list") $sort = "brewDate";
 else $sort = "default";
 if (isset($_GET['sort'])) {
   $sort = (get_magic_quotes_gpc()) ? $_GET['sort'] : addslashes($_GET['sort']);
 }
 
-if ($page == "brewBlogList") $dir = "DESC";
+if ($page == "brewblog-list") $dir = "DESC";
 else $dir = "ASC";
 if (isset($_GET['dir'])) {
   $dir = (get_magic_quotes_gpc()) ? $_GET['dir'] : addslashes($_GET['dir']);
@@ -41,7 +41,7 @@ $totalRows_news = mysql_num_rows($news);
 }
 
 // Current BrewBlog */
-if ($page == "brewBlogCurrent") {
+if ($page == "current") {
 mysql_select_db($database_brewing, $brewing);
 $query_log = "SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' OR brewArchive='No' ORDER BY brewDate DESC";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
@@ -49,10 +49,10 @@ $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
 }
 
-if ($page == "brewBlogList") {
+if ($page == "brewblog-list") {
 if ((($row_pref['mode'] == "2") && ($filter == "all")) || ($row_pref['mode'] == "1")) {
 mysql_select_db($database_brewing, $brewing);
-$query_log = sprintf("SELECT * FROM brewing ORDER BY %s %s", $sort, $dir);
+$query_log = "SELECT * FROM brewing";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 $totalRows_log = mysql_num_rows($log);
@@ -68,7 +68,7 @@ $totalRows_log = mysql_num_rows($log);
 }
 }
 
-if (($page == "brewBlogDetail") || ($page == "logPrint") || (($page == "recipePrint") && ($dbTable == "default"))) {
+if (($page == "brewblog") || ($page == "logPrint") || (($page == "recipePrint") && ($dbTable == "default"))) {
 
 mysql_select_db($database_brewing, $brewing);
 $query_log = sprintf("SELECT * FROM brewing WHERE id = '%s'", $id);
@@ -79,13 +79,7 @@ $totalRows_log = mysql_num_rows($log);
 
 
 // BrewBlog List
-if ($page == "brewBlogList") {
-
-/* set pagination variables */
-if ($view == "limited") $display = 25;
-elseif ($view == "all") $display = 9999999;
-$pg = (isset($_REQUEST['pg']) && ctype_digit($_REQUEST['pg'])) ?  $_REQUEST['pg'] : 1;
-$start = $display * $pg - $display;
+if ($page == "brewblog-list") {
 
 if (($row_pref['mode'] == "1") || (($row_pref['mode'] == "2") && ($filter == "all"))) {
 mysql_select_db($database_brewing, $brewing);
@@ -98,7 +92,6 @@ $total = mysql_result($result, 0);
 $query_log = "SELECT * FROM brewing";
 if ($style != "all") $query_log .= " WHERE brewStyle='$style' AND"; else $query_log .= " WHERE";
 $query_log .= " NOT brewArchive='Y'";
-$query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 }
@@ -114,7 +107,6 @@ $total = mysql_result($result, 0);
 $query_log = "SELECT * FROM brewing WHERE brewBrewerID='$filter'";
 if ($style != "all") $query_log .= " AND brewStyle='$style'";
 $query_log .= " AND NOT brewArchive='Y'";
-$query_log .= " ORDER BY $sort $dir LIMIT $start, $display";
 $log = mysql_query($query_log, $brewing) or die(mysql_error());
 $row_log = mysql_fetch_assoc($log);
 }
@@ -165,7 +157,7 @@ function paginate($display, $pg, $total) {
 // -----------------------------------------------------------------------------------------------
 // Sidebar List
 
-if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") /*|| ($page == "recipeDetail") */ || ($page == "about") || ($page == "profile")) {
+if (($page == "current") || ($page == "brewblog") /*|| ($page == "recipe") */ || ($page == "about") || ($page == "profile")) {
 /* set pagination variables */
 $display = 8;
 if ($page == "about") $display = 15;
@@ -249,7 +241,7 @@ function paginate($display, $pg, $total) {
 
 // -----------------------------------------------------------------------------------------------
 // REVIEWS
-if (($page =="brewBlogCurrent") || ($page =="brewBlogDetail")) {
+if (($page =="current") || ($page =="brewblog")) {
 if ($view == "limited") { 
 $maxRows_review = 5;
 $pageNum_review = 0;
@@ -282,7 +274,7 @@ $totalPages_review = ceil($totalRows_review/$maxRows_review)-1;
 // -----------------------------------------------------------------------------------------------
 
 // Recipe List
-if ($page == "recipeList") {
+if ($page == "recipe-list") {
 
 /* set pagination variables */
 if ($view == "limited") $display = 25; 
@@ -385,7 +377,7 @@ function paginate($display, $pg, $total) {
 
 // Recipe Detail pages
 
-if (($page == "recipeDetail") || (($page == "recipePrint") && ($dbTable == "recipes"))) {
+if (($page == "recipe") || (($page == "recipePrint") && ($dbTable == "recipes"))) {
 
 mysql_select_db($database_brewing, $brewing);
 $query_log = sprintf("SELECT * FROM recipes WHERE id = '%s'", $colname_log);
@@ -559,7 +551,7 @@ function paginate($display, $pg, $total) {
 
 
 //Awards
-if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail")) {
+if (($page == "current") || ($page == "brewblog")) {
 $awardNewID = "b".$row_log['id'];
 mysql_select_db($database_brewing, $brewing);
 $query_awards = sprintf("SELECT * FROM awards WHERE awardBrewID='%s'", $awardNewID);
@@ -568,7 +560,7 @@ $row_awards = mysql_fetch_assoc($awards);
 $totalRows_awards = mysql_num_rows($awards);
 }
 
-if ($page == "recipeDetail") {
+if ($page == "recipe") {
 $awardNewID = "r".$row_log['id'];
 mysql_select_db($database_brewing, $brewing);
 $query_awards = sprintf("SELECT * FROM awards WHERE awardBrewID='%s'", $awardNewID);
@@ -588,7 +580,7 @@ $totalRows_awards = mysql_num_rows($awards);
 
 // -----------------------------------------------------------------------------------------------
 // User Breadcrumb
-if (($page == "recipeDetail") && ($row_log['brewBrewerID'] != "")) {
+if (($page == "recipe") && ($row_log['brewBrewerID'] != "")) {
 mysql_select_db($database_brewing, $brewing);
 $query_user3 = sprintf("SELECT * FROM users WHERE user_name = '%s'", $row_log['brewBrewerID']);
 $user3 = mysql_query($query_user3, $brewing) or die(mysql_error());
@@ -686,7 +678,7 @@ $totalRows_upcoming = mysql_num_rows($upcoming);
 }
 // -----------------------------------------------------------------------------------------------
 
-if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "logPrint") || ($page == "recipePrint")) {
+if (($page == "current") || ($page == "brewblog") || ($page == "logPrint") || ($page == "recipePrint")) {
 mysql_select_db($database_brewing, $brewing);
 $query_mash_profiles = sprintf("SELECT * FROM mash_profiles WHERE id='%s'", $row_log['brewMashProfile']);
 $mash_profiles = mysql_query($query_mash_profiles, $brewing) or die(mysql_error());
@@ -710,12 +702,12 @@ $totalRows_equip_profiles = mysql_num_rows($equip_profiles);
 
 }
 
-if (($page == "brewBlogList") || ($page == "recipeList")) {
-if ($page == "brewBlogList") $table = "brewing";
-if ($page == "recipeList") $table = "recipes";
+if (($page == "brewblog-list") || ($page == "recipe-list")) {
+if ($page == "brewblog-list") $table = "brewing";
+if ($page == "recipe-list") $table = "recipes";
 $query_featured = "SELECT * FROM $table WHERE brewFeatured='Y' ";
-if ($page == "brewBlogList") $query_featured .= "ORDER BY brewDate DESC";
-if ($page == "recipeList") $query_featured .= "ORDER BY brewName ASC";
+if ($page == "brewblog-list") $query_featured .= "ORDER BY brewDate DESC";
+if ($page == "recipe-list") $query_featured .= "ORDER BY brewName ASC";
 // echo $query_featured;
 $featured = mysql_query($query_featured, $brewing) or die(mysql_error());
 $row_featured = mysql_fetch_assoc($featured);

@@ -1,10 +1,1 @@
-<?php if ($row_log['brewNotes'] != "" ) { ?>
-<div class="headerContent">Notes</div>
-<div class="data-container">
-<table class="dataTable">
-<tr>
- <td valign="top"><?php echo $row_log['brewNotes']; ?></td>
-</tr>
-</table>
-</div>
-<?php } ?>
+<?php if (!empty($row_log['brewNotes'])) echo "<h3>Notes</h3>".$row_log['brewNotes']; ?>

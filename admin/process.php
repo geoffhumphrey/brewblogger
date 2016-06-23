@@ -1339,7 +1339,7 @@ WHERE id=%s",
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
 
-  $updateGoTo = "../index.php?page=brewBlogDetail&filter=".$filter."&id=".$id;
+  $updateGoTo = "../index.php?page=brewblog&filter=".$filter."&id=".$id;
   header(sprintf("Location: %s", $updateGoTo));
 }
 
@@ -1354,7 +1354,7 @@ $updateSQL = sprintf("UPDATE recipes SET	brewName=%s,	brewOG=%s,	brewFG=%s,	brew
   mysql_select_db($database_brewing, $brewing);
   $Result1 = mysql_query($updateSQL, $brewing) or die(mysql_error());
 
-  $updateGoTo = "../index.php?page=recipeDetail&filter=".$filter."&id=".$id;
+  $updateGoTo = "../index.php?page=recipe&filter=".$filter."&id=".$id;
   header(sprintf("Location: %s", $updateGoTo));
 }
 

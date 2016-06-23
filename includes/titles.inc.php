@@ -1,7 +1,7 @@
 <?php
 $dbName = '';
 // ---------------------------- Friendly Names------------------------------------------
-if (($dbTable == "recipes") || ($source == "recipes") || ($page == "recipeList") || ($page == "recipeDetail")) 		{ 
+if (($dbTable == "recipes") || ($source == "recipes") || ($page == "recipe-list") || ($page == "recipe")) 		{ 
 $dbName = $row_pref['menuRecipes'];
 $sqlSelect = "brewName"; 
 $msgName = "recipe"; 		
@@ -9,10 +9,10 @@ $sourceName = $row_pref['menuRecipes'];
 $icon = "script";
 $dbTable = "recipes";
 if ($page != "admin") $source = "recipe";
-$destination = "recipeDetail";
+$destination = "recipe";
 }
 
-if (($dbTable == "brewing") || ($source == "brewing") || ($page == "brewBlogList") || ($page == "brewBlogDetail") || ($page == "brewBlogCurrent")) { 
+if (($dbTable == "brewing") || ($source == "brewing") || ($page == "brewblog-list") || ($page == "brewblog") || ($page == "current")) { 
 $dbName = $row_pref['menuBrewBlogs']; 	
 $sqlSelect = "brewDate"; 			
 $msgName = "log"; 						
@@ -20,7 +20,7 @@ $sourceName = $row_pref['menuBrewBlogs'];
 $icon = "book"; 
 $dbTable = "brewing";
 if ($page != "admin") $source = "brewLog";
-$destination = "brewBlogDetail";
+$destination = "brewblog";
 }
 
 if (($page == "reference") || ($page == "admin")) {
@@ -171,11 +171,11 @@ if ($dbTable == "preferences") { $dbName = "Preferences"; $icon = "cog"; }
 
 // ---------------------------- Titles --------------------------------------------------
 
-if 	($page == "brewBlogCurrent") 	{ if ($row_pref['mode'] == "1") $page_title = "Current "; if ($row_pref['mode'] == "2")  $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = " &gt; ".$row_log['brewName']; $icon = "book"; }
+if 	($page == "current") 	{ if ($row_pref['mode'] == "1") $page_title = "Current "; if ($row_pref['mode'] == "2")  $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = " &gt; ".$row_log['brewName']; $icon = "book"; }
 if 	($page == "members") 			{ $page_title = $row_pref['menuMembers']; $icon = "group"; }
 if 	($page == "news") 				{ $page_title = "News/Announcements"; $icon = "newspaper";}
-if 	(($page == "brewBlogList") && ($filter == "all"))		{ $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = ""; $icon = "book"; }
-if 	(($page == "brewBlogList") && ($filter != "all"))		
+if 	(($page == "brewblog-list") && ($filter == "all"))		{ $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = ""; $icon = "book"; }
+if 	(($page == "brewblog-list") && ($filter != "all"))		
 		{ 
 		mysql_select_db($database_brewing, $brewing);
 		$query_user2 = sprintf("SELECT * FROM users WHERE user_name = '%s'", $filter);
@@ -184,9 +184,9 @@ if 	(($page == "brewBlogList") && ($filter != "all"))
 		$totalRows_user2 = mysql_num_rows($user2);
 		$page_title = $row_user2['realFirstName']."&nbsp;". $row_user2['realLastName']."'s ".$row_pref['menuBrewBlogs'];  $page_title_extension = ""; $icon = "book"; 
 		}
-if 	($page == "brewBlogDetail") 							{ $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = " &gt; ".$row_log['brewName'];  $icon = "book"; }
-if 	(($page == "recipeList") && ($filter == "all"))			{ $page_title = $row_pref['menuRecipes']; $page_title_extension = "";  $icon = "script";}
-if 	(($page == "recipeList") && ($filter != "all"))			
+if 	($page == "brewblog") 							{ $page_title = $row_pref['menuBrewBlogs']; $page_title_extension = " &gt; ".$row_log['brewName'];  $icon = "book"; }
+if 	(($page == "recipe-list") && ($filter == "all"))			{ $page_title = $row_pref['menuRecipes']; $page_title_extension = "";  $icon = "script";}
+if 	(($page == "recipe-list") && ($filter != "all"))			
 		{ 
 		if ($row_pref['mode'] == "2") {
 		mysql_select_db($database_brewing, $brewing);
@@ -199,7 +199,7 @@ if 	(($page == "recipeList") && ($filter != "all"))
 		else 
 		$page_title = $row_pref['menuRecipes']; $page_title_extension = ""; $icon = "script";
 		}
-if 	($page == "recipeDetail") 		{ $page_title = $row_pref['menuRecipes']; $page_title_extension = " &gt; ".$row_log['brewName']; $icon = "script"; }
+if 	($page == "recipe") 		{ $page_title = $row_pref['menuRecipes']; $page_title_extension = " &gt; ".$row_log['brewName']; $icon = "script"; }
 if 	($page == "about")				{ if ($row_pref['mode'] == "1") { $page_title = $row_pref['menuAbout']; $page_title_extension = " "; $icon = "user"; } if ($row_pref['mode'] == "2") { $page_title = $row_pref['menuAbout'];   $page_title_extension = ""; $icon = "group";  } }
 if 	($page == "login") 				{ $page_title = $row_pref['menuLogin']; $page_title_extension = ""; $icon = "user"; }
 if 	($page == "tools") 				{ $page_title = $row_pref['menuCalculators']; $page_title_extension = ""; $icon = "calculator";  }
@@ -268,13 +268,13 @@ if ($page != "admin") {
 	if (($page == "login") || ($page == "logout") || ($page == "reference") || ($page == "tools") || ($page == "members")) { $breadcrumb = "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; }
 
 	if ($row_pref['mode'] == "1") {
-		if ($page == "brewBlogList")   	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
-		if ($page == "recipeList")  	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
+		if ($page == "brewblog-list")   	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
+		if ($page == "recipe-list")  	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
 		if ($page == "awardsList")  	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
-		if ($page == "brewBlogDetail")  $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewBlogList&sort=brewDate&dir=DESC\">".$page_title."</a>".$page_title_extension;  
-		if ($page == "recipeDetail")  	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipeList\">".$page_title."</a> ".$page_title_extension; 
+		if ($page == "brewblog")  $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewblog-list&sort=brewDate&dir=DESC\">".$page_title."</a>".$page_title_extension;  
+		if ($page == "recipe")  	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipe-list\">".$page_title."</a> ".$page_title_extension; 
 		if ($page == "about")  			$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
-		if ($page == "brewBlogCurrent") $breadcrumb =  $row_pref['menuHome']." &gt; ".$page_title.$page_title_extension; 
+		if ($page == "current") $breadcrumb =  $row_pref['menuHome']." &gt; ".$page_title.$page_title_extension; 
 		if ($page == "calendar") 		$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
 		if ($page == $row_pref['home']) $breadcrumb = $bDefault;
 	}
@@ -287,24 +287,24 @@ if ($page != "admin") {
 			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=members&sort=realLastName&dir=ASC\">".$row_pref['menuMembers']."</a> &gt; ".$page_title.$page_title_extension;
 		}
 
-		if (($page == "brewBlogList") && ($row_pref['home'] == "brewBlogList")) { 
+		if (($page == "brewblog-list") && ($row_pref['home'] == "brewblog-list")) { 
 			if ($filter == "all") $breadcrumb = $bDefault; 
 			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$row_pref['menuBrewBlogs']." &gt; ".$page_title.$page_title_extension;
 		}
 		
-		if (($page == "brewBlogList") && ($row_pref['home'] != "brewBlogList")) { 
+		if (($page == "brewblog-list") && ($row_pref['home'] != "brewblog-list")) { 
 			if ($filter == "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension;
-			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewBlogList&sort=brewDate&dir=DESC\">".$row_pref['menuBrewBlogs']."</a> &gt; ".$page_title.$page_title_extension; 
+			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewblog-list&sort=brewDate&dir=DESC\">".$row_pref['menuBrewBlogs']."</a> &gt; ".$page_title.$page_title_extension; 
 		}
 
-		if (($page == "recipeList") && ($row_pref['home'] == "recipeList")) {
+		if (($page == "recipe-list") && ($row_pref['home'] == "recipe-list")) {
 			if ($filter == "all") $breadcrumb = $bDefault;
 			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$row_pref['menuRecipes']." &gt; ".$page_title.$page_title_extension;
 		}
 		
-		if (($page == "recipeList") && ($row_pref['home'] != "recipeList")) {
+		if (($page == "recipe-list") && ($row_pref['home'] != "recipe-list")) {
 			if ($filter == "all") $breadcrumb = "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension;
-			if ($filter != "all") $breadcrumb = "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipeList\">".$row_pref['menuRecipes']."</a> &gt; ".$page_title.$page_title_extension;
+			if ($filter != "all") $breadcrumb = "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipe-list\">".$row_pref['menuRecipes']."</a> &gt; ".$page_title.$page_title_extension;
 		}
 
 		if (($page == "awardsList") && ($row_pref['home'] == "awardsList")) { 
@@ -324,10 +324,10 @@ if ($page != "admin") {
 			if ($filter == "all") $breadcrumb = "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; ".$page_title.$page_title_extension; 
 			if ($filter != "all") $breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=calendar\">Calendar</a> &gt; ".$page_title.$page_title_extension;
 		}
-		if (($page == "recipeDetail") && ($row_log['brewBrewerID'] != "")) 		$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipeList\">".$row_pref['menuRecipes']."</a> &gt; <a href=\"index.php?page=recipeList&filter=".$row_log['brewBrewerID']."\">".$row_user3['realFirstName']."&nbsp;".$row_user3['realLastName']."'s ".$row_pref['menuRecipes']."</a>".$page_title_extension;
-		if (($page == "recipeDetail") && ($row_log['brewBrewerID'] == "")) 		$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipeList\">".$page_title."</a>".$page_title_extension;
-		if (($page == "brewBlogDetail") && ($row_log['brewBrewerID'] != "")) 	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewBlogList&sort=brewDate&dir=DESC\">".$row_pref['menuBrewBlogs']."</a> &gt; <a href=\"index.php?page=brewBlogList&filter=".$row_log['brewBrewerID']."&sort=brewDate&dir=DESC\">".$row_user3['realFirstName']."&nbsp;".$row_user3['realLastName']."'s ".$row_pref['menuBrewBlogs']."</a>".$page_title_extension;
-		if (($page == "brewBlogDetail") && ($row_log['brewBrewerID'] == "")) 	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewBlogList&sort=brewDate&dir=DESC\">".$page_title."</a>".$page_title_extension; 
+		if (($page == "recipe") && ($row_log['brewBrewerID'] != "")) 		$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipe-list\">".$row_pref['menuRecipes']."</a> &gt; <a href=\"index.php?page=recipe-list&filter=".$row_log['brewBrewerID']."\">".$row_user3['realFirstName']."&nbsp;".$row_user3['realLastName']."'s ".$row_pref['menuRecipes']."</a>".$page_title_extension;
+		if (($page == "recipe") && ($row_log['brewBrewerID'] == "")) 		$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=recipe-list\">".$page_title."</a>".$page_title_extension;
+		if (($page == "brewblog") && ($row_log['brewBrewerID'] != "")) 	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewblog-list&sort=brewDate&dir=DESC\">".$row_pref['menuBrewBlogs']."</a> &gt; <a href=\"index.php?page=brewblog-list&filter=".$row_log['brewBrewerID']."&sort=brewDate&dir=DESC\">".$row_user3['realFirstName']."&nbsp;".$row_user3['realLastName']."'s ".$row_pref['menuBrewBlogs']."</a>".$page_title_extension;
+		if (($page == "brewblog") && ($row_log['brewBrewerID'] == "")) 	$breadcrumb =  "<a href = \"index.php\">".$row_pref['menuHome']."</a> &gt; <a href=\"index.php?page=brewblog-list&sort=brewDate&dir=DESC\">".$page_title."</a>".$page_title_extension; 
 	}
 }
 

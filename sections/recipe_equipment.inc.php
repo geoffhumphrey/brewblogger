@@ -1,46 +1,77 @@
 <?php if ($row_log['brewEquipProfile'] != "") { ?>
-<div class="headerContent">Equipment Profile</div>
-<div class="data-container">
-<h3><em><?php echo $row_equip_profiles['equipProfileName']; ?></em></h3>
-<table class="dataTable">
-<tr>
-    <td class="dataLabelLeft">Batch Size:</td>
-   	<td class="data" width="15%" nowrap="nowrap"><?php if (($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBatchSize'], "liters"); else echo $row_equip_profiles['equipBatchSize']; echo " ".$row_pref['measFluid2']; ?></td>
-   	<td class="dataLabel">Boil Volume:</td>
-    <td class="data" nowrap="nowrap"><?php if (($row_equip_profiles['equipBoilVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBoilVolume'], "liters"); else echo $row_equip_profiles['equipBoilVolume']; echo " ".$row_pref['measFluid2']; ?></td>
-</tr>
-<tr>	
-    <td class="dataLabelLeft">Evaporation Rate:</td>
-    <td class="data" width="15%" nowrap="nowrap"><?php if ($row_equip_profiles['equipEvapRate'] != "") echo $row_equip_profiles['equipEvapRate']."% per hour"; ?></td>
-   	<td class="dataLabel">Mash Tun Dead Space:</td>
-   	<td class="data"><?php if (($row_equip_profiles['equipMashTunDeadspace'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunDeadspace'], "liters"); else echo $row_equip_profiles['equipMashTunDeadspace']; echo " ".$row_pref['measFluid2']; ?></td>
-</tr>
-<tr>
-   	<td class="dataLabelLeft">Efficiency:</td>
-    <td class="data"><?php if ($row_equip_profiles['equipTypicalEfficiency'] != "") echo $row_equip_profiles['equipTypicalEfficiency']."%"; ?></td>
-	<td class="dataLabel">Mash Tun Weight:</td>
-   	<td class="data"><?php if (($row_equip_profiles['equipMashTunWeight'] != "") && ($row_pref['measWeight2'] == "kilograms") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo weightconvert($row_equip_profiles['equipMashTunWeight'], "kilograms"); else echo $row_equip_profiles['equipMashTunWeight']; echo " ".$row_pref['measWeight2'];  ?></td>
-</tr>
-<tr>   
-    <td class="dataLabelLeft">Hop Utilization:</td>
-   	<td class="data"><?php if ($row_equip_profiles['equipHopUtil'] != "") echo $row_equip_profiles['equipHopUtil']."%"; ?></td>  
-   	<td class="dataLabel">Mash Tun Volume:</td>
-   	<td class="data"><?php if (($row_equip_profiles['equipMashTunVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunVolume'], "liters"); else echo $row_equip_profiles['equipMashTunVolume']; echo " ".$row_pref['measFluid2']; ?></td>
-</tr>
-<tr>
-    <td class="dataLabelLeft">Loss:</td>
-    <td class="data"><?php if (($row_equip_profiles['equipLoss'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipLoss'], "liters"); else echo $row_equip_profiles['equipLoss']; echo " ".$row_pref['measFluid2']; ?></td>
-    <td class="dataLabel">Mash Tun Specific Heat:</td>
-   	<td class="data"><?php if ($row_equip_profiles['equipMashTunSpecificHeat'] != "") echo $row_equip_profiles['equipMashTunSpecificHeat']."  Cal/gram per &deg;C"; ?></td>
-</tr>
-<?php if ($row_equip_profiles['equipNotes'] != "") { ?>
-<tr>
-    <td class="dataLabelLeft">Notes:</td>
-    <td class="data" colspan="3"><?php if ($row_equip_profiles['equipNotes'] != "") echo $row_equip_profiles['equipNotes']; ?></td>
-</tr>
-<?php } ?>
-</table>
+<h3>Equipment Profile <small><em><?php echo $row_equip_profiles['equipProfileName']; ?></em></small></h3>
+<div class="row bcoem-account-info">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <?php if (!empty($row_equip_profiles['equipBatchSize'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Batch Size:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBatchSize'], "liters"); else echo $row_equip_profiles['equipBatchSize']; echo " ".$row_pref['measFluid2']; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipBoilVolume'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Boil Volume:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipBoilVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBoilVolume'], "liters"); else echo $row_equip_profiles['equipBoilVolume']; echo " ".$row_pref['measFluid2']; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipEvapRate'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Evaporation Rate:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo $row_equip_profiles['equipEvapRate']."% per hour"; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipTypicalEfficiency'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Typical Efficiency:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo $row_equip_profiles['equipTypicalEfficiency']."%"; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipHopUtil'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Hop Utilization:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo $row_equip_profiles['equipHopUtil']."%"; ?></div>
+        </div>
+        <?php } ?>
+    </div><!-- /column 2 -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <?php if (!empty($row_equip_profiles['equipMashTunVolume'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Volume:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunVolume'], "liters"); else echo $row_equip_profiles['equipMashTunVolume']; echo " ".$row_pref['measFluid2']; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipMashTunWeight'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Weight:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunWeight'] != "") && ($row_pref['measWeight2'] == "kilograms") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo weightconvert($row_equip_profiles['equipMashTunWeight'], "kilograms"); else echo $row_equip_profiles['equipMashTunWeight']; echo " ".$row_pref['measWeight2'];  ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipMashTunSpecificHeat'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Specific Heat:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo $row_equip_profiles['equipMashTunSpecificHeat']; ?> cal/gram per &deg;C</div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipMashTunDeadspace'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Dead Space:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunDeadspace'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunDeadspace'], "liters"); else echo $row_equip_profiles['equipMashTunDeadspace']; echo " ".$row_pref['measFluid2']; ?></div>
+        </div>
+        <?php } ?>
+        <?php if (!empty($row_equip_profiles['equipLoss'])) { ?>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Loss:</strong></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipLoss'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipLoss'], "liters"); else echo $row_equip_profiles['equipLoss']; echo " ".$row_pref['measFluid2']; ?></div>
+        </div>
+        <?php } ?>
+    </div><!-- /column 2 -->
+</div><!-- /row -->
+<?php if (!empty($row_equip_profiles['equipNotes'])) { ?>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><strong>Notes:</strong></div>
+    <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6"><?php echo $row_equip_profiles['equipNotes']; ?></div>
 </div>
+<?php } ?>
 <?php } ?>
 
 

@@ -4,7 +4,7 @@
 <?php if (isset($_SESSION["loginUsername"])) echo "<td class=\"dataHeadingList\" width=\"1%\"><img src=\"".$imageSrc."pencil.png\" border=\"0\" align=\"absmiddle\"></td>"; ?>
   <?php if (!checkmobile()) { ?><td class="dataHeadingList" width="1%">XML</td><?php } ?>
   <td class="dataHeadingList" width="25%"><?php echo $dbName; ?>&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
-  <?php if ($page == "brewBlogList") { ?><td class="dataHeadingList" width="10%">Date&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td><?php } ?>
+  <?php if ($page == "brewblog-list") { ?><td class="dataHeadingList" width="10%">Date&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td><?php } ?>
   
   <td class="dataHeadingList" width="25%">Style&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
   <td class="dataHeadingList" width="10%">Method&nbsp;<img src="<?php echo $imageSrc; ?>spacer.gif" border="0" width="16" height="5"></td>
@@ -44,7 +44,7 @@
 <?php if (isset($_SESSION["loginUsername"])) { if (($row_user['userLevel'] == "1") || ($row_featured['brewBrewerID'] == $loginUsername)) echo "<td class=\"dataList\"><a href=\"admin/index.php?action=edit&dbTable=".$dbTable."&id=".$row_featured['id']."\"><img src=\"".$imageSrc."pencil.png\" alt=\"Edit ".$row_featured['brewName']."\" title=\"Edit ".$row_featured['brewName']."\" border=\"0\" align=\"absmiddle\"></a></td>"; else echo "<td>&nbsp;</td>"; } ?>
   <?php if (!checkmobile()) { ?><td class="dataList"><a href="#" onClick="window.open(INCLUDES.'output_beer_xml.inc.php?id=<?php echo $row_featured['id']; ?>&source=<?php echo $source; ?>&brewStyle=<?php echo $row_featured['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a><?php } ?>
   <td class="dataList"><a href="index.php?page=<?php echo $destination; ?>&filter=<?php echo $row_featured['brewBrewerID']; ?>&id=<?php echo $row_featured['id']; ?>"><?php echo $row_featured['brewName']; ?></a></td>
-  <?php if ($page == "brewBlogList") { ?><td class="dataList" nowrap="nowrap"><?php $date = $row_featured['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td><?php } ?>
+  <?php if ($page == "brewblog-list") { ?><td class="dataList" nowrap="nowrap"><?php $date = $row_featured['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td><?php } ?>
 	  <td class="dataList">
 	  <div id="moreInfo"><?php if (($totalRows_styles > 0) && (!checkmobile())) { ?><a href="#"><?php } echo $row_featured['brewStyle']; if (($totalRows_styles > 0) && (!checkmobile())) { ?>
 	  <span>
@@ -67,7 +67,7 @@
 	<?php } ?>
   	<td class="dataList"><?php if ($row_featured['brewBitterness'] != "") { echo round ($row_featured['brewBitterness'], 1); } else echo "&nbsp;" ?></td>
   	<td class="dataList"><?php if (($row_featured['brewOG'] != "") && ($row_featured['brewFG'] != "")) { echo round (calc_abv($row_featured['brewOG'], $row_featured['brewFG']), 1)."%"; } else echo "&nbsp;"; ?></td>
-  	<?php if (($row_pref['mode'] == "2") && ($filter == "all")) { ?><td  class="dataList"><a href="?page=brewBlogList&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $row_user2['user_name']; ?>&view=limited"><?php echo $row_user2['realFirstName']."&nbsp;".$row_user2['realLastName']; ?></a></td><?php } ?>
+  	<?php if (($row_pref['mode'] == "2") && ($filter == "all")) { ?><td  class="dataList"><a href="?page=brewblog-list&sort=<?php echo $sort; ?>&dir=<?php echo $dir; ?>&filter=<?php echo $row_user2['user_name']; ?>&view=limited"><?php echo $row_user2['realFirstName']."&nbsp;".$row_user2['realLastName']; ?></a></td><?php } ?>
   	<td class="dataList center"><?php if ($totalRows_awards2 > 0) echo $totalRows_awards2; else echo "&nbsp;"; ?></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>

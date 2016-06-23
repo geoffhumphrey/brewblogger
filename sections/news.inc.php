@@ -1,5 +1,5 @@
 <?php if ($page != "news") { ?>
-<div id="<?php if (($page == "brewBlogCurrent") || ($page == "brewBlogDetail") || ($page == "recipeDetail") || ($page == "about")) echo "subtitle"; else echo "subtitleWide"; ?>"><div id="icon"><img src="<?php echo $imageSrc."newspaper.png"; ?>" align="baseline"></div>Club News/Announcements</div>
+<div id="<?php if (($page == "current") || ($page == "brewblog") || ($page == "recipe") || ($page == "about")) echo "subtitle"; else echo "subtitleWide"; ?>"><div id="icon"><img src="<?php echo $imageSrc."newspaper.png"; ?>" align="baseline"></div>Club News/Announcements</div>
 <?php } ?>
 <?php // echo $totalRows_newsGen; ?>
 <?php if ($page == "news") { ?>

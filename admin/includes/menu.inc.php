@@ -68,9 +68,9 @@ menu5[10]='<a href="#" onClick="window.open(\'tools/calculate.php?section=hyd\',
 
 var menu6=new Array() // Admin << Back To... menu
 menu6[1]='<a href="../index.php?page=about">Brewer Profile</a>'
-menu6[4]='<a href="../index.php?page=brewBlogCurrent">Current</a>'
-menu6[5]='<a href="../index.php?page=brewBlogList"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
-menu6[6]='<a href="../index.php?page=recipeList"><?php echo $row_pref['menuRecipes']; ?></a>'
+menu6[4]='<a href="../index.php?page=current">Current</a>'
+menu6[5]='<a href="../index.php?page=brewblog-list"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu6[6]='<a href="../index.php?page=recipe-list"><?php echo $row_pref['menuRecipes']; ?></a>'
 menu6[7]='<a href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>'
 menu6[2]='<a href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>'
 menu6[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
@@ -120,10 +120,10 @@ menu9[16]='<a href="index.php?action=add&dbTable=yeast_profiles">&nbsp;&nbsp;- A
 
 var menu11=new Array()
 menu11[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
-menu11[1]='<a href="../index.php?page=brewBlogList&sort=brewDate&dir=DESC"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
+menu11[1]='<a href="../index.php?page=brewblog-list&sort=brewDate&dir=DESC"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
 menu11[2]='<a href="../index.php?page=members&sort=realLastName&dir=ASC"><?php echo $row_pref['menuMembers']; ?></a>'
 menu11[3]='<a href="../index.php?page=about">Profile</a>'
-menu11[4]='<a href="../index.php?page=recipeList"><?php echo $row_pref['menuRecipes']; ?></a>'
+menu11[4]='<a href="../index.php?page=recipe-list"><?php echo $row_pref['menuRecipes']; ?></a>'
 menu11[5]='<a href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>'
 menu11[7]='<a href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>'
 menu11[6]='<a href="../index.php?page=calendar"><?php echo $row_pref['menuCalendar']; ?></a>'

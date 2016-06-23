@@ -4,21 +4,21 @@
 if ($row_pref['mode'] == "1") 
 { ?>
 <div id="sidebarWrapper">
-  <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></span><span class="data"><?php echo "More"; if ($page != "recipeDetail") echo " ".$row_pref['menuBrewBlogs']; else echo " ".$row_pref['menuRecipes']; ?></span></div>
+  <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></span><span class="data"><?php echo "More"; if ($page != "recipe") echo " ".$row_pref['menuBrewBlogs']; else echo " ".$row_pref['menuRecipes']; ?></span></div>
   	<div id="sidebarInnerWrapper" >
       <table width="100%">
 	    <?php while ($row_list = mysql_fetch_assoc($list)) { 
 			if ($row_list['brewArchive'] != "Y") { 
 		?>
 		  <tr>
-    	     <td class="listLeftAlign"><?php if ($row_list['id'] != $row_log['id']) { ?><a href="<?php if ($page != "recipeDetail") echo "index.php?page=brewBlogDetail&"; else echo "index.php?page=recipeDetail&"; ?>&filter=<?php echo $row_list['brewBrewerID']; ?>&id=<?php echo $row_list['id']; if ($pg != "") echo "&pg=".$pg ?>"><?php } if ($page != "recipeDetail") echo truncate_string($row_list['brewName'],25,'...');  else echo $row_list['brewName']; if ($row_list['brewName'] != $row_log['brewName']) { ?></a><?php } ?></td>
-		     <?php if ($page != "recipeDetail") { ?><td class="listRightAlign"><?php $date = $row_list['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td><?php }  ?>
+    	     <td class="listLeftAlign"><?php if ($row_list['id'] != $row_log['id']) { ?><a href="<?php if ($page != "recipe") echo "index.php?page=brewblog&"; else echo "index.php?page=recipe&"; ?>&filter=<?php echo $row_list['brewBrewerID']; ?>&id=<?php echo $row_list['id']; if ($pg != "") echo "&pg=".$pg ?>"><?php } if ($page != "recipe") echo truncate_string($row_list['brewName'],25,'...');  else echo $row_list['brewName']; if ($row_list['brewName'] != $row_log['brewName']) { ?></a><?php } ?></td>
+		     <?php if ($page != "recipe") { ?><td class="listRightAlign"><?php $date = $row_list['brewDate']; $realdate = dateconvert($date,3); echo $realdate; ?></td><?php }  ?>
 		 </tr> 
 	    <?php
 			}
 		}  ?>
 		<tr>
-			<td colspan="2"><div align="center"><?php if (($page == "recipeDetail") && ($total > $display)) { paginate($display, $pg, $total); } elseif ((($page == "brewBlogDetail") || ($page == "brewBlogCurrent")) && ($total > $display)) { paginate($display, $pg, $total); } ?></div></td>
+			<td colspan="2"><div align="center"><?php if (($page == "recipe") && ($total > $display)) { paginate($display, $pg, $total); } elseif ((($page == "brewblog") || ($page == "current")) && ($total > $display)) { paginate($display, $pg, $total); } ?></div></td>
 		</tr>
 	  </table>
      </div>
@@ -29,24 +29,24 @@ if ($row_pref['mode'] == "1")
 if ($row_pref['mode'] == "2") {
 ?>
 <div id="sidebarWrapper">
-  <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></span><span class="data"><?php if ($row_log['brewBrewerID'] != "") echo $row_user2['realFirstName']."'s"; else echo "Other";  if ($page != "recipeDetail") echo " ".$row_pref['menuBrewBlogs']; else echo " ".$row_pref['menuRecipes']; ?></span></div>
+  <div id="sidebarHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>book.png" align="absmiddle"></span><span class="data"><?php if ($row_log['brewBrewerID'] != "") echo $row_user2['realFirstName']."'s"; else echo "Other";  if ($page != "recipe") echo " ".$row_pref['menuBrewBlogs']; else echo " ".$row_pref['menuRecipes']; ?></span></div>
     <div id="sidebarInnerWrapper" >
       <table width="100%">
 	    <tr>
-		   <td class="listLeftAlign" <?php if ($page == "brewBlogDetail") echo "colspan=\"2\""; ?>><?php if ($page != "recipeDetail") echo " <a href=\"?page=brewBlogList&sort=brewDate&dir=DESC\">All Club ".$row_pref['menuBrewBlogs']."</a>"; else echo " <a href=\"?page=recipeList\">All Club ".$row_pref['menuRecipes']."</a>"; ?></td>
+		   <td class="listLeftAlign" <?php if ($page == "brewblog") echo "colspan=\"2\""; ?>><?php if ($page != "recipe") echo " <a href=\"?page=brewblog-list&sort=brewDate&dir=DESC\">All Club ".$row_pref['menuBrewBlogs']."</a>"; else echo " <a href=\"?page=recipe-list\">All Club ".$row_pref['menuRecipes']."</a>"; ?></td>
 		</td>
 	    <?php if ($row_log['brewBrewerID'] != "") do { 
 			if (($row_list['brewArchive'] != "Y") || ($row_list['brewArchive'] != " ")) { 
 		?>
 		  <tr>
-    	     <td class="listLeftAlign"><?php if ($row_list['id'] != $row_log['id']) { ?><a href="<?php if ($page != "recipeDetail") echo "index.php?page=brewBlogDetail&"; else echo "index.php?page=recipeDetail&"; ?>&filter=<?php echo $row_log['brewBrewerID']; ?>&id=<?php echo $row_list['id']; if ($pg != "") echo "&pg=".$pg ?>"><?php } if ($page != "recipeDetail") echo truncate_string($row_list['brewName'],100,'...');  else echo $row_list['brewName']; if ($row_list['brewName'] != $row_log['brewName']) { ?></a><?php } ?></td>
-		     <?php if ($page != "recipeDetail") { ?><td class="listRightAlign"><?php echo dateconvert($row_list['brewDate'],3); ?></td><?php }  ?>
+    	     <td class="listLeftAlign"><?php if ($row_list['id'] != $row_log['id']) { ?><a href="<?php if ($page != "recipe") echo "index.php?page=brewblog&"; else echo "index.php?page=recipe&"; ?>&filter=<?php echo $row_log['brewBrewerID']; ?>&id=<?php echo $row_list['id']; if ($pg != "") echo "&pg=".$pg ?>"><?php } if ($page != "recipe") echo truncate_string($row_list['brewName'],100,'...');  else echo $row_list['brewName']; if ($row_list['brewName'] != $row_log['brewName']) { ?></a><?php } ?></td>
+		     <?php if ($page != "recipe") { ?><td class="listRightAlign"><?php echo dateconvert($row_list['brewDate'],3); ?></td><?php }  ?>
 		 </tr> 
 	    <?php 
 			}
 		} while ($row_list = mysql_fetch_assoc($list)); ?>
 		<tr>
-			<td colspan="2"><div align="center"><?php if (($page == "recipeDetail") && ($total > $display)) { paginate($display, $pg, $total); } elseif ((($page == "brewBlogDetail") || ($page == "brewBlogCurrent")) && ($total > $display)) { paginate($display, $pg, $total); } ?></div></td>
+			<td colspan="2"><div align="center"><?php if (($page == "recipe") && ($total > $display)) { paginate($display, $pg, $total); } elseif ((($page == "brewblog") || ($page == "current")) && ($total > $display)) { paginate($display, $pg, $total); } ?></div></td>
 		</tr>
 	  </table>
      </div>
