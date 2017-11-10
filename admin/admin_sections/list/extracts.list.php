@@ -40,7 +40,7 @@ if ($confirm == "true") {
   </tr>
 
   <?php
-  do { 
+  do {
     echo '<tr style="background-color:' . $color . '">' . "\n";
     echo '<td class="dataList">' . $row_extracts['extractName'] . '</td>' . "\n";
     $lovHigh = $row_extracts['extractLovibondHigh'] > 0 ? $row_extracts['extractLovibondHigh'] : $row_extracts['extractLovibondLow'];
@@ -56,11 +56,11 @@ if ($confirm == "true") {
       <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=extract','id',<?php echo $row_extracts['id']; ?>,'Are you sure you want to delete this extract?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_grains['extractName']; ?>" title="Delete <?php echo $row_grains['extractName']; ?>"></a></td>
     <?php } ?>
     </tr>
-    <?php 
+    <?php
     if ($color == $color1) {
       $color = $color2;
     } else {
       $color = $color1;
     }
-  } while ($row_extracts = mysql_fetch_assoc($extracts)); ?>
+  } while ($row_extracts = mysqli_fetch_assoc($extracts)); ?>
 </table>

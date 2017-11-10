@@ -1,19 +1,19 @@
-<?php 
+<?php
 /**
  * Module: hops.recipe.php
  * Description: Build hop section on recipe/blog form.
  */
 
-// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc']
 
 // If we're importing from the calc, we have to make some guesses
 // about hop type and use.
-if ($action == "importCalc") { 
-  function get_hop_type($time, $field) { 
+if ($action == "importCalc") {
+  function get_hop_type($time, $field) {
     $rv = 0;
 
     if ($time) {
-      switch ($field) { 
+      switch ($field) {
       case "Bittering":
 	if ($time > 30) $rv = 1;
 	break;
@@ -29,12 +29,12 @@ if ($action == "importCalc") {
     return $rv;
   }
 
-  function get_hop_use($time, $boil_time, $field) { 
+  function get_hop_use($time, $boil_time, $field) {
     $rv = 0;
     if ($boil_time == "") $boil_time = 60;
 
     if ($time) {
-      switch ($field) { 
+      switch ($field) {
       case "First Wort":
 	if ($time > $boil_time) $rv = 1;
 	break;
@@ -88,13 +88,16 @@ for ($i = 0; $i < MAX_HOPS; $i++) {
       echo "SELECTED";
     }
     echo '>' . $row_hops['hopsName'] . '</option>' . "\n";
-  } while ($row_hops = mysql_fetch_array($hops));
+  } while ($row_hops =
+mysqli_fetch_array($hops));
 
   // Reset $row_hops to first row
-  $rows = mysql_num_rows($hops);
+  $rows = mysqli_num_rows($hops);
   if ($rows > 0) {
-    mysql_data_seek($hops, 0);
-    $row_hops = mysql_fetch_array($hops);
+
+mysqli_data_seek($hops, 0);
+    $row_hops =
+mysqli_fetch_array($hops);
   }
   echo '<option value="Other">Other</option>' . "\n";
   echo '</select>' . "\n";
@@ -305,7 +308,7 @@ for ($i = 0; $i < MAX_HOPS; $i++) {
   echo '>Both</option>' . "\n";
   echo '</select>' . "\n";
   echo '</td>' . "\n";
-  
+
   echo '<td class="data"><select name="hopsForm['.$i.']">' . "\n";
   echo '<option value=""></option>' . "\n";
   echo '<option value="Pellets" ';

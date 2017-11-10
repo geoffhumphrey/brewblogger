@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Module: recipe_calculator.php
  * Description: Sets up the main Recipe Calculator page for calculating or recalculating a new or existing
@@ -13,9 +13,9 @@ $imageSrc = "../images/";
 //-----------
 
 function create_extract_entries($start, $end) {
-  global $extName, $extWeight, $row_extracts, $row_pref, $row_recipeRecalc, 
+  global $extName, $extWeight, $row_extracts, $row_pref, $row_recipeRecalc,
     $extracts, $id, $totalGrist, $results;
-    
+
   for ($i = 0; $i < $end; $i++) {
     echo '<tr>' . "\n";
     echo '<td class="dataLabelLeft">Extract ' . ($i + 1) . ':</td>' . "\n";
@@ -29,14 +29,17 @@ function create_extract_entries($start, $end) {
 	echo "SELECTED";
       }
       echo '>' . $row_extracts['extractName'] . '</option>' . "\n";
-    } while ($row_extracts = mysql_fetch_array($extracts));
+    } while ($row_extracts =
+mysqli_fetch_array($extracts));
     echo '</select></td>' . "\n";
 
     // Reset $row_extracts to first row
-    $rows = mysql_num_rows($extracts);
+    $rows = mysqli_num_rows($extracts);
     if ($rows > 0) {
-      mysql_data_seek($extracts, 0);
-      $row_extracts = mysql_fetch_array($extracts);
+
+mysqli_data_seek($extracts, 0);
+      $row_extracts =
+mysqli_fetch_array($extracts);
     }
 
     echo '<td class="dataLabel">Weight:</td>' . "\n";
@@ -69,7 +72,7 @@ function create_extract_entries($start, $end) {
 function create_grain_entries($start, $end) {
   global $grainName, $grainWeight, $row_grains, $row_recipeRecalc,
     $grains, $id, $totalGrist, $results, $row_pref;
-  
+
   for ($i = $start; $i < $end; $i++) {
     echo '<tr>' . "\n";
     echo '<td class="dataLabelLeft">Grain ' . ($i + 1) . ':</td>' . "\n";
@@ -83,16 +86,19 @@ function create_grain_entries($start, $end) {
 	echo "SELECTED";
       }
       echo '>' . $row_grains['maltName'] . '</option>' . "\n";
-    } while ($row_grains = mysql_fetch_array($grains));
+    } while ($row_grains =
+mysqli_fetch_array($grains));
     echo '</select></td>' . "\n";
 
     // Reset $row_grains to first row
-    $rows = mysql_num_rows($grains);
+    $rows = mysqli_num_rows($grains);
     if ($rows > 0) {
-      mysql_data_seek($grains, 0);
-      $row_grains = mysql_fetch_array($grains);
+
+mysqli_data_seek($grains, 0);
+      $row_grains =
+mysqli_fetch_array($grains);
     }
-    
+
     echo '<td class="dataLabel">Weight:</td>' . "\n";
     echo '<td class="data" width="5%"><input name="grainWeight['.$i.']" type="text" size="5" value="';
     if ($results == "true") {
@@ -122,7 +128,7 @@ function create_grain_entries($start, $end) {
 function create_adj_entries($start, $end) {
   global $adjName, $adjWeight, $row_adjuncts, $row_pref, $row_recipeRecalc,
     $adjuncts, $id, $results;
-  
+
   for ($i = $start; $i < $end; $i++) {
     echo '<tr>' . "\n";
     echo '<td class="dataLabelLeft">Adjunct ' . ($i + 1) . ':</td>' . "\n";
@@ -136,14 +142,17 @@ function create_adj_entries($start, $end) {
 	echo "SELECTED";
       }
       echo '>' . $row_adjuncts['adjunctName'] . '</option>' . "\n";
-    } while ($row_adjuncts = mysql_fetch_array($adjuncts));
+    } while ($row_adjuncts =
+mysqli_fetch_array($adjuncts));
     echo '</select></td>' . "\n";
 
     // Reset $row_adjuncts to first row
-    $rows = mysql_num_rows($adjuncts);
+    $rows = mysqli_num_rows($adjuncts);
     if ($rows > 0) {
-      mysql_data_seek($adjuncts, 0);
-      $row_adjuncts = mysql_fetch_array($adjuncts);
+
+mysqli_data_seek($adjuncts, 0);
+      $row_adjuncts =
+mysqli_fetch_array($adjuncts);
     }
 
     echo '<td class="dataLabel">Weight:</td>' . "\n";
@@ -162,29 +171,32 @@ function create_adj_entries($start, $end) {
 function create_hop_entries($start, $end) {
   global $hopsName, $hopsWeight, $hopsAA, $hopsTime, $hopsForm, $hopsAAU, $hops, $row_hops,
     $row_recipeRecalc, $id, $results, $row_pref;
-  
+
   for ($i = $start; $i < $end; $i++) {
     echo '<tr>' . "\n";
     echo '<td nowrap class="dataLabelLeft">Hop ' . ($i + 1) . ':</td>' . "\n";
-    
+
     echo '<td class="data" width="5%"><select name="hopsName['.$i.']">' . "\n";
     echo '<option value=""></option>' . "\n";
     do {
       echo '<option value="' . $row_hops['hopsName'] . '" ';
       $key = "brewHops" . ($i + 1);
-      if ((($results == "true") && ($hopsName[$i] == $row_hops['hopsName'])) || 
+      if ((($results == "true") && ($hopsName[$i] == $row_hops['hopsName'])) ||
 	  (($results == "false") && ($id != "default") && ($row_recipeRecalc[$key] == $row_hops['hopsName']))) {
 	echo 'SELECTED';
       }
       echo '>' . $row_hops['hopsName'] . '</option>' . "\n";
-    } while ($row_hops = mysql_fetch_array($hops));
+    } while ($row_hops =
+mysqli_fetch_array($hops));
     echo '</select></td>' . "\n";
 
     // Reset $row_hops to first row
-    $rows = mysql_num_rows($hops);
-    if ($rows > 0) { 
-      mysql_data_seek($hops, 0);
-      $row_hops = mysql_fetch_array($hops);
+    $rows = mysqli_num_rows($hops);
+    if ($rows > 0) {
+
+mysqli_data_seek($hops, 0);
+      $row_hops =
+mysqli_fetch_array($hops);
     }
 
     echo '<td class="data" width="5%"><input name="hopsWeight['.$i.']" type="text" size="3" value="';
@@ -212,7 +224,7 @@ function create_hop_entries($start, $end) {
       echo $row_recipeRecalc[$key];
     }
     echo '"></td>' . "\n";
-    
+
     echo '<td class="data" width="5%">%</td>' . "\n";
 
     echo '<td class="data" width="5%"><input name="hopsTime['.$i.']" type="text" size="3" value="';
@@ -269,7 +281,7 @@ function create_hop_entries($start, $end) {
       }
     }
     echo '/><span class="data">Plug</span></td>' . "\n";
-    
+
     if (($results == "true") && ($hopsAAU[$i] != 0)) {
       echo '<td class="data">' . round($hopsAAU[$i], 1) . '</td>' . "\n";
     }
@@ -279,12 +291,12 @@ function create_hop_entries($start, $end) {
 }
 
 //------
-// Main 
+// Main
 //------
 
 // If recalculating an existing recipe or blog, get info from db.
 if ($id != "default") {
-  mysql_select_db($database_brewing, $brewing);
+
   $query_recipeRecalc = "SELECT * FROM ";
 
   if ($source == "brewing") {
@@ -295,8 +307,8 @@ if ($id != "default") {
   }
 
   $query_recipeRecalc .= " WHERE id='$id'";
-  $recipeRecalc        = mysql_query($query_recipeRecalc, $brewing) or die(mysql_error());
-  $row_recipeRecalc    = mysql_fetch_array($recipeRecalc);
+  $recipeRecalc        = mysqli_query($connection, $query_recipeRecalc) or die (mysqli_error($connection));
+  $row_recipeRecalc    = mysqli_fetch_array($recipeRecalc);
 }
 
 if ($action == "calculate") {
@@ -310,7 +322,7 @@ if ($action == "calculate") {
       include (ADMIN_LIBRARY.'predicted.lib.php');
     }
     ?>
-						      
+
     <form id="form3" action="index.php?action=calculate&results=true&filter=<?php echo $filter; if ($source != "default") echo "&source=".$source; if ($id != "default") echo "&id=".$id; ?>" method="post" name="form3" onSubmit="return CheckRequiredFields()">
     <input type="hidden" name="brewBrewerID" value="<?php echo $filter; ?>">
     <div class="headerContentAdmin">General Information</div>
@@ -324,14 +336,17 @@ if ($action == "calculate") {
         <td class="dataLabelLeft"><div id="help"><a href="../sections/reference.inc.php?section=styles&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Styles Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" border="0"></a></div>Style:</td>
         <td class="data">
         <select name="brewStyle">
-        <?php 
+        <?php
         do {  ?>
 	   <option value="<?php echo $row_styles['brewStyle']?>" <?php if ($results == "true") { if ($brewStyle == $row_styles['brewStyle']) echo "SELECTED"; } if ((($source == "recipes") || ($source == "brewing")) && ($results == "false")) { if ($row_recipeRecalc['brewStyle'] == $row_styles['brewStyle']) echo "SELECTED" ; } ?>><?php echo $row_styles['brewStyle'];?></option>
-        <?php } while ($row_styles = mysql_fetch_array($styles)); $rows = mysql_num_rows($styles); if($rows > 0) { mysql_data_seek($styles, 0); $row_styles = mysql_fetch_array($styles); } ?>
+        <?php } while ($row_styles =
+mysqli_fetch_array($styles)); $rows = mysqli_num_rows($styles); if($rows > 0) {
+mysqli_data_seek($styles, 0); $row_styles =
+mysqli_fetch_array($styles); } ?>
         </select></td>
       </tr>
     </table>
-	    	    
+
     <table>
       <tr>
         <td class="dataLabelLeft">Finished Vol. (Batch Size):</td>
@@ -349,7 +364,7 @@ if ($action == "calculate") {
         <td class="data">%</td>
       </tr>
     </table>
-								   
+
     <!-- Extracts -->
     <div class="headerContentAdmin">Malt Extracts</div>
     <table>
@@ -358,7 +373,7 @@ if ($action == "calculate") {
       </tr>
       <?php create_extract_entries(0, MAX_EXT); ?>
     </table>
-	
+
     <!-- Grains -->
     <?php if (($id != "default") && ($results == "false")) { ?>
       <div class="red"><em>**If any dropdown menu is blank, the recipe\'s original extract is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=extract">add another to the database</a>.</em></div>
@@ -370,7 +385,7 @@ if ($action == "calculate") {
       </tr>
       <?php create_grain_entries(0, MAX_GRAINS); ?>
     </table>
-	    
+
     <!-- Adjuncts -->
     <?php if (($id != "default") && ($results == "false")) { ?>
       <div class="red"><em>**If any dropdown menu is blank, the recipe\'s original grain is not in the database.  For caculations to function, please choose another from the list or <a href="index.php?action=add&dbTable=malt">add another to the database</a>.</em></div>
@@ -416,7 +431,7 @@ if ($action == "calculate") {
     </table>
 
     </form>
-  <?php 
+  <?php
   } //end if ($results != "verify")
   else {
     include (ADMIN_LIBRARY.'verify.lib.php');

@@ -12,8 +12,8 @@ if ($dbTable == "recipes") $excel_output = "Recipe_DB_Export";
 mysql_select_db($database_brewing);
 
 // Thanks to http://www.stargeek.com/scripts.php?script=2&cat=sql for the following script.
-$result = mysql_query("SELECT * FROM $dbTable");
-$count = mysql_num_fields($result);
+$result = mysqli_query("SELECT * FROM $dbTable");
+$count = mysqli_num_fields($result);
 
 for ($i = 0; $i < $count; $i++){
     $header .= mysql_field_name($result, $i)."\t";

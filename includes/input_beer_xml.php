@@ -53,7 +53,7 @@ class InputBeerXML {
 
     //{{{ insertRecipe
     function insertRecipe($recipe){
-        $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
+        $brewing = $connection;
         $sqlQuery = "INSERT INTO recipes ";
         $fields = "(brewName";
         $values = " VALUES('" . $recipe->name . "'";
@@ -171,8 +171,8 @@ class InputBeerXML {
         $values .= ")";
         $sqlQuery .= $fields . $values;
         //echo $sqlQuery . "<br />";
-        mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
-        $Result1 = mysql_query($sqlQuery, $brewing) or die(mysql_error());
+        mysql_select_db($GLOBALS['database_brewing']) or die (mysqli_error($connection));
+        $Result1 = mysqli_query($connection,$sqlQuery) or die (mysqli_error($connection));
 
         $this->insertedRecipes[mysql_insert_id()] = $recipe->name;
         }
@@ -190,7 +190,7 @@ class InputBeerXML {
     //{{{ insertBlog
     function insertBlog($recipe){
         $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
-        mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
+        mysql_select_db($GLOBALS['database_brewing']) or die (mysqli_error($connection));
 
         $sqlQuery = "INSERT INTO brewing ";
         $fields = "(brewName";
@@ -201,7 +201,7 @@ class InputBeerXML {
 
         $vf["brewStyle"] = $recipe->style->name;
         //$vf["brewSource"] = "BeerXML Parser";
-        //$vf["brewBatchNum"] = ((int)mysql_query($batchNumber,$brewing))++;
+        //$vf["brewBatchNum"] = ((int)mysqli_query($connection,$batchNumber,$brewing))++;
         $vf["brewYield"] = round(($recipe->batchSize * 0.26418), 3);
         $vf["brewInfo"] = $recipe->notes;
         $vf["brewMethod"] = $recipe->type;
@@ -350,7 +350,7 @@ class InputBeerXML {
         $values .= ")";
         $sqlQuery .= $fields . $values;
         //echo $sqlQuery . "<br />";
-        $Result1 = mysql_query($sqlQuery, $brewing) or die(mysql_error());
+        $Result1 = mysqli_query($connection,$sqlQuery) or die (mysqli_error($connection));
 
         $this->insertedRecipes[mysql_insert_id()] = $recipe->name;
     }

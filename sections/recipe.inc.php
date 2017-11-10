@@ -9,7 +9,7 @@ if ($amt != 0) {
   $scale = $amt / $row_log['brewYield'];
 }
 
-mysql_select_db($database_brewing, $brewing);
+
 
 // Grist percentage calculations
 $totalExtract = 0;
@@ -69,3 +69,4 @@ include (SECTIONS.'recipe_non-fermentables.inc.php');
 include (SECTIONS.'recipe_hops.inc.php');
 include (SECTIONS.'recipe_yeast.inc.php');
 ?>
+

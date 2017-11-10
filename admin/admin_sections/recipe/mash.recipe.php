@@ -8,11 +8,12 @@
     <option value=""></option>
 	<?php do {  ?>
     <option value="<?php echo $row_mash_profiles['id']?>" <?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultMashProfile'] == $row_mash_profiles['id'])) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_mash_profiles['id'], $row_log['brewMashProfile']))) {echo "SELECTED";} } ?>><?php echo $row_mash_profiles['mashProfileName']?></option>
-    <?php } while ($row_mash_profiles = mysql_fetch_assoc($mash_profiles)); $rows = mysql_num_rows($mash_profiles);	if($rows > 0) {	mysql_data_seek($mash_profiles, 0); $row_mash_profiles = mysql_fetch_assoc($mash_profiles); } ?>
+    <?php } while ($row_mash_profiles = mysqli_fetch_assoc($mash_profiles)); $rows = mysqli_num_rows($mash_profiles);	if($rows > 0) {
+mysqli_data_seek($mash_profiles, 0); $row_mash_profiles = mysqli_fetch_assoc($mash_profiles); } ?>
    </select>
    </td>
 </tr>
-<tr> 
+<tr>
    <td class="dataLabelLeft">Mash Thickness:</td>
    <td class="data"><input name="brewWaterRatio" type="text" id="brewWaterRatio" size="5" value="<?php if ($action == "add") { if ($row_user['defaultWaterRatio'] != "") echo $row_user['defaultWaterRatio']; else echo "1.33"; } if (($action == "edit") || ($action=="reuse")) echo $row_log['brewWaterRatio']; ?>"> <?php echo $row_pref['measWaterGrainRatio']; ?></td>
 </tr>
@@ -21,11 +22,11 @@
    <td class="dataLabelLeft">Pre-boil Wort Amount:</td>
    <td class="data"><input name="brewPreBoilAmt" type="text" id="brewPreBoilAmt" size="5" tooltipText="<?php echo $toolTip_decimal; ?>" value="<?php if (($action == "edit") || ($action=="reuse")) echo $row_log['brewPreBoilAmt']; ?>">&nbsp;<?php echo $row_pref['measFluid2']; ?></td>
 </tr>
-<tr> 
+<tr>
    <td class="dataLabelLeft">Pre-boil Gravity:</td>
    <td class="data"><input name="brewMashGravity" type="text" id="brewMashGravity" size="5" tooltipText="<?php echo $toolTip_gravity; ?>" value="<?php if (($action == "edit") || ($action=="reuse")) echo $row_log['brewMashGravity']; ?>"></td>
 </tr>
-</table> 
+</table>
 <?php } else { ?>
 <table>
 <tr>

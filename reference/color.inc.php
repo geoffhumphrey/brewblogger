@@ -1,5 +1,5 @@
-<div id="referenceHeader">Color Chart (SRM/EBC)</div>
-<table class="colorTableRef">
+<h2>Color Chart (SRM/EBC)</h2>
+<table class="table">
   <tr align="center" valign="middle">
     <td width="20%" bgcolor="#f3f993" class="colorTableRef2">1/<?php echo round(srm_to_ebc("1"), 0); ?></td>
     <td width="20%" bgcolor="#f5f75c" class="colorTableRef2">2/<?php echo round(srm_to_ebc("2"), 0); ?></td>
@@ -40,6 +40,6 @@
     <td width="20%" bgcolor="#16100f" class="colorTableRef3">27/<?php echo round(srm_to_ebc("27"), 0); ?></td>
     <td width="20%" bgcolor="#120d0c" class="colorTableRef3">28/<?php echo round(srm_to_ebc("28"), 0); ?></td>
     <td width="20%" bgcolor="#100b0a" class="colorTableRef3">29/<?php echo round(srm_to_ebc("29"), 0); ?></td>
-    <td width="20%" bgcolor="#050b0a" class="colorTableRef3">30/<?php echo round(srm_to_ebc("30"), 0); ?></td>
+    <td width="20%" bgcolor="#050b0a" class="colorTableRef3">30+/<?php echo round(srm_to_ebc("30"), 0); ?>+</td>
   </tr>
 </table>

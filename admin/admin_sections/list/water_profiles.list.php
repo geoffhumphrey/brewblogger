@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
+<?php include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -41,5 +41,5 @@ if ($confirm == "true") { ?>
    <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_water_profiles = mysql_fetch_assoc($water_profiles)); ?>
+<?php } while ($row_water_profiles = mysqli_fetch_assoc($water_profiles)); ?>
 </table>

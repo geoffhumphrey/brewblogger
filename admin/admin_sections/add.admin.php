@@ -1,34 +1,34 @@
 <?php
 if (($action == "edit") || ($action == "reuse")) {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM $dbTable WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 if (($action == "add") && ($dbTable == "awards") && ($id != "default")) { 
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM $assoc WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 if ($action == "import") {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM recipes WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 if ($action == "importRecipe") {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM brewing WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 if ($action == "importCalc") include (ADMIN_LIBRARY.'importFormVar.lib.php'); 

@@ -30,5 +30,6 @@
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_misc = mysql_fetch_assoc($misc)); ?>
+<?php } while ($row_misc =
+mysqli_fetch_assoc($misc)); ?>
 </table>

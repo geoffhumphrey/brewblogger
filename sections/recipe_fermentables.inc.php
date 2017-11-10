@@ -10,9 +10,9 @@ function more_info_modal($name,$db) {
 	$output = "";
 	
 	$query  = sprintf("SELECT * FROM %s WHERE maltName='%s'",$db,$name);
-	$query_result = mysql_query($query, $brewing) or die(mysql_error());
-	$row_result = mysql_fetch_array($query_result);
-	$totalRows_result = mysql_num_rows($query_result);
+	$query_result = mysqli_query($connection,$query) or die (mysqli_error($connection));
+	$row_result = mysqli_fetch_array($query_result);
+	$totalRows_result = mysqli_num_rows($query_result);
 	
 	if ($totalRows_result > 0) {
 		

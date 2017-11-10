@@ -38,7 +38,7 @@ if ($confirm == "true") {
 </tr>
 
 <?php
-do { 
+do {
   echo '<tr style="background-color:' . $color . '">' . "\n";
   echo '<td class="dataList" nowrap>' . $row_grains['maltName'] . '</td>' . "\n";
   $lovHigh = $row_grains['maltLovibondHigh'] > 0 ? $row_grains['maltLovibondHigh'] : $row_grains['maltLovibondLow'];
@@ -57,5 +57,5 @@ do {
   } else {
     $color = $color1;
   }
-} while ($row_grains = mysql_fetch_assoc($grains)); ?>
+} while ($row_grains = mysqli_fetch_assoc($grains)); ?>
 </table>

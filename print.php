@@ -46,11 +46,11 @@ $colname_style = "-1";
 if (isset($_GET['brewStyle'])) {
   $colname_style = (get_magic_quotes_gpc()) ? $_GET['brewStyle'] : addslashes($_GET['brewStyle']);
 }
-mysql_select_db($database_brewing, $brewing);
+
 $query_style = sprintf("SELECT * FROM styles WHERE brewStyle = '%s'", $colname_style);
-$style = mysql_query($query_style, $brewing) or die(mysql_error());
-$row_style = mysql_fetch_assoc($style);
-$totalRows_style = mysql_num_rows($style);
+$style = mysqli_query($connection,$query_style) or die (mysqli_error($connection));
+$row_style = mysqli_fetch_assoc($style);
+$totalRows_style = mysqli_num_rows($style);
 
 $imageSrc = "images/";
 ?>

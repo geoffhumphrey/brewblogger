@@ -10,7 +10,7 @@
   <tr>
     <td colspan="3" class="error">Sorry, you do not have sufficient privileges to access this area.</td>
   </tr>
-<?php } 
+<?php }
 
 if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")) { ?>
   <?php if ($confirm == "false") { ?>
@@ -41,7 +41,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
     <select name="userLevel" class="text_area" id="userLevel">
       <option value="2" <?php if ($action == "edit") { if (!(strcmp($row_log['userLevel'], "2"))) {echo "SELECTED";} } ?>>User</option>
       <option value="1" <?php if ($action == "edit") { if (!(strcmp($row_log['userLevel'], "1"))) {echo "SELECTED";} } ?>>Admin</option>
-    </select>	  
+    </select>
     </td>
     <td class="data">User = ability to add/edit/delete only THEIR OWN data.<br>Admin = ability to add/edit/delete access ALL user's data.</td>
   </tr>
@@ -108,7 +108,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
       <option value=""></option>
       <?php do { ?>
 	<option value="<?php echo $row_equip_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultEquipProfile'], $row_equip_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_equip_profiles['equipProfileName']; ?></option>
-      <?php } while ($row_equip_profiles = mysql_fetch_assoc($equip_profiles))?>
+      <?php } while ($row_equip_profiles = mysqli_fetch_assoc($equip_profiles))?>
     </select></td>
     <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Equipment Profile?" title="Add Equipment Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=equip_profiles">Add Equipment Profiles?</a></span></td>
   </tr>
@@ -120,7 +120,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
       <option value=""></option>
       <?php do { ?>
 	<option value="<?php echo $row_mash_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultMashProfile'], $row_mash_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_mash_profiles['mashProfileName']; ?></option>
-      <?php } while ($row_mash_profiles = mysql_fetch_assoc($mash_profiles))?>
+      <?php } while ($row_mash_profiles = mysqli_fetch_assoc($mash_profiles))?>
     </select></td>
     <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Mash Profile?" title="Add Mash Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=mash_profiles">Add Mash Profiles?</a></span></td>
   </tr>
@@ -138,7 +138,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
       <option value=""></option>
       <?php do { ?>
 	<option value="<?php echo $row_water_profiles['id']; ?>" <?php if (!(strcmp($row_log['defaultWaterProfile'], $row_water_profiles['id']))) echo "SELECTED"; ?>><?php echo $row_water_profiles['waterName']; ?></option>
-      <?php } while ($row_water_profiles = mysql_fetch_assoc($water_profiles))?>
+      <?php } while ($row_water_profiles = mysqli_fetch_assoc($water_profiles))?>
     </select></td>
     <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Water Profile?" title="Add Water Profile?"></span><span class="data"><a href="index.php?action=add&dbTable=water_profiles">Add Water Profiles?</a></span></td>
   </tr>
@@ -203,12 +203,12 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
   </tr>
   <tr>
     <td class="dataLabelLeft">Home Phone:</td>
-    <td class="data"><input type="text" name="userPhoneH" value="<?php if ($action == "edit") echo $row_log['userPhoneH']; ?>" size="20"></td> 
+    <td class="data"><input type="text" name="userPhoneH" value="<?php if ($action == "edit") echo $row_log['userPhoneH']; ?>" size="20"></td>
     <td class="data red"> (*)</td>
   </tr>
   <tr>
     <td class="dataLabelLeft">Work Phone:</td>
-    <td class="data"><input type="text" name="userPhoneW" value="<?php if ($action == "edit") echo $row_log['userPhoneW']; ?>" size="20"></td> 
+    <td class="data"><input type="text" name="userPhoneW" value="<?php if ($action == "edit") echo $row_log['userPhoneW']; ?>" size="20"></td>
     <td class="data red"> (*)</td>
   </tr>
   <tr>
@@ -263,7 +263,7 @@ if (($row_log['user_name'] == $loginUsername) || ($row_user['userLevel'] == "1")
     <input name="userInfoPrivate" type="radio" class="radiobutton" value="Y" <?php if (!(strcmp("Y", $row_log['userInfoPrivate']))) {echo "CHECKED";} else echo "CHECKED"; ?>>Yes
     <input name="userInfoPrivate" type="radio" class="radiobutton" value="N" <?php if (!(strcmp("N", $row_log['userInfoPrivate']))) {echo "CHECKED";} ?>>No	  </td>
     <td class="data">&nbsp;</td>
-  </tr>	
+  </tr>
   <?php }  }	?>
-</table> 
+</table>
 <?php include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>

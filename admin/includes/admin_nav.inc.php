@@ -162,7 +162,7 @@
 <?php } ?>
 
 <div id="adminMenu6" class="menu">
-<a class="menuItem" href="../index.php?page=awardsList&sort=awardDate&dir=DESC"><?php echo $row_pref['menuAwards']; ?></a>
+<a class="menuItem" href="../index.php?page=awards-list&sort=awardDate&dir=DESC"><?php echo $row_pref['menuAwards']; ?></a>
 <a class="menuItem" href="../index.php?page=about">Profile</a>
 <a class="menuItem" href="../index.php?page=brewblog-list"><?php echo $row_pref['menuBrewBlogs']; ?></a>
 <a class="menuItem" href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>
@@ -172,7 +172,7 @@
 <a class="menuItem" href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>
 </div>
 <div id="adminMenu7" class="menu">
-<a class="menuItem" href="../index.php?page=awardsList&sort=awardDate&dir=DESC"><?php echo $row_pref['menuAwards']; ?></a>
+<a class="menuItem" href="../index.php?page=awards-list&sort=awardDate&dir=DESC"><?php echo $row_pref['menuAwards']; ?></a>
 <a class="menuItem" href="../index.php?page=brewblog-list&sort=brewDate&dir=DESC"><?php echo $row_pref['menuBrewBlogs']; ?></a>
 <a class="menuItem" href="../index.php?page=members&sort=realLastName&dir=ASC"><?php echo $row_pref['menuMembers']; ?></a>
 <a class="menuItem" href="../index.php?page=about">Profile</a>

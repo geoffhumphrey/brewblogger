@@ -21,11 +21,13 @@
    <td class="dataHeadingList">&nbsp;</td>
    <td class="dataHeadingList"><?php if (!checkmobile()) { ?><div id="helpInline"><a href="includes/admin_icons.inc.php?dbTable=<?php echo $dbTable; ?>&KeepThis=true&TB_iframe=true&height=450&width=800" title="Administration Icon Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Admin Icon Reference" title="Administration Icon Reference"></a></div><?php } else echo "&nbsp;"; ?></td>
 </tr>
-<?php do {  
-mysql_select_db($database_brewing, $brewing);
+<?php do {
+
 $query_mash_steps = sprintf("SELECT * FROM mash_steps WHERE stepMashProfileID = '%s'", $row_mash_profiles['id']);
-$mash_steps = mysql_query($query_mash_steps, $brewing) or die(mysql_error());
-$totalRows_mash_steps = mysql_num_rows($mash_steps);
+$mash_steps = mysqli_query($connection,$query_mash_steps) or die (mysqli_error($connection));
+$row_mash_steps = mysqli_fetch_assoc($mash_steps);
+$totalRows_mash_steps = mysqli_num_rows($mash_steps);
+
 ?>
 <tr <?php echo " style=\"background-color:$color\"";?>>
    <td class="dataList"><?php echo $row_mash_profiles['mashProfileName']; ?></td>
@@ -38,19 +40,19 @@ $totalRows_mash_steps = mysql_num_rows($mash_steps);
    <td class="data-icon_list"><a href="index.php?action=reuse&dbTable=mash_profiles&id=<?php echo $row_mash_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" align="absmiddle" border="0" alt="Copy the <?php echo $row_mash_profiles['mashProfileName']; ?> Mash Profile" title="Copy the <?php echo $row_mash_profiles['mashProfileName']; ?> Mash Profile"></a></td>
    <?php  if (($row_mash_profiles['mashBrewerID'] != "brewblogger") && (($row_user['userLevel'] == "1") || ($row_mash_profiles['mashBrewerID'] == $_SESSION['loginUsername']))) { ?>
    <td class="data-icon_list"><a href="index.php?action=add&dbTable=mash_steps&id=<?php echo $row_mash_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>add.png" align="absmiddle" border="0" alt="Add a Step to the <?php echo $row_mash_profiles['mashProfileName']; ?> Mash Profile" title="Add a Step to the <?php echo $row_mash_profiles['mashProfileName']; ?> Mash Profile"></a></td>
-   <?php } 
+   <?php }
    else { ?>
    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>add_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    <?php } ?>
    <?php if (($row_mash_profiles['mashBrewerID'] != "brewblogger") &&  (($row_user['userLevel'] == "1") || ($row_mash_profiles['mashBrewerID'] == $_SESSION['loginUsername']))) { ?>
    <td class="data-icon_list"><?php if (($row_user['userLevel'] == "1") || ($row_mash_profiles['mashBrewerID'] == $_SESSION['loginUsername'])) { ?><a href="index.php?action=edit&dbTable=mash_profiles&id=<?php echo $row_mash_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_mash_profiles['mashProfileName']; ?>" title="Edit <?php echo $row_mash_profiles['mashProfileName']; ?>"></a><?php } else echo "&nbsp;"; ?></td>
    <td class="data-icon_list"><?php if (($row_user['userLevel'] == "1") || ($row_mash_profiles['mashBrewerID'] == $_SESSION['loginUsername'])) { ?><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_profiles','id',<?php echo $row_mash_profiles['id']; ?>,'Are you sure you want to delete this mash profile? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_profiles['waterName']; ?>" title="Delete <?php echo $row_styles['mashProfileName']; ?>"></a><?php } else echo "&nbsp;"; ?></td>
-   <?php } 
+   <?php }
    else { ?>
    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_mash_profiles = mysql_fetch_assoc($mash_profiles)); ?>
+<?php } while ($row_mash_profiles = mysqli_fetch_assoc($mash_profiles)); ?>
 </table>

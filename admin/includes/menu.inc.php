@@ -73,7 +73,7 @@ menu6[5]='<a href="../index.php?page=brewblog-list"><?php echo $row_pref['menuBr
 menu6[6]='<a href="../index.php?page=recipe-list"><?php echo $row_pref['menuRecipes']; ?></a>'
 menu6[7]='<a href="../index.php?page=reference"><?php echo $row_pref['menuReference']; ?></a>'
 menu6[2]='<a href="../index.php?page=tools"><?php echo $row_pref['menuCalculators']; ?></a>'
-menu6[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
+menu6[0]='<a href="../index.php?page=awards-list&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
 menu6[3]='<a href="../index.php?page=calendar"><?php echo $row_pref['menuCalendar']; ?></a>'
 
 var menu7=new Array()  // Adimin Help menu
@@ -119,7 +119,7 @@ menu9[16]='<a href="index.php?action=add&dbTable=yeast_profiles">&nbsp;&nbsp;- A
 // menu10 no longer used
 
 var menu11=new Array()
-menu11[0]='<a href="../index.php?page=awardsList&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
+menu11[0]='<a href="../index.php?page=awards-list&sort=awardBrewName&dir=ASC"><?php echo $row_pref['menuAwards']; ?></a>'
 menu11[1]='<a href="../index.php?page=brewblog-list&sort=brewDate&dir=DESC"><?php echo $row_pref['menuBrewBlogs']; ?></a>'
 menu11[2]='<a href="../index.php?page=members&sort=realLastName&dir=ASC"><?php echo $row_pref['menuMembers']; ?></a>'
 menu11[3]='<a href="../index.php?page=about">Profile</a>'

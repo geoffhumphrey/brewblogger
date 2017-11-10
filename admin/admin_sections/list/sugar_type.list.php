@@ -26,5 +26,5 @@
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_sugar_type = mysql_fetch_assoc($sugar_type)); ?>
+<?php } while ($row_sugar_type = mysqli_fetch_assoc($sugar_type)); ?>
 </table>

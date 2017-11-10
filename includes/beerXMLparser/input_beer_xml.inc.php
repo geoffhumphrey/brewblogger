@@ -46,12 +46,12 @@ class InputBeerXML {
 	
 	//{{{ convertUnit()
     function convertUnit($value,$type){
-	    include(CONFIG.'config.php');
-		mysql_select_db($database_brewing, $brewing);
-		$query_pref_xml = "SELECT measWeight1,measTemp,measFluid2,measWeight2 FROM preferences";
-		$pref_xml = mysql_query($query_pref_xml, $brewing) or die(mysql_error());
-		$row_pref_xml = mysql_fetch_assoc($pref_xml);
-		$totalRows_pref_xml = mysql_num_rows($pref_xml);
+	    require(CONFIG.'config.php');
+		mysqli_select_db($connection,$database);
+		$query_pref_xml = sprintf("SELECT prefsWeight1,prefsTemp,prefsLiquid2,prefsWeight2 FROM %s", $prefix."preferences");
+		$pref_xml = mysqli_query($connection,$query_pref_xml) or die (mysqli_error($connection));
+		$row_pref_xml = mysqli_fetch_assoc($pref_xml);
+		$totalRows_pref_xml = mysqli_num_rows($pref_xml);
 		
         switch($type){
             case "hopWeight";
@@ -84,8 +84,11 @@ class InputBeerXML {
 
     //{{{ insertRecipe
     function insertRecipe($recipe){  // inserts into `recipes` DB table
-	include ('../includes/scrubber.inc.php');
-        $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
+	include(CONFIG.'config.php');
+	include (INCLUDES.'scrubber.inc.php');
+	//include (INCLUDES.'url_variables.inc.php');
+	mysqli_select_db($connection,$database);
+        $brewing = $connection;
         $sqlQuery = "INSERT INTO recipes ";
         $fields = "(brewName";
         $values = " VALUES('" .  strtr($recipe->name, $html_string) . "'";
@@ -206,9 +209,8 @@ class InputBeerXML {
 		$values .= ", 'N'";
         $values .= ")";
         $sqlQuery .= $fields . $values;
-        echo $sqlQuery . "<br />";
-        mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
-        $Result1 = mysql_query($sqlQuery, $brewing) or die(mysql_error());
+       
+        $result = mysqli_query($connection,$sqlQuery) or die (mysqli_error($connection));
 
         $this->insertedRecipes[mysql_insert_id()] = $recipe->name;
         }
@@ -228,10 +230,11 @@ class InputBeerXML {
 
     //{{{ insertBlog
     function insertBlog($recipe){
-	include ('../includes/scrubber.inc.php');
-        $brewing = mysql_connect($GLOBALS['hostname_brewblog'], $GLOBALS['username_brewblog'], $GLOBALS['password_brewblog']) or trigger_error(mysql_error());
-        mysql_select_db($GLOBALS['database_brewing'], $brewing) or die(mysql_error());
-
+	include(CONFIG.'config.php');
+	include (INCLUDES.'scrubber.inc.php');
+	//include (INCLUDES.'url_variables.inc.php');
+	mysqli_select_db($connection,$database);
+	
         $sqlQuery = "INSERT INTO brewing ";
         $fields = "(brewName";
         $values = " VALUES('" .  strtr($recipe->name, $html_string) . "'";
@@ -399,7 +402,8 @@ class InputBeerXML {
         $values .= ")";
         $sqlQuery .= $fields . $values;
         //echo $sqlQuery . "<br />";
-        $Result1 = mysql_query($sqlQuery, $brewing) or die(mysql_error());
+		
+		$result = mysqli_query($connection,$sqlQuery) or die (mysqli_error($connection));
 
         $this->insertedRecipes[mysql_insert_id()] = $recipe->name;
     }

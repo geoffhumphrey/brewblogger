@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php if  ($row_user['userLevel'] == "1")  include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
+<?php if  ($row_user['userLevel'] == "1")  include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") { ?>
 <table>
 	<tr>
@@ -24,5 +24,5 @@ if ($confirm == "true") { ?>
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_theme = mysql_fetch_assoc($theme)); ?>
+<?php } while ($row_theme = mysqli_fetch_assoc($theme)); ?>
 </table>

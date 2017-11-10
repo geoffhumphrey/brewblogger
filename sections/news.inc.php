@@ -44,7 +44,7 @@
   </tr>
   <?php } ?>
 </table>
-<?php } } while ($row_news = mysql_fetch_assoc($news)); 
+<?php } } while ($row_news = mysqli_fetch_assoc($news));
 if (($totalRows_newsGen > 2) && ($page != "news")) { ?>
 <table class="dataTable">
   <tr>

@@ -3,19 +3,19 @@ if ($dbTable == "brewing") { $sql_output = "BrewBlog_DB_Export"; $title = "BrewB
 if ($dbTable == "recipes") { $sql_output = "Recipe_DB_Export"; $title = "Recipe SQL Export"; }
 
 if (($row_pref['mode'] == "1") || (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "1")))  {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = "SELECT * FROM $dbTable ORDER BY id";
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 if ((($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) || ($filter != "all")) {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM %s WHERE brewBrewerID = '%s'", $dbTable, $filter);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
 ?>
@@ -28,23 +28,23 @@ $totalRows_log = mysql_num_rows($log);
 <tr>
 <td>
 <form>
-<textarea cols="100" rows="25" wrap="OFF"><?php do { 
+<textarea cols="100" rows="25" wrap="OFF"><?php do {
 echo "INSERT INTO `".$dbTable."` VALUES (".$row_log['id'].", '";
 $row_log['brewName'] = strtr($row_log['brewName'], $html_string);
 echo $row_log['brewName']."', '"
 .$row_log['brewStyle']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 echo $row_log['brewBatchNum']."', '"
 .$row_log['brewCondition']."', '"
-.$row_log['brewDate']."', '"; 
+.$row_log['brewDate']."', '";
 }
 if ($dbTable == "recipes") {
 echo $row_log['brewSource']."', '";
 }
 echo $row_log['brewYield']."', '"
 .$row_log['brewMethod']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 echo $row_log['brewCost']."', '";
 }
@@ -54,12 +54,12 @@ echo $row_log['brewLink1Name']."', '"
 .$row_log['brewLink2']."', '";
 				$row_log['brewLink2Name'] = strtr($row_log['brewLink2Name'], $html_string);
 echo $row_log['brewLink2Name']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 				$row_log['brewInfo'] = strtr($row_log['brewInfo'], $html_string);
 echo $row_log['brewInfo']."', '";
-} 
-if ($dbTable == "recipes") 
+}
+if ($dbTable == "recipes")
 {
 				$row_log['brewNotes'] = strtr($row_log['brewNotes'], $html_string);
 echo $row_log['brewNotes']."', '";
@@ -217,7 +217,7 @@ echo $row_log['brewYeastMan']."', '"
 echo $row_log['brewLabelImage']."', '"
 .$row_log['brewOG']."', '"
 .$row_log['brewFG']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 echo $row_log['brewGravity1']."', '"
 .$row_log['brewGravity1Days']."', '"
@@ -227,7 +227,7 @@ echo $row_log['brewGravity1']."', '"
 		$row_log['brewProcedure'] = strtr($row_log['brewProcedure'], $html_string);
 		//$row_log['brewProcedure'] = str_replace("&#39;", "''", $row_log['brewProcedure'], $html_string);
 echo $row_log['brewProcedure']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 		$row_log['brewSpecialProcedure'] = strtr($row_log['brewSpecialProcedure'], $html_string);
 echo $row_log['brewSpecialProcedure']."', '";
@@ -245,12 +245,12 @@ echo $row_log['brewPrimary']."', '"
 .$row_log['brewBitterness']."', '"
 .$row_log['brewIBUFormula']."', '"
 .$row_log['brewLovibond']."', '";
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 		$row_log['brewComments'] = strtr($row_log['brewComments'], $html_string);
 echo $row_log['brewComments']."', '";
 }
-if ($dbTable == "brewing") 
+if ($dbTable == "brewing")
 {
 echo $row_log['brewMashType']."', '"
 .$row_log['brewMashGrainWeight']."', '"
@@ -305,7 +305,7 @@ echo $row_log['brewMashGravity']."', '"
 .$row_log['brewPreBoilAmt']."', '";
 }
 if ($row_log['brewBrewerID'] != "") echo $row_log['brewBrewerID']; else echo $loginUsername;
-if ($dbTable == "brewing") { 
+if ($dbTable == "brewing") {
 echo $row_log['brewTargetOG']."', '"
 .$row_log['brewTargetFG']."', '"
 .$row_log['brewMashProfile']."', '"
@@ -316,14 +316,14 @@ echo $row_log['brewTargetOG']."', '"
 .$row_log['brewFeatured']."', '"
 .$row_log['brewWaterRatio']."', '";
 }
-if ($dbTable == "recipes") { 
+if ($dbTable == "recipes") {
 echo $row_log['brewBoilTime']."', '"
 .$row_log['brewFeatured']."', '";
 }
 echo $row_log['brewArchive']."', '";
 echo "');";
 echo "\n";
-} while ($row_log = mysql_fetch_assoc($log)); ?> 
+} while ($row_log = mysqli_fetch_assoc($log)); ?>
 </textarea>
 </form>
 </td>

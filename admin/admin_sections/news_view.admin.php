@@ -15,6 +15,6 @@ There is no <?php echo $row_pref['menuMembers']; ?> news. Please check the <a hr
   	<td colspan="2" style="padding-top: 5px;"><?php echo $row_newsGen['newsText']; ?></td>
   </tr>
 </table>
-<?php  
-} while ($row_newsGen = mysql_fetch_assoc($newsGen)); 
+<?php
+} while ($row_newsGen = mysqli_fetch_assoc($newsGen));
 } ?>

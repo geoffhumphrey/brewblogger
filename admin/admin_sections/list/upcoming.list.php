@@ -24,7 +24,7 @@
 	<td class="dataHeadingList">Date</td>
 	<?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] =="1")) { ?>
 	<td class="dataHeadingList">Brewer ID</td>
-	<?php } 
+	<?php }
 	if ($row_upcoming['upcomingRecipeID'] != "") { ?>
     <td class="dataHeadingList">&nbsp;</td>
     <?php } ?>
@@ -43,9 +43,9 @@
     <?php } else { ?><td class="dataLabel">&nbsp;</td><?php } ?>
     <td class="data-icon_list"><a href="index.php?action=edit&dbTable=upcoming&id=<?php echo $row_upcoming['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_upcoming['upcoming']; ?>" title="Edit <?php echo $row_upcoming['upcoming']; ?>"></a></td>
   	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=upcoming','id',<?php echo $row_upcoming['id']; ?>,'Are you sure you want to delete this upcoming brew?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_upcoming['upcoming']; ?>" title="Delete <?php echo $row_upcoming['upcoming']; ?>"></a></td>
-	
+
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_upcoming = mysql_fetch_assoc($upcoming)); ?>
+<?php } while ($row_upcoming = mysqli_fetch_assoc($upcoming)); ?>
 </table>
 <?php } ?>

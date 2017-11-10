@@ -1,6 +1,6 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php 
-include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
+<?php
+include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -36,12 +36,12 @@ if ($confirm == "true") { ?>
    <?php if (($row_yeast_profiles['yeastBrewerID'] != "brewblogger") &&  (($row_user['userLevel'] == "1") || ($row_yeast_profiles['yeastBrewerID'] == $_SESSION['loginUsername']))) { ?>
    <td class="data-icon_list"><a href="index.php?action=edit&dbTable=yeast_profiles&id=<?php echo $row_yeast_profiles['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_yeast_profiles['yeastName']; ?>" title="Edit <?php echo $row_yeast_profiles['yeastName']; ?>"></a></td>
    <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=yeast_profiles','id',<?php echo $row_yeast_profiles['id']; ?>,'Are you sure you want to delete this yeast profile? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_yeast_profiles['yeastName']; ?>" title="Delete <?php echo $row_yeast_profiles['yeastName']; ?>"></a></td>
-   <?php  
+   <?php
    } else { ?>
    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>pencil_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
    <td class="data-icon_list"><img src="<?php echo $imageSrc; ?>bin_closed_fade.png" align="absmiddle" border="0" alt="No Privileges" title="No Privileges"></td>
-   <?php } ?> 
+   <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_yeast_profiles = mysql_fetch_assoc($yeast_profiles)); ?>
+<?php } while ($row_yeast_profiles = mysqli_fetch_assoc($yeast_profiles)); ?>
 </table>

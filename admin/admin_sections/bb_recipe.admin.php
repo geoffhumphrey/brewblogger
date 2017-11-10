@@ -1,7 +1,7 @@
-<?php 
+<?php
 /**
  * Moudule: bb_recipe.admin.php
- * Description: 
+ * Description:
  */
 
 include (ADMIN_INCLUDES.'add_edit_buttons.inc.php');
@@ -12,7 +12,7 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
     </tr>
   </table>
 
-  <?php 
+  <?php
   if (($row_pref['mode'] == "1") || (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2"))) {
     echo '<input type="hidden" name="brewBrewerID" value="';
     if (($action == "add") || ($action == "importCalc") || ($action == "import") || (($action == "edit") && ($row_log['brewBrewerID'] == ""))) {
@@ -34,7 +34,7 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
       }
       if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {
 	if ($row_users['user_name'] == $row_log['brewBrewerID']) {
-	  echo "SELECTED"; 
+	  echo "SELECTED";
 	}
       }
       if ($action == "importCalc") {
@@ -43,17 +43,19 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
 	}
       }
       echo '>' . $row_users['realFirstName'] . ' ' . $row_users['realLastName'] . '</option>' . "\n";
-    } while ($row_users = mysql_fetch_array($users));
+    } while ($row_users =
+mysqli_fetch_array($users));
 
-    $rows = mysql_num_rows($users);
+    $rows = mysqli_num_rows($users);
     if ($rows > 0) {
-      mysql_data_seek($users, 0);
-      $row_users = mysql_fetch_assoc($users);
+
+mysqli_data_seek($users, 0);
+      $row_users = mysqli_fetch_assoc($users);
     }
     echo '</select></td>' . "\n";
     echo '</tr>' . "\n";
     echo '</table>' . "\n";
-  } 
+  }
 
   include('recipe/general.recipe.php');
   include('recipe/extracts.recipe.php');
@@ -61,7 +63,7 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
   include('recipe/adjuncts.recipe.php');
   include('recipe/misc.recipe.php');
   include('recipe/hops.recipe.php');
-  include('recipe/bitterness.recipe.php'); 
+  include('recipe/bitterness.recipe.php');
   include('recipe/color.recipe.php');
   if ($dbTable != "recipes") {
     include('recipe/water.recipe.php');
@@ -69,15 +71,15 @@ if (($dbTable == "brewing") || ($dbTable == "recipes")) { ?>
     include('recipe/mash.recipe.php');
   }
   include('recipe/boil.recipe.php');
-  include('recipe/yeast.recipe.php'); 
-  include('recipe/gravity.recipe.php'); 
-  include('recipe/procedure.recipe.php'); 
-  include('recipe/fermenting.recipe.php'); 
+  include('recipe/yeast.recipe.php');
+  include('recipe/gravity.recipe.php');
+  include('recipe/procedure.recipe.php');
+  include('recipe/fermenting.recipe.php');
   if ($dbTable != "recipes") {
     include('recipe/label_image.recipe.php');
   }
-  include('recipe/related.recipe.php'); 
+  include('recipe/related.recipe.php');
 }
 
-include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); 
+include (ADMIN_INCLUDES.'add_edit_buttons.inc.php');
 ?>

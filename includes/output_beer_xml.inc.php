@@ -16,64 +16,64 @@ if (isset($_GET['source'])) {
 }
 
 if ($source == "brewLog") {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM brewing WHERE id = '%s'", $colname_log);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 
 $query_mash_profiles = sprintf("SELECT * FROM mash_profiles WHERE id='%s'", $row_log['brewMashProfile']);
-$mash_profiles = mysql_query($query_mash_profiles, $brewing) or die(mysql_error());
-$row_mash_profiles = mysql_fetch_assoc($mash_profiles);
-$totalRows_mash_profiles = mysql_num_rows($mash_profiles);
+$mash_profiles = mysqli_query($connection,$query_mash_profiles) or die (mysqli_error($connection));
+$row_mash_profiles = mysqli_fetch_assoc($mash_profiles);
+$totalRows_mash_profiles = mysqli_num_rows($mash_profiles);
 
 $query_mash_steps = sprintf("SELECT * FROM mash_steps WHERE stepMashProfileID = '%s'", $row_mash_profiles['id']);
-$mash_steps = mysql_query($query_mash_steps, $brewing) or die(mysql_error());
-$row_mash_steps = mysql_fetch_assoc($mash_steps);
-$totalRows_mash_steps = mysql_num_rows($mash_steps);
+$mash_steps = mysqli_query($connection,$query_mash_steps) or die (mysqli_error($connection));
+$row_mash_steps = mysqli_fetch_assoc($mash_steps);
+$totalRows_mash_steps = mysqli_num_rows($mash_steps);
 
 $query_water_profiles = sprintf("SELECT * FROM water_profiles WHERE id='%s'", $row_log['brewWaterProfile']);
-$water_profiles = mysql_query($query_water_profiles, $brewing) or die(mysql_error());
-$row_water_profiles = mysql_fetch_assoc($water_profiles);
-$totalRows_water_profiles = mysql_num_rows($water_profiles);
+$water_profiles = mysqli_query($connection,$query_water_profiles) or die (mysqli_error($connection));
+$row_water_profiles = mysqli_fetch_assoc($water_profiles);
+$totalRows_water_profiles = mysqli_num_rows($water_profiles);
 
 $query_equip_profiles = sprintf("SELECT * FROM equip_profiles WHERE id='%s'", $row_log['brewEquipProfile']);
-$equip_profiles = mysql_query($query_equip_profiles, $brewing) or die(mysql_error());
-$row_equip_profiles = mysql_fetch_assoc($equip_profiles);
-$totalRows_equip_profiles = mysql_num_rows($equip_profiles);
+$equip_profiles = mysqli_query($connection,$query_equip_profiles) or die (mysqli_error($connection));
+$row_equip_profiles = mysqli_fetch_assoc($equip_profiles);
+$totalRows_equip_profiles = mysqli_num_rows($equip_profiles);
 
 }
 
 if ($source == "recipe") {
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT * FROM recipes WHERE id = '%s'", $colname_log);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 }
 
-mysql_select_db($database_brewing, $brewing);
+
 $query_name = "SELECT * FROM brewer";
-$name = mysql_query($query_name, $brewing) or die(mysql_error());
-$row_name = mysql_fetch_assoc($name);
-$totalRows_name = mysql_num_rows($name);
+$name = mysqli_query($connection,$query_name) or die (mysqli_error($connection));
+$row_name = mysqli_fetch_assoc($name);
+$totalRows_name = mysqli_num_rows($name);
 
 
 $colname_style = "1";
 if (isset($_GET['brewStyle'])) {
   $colname_style = (get_magic_quotes_gpc()) ? $_GET['brewStyle'] : addslashes($_GET['brewStyle']);
 }
-mysql_select_db($database_brewing, $brewing);
+
 $query_style = sprintf("SELECT * FROM styles WHERE brewStyle = '%s'", $colname_style);
-$style = mysql_query($query_style, $brewing) or die(mysql_error());
-$row_style = mysql_fetch_assoc($style);
-$totalRows_style = mysql_num_rows($style);
+$style = mysqli_query($connection,$query_style) or die (mysqli_error($connection));
+$row_style = mysqli_fetch_assoc($style);
+$totalRows_style = mysqli_num_rows($style);
 
 if ($row_log['brewYeastProfile'] != "") {
-mysql_select_db($database_brewing, $brewing);
+
 $query_yeast_profiles = sprintf("SELECT * FROM yeast_profiles WHERE id='%s'", $row_log['brewYeastProfile']);
-$yeast_profiles = mysql_query($query_yeast_profiles, $brewing) or die(mysql_error());
-$row_yeast_profiles = mysql_fetch_assoc($yeast_profiles);
+$yeast_profiles = mysqli_query($connection,$query_yeast_profiles) or die (mysqli_error($connection));
+$row_yeast_profiles = mysqli_fetch_assoc($yeast_profiles);
 }
 
 // Begin Beer XML output
@@ -1121,7 +1121,7 @@ $xml_output .= "<RECIPES>\n";
 			if (($row_pref['measFluid2'] == "gallons") && ($row_mash_steps['stepInfuseAmt'] != "")) $xml_output .= "\t\t\t\t\t\t<INFUSE_AMT>" . volumeconvert($row_mash_steps['stepInfuseAmt'], "liters"). "</INFUSE_AMT>\n";
 			else $xml_output .= "\t\t\t\t\t\t<INFUSE_AMT>" . $row_mash_steps['stepInfuseAmt'] . "</INFUSE_AMT>\n";
 			$xml_output .= "\t\t\t\t\t</MASH_STEP>\n";
-			} while ($row_mash_steps =  mysql_fetch_assoc($mash_steps));
+			} while ($row_mash_steps =  mysqli_fetch_assoc($mash_steps));
 		$xml_output .= "\t\t\t\t</MASH_STEPS>\n";
 		$xml_output .= "\t\t</MASH>\n";
 		}

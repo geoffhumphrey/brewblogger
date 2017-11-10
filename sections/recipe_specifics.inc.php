@@ -1,9 +1,9 @@
 <?php
-mysql_select_db($database_brewing, $brewing);
+
 $query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_log['brewStyle']);
-$styles = mysql_query($query_styles, $brewing) or die(mysql_error());
-$row_styles = mysql_fetch_assoc($styles);
-$totalRows_styles = mysql_num_rows($styles);
+$styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
+$row_styles = mysqli_fetch_assoc($styles);
+$totalRows_styles = mysqli_num_rows($styles);
 
 if (($page == "current") || ($page == "brewblog")) $blog_type = "BrewBlog"; else $blog_type = "Recipe"; 
 
@@ -15,10 +15,11 @@ if (!empty($row_log['brewLovibond'])) {
 		if ($row_pref['measColor'] == "EBC") $brewLov = ebc_to_srm($brewLov);
 		$fontColor = ($brewLov >= 15) ? "#ffffff" : "#000000";
 		$bkColor   = get_display_color($brewLov);
-		$SRM .= "<span class=\"color-display\" style=\"background: ". $bkColor ."; color: ".$fontColor.";\">";
 		$SRM .= round($row_log['brewLovibond'], 1);
-		$SRM .= "</span>\n";
 		$SRM .= " <span class=\"text-muted small\"><em>".$row_pref['measColor']."</em></span>";
+		$SRM .= " <span class=\"badge\" style=\"background: ". $bkColor ."; color: ".$fontColor.";\">&nbsp;&nbsp;&nbsp;";
+		$SRM .= "</span>\n";
+		
 	}
 } 
 

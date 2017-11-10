@@ -8,7 +8,8 @@
     <select name="equipBrewerID">
    		<?php do {  ?>
     	<option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $_SESSION["loginUsername"])) echo "SELECTED"; if (($action == "edit") || ($action == "reuse")) { if ($row_users['user_name'] == $row_log['mashBrewerID']) echo "SELECTED"; } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
-    	<?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
+    	<?php } while ($row_users = mysqli_fetch_assoc($users)); $rows = mysqli_num_rows($users); if($rows > 0) {
+mysqli_data_seek($users, 0); $row_users = mysqli_fetch_assoc($users); } ?>
     </select>
     </td>
 </tr>
@@ -41,15 +42,15 @@
 </table>
 <?php if ((($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) || ($row_pref['mode'] == "1")  || ($row_log['mashBrewerID'] == "brewblogger")) { ?>
 <input name="mashBrewerID" type="hidden" value="<?php if (($action == "edit") && ($row_log['mashBrewerID'] != "brewblogger")) echo $_SESSION["loginUsername"]; elseif (($action == "reuse") || ($action == "add")) echo $_SESSION["loginUsername"]; else echo $row_log['mashBrewerID']; ?>" />
-<?php } 
+<?php }
 include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
-<?php  
-if ($action == "edit") { 
-mysql_select_db($database_brewing, $brewing);
+<?php
+if ($action == "edit") {
+
 $query_mash_steps = "SELECT * FROM mash_steps WHERE stepMashProfileID = '$id'";
-$mash_steps = mysql_query($query_mash_steps, $brewing) or die(mysql_error());
-$row_mash_steps = mysql_fetch_assoc($mash_steps);
-$totalRows_mash_steps = mysql_num_rows($mash_steps);
+$mash_steps = mysqli_query($connection,$query_mash_steps) or die (mysqli_error($connection));
+$row_mash_steps = mysqli_fetch_assoc($mash_steps);
+$totalRows_mash_steps = mysqli_num_rows($mash_steps);
 ?>
 <br />
 <?php if ($totalRows_mash_steps > 0) { ?>
@@ -79,12 +80,12 @@ $totalRows_mash_steps = mysql_num_rows($mash_steps);
     <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=mash_steps','id',<?php echo $row_mash_steps['id']; ?>,'Are you sure you want to delete this mash step? This cannot be undone.');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_mash_steps['stepName']; ?>" title="Delete <?php echo $row_mash_steps['stepName']; ?>"></a></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_mash_steps = mysql_fetch_assoc($mash_steps)); ?>
+<?php } while ($row_mash_steps = mysqli_fetch_assoc($mash_steps)); ?>
 </table>
 <?php }
   }
 } // end if (brewBrewerID == "brewblogger")
-else include (ADMIN_INCLUDES.'error_core.inc.php'); 
+else include (ADMIN_INCLUDES.'error_core.inc.php');
 }  // end user priv check
-else include (ADMIN_INCLUDES.'error_privileges.inc.php'); 
+else include (ADMIN_INCLUDES.'error_privileges.inc.php');
 ?>

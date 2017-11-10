@@ -8,7 +8,8 @@
     <select name="waterBrewerID">
    		<?php do {  ?>
     	<option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $_SESSION["loginUsername"])) echo "SELECTED"; if (($action == "edit") || ($action == "reuse")) { if ($row_users['user_name'] == $row_log['waterBrewerID']) echo "SELECTED"; } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
-    	<?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
+    	<?php } while ($row_users = mysqli_fetch_assoc($users)); $rows = mysqli_num_rows($users); if($rows > 0) {
+mysqli_data_seek($users, 0); $row_users = mysqli_fetch_assoc($users); } ?>
     </select>
     </td>
 </tr>
@@ -56,7 +57,7 @@
 <?php }
 include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } // end if (brewBrewerID == "brewblogger")
-else include (ADMIN_INCLUDES.'error_core.inc.php'); 
+else include (ADMIN_INCLUDES.'error_core.inc.php');
 }  // end user priv check
-else include (ADMIN_INCLUDES.'error_privileges.inc.php'); 
+else include (ADMIN_INCLUDES.'error_privileges.inc.php');
 ?>

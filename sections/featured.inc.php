@@ -19,26 +19,26 @@
 <?php do { ?>
 	<?php 
 	// Get brew style information for all listed styles
-	mysql_select_db($database_brewing, $brewing);
+	
 	$query_styles = sprintf("SELECT * FROM styles WHERE brewStyle='%s'", $row_featured['brewStyle']);
-	$styles = mysql_query($query_styles, $brewing) or die(mysql_error());
-	$row_styles = mysql_fetch_assoc($styles);
-	$totalRows_styles = mysql_num_rows($styles); 
+	$styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
+	$row_styles = mysqli_fetch_assoc($styles);
+	$totalRows_styles = mysqli_num_rows($styles); 
 	
 	// Get real user names
-	mysql_select_db($database_brewing, $brewing);
+	
 	$query_user2 = sprintf("SELECT * FROM users WHERE user_name = '%s'", $row_featured['brewBrewerID']);
-	$user2 = mysql_query($query_user2, $brewing) or die(mysql_error());
-	$row_user2 = mysql_fetch_assoc($user2);
-	$totalRows_user2 = mysql_num_rows($user2);
+	$user2 = mysqli_query($connection,$query_user2) or die (mysqli_error($connection));
+	$row_user2 = mysqli_fetch_assoc($user2);
+	$totalRows_user2 = mysqli_num_rows($user2);
 	
 	// Awards
 	$awardNewID = "b".$row_featured['id'];
-	mysql_select_db($database_brewing, $brewing);
+	
 	$query_awards2 = sprintf("SELECT * FROM awards WHERE awardBrewID='%s'", $awardNewID);
-	$awards2 = mysql_query($query_awards2, $brewing) or die(mysql_error());
-	$row_awards2 = mysql_fetch_assoc($awards2);
-	$totalRows_awards2 = mysql_num_rows($awards2);
+	$awards2 = mysqli_query($connection,$query_awards2) or die (mysqli_error($connection));
+	$row_awards2 = mysqli_fetch_assoc($awards2);
+	$totalRows_awards2 = mysqli_num_rows($awards2);
 	?>
 <tr <?php echo "style=\"background-color:$color\""; ?>>
 <?php if (isset($_SESSION["loginUsername"])) { if (($row_user['userLevel'] == "1") || ($row_featured['brewBrewerID'] == $loginUsername)) echo "<td class=\"dataList\"><a href=\"admin/index.php?action=edit&dbTable=".$dbTable."&id=".$row_featured['id']."\"><img src=\"".$imageSrc."pencil.png\" alt=\"Edit ".$row_featured['brewName']."\" title=\"Edit ".$row_featured['brewName']."\" border=\"0\" align=\"absmiddle\"></a></td>"; else echo "<td>&nbsp;</td>"; } ?>
@@ -71,5 +71,5 @@
   	<td class="dataList center"><?php if ($totalRows_awards2 > 0) echo $totalRows_awards2; else echo "&nbsp;"; ?></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_featured = mysql_fetch_assoc($featured)); ?>
+<?php } while ($row_featured = mysqli_fetch_assoc($featured)); ?>
 </table>

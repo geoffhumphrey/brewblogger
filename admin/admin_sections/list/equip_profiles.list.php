@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
+<?php include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -42,7 +42,7 @@ if ($confirm == "true") { ?>
    	<td class="dataLabel">H<sub>2</sub>O/Grain:</td>
    	<td class="data"><?php if ($row_equip_profiles['equipTypicalWaterRatio'] != "") { echo $row_equip_profiles['equipTypicalWaterRatio']; if ($row_pref['measWeight2'] == "pounds") echo " qt/lb"; else echo " li/kg"; } ?></td>
     <td class="dataLabel">Hop Util:</td>
-   	<td class="data" colspan="6"><?php if ($row_equip_profiles['equipHopUtil'] != "") echo $row_equip_profiles['equipHopUtil']."%"; ?></td>  
+   	<td class="data" colspan="6"><?php if ($row_equip_profiles['equipHopUtil'] != "") echo $row_equip_profiles['equipHopUtil']."%"; ?></td>
     </tr>
 <tr <?php echo " style=\"background-color:$color\"";?>>
    	<td class="dataLabel">Tun Vol.:</td>
@@ -59,5 +59,5 @@ if ($confirm == "true") { ?>
     <td class="data" colspan="10"><?php if ($row_equip_profiles['equipNotes'] != "") echo $row_equip_profiles['equipNotes']; ?></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_equip_profiles = mysql_fetch_assoc($equip_profiles)); ?>
+<?php } while ($row_equip_profiles = mysqli_fetch_assoc($equip_profiles)); ?>
 </table>

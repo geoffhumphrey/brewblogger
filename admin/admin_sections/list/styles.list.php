@@ -1,5 +1,5 @@
 <div id="subtitleAdmin"><?php echo $page_title; ?></div>
-<?php if  ($row_user['userLevel'] == "1") include (ADMIN_INCLUDES.'list_add_link.inc.php'); 
+<?php if  ($row_user['userLevel'] == "1") include (ADMIN_INCLUDES.'list_add_link.inc.php');
 if ($confirm == "true") { ?>
 <table class="dataTable">
 	<tr>
@@ -58,28 +58,28 @@ if ($confirm == "true") { ?>
 	</td>
 	<td class="dataList" ><?php echo $row_styles['brewStyleGroup']; ?><?php echo $row_styles['brewStyleNum']; ?></td>
 	<td class="dataList" >
-  	<?php 
+  	<?php
 						  if ($row_styles['brewStyleOG'] == "") { echo "Varies"; }
 						  elseif ($row_styles['brewStyleOG'] != "") { echo $row_styles['brewStyleOG']."-".$row_styles['brewStyleOGMax']; }
 						  else { echo "&nbsp;"; }
 						  ?>
     </td>
     <td class="dataList" >
-	<?php 
+	<?php
 						  if ($row_styles['brewStyleFG'] == "") { echo "Varies"; }
 						  elseif ($row_styles['brewStyleFG'] != "") { echo $row_styles['brewStyleFG']."-".$row_styles['brewStyleFGMax']; }
 						  else { echo "&nbsp;"; }
 						  ?>
     </td>
     <td class="dataList" >
-	<?php 
+	<?php
 						  if ($row_styles['brewStyleABV'] == "") { echo "Varies"; }
-						  elseif ($row_styles['brewStyleABV'] != "" ) { echo $row_styles['brewStyleABV']."-".$row_styles['brewStyleABVMax']."%"; } 
+						  elseif ($row_styles['brewStyleABV'] != "" ) { echo $row_styles['brewStyleABV']."-".$row_styles['brewStyleABVMax']."%"; }
 						  else { echo "&nbsp;"; }
 						  ?>
     </td>
     <td class="dataList" >
-	<?php 
+	<?php
 						  if ($row_styles['brewStyleIBU'] == "")  { echo "Varies"; }
 						  elseif ($row_styles['brewStyleIBU'] == "N/A") { echo "N/A"; }
 						  elseif ($row_styles['brewStyleIBU'] != "") { $IBUmin = ltrim ($row_styles['brewStyleIBU'], "0"); $IBUmax = ltrim ($row_styles['brewStyleIBUMax'], "0"); echo $IBUmin."-".$IBUmax; }
@@ -101,5 +101,5 @@ if ($confirm == "true") { ?>
 	 <?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_styles = mysql_fetch_assoc($styles)); ?>
+<?php } while ($row_styles = mysqli_fetch_assoc($styles)); ?>
 </table>

@@ -4,7 +4,7 @@
  * Description: Setup extracts part of the page to add/edit blog or recipe.
  */
 
-// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc']
 
 echo '<div class="headerContentAdmin">Malt Extracts</div>' . "\n";
 echo '<table class="dataTable">' . "\n";
@@ -26,14 +26,17 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 	echo "SELECTED";
     }
     echo '>' . $row_extracts['extractName'] . '</option>' . "\n";
-  } while ($row_extracts = mysql_fetch_array($extracts));
+  } while ($row_extracts =
+mysqli_fetch_array($extracts));
   echo '</select></td>' . "\n";
 
   // Reset $row_extracts to first row
-  $rows = mysql_num_rows($extracts);
+  $rows = mysqli_num_rows($extracts);
   if ($rows > 0) {
-    mysql_data_seek($extracts, 0);
-    $row_extracts = mysql_fetch_array($extracts);
+
+mysqli_data_seek($extracts, 0);
+    $row_extracts =
+mysqli_fetch_array($extracts);
   }
 
   echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
@@ -59,7 +62,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 </option><option value="">-- Items below are in the Extracts DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_extracts['extractName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_extracts['extractName'], $row_log['brewExtract1']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_extracts['extractName'], $brewExtract1))) {echo "SELECTED";} } ?>><?php echo $row_extracts['extractName']?></option>
-   <?php } while ($row_extracts = mysql_fetch_assoc($extracts)); $rows = mysql_num_rows($extracts); if($rows > 0) { mysql_data_seek($extracts, 0); $row_extracts = mysql_fetch_assoc($extracts); } ?>
+   <?php } while ($row_extracts = mysqli_fetch_assoc($extracts)); $rows = mysqli_num_rows($extracts); if($rows > 0) {
+mysqli_data_seek($extracts, 0); $row_extracts = mysqli_fetch_assoc($extracts); } ?>
    </select>
    </td>
    <td class="dataLabel" width="5%">Weight:</td>
@@ -75,7 +79,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 </option><option value="">-- Items below are in the Extracts DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_extracts['extractName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_extracts['extractName'], $row_log['brewExtract2']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_extracts['extractName'], $brewExtract2))) {echo "SELECTED";} } ?>><?php echo $row_extracts['extractName']?></option>
-   <?php } while ($row_extracts = mysql_fetch_assoc($extracts)); $rows = mysql_num_rows($extracts); if($rows > 0) { mysql_data_seek($extracts, 0); $row_extracts = mysql_fetch_assoc($extracts); } ?>
+   <?php } while ($row_extracts = mysqli_fetch_assoc($extracts)); $rows = mysqli_num_rows($extracts); if($rows > 0) {
+mysqli_data_seek($extracts, 0); $row_extracts = mysqli_fetch_assoc($extracts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -90,7 +95,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 </option><option value="">-- Items below are in the Extracts DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_extracts['extractName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_extracts['extractName'], $row_log['brewExtract3']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_extracts['extractName'], $brewExtract3))) {echo "SELECTED";} } ?>><?php echo $row_extracts['extractName']?></option>
-   <?php } while ($row_extracts = mysql_fetch_assoc($extracts)); $rows = mysql_num_rows($extracts); if($rows > 0) { mysql_data_seek($extracts, 0); $row_extracts = mysql_fetch_assoc($extracts); } ?>
+   <?php } while ($row_extracts = mysqli_fetch_assoc($extracts)); $rows = mysqli_num_rows($extracts); if($rows > 0) {
+mysqli_data_seek($extracts, 0); $row_extracts = mysqli_fetch_assoc($extracts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -105,7 +111,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 </option><option value="">-- Items below are in the Extracts DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_extracts['extractName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_extracts['extractName'], $row_log['brewExtract4']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_extracts['extractName'], $brewExtract4))) {echo "SELECTED";} } ?>><?php echo $row_extracts['extractName']?></option>
-   <?php } while ($row_extracts = mysql_fetch_assoc($extracts)); $rows = mysql_num_rows($extracts); if($rows > 0) { mysql_data_seek($extracts, 0); $row_extracts = mysql_fetch_assoc($extracts); } ?>
+   <?php } while ($row_extracts = mysqli_fetch_assoc($extracts)); $rows = mysqli_num_rows($extracts); if($rows > 0) {
+mysqli_data_seek($extracts, 0); $row_extracts = mysqli_fetch_assoc($extracts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -120,7 +127,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
 </option><option value="">-- Items below are in the Extracts DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_extracts['extractName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_extracts['extractName'], $row_log['brewExtract5']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_extracts['extractName'], $brewExtract5))) {echo "SELECTED";} } ?>><?php echo $row_extracts['extractName']?></option>
-   <?php } while ($row_extracts = mysql_fetch_assoc($extracts)); $rows = mysql_num_rows($extracts); if($rows > 0) { mysql_data_seek($extracts, 0); $row_extracts = mysql_fetch_assoc($extracts); } ?>
+   <?php } while ($row_extracts = mysqli_fetch_assoc($extracts)); $rows = mysqli_num_rows($extracts); if($rows > 0) {
+mysqli_data_seek($extracts, 0); $row_extracts = mysqli_fetch_assoc($extracts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>

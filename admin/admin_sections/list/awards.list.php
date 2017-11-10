@@ -49,6 +49,6 @@
   <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=awards','id',<?php echo $row_awards['id']; ?>,'Are you sure you want to delete this award?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_awards['awardsBrewName']; ?>" title="Delete <?php echo $row_awards['awardsBrewName']; ?>"></a></td>
   </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_awards = mysql_fetch_assoc($awards)); ?>
+<?php } while ($row_awards = mysqli_fetch_assoc($awards)); ?>
 </table>
 <?php } else echo ""; ?>

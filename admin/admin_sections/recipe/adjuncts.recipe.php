@@ -4,7 +4,7 @@
  * Description: Setup adjuncts part of the page to add/edit blog or recipe.
  */
 
-// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc']
 
 echo '<div class="headerContentAdmin">Adjuncts</div>' . "\n";
 echo '<table class="dataTable">' . "\n";
@@ -26,14 +26,17 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
       echo "SELECTED";
     }
     echo '>' . $row_adjuncts['adjunctName'] . '</option>' . "\n";
-  } while ($row_adjuncts = mysql_fetch_array($adjuncts));
+  } while ($row_adjuncts =
+mysqli_fetch_array($adjuncts));
   echo '</select></td>' . "\n";
-  
+
   // Reset $row_adjuncts to first row
-  $rows = mysql_num_rows($adjuncts);
+  $rows = mysqli_num_rows($adjuncts);
   if ($rows > 0) {
-    mysql_data_seek($adjuncts, 0);
-    $row_adjuncts = mysql_fetch_array($adjuncts);
+
+mysqli_data_seek($adjuncts, 0);
+    $row_adjuncts =
+mysqli_fetch_array($adjuncts);
   }
 
   echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
@@ -59,7 +62,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action == "import") || ($action == "importRecipe") || ($action=="reuse")) {  if ($row_adjuncts['adjunctName'] == $row_log['brewAddition1']) echo "SELECTED"; } if ($action == "importCalc") { if ($row_adjuncts['adjunctName'] == $brewAdjunct1) echo "SELECTED"; } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel" width="5%">Weight:</td>
@@ -74,7 +78,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition2']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct2))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -89,7 +94,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition3']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct3))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -104,7 +110,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition4']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct4))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -119,7 +126,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition5']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct5))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -134,7 +142,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition6']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct6))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -149,7 +158,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <option value="">-- Items below are in the Adjunct DB --</option>
    <?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition7']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct7))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -161,10 +171,11 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
    <select name="brewAdjunct8">
    <?php if ((($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) && ($row_log['brewAddition8'] != "")) { ?><option value="<?php echo $row_log['brewAddition8']; ?>"><?php echo $row_log['brewAddition8']; ?></option><?php } ?>
    <option value=""></option>
-	<option value="">-- Items below are in the Adjunct DB --</option> 
+	<option value="">-- Items below are in the Adjunct DB --</option>
 	<?php do {  ?>
    <option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition8']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct8))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   <?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   <?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -179,7 +190,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
     <option value="">-- Items below are in the Adjunct DB --</option>
    	<?php do {  ?>
    	<option value="<?php echo $row_adjuncts['adjunctName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_adjuncts['adjunctName'], $row_log['brewAddition9']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_adjuncts['adjunctName'], $brewAdjunct9))) {echo "SELECTED";} } ?>><?php echo $row_adjuncts['adjunctName']?></option>
-   	<?php } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); $rows = mysql_num_rows($adjuncts); if($rows > 0) { mysql_data_seek($adjuncts, 0); $row_adjuncts = mysql_fetch_assoc($adjuncts); } ?>
+   	<?php } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); $rows = mysqli_num_rows($adjuncts); if($rows > 0) {
+mysqli_data_seek($adjuncts, 0); $row_adjuncts = mysqli_fetch_assoc($adjuncts); } ?>
    	</select>
    	</td>
    	<td class="dataLabel">Weight:</td>

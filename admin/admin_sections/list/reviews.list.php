@@ -31,12 +31,12 @@
     <td class="dataHeadingList"><?php if (!checkmobile()) { ?><div id="helpInline"><a href="includes/admin_icons.inc.php?dbTable=<?php echo $dbTable; ?>&KeepThis=true&TB_iframe=true&height=450&width=800" title="Administration Icon Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Admin Icon Reference" title="Administration Icon Reference"></a></div><?php } else echo "&nbsp;"; ?></td>
 	<?php } ?>
 </tr>
-<?php do { 
-mysql_select_db($database_brewing, $brewing);
+<?php do {
+
 $query_log_review = sprintf("SELECT * FROM brewing WHERE id = '%s'", $row_review['brewID']);
-$log_review = mysql_query($query_log_review, $brewing) or die(mysql_error());
-$row_log_review = mysql_fetch_assoc($log_review);
-$totalRows_log_review = mysql_num_rows($log_review);
+$log_review = mysqli_query($connection,$query_log_review) or die (mysqli_error($connection));
+$row_log_review = mysqli_fetch_assoc($log_review);
+$totalRows_log_review = mysqli_num_rows($log_review);
 ?>
 <tr <?php echo " style=\"background-color:$color\"";?>>
 	<td class="dataList"><?php if ($row_log_review ['brewName'] != "") echo $row_log_review['brewName']; else echo "<span class=\"red\"><em>BrewBlog has been Deleted</em></span>"; ?></td>
@@ -48,6 +48,6 @@ $totalRows_log_review = mysql_num_rows($log_review);
   	<td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=reviews','id',<?php echo $row_review['id']; ?>,'Are you sure you want to delete this review?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete this Review" title="Delete this Review"></a></td>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_review = mysql_fetch_assoc($review)); ?>
+<?php } while ($row_review = mysqli_fetch_assoc($review)); ?>
 </table>
 <?php } ?>

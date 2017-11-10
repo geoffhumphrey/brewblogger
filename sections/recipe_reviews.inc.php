@@ -36,7 +36,7 @@
 </table>
 
 <?php do { ?>
-<?php $taste_calc = ($row_review['brewAromaScore'] + $row_review['brewAppearanceScore'] + $row_review['brewFlavorScore'] + $row_review['brewMouthfeelScore'] + $row_review['brewOverallScore']); ?> 
+<?php $taste_calc = ($row_review['brewAromaScore'] + $row_review['brewAppearanceScore'] + $row_review['brewFlavorScore'] + $row_review['brewMouthfeelScore'] + $row_review['brewOverallScore']); ?>
 <div id="wideWrapperReview">
 <div id="referenceHeader"><span class="data-icon"><img src="<?php echo $imageSrc; ?>page_edit.png" align="absmiddle" border="0"></span><span class="data">Review by <?php echo $row_review['brewScoredBy']; if ($row_review['brewScorerLevel'] != "") echo " (".$row_review['brewScorerLevel'].")"; ?></span></div>
 <table class="dataTable">
@@ -69,11 +69,11 @@
         <td class="dataLabelLeft">Cumulative Score:</td>
         <td class="data" nowrap><?php echo $taste_calc; ?> / 50 </td>
         <td class="data dataLabel">
-		<?php 
-		if ($taste_calc >= 45) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>star.png" align="absmiddle" border="0"></span><span class="dk data">Outstanding</span><?php } 
-		if ($taste_calc >= 38 && $taste_calc <= 44) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_gold_2.png" align="absmiddle" border="0"></span><span class="dk data">Excellent</span><?php } 
-		if ($taste_calc >= 30 && $taste_calc <= 37) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_silver_2.png" align="absmiddle" border="0"></span><span class="dk data">Very Good</span><?php } 
-		if ($taste_calc >= 21 && $taste_calc <= 29) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_bronze_2.png" align="absmiddle" border="0"></span><span class="dk data">Good</span><?php } 
+		<?php
+		if ($taste_calc >= 45) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>star.png" align="absmiddle" border="0"></span><span class="dk data">Outstanding</span><?php }
+		if ($taste_calc >= 38 && $taste_calc <= 44) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_gold_2.png" align="absmiddle" border="0"></span><span class="dk data">Excellent</span><?php }
+		if ($taste_calc >= 30 && $taste_calc <= 37) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_silver_2.png" align="absmiddle" border="0"></span><span class="dk data">Very Good</span><?php }
+		if ($taste_calc >= 21 && $taste_calc <= 29) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>award_star_bronze_2.png" align="absmiddle" border="0"></span><span class="dk data">Good</span><?php }
 		if ($taste_calc >= 14 && $taste_calc <= 20) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>bell.png" align="absmiddle" border="0"></span><span class="dk data">Fair</span><?php }
 		if ($taste_calc >= 00 && $taste_calc <= 13) { ?><span class="data-icon"><img src="<?php echo $imageSrc; ?>bell_error.png" align="absmiddle" border="0"></span><span class="dk data">Problematic</span><?php }
 		?>
@@ -81,6 +81,6 @@
       </tr>
     </table>
  </div>
-<?php } while ($row_review = mysql_fetch_assoc($review)); ?>             
+<?php } while ($row_review = mysqli_fetch_assoc($review)); ?>
 <?php } ?>
 </div>

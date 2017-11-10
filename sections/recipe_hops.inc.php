@@ -4,143 +4,162 @@
  * Description: This module populates the hop section of viewing a recipe.
  */
  
-
- /* } else {
-	$query        = "SELECT * FROM hops WHERE hopsName='" . $row_log[$keyName] . "'";
-	$query_result = mysql_query($query, $brewing) or die (mysql_error());
-	$row_hops     = mysql_fetch_array($query_result);
-	
-	echo '<div id="moreInfo">';
-	echo '<a href="#">';
-	echo $row_log[$keyName] . "<br>";
-	echo '<span>' . "\n";
-	echo '<div id="moreInfoWrapper">' . "\n";
-	echo '<div id="referenceHeader">';
-	if ($row_hops['hopsName'] != "") {
-	  echo $row_hops['hopsName'];
-	} else {
-	  echo "No Information Available";
-	}
-	echo '</div>' . "\n";
-	if ($row_hops['hopsName'] != "") {
-	  echo '<table class="dataTable">' . "\n";
-	  if ($row_hops['hopsGrown'] != "" ) {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">Region:</td>' . "\n";
-	    echo '<td class="data">' . $row_hops['hopsGrown'] . "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  if ($row_hops['hopsAAULow'] != "") {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">AA Range:</td>' . "\n";
-	    echo '<td class="data">';
-	    $AAUmin = ltrim($row_hops['hopsAAULow'], "0");
-	    $AAUmax = ltrim($row_hops['hopsAAUHigh'], "0");
-	    echo $AAUmin." - ".$AAUmax."%";
-	    echo "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  if ($row_hops['hopsInfo'] != "" ) {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">Notes:</td>' . "\n";
-	    echo '<td class="data">' . $row_hops['hopsInfo'] . "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  if ($row_hops['hopsUse'] != "" ) {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">Typical Use:</td>' . "\n";
-	    echo '<td class="data">' . $row_hops['hopsUse'] . "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  if ($row_hops['hopsSub'] != "" ) {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">Substitution:</td>' . "\n";
-	    echo '<td class="data">' . $row_hops['hopsSub'] . "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  if ($row_hops['hopsExample'] != "" ) {
-	    echo "<tr>" . "\n";
-	    echo '<td class="dataLabelLeft">Example:</td>' . "\n";
-	    echo '<td class="data">' . $row_hops['hopsExample'] . "</td>" . "\n";
-	    echo "</tr>" . "\n";
-	  }
-	  echo '</table></div></span>' . "\n";
-	  echo '</a>' . "\n";
-	  echo '</div>' . "\n";
-	  
-	}
-	
-      }
-*/
- 
 $hops = "";
 $hops_modals = "";
 $total_hops = "";
 
-if ($row_log['brewHops1'] != "" ) { // hide entire set of hops rows if first is not present 
+// hide entire set of hops rows if first is not present 
+if (!empty($row_log['brewHops1'])) {
+	
 	for ($i = 0; $i < MAX_HOPS; $i++) {
-		$keyName   = 'brewHops' . ($i + 1);
-		$keyWeight = 'brewHops' . ($i + 1) . 'Weight';
-		$keyAA   = 'brewHops' . ($i + 1) . 'IBU';
-		$keyForm = 'brewHops' . ($i + 1) . 'Form';
-		$keyTime = 'brewHops' . ($i + 1) . 'Time';
-		$keyType = 'brewHops' . ($i + 1) . 'Type';
-		$keyUse  = 'brewHops' . ($i + 1) . 'Use';
 		
-    		if ($row_log[$keyName] != "") {
-      			$hops .=  "<tr>" . "\n";
-				
-				// Amount
-     			$hops .= "<td>";
-      			if ($row_log[$keyWeight] != "" ) {
-					if ($action == "default" || $action == "reset" || $action == "print")	$hops .= number_format($row_log[$keyWeight], 2);
-					if ($action == "scale")  $hops .= number_format(($row_log[$keyWeight] * $scale), 2);
-      			}
-				$hops .= " " . $row_pref['measWeight1'] . "</td>" . "\n";
-				
-				// Name
-				$hops .= "<td>" . "\n";
-				$hops .= $row_log[$keyName];
-				$hops .= "</td>" . "\n";
-				
-				// Time
-				$hops .= "<td>" . "\n";
-				if ($row_log[$keyTime] != "") $hops .= $row_log[$keyTime] . " min"; 
-				$hops .= "</td>" . "\n";
-				
-				// Type
-				$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
-				if ($row_log[$keyType] == "Both") $hops .=  "Bittering and Aroma";
-				  elseif ($row_log[$keyType] != "") $hops .=  $row_log[$keyType];
-				  else	$hops .=  "";
-				$hops .= "</td>" . "\n";
-				// Use
-				$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
-				if ($row_log[$keyUse] != "") $hops .=  $row_log[$keyUse]; 
-				$hops .= "</td>" . "\n";
-				
-				// Form 
-				$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
-				if ($row_log[$keyForm] != "") $hops .= $row_log[$keyForm] . " "; 
-				$hops .= "</td>" . "\n";
-				
-				// Alpha Acid
-				$hops .= "<td>" . "\n";
-				if ($row_log[$keyAA] != "") $hops .= number_format($row_log[$keyAA],1) . "% ";
-				$hops .= "</td>" . "\n";
-      
-   			}
+		$hop_name   = 'brewHops' . ($i + 1);
+		$hop_weight = 'brewHops' . ($i + 1) . 'Weight';
+		$hop_alpha  = 'brewHops' . ($i + 1) . 'IBU';
+		$hop_form = 'brewHops' . ($i + 1) . 'Form';
+		$hop_time = 'brewHops' . ($i + 1) . 'Time';
+		$hop_type = 'brewHops' . ($i + 1) . 'Type';
+		$hop_use  = 'brewHops' . ($i + 1) . 'Use';		
+		
+    	if (!empty($row_log[$hop_name])) {
+			
+			$hop_more_info = hop_more_info($row_log[$hop_name]);
+			$hop_more_info_id = $i + 1;
+			
+			if (!empty($hop_more_info)) {
+			
+				// Build Modal
+				$hops_modals .= "<div class=\"modal fade\" id=\"hopsModal".$hop_more_info_id."\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"hopsModalLabel".$hop_more_info_id."\">";
+				$hops_modals .= "<div class=\"modal-dialog\" role=\"document\">";
+				$hops_modals .= "<div class=\"modal-content\">";
+				$hops_modals .= "<div class=\"modal-header\">";
+				$hops_modals .= "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+				$hops_modals .= "<h4 class=\"modal-title\" id=\"hopsModalLabel".$hop_more_info_id."\">".$row_log[$hop_name]."</h4>";
+				$hops_modals .= "</div>";
+				$hops_modals .= "<div class=\"modal-body\">";
+
+				//$hops_modals .= $hop_more_info;
+
+				$hop_more_info = explode("|",$hop_more_info);
+
+				if (!empty($hop_more_info[2])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-xs-12 col-sm-3 col-md-3\"><strong>Use:</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[2]."</div>";
+					$hops_modals .= "</div>";
+				}
+
+				if (!empty($hop_more_info[4])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-md-3\"><strong>AAU Range:</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[4];
+					if (!empty($hop_more_info[5])) $hops_modals .= " - ".$hop_more_info[5];
+					$hops_modals .= "</div>";
+					$hops_modals .= "</div>";
+				}
+
+				if (!empty($hop_more_info[0])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-md-3\"><strong>Origin:</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[0]."</div>";
+					$hops_modals .= "</div>";
+				}
+
+				if (!empty($hop_more_info[1])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-md-3\"><strong>Info:</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[1]."</div>";
+					$hops_modals .= "</div>";
+				}
+
+				if (!empty($hop_more_info[3])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-md-3\"><strong>Example(s):</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[3]."</div>";
+					$hops_modals .= "</div>";
+				}
+
+				if (!empty($hop_more_info[6])) {
+					$hops_modals .= "<div class=\"row bcoem-account-info\">";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-3 col-md-3\"><strong>Substitution(s):</strong></div>";
+					$hops_modals .= "<div class=\"col-xs-12 col-sm-9 col-md-9\">".$hop_more_info[6]."</div>";
+					$hops_modals .= "</div>";
+				}
+
+
+
+				$hops_modals .= "</div>";
+				$hops_modals .= "<div class=\"modal-footer\">";
+				$hops_modals .= "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>";
+				$hops_modals .= "</div>";
+				$hops_modals .= "</div>";
+				$hops_modals .= "</div>";
+				$hops_modals .= "</div>";
+			
+			}
+			
+			$hops .=  "<tr>" . "\n";
+
+			// Amount
+			$hops .= "<td>";
+			if ($row_log[$hop_weight] != "" ) {
+				if ($action == "default" || $action == "reset" || $action == "print")	$hops .= number_format($row_log[$hop_weight], 2);
+				if ($action == "scale")  $hops .= number_format(($row_log[$hop_weight] * $scale), 2);
+			}
+			$hops .= " " . $row_pref['measWeight1'] . "</td>" . "\n";
+
+			// Name
+			$hops .= "<td>" . "\n";
+			if (!empty($hop_more_info)) $hops .= "<a href=\"#hopsModal".$hop_more_info_id."\" data-toggle=\"modal\">";
+			$hops .= $row_log[$hop_name];
+			if (!empty($hop_more_info)) $hops .= "</a>";
+			$hops .= "</td>" . "\n";
+
+			// Time
+			$hops .= "<td>" . "\n";
+			if ($row_log[$hop_time] != "") $hops .= $row_log[$hop_time] . " min"; 
+			$hops .= "</td>" . "\n";
+
+			// Type
+			$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
+			if ($row_log[$hop_type] == "Both") $hops .=  "Bittering and Aroma";
+			  elseif ($row_log[$hop_type] != "") $hops .=  $row_log[$hop_type];
+			  else	$hops .=  "";
+			$hops .= "</td>" . "\n";
+			// Use
+			$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
+			if ($row_log[$hop_use] != "") $hops .=  $row_log[$hop_use]; 
+			$hops .= "</td>" . "\n";
+
+			// Form 
+			$hops .= "<td class=\"hidden-xs hidden-sm\">" . "\n";
+			if ($row_log[$hop_form] != "") $hops .= $row_log[$hop_form] . " "; 
+			$hops .= "</td>" . "\n";
+
+			// Alpha Acid
+			$hops .= "<td>" . "\n";
+			if ($row_log[$hop_alpha] != "") $hops .= number_format($row_log[$hop_alpha],1) . "% ";
+			$hops .= "</td>" . "\n";
+			
+			
+		}
+		
  	}
 
-  if ($totalHops > 0) {
-    if ($action == "default" || $action == "reset" || $action == "print") $total_hops .= number_format($totalHops, 2);
-    if ($action == "scale") $total_hops .= number_format(($totalHops * $scale), 2);
-    $total_hops .=  "&nbsp;" . $row_pref['measWeight1'];
-  } else    $total_hops .=  "&nbsp;";
+	if ($totalHops > 0) {
+
+		if ($action == "default" || $action == "reset" || $action == "print") $total_hops .= number_format($totalHops, 2);
+		if ($action == "scale") $total_hops .= number_format(($totalHops * $scale), 2);
+		$total_hops .=  "&nbsp;" . $row_pref['measWeight1'];
+
+	} 
+	
+	else $total_hops .=  "&nbsp;";
     
 } // end hide Hops 
 
 if (!empty($hops)) { ?>
+
 <h3>Hops</h3>
 <table class="table table-striped">
 	<thead>
@@ -164,4 +183,5 @@ if (!empty($hops)) { ?>
         </tr>
     </tfoot>
 </table>
-<?php } ?>
+<?php if(!empty($hops_modals)) echo $hops_modals;
+} ?>

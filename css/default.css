@@ -1360,9 +1360,18 @@ footer .navbar {
 	padding: 5px 0 5px 0;
 	margin: 0;	
 }
-
 .sidebar .bcoem-sidebar-panel {
-	padding: 0 0 5px 0;
+	padding: 0;
+	margin: 0 0 15px 0;
+}
+
+@media (max-width: 989px) {
+	
+	.sidebar .bcoem-sidebar-panel {
+		padding: 0;
+		margin: 15px 0;
+	}
+	
 }
 
 .sidebar .bcoem-sidebar-panel .small {
@@ -1713,3 +1722,4 @@ table.dataTable thead th.sorting:after {
 	border: 1px solid #E0E0E0;
 	margin: 0 0 15px 0;
 }
+

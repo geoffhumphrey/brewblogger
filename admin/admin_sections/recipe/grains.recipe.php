@@ -4,7 +4,7 @@
  * Description: Setup grains part of the page to add/edit blog or recipe.
  */
 
-// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc'] 
+// $action = ['add' | 'edit' | 'import' | 'reuse' | 'importRecipe' | 'importCalc']
 
 echo '<div class="headerContentAdmin"><div id="help"><a href="../sections/reference.inc.php?section=grains&source=log&KeepThis=true&TB_iframe=true&height=450&width=800" title="Grains Reference" class="thickbox"><img src="' . $imageSrc . '/information.png" border="0"></a></div>Grains</div>' . "\n";
 echo '<table class="dataTable">' . "\n";
@@ -26,14 +26,17 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
       echo "SELECTED";
     }
     echo '>' . $row_grains['maltName'] . '</option>' . "\n";
-  } while ($row_grains = mysql_fetch_array($grains));
+  } while ($row_grains =
+mysqli_fetch_array($grains));
   echo '</select></td>' . "\n";
- 
+
   // Reset $row_grains to first row
-  $rows = mysql_num_rows($grains);
+  $rows = mysqli_num_rows($grains);
   if ($rows > 0) {
-    mysql_data_seek($grains, 0);
-    $row_grains = mysql_fetch_array($grains);
+
+mysqli_data_seek($grains, 0);
+    $row_grains =
+mysqli_fetch_array($grains);
   }
 
   echo '<td class="dataLabel" width="5%">Weight:</td>' . "\n";
@@ -59,7 +62,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain1']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain1 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains);	if($rows > 0) {	mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); } ?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains);	if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); } ?>
    </select>
    </td>
    <td class="dataLabel" width="5%">Weight:</td>
@@ -74,7 +78,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain2']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain2 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -89,7 +94,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain3']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain3 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -104,7 +110,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>"<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain4']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain4 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -119,7 +126,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain5']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain5 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -134,7 +142,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	<?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain6']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain6 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -149,7 +158,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
 	 <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain7']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain7 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -164,7 +174,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
     <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>"<?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain8']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain8 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
    </td>
    <td class="dataLabel">Weight:</td>
@@ -179,7 +190,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain9']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain9 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -194,7 +206,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain10']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain10 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -209,7 +222,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain11']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain11 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -224,7 +238,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain12']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain12 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -239,7 +254,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain13']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain13 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -254,7 +270,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain14']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain14 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>
@@ -269,7 +286,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
 </option><option value="">-- Items below are in the Grain DB --</option>
      <?php do {  ?>
     <option value="<?php echo $row_grains['maltName']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_grains['maltName'], $row_log['brewGrain15']))) {echo "SELECTED";} } if ($action == "importCalc") { if ($brewGrain15 == $row_grains['maltName']) echo "SELECTED"; } ?>><?php echo $row_grains['maltName']?></option>
-    <?php } while ($row_grains = mysql_fetch_assoc($grains)); $rows = mysql_num_rows($grains); if($rows > 0) { mysql_data_seek($grains, 0); $row_grains = mysql_fetch_assoc($grains); }	?>
+    <?php } while ($row_grains = mysqli_fetch_assoc($grains)); $rows = mysqli_num_rows($grains); if($rows > 0) {
+mysqli_data_seek($grains, 0); $row_grains = mysqli_fetch_assoc($grains); }	?>
    </select>
 </td>
    <td class="dataLabel">Weight:</td>

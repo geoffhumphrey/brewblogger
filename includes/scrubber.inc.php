@@ -1,22 +1,22 @@
-<?php 
+<?php
 // ---------------------------- Scrubber --------------------------------------------------------------------
-$string = array( 
-chr(38) => "&#38;", 
-chr(60) => "&#60;", 
-chr(62) => "&#62;", 
-chr(34) => "&#34;", 
-chr(35) => "&#35;", 
+$string = array(
+chr(38) => "&#38;",
+chr(60) => "&#60;",
+chr(62) => "&#62;",
+chr(34) => "&#34;",
+chr(35) => "&#35;",
 chr(39) => "&#39;",
 chr(176) => "&#176;"
 );
 
-$html_string = array( 
-chr(34) => "&quot;",  
+$html_string = array(
+chr(34) => "&quot;",
 chr(37) => "&#37;",
 chr(38) => "&amp;",
-chr(39) => "&rsquo;", 
-chr(60) => "&lt;", 
-chr(62) => "&gt;", 
+chr(39) => "&rsquo;",
+chr(60) => "&lt;",
+chr(62) => "&gt;",
 chr(161) => "&iexcl;",
 chr(162) => "&cent;",
 chr(163) => "&pound;",
@@ -44,11 +44,11 @@ chr(191) => "&iquest;",
 "–" => "&ndash;",  	// en dash
 );
 
-$html_remove = array( 
+$html_remove = array(
 "&amp;" => "&",
-"&lt;" => "<", 
-"&gt;" => ">", 
-"&quot;" => "\"", 
+"&lt;" => "<",
+"&gt;" => ">",
+"&quot;" => "\"",
 "&rsquo;" => "'",
 "&rdquo;" => "\"",
 "&ldquo;" => "\"",
@@ -66,16 +66,51 @@ $html_remove = array(
 "–" => "-",  // en dash
 );
 
-$space_remove = array( 
+$space_remove = array(
 "&amp;" => "",
-"&lt;" => "", 
-"&gt;" => "", 
-"&quot;" => "", 
+"&lt;" => "",
+"&gt;" => "",
+"&quot;" => "",
 "&rsquo;" => "",
 "&#39;" => "",
 "&deg;" => "",
 " " => "",
 "&nbsp;" => ""
+);
+
+$prettify_url = array(
+" " => "-",
+"&amp;" => "",
+"&lt;" => "",
+"&gt;" => "",
+"&quot;" => "",
+"&rsquo;" => "",
+"&#39;" => "",
+"&deg;" => "",
+"&nbsp;" => "",
+"(" => "",
+")" => "",
+"[" => "",
+"]" => "",
+"\\" => "",
+"|" => "",
+"'" => "",
+"\"" => "-",
+"," => "-",
+";" => "-",
+"<" => "-",
+">" => "-",
+"?" => "",
+"/" => "-",
+"." => "-",
+"@" => "-",
+"“" => "",   // left side double smart quote
+"”" => "",  // right side double smart quote
+"‘" => "",  // left side single smart quote
+"’" => "",  // right side single smart quote
+"…" => "",  // elipsis
+"—" => "-",  // em dash
+"–" => "-"  // en dash
 );
 
 

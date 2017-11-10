@@ -2,11 +2,11 @@
 require ('../paths.php');
 require_once (CONFIG.'config.php');  ?>
 <?php
-mysql_select_db($database_brewing, $brewing);
+
 $query_theme = "SELECT * FROM brewingcss";
-$theme = mysql_query($query_theme, $brewing) or die(mysql_error());
-$row_theme = mysql_fetch_assoc($theme);
-$totalRows_theme = mysql_num_rows($theme);
+$theme = mysqli_query($connection,$query_theme) or die (mysqli_error($connection));
+$row_theme = mysqli_fetch_assoc($theme);
+$totalRows_theme = mysqli_num_rows($theme);
 ?>
 <html> 
 <head> 

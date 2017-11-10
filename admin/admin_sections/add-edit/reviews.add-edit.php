@@ -1,13 +1,14 @@
 <table class="dataTable">
 <?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] =="1")) { ?>
   <tr>
-	<td class="dataLabelLeft" >Brewer ID:</td> 
+	<td class="dataLabelLeft" >Brewer ID:</td>
 	<td class="data">
 	<select name="brewBrewerID">
 	<option value=""></option>
     <?php do {  ?>
     <option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $loginUsername)) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if ($row_users['user_name'] == $row_log['brewBrewerID']) echo "SELECTED"; } if ($action == "importCalc") {  if ($row_users['user_name'] ==  $filter) echo "SELECTED"; } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
-    <?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
+    <?php } while ($row_users = mysqli_fetch_assoc($users)); $rows = mysqli_num_rows($users); if($rows > 0) {
+mysqli_data_seek($users, 0); $row_users = mysqli_fetch_assoc($users); } ?>
    </select>
 	</td>
   </tr>
@@ -18,7 +19,7 @@
    			<select class="text_area" name="brewID">
     			<?php do {  ?>
      			<option value="<?php echo $row_log2['id']?>" <?php if ($action == "edit") { if ($row_log['brewID'] == $row_log2['id']) echo "SELECTED"; } ?>><?php echo $row_log2['brewName'];?></option>
-      			<?php } while ($row_log2 = mysql_fetch_assoc($log2));  ?>
+      			<?php } while ($row_log2 = mysqli_fetch_assoc($log2));  ?>
    			</select>
    </td>
   </tr>
@@ -42,7 +43,7 @@
               <option value="BJCP Grand Master Judge" <?php if (!(strcmp("BJCP Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Grand Master Judge</option>
               <option value="BJCP Honarary Master Judge" <?php if (!(strcmp("BJCP Honarary Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Master Judge</option>
               <option value="BJCP Honarary Grand Master Judge" <?php if (!(strcmp("BJCP Honarary Grand Master Judge", $row_log['brewScorerLevel']))) {echo "SELECTED";} ?>>BJCP Honarary Grand Master Judge</option>
-            </select>	
+            </select>
     </td>
   </tr>
   <tr>

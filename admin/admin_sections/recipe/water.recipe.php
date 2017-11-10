@@ -7,7 +7,7 @@
    <option value=""></option>
    <?php do {  ?>
    <option value="<?php echo $row_water_profiles['id']; ?>"  <?php if ((($action == "add") || ($action == "importCalc")) && ($row_user['defaultWaterProfile'] == $row_water_profiles['id'])) echo "SELECTED"; if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_water_profiles['id'], $row_log['brewWaterProfile']))) {echo "SELECTED";} } ?>/><?php echo $row_water_profiles['waterName']; ?></option>
-   <?php } while ($row_water_profiles = mysql_fetch_assoc($water_profiles)); ?>
+   <?php } while ($row_water_profiles = mysqli_fetch_assoc($water_profiles)); ?>
    </select>
    </td>
 </tr>

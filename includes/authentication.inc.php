@@ -10,30 +10,12 @@ function authenticateUser($connection, $username, $password)
   $query = "SELECT password FROM users WHERE user_name = '{$username}'
             AND password = '{$password}'";
 
-/* $result = mysql_query($query, $connection);
-   if(!$result || (mysql_numrows($result) < 1)){
-     return false; //Indicates username failure
-   }      
-   
-   // Retrieve password from result
-   $dbarray = mysql_fetch_array($result);
-   
-   // Validate that password is correct
-   if($password == $dbarray['password']){
-      return true; //Success! Username and password confirmed
-   }
-   else{
-      return false; //Indicates password failure
-   }
-*/
-			
-			
 // Execute the query
   if (!$result = @ mysql_query ($query, $connection))
     showerror();
 
   // Is the returned result exactly one row? If so, then we have found the user
-  if (mysql_num_rows($result) != 1)
+  if (mysqli_num_rows($result) != 1)
      return false;
   else
     return true;
@@ -58,7 +40,7 @@ function sessionAuthenticate2()
     echo("Login");
   }
   else
-  { 
+  {
   	echo ("Back to Administration");
   }
 

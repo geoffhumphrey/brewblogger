@@ -36,6 +36,7 @@
   <?php } ?>
   </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_news = mysql_fetch_assoc($news)); ?>
+<?php } while ($row_news =
+mysqli_fetch_assoc($news)); ?>
 </table>
 <?php } else { echo "There are no news items currently in the database."; if ($row_user['userLevel'] == "1") echo " <a href=\"index.php?action=add&dbTable=news\">Add a News Item?</a>"; } ?>

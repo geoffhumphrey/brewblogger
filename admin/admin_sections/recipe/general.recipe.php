@@ -34,7 +34,8 @@
    <select name="brewStyle">
     <?php do {  ?>
      <option value="<?php echo $row_styles['brewStyle']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_styles['brewStyle'], $row_log['brewStyle']))) {echo "SELECTED";} } if ($action == "importCalc") {  if ($row_styles['brewStyle'] == $brewStyle ) echo "SELECTED"; } ?>><?php echo $row_styles['brewStyle']?></option>
-      <?php } while ($row_styles = mysql_fetch_assoc($styles)); $rows = mysql_num_rows($styles); if($rows > 0) { mysql_data_seek($styles, 0); $row_styles = mysql_fetch_assoc($styles); } ?>
+      <?php } while ($row_styles = mysqli_fetch_assoc($styles)); $rows = mysqli_num_rows($styles); if($rows > 0) {
+mysqli_data_seek($styles, 0); $row_styles = mysqli_fetch_assoc($styles); } ?>
    </select>
    </td>
    <td class="dataLabel">Yield:</td>

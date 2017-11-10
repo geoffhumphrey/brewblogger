@@ -8,7 +8,8 @@
     <select name="equipBrewerID">
    		<?php do {  ?>
     	<option value="<?php echo $row_users['user_name']?>" <?php if (($action == "add") && ($row_users['user_name'] == $_SESSION["loginUsername"])) echo "SELECTED"; if (($action == "edit") || ($action == "reuse")) { if ($row_users['user_name'] == $row_log['equipBrewerID']) echo "SELECTED"; } ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
-    	<?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
+    	<?php } while ($row_users = mysqli_fetch_assoc($users)); $rows = mysqli_num_rows($users); if($rows > 0) {
+mysqli_data_seek($users, 0); $row_users = mysqli_fetch_assoc($users); } ?>
     </select>
     </td>
 </tr>
@@ -77,10 +78,10 @@
 </table>
 <?php if ((($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) || ($row_pref['mode'] == "1")  || ($row_log['mashBrewerID'] == "brewblogger")) { ?>
 <input name="equipBrewerID" type="hidden" value="<?php if (($action == "edit") && ($row_log['equipBrewerID'] != "brewblogger")) echo $_SESSION["loginUsername"]; elseif (($action == "reuse") || ($action == "add")) echo $_SESSION["loginUsername"]; else echo $row_log['equipBrewerID']; ?>" />
-<?php } 
+<?php }
 include (ADMIN_INCLUDES.'add_edit_buttons.inc.php'); ?>
 <?php } // end if (brewBrewerID == "brewblogger")
-else include (ADMIN_INCLUDES.'error_core.inc.php'); 
+else include (ADMIN_INCLUDES.'error_core.inc.php');
 }  // end user priv check
-else include (ADMIN_INCLUDES.'error_privileges.inc.php'); 
+else include (ADMIN_INCLUDES.'error_privileges.inc.php');
 ?>

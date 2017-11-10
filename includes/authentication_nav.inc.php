@@ -14,7 +14,7 @@ function authenticateUserNav($connection, $username, $password)
     showerror();
 
   // Is the returned result exactly one row? If so, then we have found the user
-  if (mysql_num_rows($result) != 1)
+  if (mysqli_num_rows($result) != 1)
     return false;
   else
     return true;
@@ -25,10 +25,10 @@ function authenticateUserNav($connection, $username, $password)
 function sessionAuthenticateNav()
 {
 include (CONFIG.'config.php');
-mysql_select_db($database_brewing, $brewing);
+
 $query_prefs = "SELECT menuLogin, menuLogout FROM preferences";
-$prefs = mysql_query($query_prefs, $brewing) or die(mysql_error());
-$row_prefs = mysql_fetch_assoc($prefs);
+$prefs = mysqli_query($connection,$query_prefs) or die (mysqli_error($connection));
+$row_prefs = mysqli_fetch_assoc($prefs);
 
   // Check if the user hasn't logged in
   if (!isset($_SESSION["loginUsername"]))  { echo "<li><a href=\"index.php?page=login\">".$row_prefs['menuLogin']."</a></li>"; }

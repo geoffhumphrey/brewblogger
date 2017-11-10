@@ -1,4 +1,48 @@
 <?php 
+/*
+---------------------------------------------
+Post-UI Conversion Pattern for public pages
+
+$page
+$section
+$action (default to view)
+$filter
+$id
+
+---------------------------------------------
+Post-UI Conversion Pattern for admin pages
+Match to public pages
+
+$page
+$section
+$action (add, edit)
+$filter (in place of $dbTable)
+$id (for editing)
+
+*/
+
+// Begin Public
+
+$page = $row_pref['home'];
+if (isset($_GET['page'])) {
+  $page = (get_magic_quotes_gpc()) ? $_GET['page'] : addslashes($_GET['page']);
+}
+
+$section = "default";
+if (isset($_GET['section'])) {
+  	$section = (get_magic_quotes_gpc()) ? $_GET['section'] : addslashes($_GET['section']);
+}
+
+$filter = "all";
+if (isset($_GET['filter'])) {
+  	$filter = (get_magic_quotes_gpc()) ? $_GET['filter'] : addslashes($_GET['filter']);
+}
+
+$id = "default";
+if (isset($_GET['id'])) {
+  	$id = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
+}
+
 $dbTable = "default";
 if (isset($_GET['dbTable'])) {
   	$dbTable = (get_magic_quotes_gpc()) ? $_GET['dbTable'] : addslashes($_GET['dbTable']);
@@ -9,24 +53,9 @@ if (isset($_GET['action'])) {
   	$action = (get_magic_quotes_gpc()) ? $_GET['action'] : addslashes($_GET['action']);
 }
 
-$id = "default";
-if (isset($_GET['id'])) {
-  	$id = (get_magic_quotes_gpc()) ? $_GET['id'] : addslashes($_GET['id']);
-}
-
-$filter = "all";
-if (isset($_GET['filter'])) {
-  	$filter = (get_magic_quotes_gpc()) ? $_GET['filter'] : addslashes($_GET['filter']);
-}
-
 $style = "all";
 if (isset($_GET['style'])) {
   	$style = (get_magic_quotes_gpc()) ? $_GET['style'] : addslashes($_GET['style']);
-}
-
-$section = "default";
-if (isset($_GET['section'])) {
-  	$section = (get_magic_quotes_gpc()) ? $_GET['section'] : addslashes($_GET['section']);
 }
 
 $view = "limited";
@@ -87,6 +116,11 @@ if (isset($_GET['sort'])) {
 $dir = "DESC";
 if (isset($_GET['dir'])) {
   $dir = (get_magic_quotes_gpc()) ? $_GET['dir'] : addslashes($_GET['dir']);
+}
+
+$source = "reference";
+if (isset($_GET['source'])) {
+  $source = (get_magic_quotes_gpc()) ? $_GET['source'] : addslashes($_GET['source']);
 }
 
 ?>

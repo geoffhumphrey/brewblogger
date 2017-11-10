@@ -159,7 +159,7 @@
     <td class="data-icon">&nbsp;</td>
     <td class="data">&nbsp;</td>
   </tr>
-  
+
 </table>
 <div class="headerContentAdmin">General</div>
 <table>
@@ -167,7 +167,7 @@
     <td class="data-icon"><img src="<?php echo $imageSrc; ?>user.png" /></td>
     <td class="data"><?php echo "<a href=\"?action=edit&dbTable=users&filter=".$loginUsername."&id=".$row_user['id']."\">"; ?>Edit <?php if ($row_pref['mode'] == "2") echo "My"; ?> Personal Defaults and Info</a></td>
     <td class="data-icon"><img src="<?php echo $imageSrc; ?><?php if ($row_pref['mode'] == "1") echo "user_edit"; else echo "group_edit"; ?>.png" /></td>
-    <td class="data"><a href="index.php?action=edit&dbTable=brewer&id=1">Edit Profile</a></td>
+    <td class="data"><a href="index.php?action=edit&dbTable=brewer&id=<?php echo $row_user['id']; ?>">Edit Profile</a></td>
     <td class="data-icon"><img src="<?php echo $imageSrc; ?>picture_add.png" /></td>
     <td class="data"><a href="includes/upload_image.inc.php?KeepThis=true&TB_iframe=true&height=450&width=800" class="thickbox" title="Upload Profile Image">Upload Profile Image</a></td>
   </tr>

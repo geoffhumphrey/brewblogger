@@ -16,7 +16,8 @@
 	<option value=""></option>
     <?php do {  ?>
     <option value="<?php echo $row_users['user_name']?>" <?php if (!(strcmp($row_users['user_name'], $row_log['brewBrewerID']))) echo "SELECTED"; ?>><?php echo $row_users['realFirstName']." ".$row_users['realLastName']; ?></option>
-    <?php } while ($row_users = mysql_fetch_assoc($users)); $rows = mysql_num_rows($users); if($rows > 0) { mysql_data_seek($users, 0); $row_users = mysql_fetch_assoc($users); } ?>
+    <?php } while ($row_users = mysqli_fetch_assoc($users)); $rows = mysqli_num_rows($users); if($rows > 0) {
+mysqli_data_seek($users, 0); $row_users = mysqli_fetch_assoc($users); } ?>
    </select>
    </td>
   </tr>
@@ -39,7 +40,7 @@
     <td class="dataLabelLeft">Name of Entry:</td>
     <td class="data"><input type="text" name="awardBrewName" id="awardBrewName" size="50" value="<?php if ($action == "edit") echo $row_log['awardBrewName']; if (($action == "add") && ($id != "default")) echo $row_log['brewName']; ?>"></td>
   </tr>
-  <?php } 
+  <?php }
   if (($id == "default") && ($assoc == "brewing")) { ?>
   <tr>
     <td class="dataLabelLeft">Brew:</td>
@@ -47,11 +48,11 @@
   <select name="awardBrewID">
     <?php do {  ?>
      <option value="<?php echo $row_brewBlogs['id']; ?>"><?php echo $row_brewBlogs['brewName']." ["; echo dateconvert($row_brewBlogs['brewDate'], 2)."] "; ?></option>
-      <?php } while ($row_brewBlogs = mysql_fetch_assoc($brewBlogs)); ?>
+      <?php } while ($row_brewBlogs = mysqli_fetch_assoc($brewBlogs)); ?>
    	</select>
   	</td>
   </tr>
-  <?php } 
+  <?php }
    if (($id == "default") && ($assoc == "recipes")) { ?>
   <tr>
     <td class="dataLabelLeft">Brew:</td>
@@ -59,7 +60,7 @@
   <select name="awardBrewID">
     <?php do {  ?>
      <option value="<?php echo $row_recipes['id']; ?>"><?php echo $row_recipes['brewName']?></option>
-      <?php } while ($row_recipes = mysql_fetch_assoc($recipes)); ?>
+      <?php } while ($row_recipes = mysqli_fetch_assoc($recipes)); ?>
    	</select>
   	</td>
   </tr>
@@ -70,7 +71,8 @@
     <select name="awardStyle">
     <?php do {  ?>
      <option value="<?php echo $row_styles['brewStyle']; ?>" <?php if ($action == "edit") {  if (!(strcmp($row_styles['brewStyle'], $row_log['awardStyle']))) {echo "SELECTED";} } if (($action == "add") && ($id != "default")) {  if (!(strcmp($row_styles['brewStyle'], $row_log['brewStyle']))) {echo "SELECTED";} } ?>><?php echo $row_styles['brewStyle']?></option>
-      <?php } while ($row_styles = mysql_fetch_assoc($styles)); $rows = mysql_num_rows($styles); if($rows > 0) { mysql_data_seek($styles, 0); $row_styles = mysql_fetch_assoc($styles); } ?>
+      <?php } while ($row_styles = mysqli_fetch_assoc($styles)); $rows = mysqli_num_rows($styles); if($rows > 0) {
+mysqli_data_seek($styles, 0); $row_styles = mysqli_fetch_assoc($styles); } ?>
    </select>
     </td>
   </tr>
@@ -87,10 +89,10 @@
       </select>
     </td>
   </tr>
-  <?php 
-  $source1 = rtrim($row_log['awardBrewID'], "1234567890"); 
+  <?php
+  $source1 = rtrim($row_log['awardBrewID'], "1234567890");
   //echo $source1;
-  if (($action == "edit") && ($source1 == "b")) { 
+  if (($action == "edit") && ($source1 == "b")) {
   ?>
   <tr>
     <td class="dataLabelLeft">&nbsp;</td>

@@ -26,5 +26,5 @@
 	<?php } ?>
 </tr>
 <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_links = mysql_fetch_assoc($links)); ?>
+<?php } while ($row_links = mysqli_fetch_assoc($links)); ?>
 </table>

@@ -58,7 +58,7 @@
     <td><?php if ($row_pref['measTemp'] == "C") { echo round(((($row_mash_steps['stepTemp'] - 32) / 9) * 5), 1); } else { echo round($row_mash_steps['stepTemp'], 1); } echo "&deg;".$row_pref['measTemp']; ?></td>
     <td><?php echo $row_mash_steps['stepDescription']; ?></td>
 </tr>
-<?php } while ($row_mash_steps = mysql_fetch_assoc($mash_steps)); ?>
+<?php } while ($row_mash_steps = mysqli_fetch_assoc($mash_steps)); ?>
 </tbody>
 </table>
 <?php } ?>

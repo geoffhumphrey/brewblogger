@@ -10,10 +10,10 @@ $page = "reviews";
 	}
 if ($page == "reviews") {
 	
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT id,brewName FROM brewing WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
 
 if ($action == "add") {
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -57,33 +57,33 @@ $insertSQL = sprintf("INSERT INTO reviews (brewID, brewScoreDate, brewAromaScore
 					   GetSQLValueString($_POST['brewScorerLevel'], "text"),
                        GetSQLValueString($_POST['brewScoredBy'], "text"));
 
-  mysql_select_db($database_brewing, $brewing);
-  $Result1 = mysql_query($insertSQL, $brewing) or die(mysql_error());
+  
+  $Result1 = mysqli_query($connection,$insertSQL) or die (mysqli_error($connection));
 
   $insertGoTo = "add_review.inc.php?page=reviewsView&id=".$id;
   header(sprintf("Location: %s", $insertGoTo));
 }
 
-mysql_select_db($database_brewing, $brewing);
+
 $query_review = "SELECT * FROM reviews";
-$review = mysql_query($query_review, $brewing) or die(mysql_error());
-$row_review = mysql_fetch_assoc($review);
-$totalRows_review = mysql_num_rows($review);
+$review = mysqli_query($connection,$query_review) or die (mysqli_error($connection));
+$row_review = mysqli_fetch_assoc($review);
+$totalRows_review = mysqli_num_rows($review);
 
 }
 
 if ($page == "reviewsView") {
 
-mysql_select_db($database_brewing, $brewing);
+
 $query_log = sprintf("SELECT id,brewName FROM brewing WHERE id = '%s'", $id);
-$log = mysql_query($query_log, $brewing) or die(mysql_error());
-$row_log = mysql_fetch_assoc($log);
-$totalRows_log = mysql_num_rows($log);
+$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+$row_log = mysqli_fetch_assoc($log);
+$totalRows_log = mysqli_num_rows($log);
 
 $query_review = sprintf("SELECT * FROM reviews WHERE brewID = '%s' ORDER BY brewScoreDate DESC, id DESC", $id);
-$review = mysql_query($query_review, $brewing) or die(mysql_error());
-$row_review = mysql_fetch_assoc($review);
-$totalRows_review = mysql_num_rows($review);
+$review = mysqli_query($connection,$query_review) or die (mysqli_error($connection));
+$row_review = mysqli_fetch_assoc($review);
+$totalRows_review = mysqli_num_rows($review);
 
 }
 include ('../includes/db_connect_universal.inc.php');
@@ -331,7 +331,7 @@ setTimeout('eval(s)',500);
 	  <tr>
 	    <td colspan="3">&nbsp;</td>
     </table>
-<?php } while ($row_review = mysql_fetch_assoc($review)); ?>
+<?php } while ($row_review = mysqli_fetch_assoc($review)); ?>
 </div>
 <?php include ('../includes/footer2.inc.php'); ?>
 <?php } ?>

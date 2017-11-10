@@ -19,13 +19,8 @@
         </tr>
     </tbody>
 </table>
-<?php } // end hide Yeast (6) ?>
-<?php if (!empty($row_log['brewYeastProfile'])) { // show yeast profile if present 
-	mysql_select_db($database_brewing, $brewing);
-	$query_yeast_profiles = sprintf("SELECT * FROM yeast_profiles WHERE id='%s'", $row_log['brewYeastProfile']);
-	$yeast_profiles = mysql_query($query_yeast_profiles, $brewing) or die(mysql_error());
-	$row_yeast_profiles = mysql_fetch_assoc($yeast_profiles);
-?>
+<?php }
+if (!empty($row_log['brewYeastProfile'])) { ?>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -53,52 +48,59 @@
         <h4 class="modal-title" id="yeastModalLabel"><?php echo $row_yeast_profiles['yeastName']; ?></h4>
       </div>
       <div class="modal-body">
-            <?php if ($row_yeast_profiles['yeastLab'] != "") { ?>
+            <?php 
+			if (!empty($row_yeast_profiles['yeastLab'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Manufacturer:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastLab']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Manufacturer:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastLab']; ?></div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastProdID'] != "") { ?>            
+            if (!empty($row_yeast_profiles['yeastProdID'])) { ?>            
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Product ID:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastProdID']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Product ID:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastProdID']; ?></div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastType'] != "") { ?>            
+            if (!empty($row_yeast_profiles['yeastType'])) { ?>            
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Type:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastType']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Type:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastType']; ?></div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastFloc'] != "") { ?>
+            if (!empty($row_yeast_profiles['yeastFloc'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Flocculation:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastFloc']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Flocculation:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastFloc']; ?></div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastAtten'] != "") { ?>
+            if (!empty($row_yeast_profiles['yeastAtten'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Attenuation:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastAtten']; ?>%</div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Attenuation:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastAtten']; ?>%</div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastTolerance'] != "") { ?>
+            if (!empty($row_yeast_profiles['yeastTolerance'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Alcohol Tolerance:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_yeast_profiles['yeastTolerance']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Alcohol Tolerance:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastTolerance']; ?></div>
             </div>
             <?php } 
-            if ($row_yeast_profiles['yeastMinTemp'] != "") { ?>
+            if (!empty($row_yeast_profiles['yeastMinTemp'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Temperature Range:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php if ($row_pref['measTemp'] == "C") { echo round(((($row_yeast_profiles['yeastMinTemp'] - 32) / 9) * 5), 0)."&ndash;"; echo round(((($row_yeast_profiles['yeastMaxTemp'] - 32) / 9) * 5), 0); } else { echo $row_yeast_profiles['yeastMinTemp']."&ndash;".$row_yeast_profiles['yeastMaxTemp']; } ?>&deg;<?php echo $row_pref['measTemp']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Temperature Range:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php if ($row_pref['measTemp'] == "C") { echo round(((($row_yeast_profiles['yeastMinTemp'] - 32) / 9) * 5), 0)."&ndash;"; echo round(((($row_yeast_profiles['yeastMaxTemp'] - 32) / 9) * 5), 0); } else { echo $row_yeast_profiles['yeastMinTemp']."&ndash;".$row_yeast_profiles['yeastMaxTemp']; } ?>&deg;<?php echo $row_pref['measTemp']; ?></div>
             </div>
             <?php } 
-            if ($row_log['brewYeastAmount'] != "" ) { ?>
+            if (!empty($row_log['brewYeastAmount'])) { ?>
             <div class="row bcoem-account-info">
-                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><strong>Amount:</strong></div>
-                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><?php echo $row_log['brewYeastAmount']; ?></div>
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Amount:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_log['brewYeastAmount']; ?></div>
+            </div>
+            <?php } 
+            if (!empty($row_yeast_profiles['yeastNotes'])) { ?>
+            <div class="row bcoem-account-info">
+                <div class="col-xs-12 col-sm-3 col-md-3"><strong>Notes:</strong></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastNotes']; ?></div>
             </div>
             <?php } ?>
       </div>

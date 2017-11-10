@@ -9,7 +9,7 @@
         <option value="index.php?page=calendar" <?php if ($filter == "all") echo "SELECTED"; ?>>Club Brewing Calendar</option>
         <?php do { ?>
         <option value="index.php?page=calendar&filter=<?php echo $row_members['user_name']; ?>" <?php if ($row_members['user_name'] == $filter) echo "SELECTED"; ?>><?php echo $row_members['realFirstName']." ".$row_members['realLastName']; ?></option>
-        <?php } while ($row_members = mysql_fetch_assoc($members)); ?> 
+        <?php } while ($row_members = mysqli_fetch_assoc($members)); ?> 
       </select>
     <br />
     <br />
@@ -190,12 +190,12 @@ foreach($weeks AS $week){
 
          if($i < $offset_count){
 		     	
-				mysql_select_db($database_brewing, $brewing);
+				
 				$query_calDays = "SELECT * FROM brewing";
 				if ($filter !="all") $query_calDays .= " WHERE brewBrewerID = '$filter'";
-				$calDays = mysql_query($query_calDays, $brewing) or die(mysql_error());
-				$row_calDays = mysql_fetch_assoc($calDays);
-				$totalRows_calDays = mysql_num_rows($calDays);
+				$calDays = mysqli_query($connection,$query_calDays) or die (mysqli_error($connection));
+				$row_calDays = mysqli_fetch_assoc($calDays);
+				$totalRows_calDays = mysqli_num_rows($calDays);
 		 	 
 			 $today0 = mktime(0,0,0,$month -1,$d,$year);
              $day_link = "<a href=\"index.php?page=calendar&filter=$filter&date=".$today0."\">$d</a>";
@@ -221,22 +221,22 @@ foreach($weeks AS $week){
 			   if ($tap0 == $today0) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName0."</a></td></tr>";
 					}
 				} 
-			   while ($row_calDays = mysql_fetch_assoc($calDays));
+			   while ($row_calDays = mysqli_fetch_assoc($calDays));
 			   
-			   mysql_select_db($database_brewing, $brewing);
+			   
 				$query_upDays = "SELECT * FROM upcoming";
 				if ($filter !="all") $query_upDays .= " WHERE brewBrewerID = '$filter'";
-				$upDays = mysql_query($query_upDays, $brewing) or die(mysql_error());
-				$row_upDays = mysql_fetch_assoc($upDays);
-				$totalRows_upDays = mysql_num_rows($upDays);
+				$upDays = mysqli_query($connection,$query_upDays) or die (mysqli_error($connection));
+				$row_upDays = mysqli_fetch_assoc($upDays);
+				$totalRows_upDays = mysqli_num_rows($upDays);
 				
 			   
 			   do {
-			   	mysql_select_db($database_brewing, $brewing);
+			   	
 				$query_upRecipe = sprintf("SELECT brewBrewerID FROM recipes WHERE id = '%s'", $row_upDays['upcomingRecipeID']);
-				$upRecipe  = mysql_query($query_upRecipe, $brewing) or die(mysql_error());
-				$row_upRecipe  = mysql_fetch_assoc($upRecipe);
-				$totalRows_upRecipe  = mysql_num_rows($upRecipe);
+				$upRecipe  = mysqli_query($connection,$query_upRecipe) or die (mysqli_error($connection));
+				$row_upRecipe  = mysqli_fetch_assoc($upRecipe);
+				$totalRows_upRecipe  = mysqli_num_rows($upRecipe);
 				
 			   	$MySqlDate_0 = $row_upDays['upcomingDate'];
 			   	$upcoming0 = GetTimeStamp($MySqlDate_0);
@@ -245,7 +245,7 @@ foreach($weeks AS $week){
 			      if ($upcoming0 == $today0) { echo "<tr><td valign=\"top\" class=\"none\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName0."</a>"; else echo $upBrewName0; echo "</td></tr>"; }
 			   	}
 			   }
-			   while ($row_upDays = mysql_fetch_assoc($upDays));
+			   while ($row_upDays = mysqli_fetch_assoc($upDays));
 			   
 			   echo "</table></td>\n";
          }
@@ -264,12 +264,12 @@ foreach($weeks AS $week){
 		   		
 				// Make a connection to DB, get necessary data
 				
-				mysql_select_db($database_brewing, $brewing);
+				
 				$query_calDays = "SELECT * FROM brewing";
 				if ($filter !="all") $query_calDays .= " WHERE brewBrewerID = '$filter'";
-				$calDays = mysql_query($query_calDays, $brewing) or die(mysql_error());
-				$row_calDays = mysql_fetch_assoc($calDays);
-				$totalRows_calDays = mysql_num_rows($calDays);
+				$calDays = mysqli_query($connection,$query_calDays) or die (mysqli_error($connection));
+				$row_calDays = mysqli_fetch_assoc($calDays);
+				$totalRows_calDays = mysqli_num_rows($calDays);
 			   	
 
                echo "<td class=\"today day\">$d<br>";
@@ -295,22 +295,22 @@ foreach($weeks AS $week){
 			   if ($tap1 == $today1) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName1."</a></td></tr>";
 					}
 				} 
-			   while ($row_calDays = mysql_fetch_assoc($calDays));
+			   while ($row_calDays = mysqli_fetch_assoc($calDays));
 			   
-			   mysql_select_db($database_brewing, $brewing);
+			   
 				$query_upDays = "SELECT * FROM upcoming";
 				if ($filter !="all") $query_upDays .= " WHERE brewBrewerID = '$filter'";
-				$upDays = mysql_query($query_upDays, $brewing) or die(mysql_error());
-				$row_upDays = mysql_fetch_assoc($upDays);
-				$totalRows_upDays = mysql_num_rows($upDays);
+				$upDays = mysqli_query($connection,$query_upDays) or die (mysqli_error($connection));
+				$row_upDays = mysqli_fetch_assoc($upDays);
+				$totalRows_upDays = mysqli_num_rows($upDays);
 				
 							   
 			   do {
-			   	mysql_select_db($database_brewing, $brewing);
+			   	
 				$query_upRecipe = sprintf("SELECT brewBrewerID FROM recipes WHERE id = '%s'", $row_upDays['upcomingRecipeID']);
-				$upRecipe  = mysql_query($query_upRecipe, $brewing) or die(mysql_error());
-				$row_upRecipe  = mysql_fetch_assoc($upRecipe);
-				$totalRows_upRecipe  = mysql_num_rows($upRecipe);
+				$upRecipe  = mysqli_query($connection,$query_upRecipe) or die (mysqli_error($connection));
+				$row_upRecipe  = mysqli_fetch_assoc($upRecipe);
+				$totalRows_upRecipe  = mysqli_num_rows($upRecipe);
 			    
 			   	$MySqlDate_1 = $row_upDays['upcomingDate'];
 			   	$upcoming1 = GetTimeStamp($MySqlDate_1);
@@ -319,7 +319,7 @@ foreach($weeks AS $week){
 			     if ($upcoming1 == $today1) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName1."</a>"; else echo $upBrewName1; echo "</td></tr>"; }
 			     }
 			   }
-			   while ($row_upDays = mysql_fetch_assoc($upDays));
+			   while ($row_upDays = mysqli_fetch_assoc($upDays));
 			   
 			   
 			   
@@ -327,12 +327,12 @@ foreach($weeks AS $week){
            } else {
 
 
-				mysql_select_db($database_brewing, $brewing);
+				
 				$query_calDays = "SELECT * FROM brewing";
 				if ($filter !="all") $query_calDays .= " WHERE brewBrewerID = '$filter'";
-				$calDays = mysql_query($query_calDays, $brewing) or die(mysql_error());
-				$row_calDays = mysql_fetch_assoc($calDays);
-				$totalRows_calDays = mysql_num_rows($calDays);
+				$calDays = mysqli_query($connection,$query_calDays) or die (mysqli_error($connection));
+				$row_calDays = mysqli_fetch_assoc($calDays);
+				$totalRows_calDays = mysqli_num_rows($calDays);
 				
 			   $today2 = mktime(0,0,0,$month,$d,$year);
                echo "<td class=\"monthdays\" valign=\"top\">"."<a href=\"index.php?page=calendar&filter=$filter&date=".$today2."\">".$d."</a>";
@@ -357,22 +357,22 @@ foreach($weeks AS $week){
 			   if ($tap2 == $today2) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName2."</a></td></tr>";
 			   	}
 			   } 
-			   while ($row_calDays = mysql_fetch_assoc($calDays));
+			   while ($row_calDays = mysqli_fetch_assoc($calDays));
 			   
-			  	mysql_select_db($database_brewing, $brewing);
+			  	
 				$query_upDays = "SELECT * FROM upcoming";
 				if ($filter !="all") $query_upDays .= " WHERE brewBrewerID = '$filter'";
-				$upDays = mysql_query($query_upDays, $brewing) or die(mysql_error());
-				$row_upDays = mysql_fetch_assoc($upDays);
-				$totalRows_upDays = mysql_num_rows($upDays);
+				$upDays = mysqli_query($connection,$query_upDays) or die (mysqli_error($connection));
+				$row_upDays = mysqli_fetch_assoc($upDays);
+				$totalRows_upDays = mysqli_num_rows($upDays);
 				$recipeID2 = $row_upDays['upcomingRecipeID'];
 				
 			   do {
-			  	mysql_select_db($database_brewing, $brewing);
+			  	
 				$query_upRecipe = sprintf("SELECT brewBrewerID FROM recipes WHERE id = '%s'", $row_upDays['upcomingRecipeID']);
-				$upRecipe  = mysql_query($query_upRecipe, $brewing) or die(mysql_error());
-				$row_upRecipe  = mysql_fetch_assoc($upRecipe);
-				$totalRows_upRecipe  = mysql_num_rows($upRecipe);
+				$upRecipe  = mysqli_query($connection,$query_upRecipe) or die (mysqli_error($connection));
+				$row_upRecipe  = mysqli_fetch_assoc($upRecipe);
+				$totalRows_upRecipe  = mysqli_num_rows($upRecipe);
 			  
 			   	$MySqlDate_2 = $row_upDays['upcomingDate'];
 			   	$upcoming2 = GetTimeStamp($MySqlDate_2);
@@ -382,7 +382,7 @@ foreach($weeks AS $week){
 			     if ($upcoming2 == $today2) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName2."</a>"; else echo $upBrewName2; echo "</td></tr>"; }
 			     }
 			   }
-			   while ($row_upDays = mysql_fetch_assoc($upDays));
+			   while ($row_upDays = mysqli_fetch_assoc($upDays));
 			   
 			   echo "</table></td>\n";
            }
@@ -390,12 +390,12 @@ foreach($weeks AS $week){
 
         } elseif ($i >= ($num_weeks * 7) - $outset) {
 
-				mysql_select_db($database_brewing, $brewing);
+				
 				$query_calDays = "SELECT * FROM brewing";
 				if ($filter !="all") $query_calDays .= " WHERE brewBrewerID = '$filter'";
-				$calDays = mysql_query($query_calDays, $brewing) or die(mysql_error());
-				$row_calDays = mysql_fetch_assoc($calDays);
-				$totalRows_calDays = mysql_num_rows($calDays);
+				$calDays = mysqli_query($connection,$query_calDays) or die (mysqli_error($connection));
+				$row_calDays = mysqli_fetch_assoc($calDays);
+				$totalRows_calDays = mysqli_num_rows($calDays);
 				
 			
 			$today3 = mktime(0,0,0,$month +1,$d,$year);
@@ -422,23 +422,23 @@ foreach($weeks AS $week){
 			   if ($tap3 == $today3) echo "<tr><td valign=\"top\" class=\"calInfo\">Tap: </td><td valign=\"top\" class=\"calInfo\"><a href=\"index.php?page=brewblog&filter=".$row_calDays['brewBrewerID']."&id=".$row_calDays['id']."\">".$brewName3."</a></td></tr>";
 					}
 				} 
-			   while ($row_calDays = mysql_fetch_assoc($calDays));
+			   while ($row_calDays = mysqli_fetch_assoc($calDays));
 			   
-			   mysql_select_db($database_brewing, $brewing);
+			   
 				$query_upDays = "SELECT * FROM upcoming";
 				if ($filter !="all") $query_upDays .= " WHERE brewBrewerID = '$filter'";
-				$upDays = mysql_query($query_upDays, $brewing) or die(mysql_error());
-				$row_upDays = mysql_fetch_assoc($upDays);
-				$totalRows_upDays = mysql_num_rows($upDays);
+				$upDays = mysqli_query($connection,$query_upDays) or die (mysqli_error($connection));
+				$row_upDays = mysqli_fetch_assoc($upDays);
+				$totalRows_upDays = mysqli_num_rows($upDays);
 				
 				
 			   
 			   do {
-			   	mysql_select_db($database_brewing, $brewing);
+			   	
 				$query_upRecipe = sprintf("SELECT brewBrewerID FROM recipes WHERE id = '%s'", $row_upDays['upcomingRecipeID']);
-				$upRecipe  = mysql_query($query_upRecipe, $brewing) or die(mysql_error());
-				$row_upRecipe  = mysql_fetch_assoc($upRecipe);
-				$totalRows_upRecipe  = mysql_num_rows($upRecipe);
+				$upRecipe  = mysqli_query($connection,$query_upRecipe) or die (mysqli_error($connection));
+				$row_upRecipe  = mysqli_fetch_assoc($upRecipe);
+				$totalRows_upRecipe  = mysqli_num_rows($upRecipe);
 			   
 			   	$MySqlDate_3 = $row_upDays['upcomingDate'];
 			   	$upcoming3 = GetTimeStamp($MySqlDate_3);
@@ -447,7 +447,7 @@ foreach($weeks AS $week){
 			     if ($upcoming3 == $today3) { echo "<tr><td valign=\"top\" class=\"calInfo\">Up: </td><td valign=\"top\" class=\"calInfo\">"; if ($row_upDays['upcomingRecipeID'] != "") echo "<a href=\"index.php?page=recipe&filter=".$row_upRecipe['brewBrewerID']."&id=".$row_upDays['upcomingRecipeID']."\">".$upBrewName3."</a>"; else echo $upBrewName3; echo "</td></tr>"; }
 			     }
 			   }
-			   while ($row_upDays = mysql_fetch_assoc($upDays));
+			   while ($row_upDays = mysqli_fetch_assoc($upDays));
 			   
 			   echo "</table></td>\n";
         }

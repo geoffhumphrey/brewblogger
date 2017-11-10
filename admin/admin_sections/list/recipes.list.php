@@ -60,22 +60,22 @@
   <td class="data-icon_list"><a href="index.php?action=import&dbTable=brewing&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_lightning.png" align="absmiddle" border="0" alt="Import <?php echo $row_log['brewName']; ?> to BrewBlog" title="Import <?php echo $row_log['brewName']; ?> to BrewBlog"></a></td>
   <td class="data-icon_list"><a href="index.php?action=edit&dbTable=recipes&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>pencil.png" align="absmiddle" border="0" alt="Edit <?php echo $row_log['brewName']; ?>" title="Edit <?php echo $row_log['brewName']; ?>"></a></td>
   <td class="data-icon_list"><a href="javascript:DelWithCon('index.php?action=delete&dbTable=recipes','id',<?php echo $row_log['id']; ?>,'Are you sure you want to delete this recipe?');"><img src="<?php echo $imageSrc; ?>bin_closed.png" align="absmiddle" border="0" alt="Delete <?php echo $row_log['brewName']; ?>" title="Delete <?php echo $row_log['brewName']; ?>"></a></td>
-  <td class="data-icon_list"><a href="index.php?action=calculate&source=recipes&results=false<?php if ($row_user['userLevel'] == "1") echo "&filter=".$row_log['brewBrewerID']; elseif (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) echo "&filter=".$loginUsername; else echo ""; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>calculator.png" align="absmiddle" border="0" alt="Recalculate <?php echo $row_log['brewName']; ?>" title="Recalculate <?php echo $row_log['brewName']; ?>"></a></td>		 
-  <td class="data-icon_list"><a href="index.php?action=add&dbTable=awards&assoc=recipes<?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "1")) echo "&filter=".$row_log['brewBrewerID']; elseif (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) echo "&filter=".$loginUsername; else echo ""; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>medal_gold_3.png" align="absmiddle" border="0" alt="Add an award/contest entry for <?php echo $row_log['brewName']; ?>" title="Add an award/contest entry for <?php echo $row_log['brewName']; ?>"></a></td>		 
+  <td class="data-icon_list"><a href="index.php?action=calculate&source=recipes&results=false<?php if ($row_user['userLevel'] == "1") echo "&filter=".$row_log['brewBrewerID']; elseif (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) echo "&filter=".$loginUsername; else echo ""; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>calculator.png" align="absmiddle" border="0" alt="Recalculate <?php echo $row_log['brewName']; ?>" title="Recalculate <?php echo $row_log['brewName']; ?>"></a></td>
+  <td class="data-icon_list"><a href="index.php?action=add&dbTable=awards&assoc=recipes<?php if (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "1")) echo "&filter=".$row_log['brewBrewerID']; elseif (($row_pref['mode'] == "2") && ($row_user['userLevel'] == "2")) echo "&filter=".$loginUsername; else echo ""; ?>&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>medal_gold_3.png" align="absmiddle" border="0" alt="Add an award/contest entry for <?php echo $row_log['brewName']; ?>" title="Add an award/contest entry for <?php echo $row_log['brewName']; ?>"></a></td>
   <?php if (!checkmobile()) { ?>
-  <td class="data-icon_list"><a href="#" onclick="window.open('../includes/output_beer_xml.inc.php?id=<?php echo $row_log['id']; ?>&source=recipe&brewStyle=<?php echo $row_log['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a>    
+  <td class="data-icon_list"><a href="#" onclick="window.open('../includes/output_beer_xml.inc.php?id=<?php echo $row_log['id']; ?>&source=recipe&brewStyle=<?php echo $row_log['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a>
   <td class="data-icon_list"><?php if ($printBrowser == "IE") { ?><a href="#" onClick="window.open('../print.php?source=recipe&dbTable=recipes&page=recipePrint&brewStyle=<?php echo $row_log['brewStyle']; ?>&id=<?php echo $row_log['id']; ?>','','height=600,width=800,toolbar=no,resizable=yes,scrollbars=yes'); return false;"  title="Print <?php echo $row_log['brewName']; ?>"><?php } else { ?><a href="../print.php?source=recipe&dbTable=recipes&page=recipePrint&brewStyle=<?php echo $row_log['brewStyle']; ?>&id=<?php echo $row_log['id']; ?>&KeepThis=true&TB_iframe=true&height=450&width=700" class="thickbox"  title="Print <?php echo $row_log['brewName']; ?>"><?php } ?><img src="<?php echo $imageSrc; ?>printer.png" align="absmiddle" border="0" alt="Print the <?php echo $row_log['brewName']; ?> Recipe" title="Print the <?php echo $row_log['brewName']; ?> Recipe"></a></td>
   <?php } ?>
  </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_log = mysql_fetch_assoc($log)); ?>
+<?php } while ($row_log = mysqli_fetch_assoc($log)); ?>
   <tr>
    <td colspan="16" align="right" class="dataHeadingList"><input type="image" src="<?php echo $imageSrc.$row_colorChoose['themeName']; ?>/button_update_<?php echo $row_colorChoose['themeName']; ?>.png" alt="Update" class="radiobutton" value="Update"></td>
   </tr>
 </table>
-<?php } ?> 
+<?php } ?>
 </form>
-<?php } // end if ((($row_user['userLevel'] == "2") && ($filter == $_SESSION['loginUsername'])) || ($row_user['userLevel'] == "1")) 
+<?php } // end if ((($row_user['userLevel'] == "2") && ($filter == $_SESSION['loginUsername'])) || ($row_user['userLevel'] == "1"))
 else include(ADMIN_INCLUDES.'error_privileges.inc.php');
 ?>
 
@@ -96,11 +96,11 @@ else include(ADMIN_INCLUDES.'error_privileges.inc.php');
   <td class="data-icon_list"><a href="index.php?action=import&dbTable=recipes&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_refresh.png" align="absmiddle" border="0" alt="Copy <?php echo $row_log['brewName']; ?>" title="Copy <?php echo $row_log['brewName']; ?>"></a></td>
   <td class="data-icon_list"><a href="index.php?action=import&dbTable=brewing&id=<?php echo $row_log['id']; ?>"><img src="<?php echo $imageSrc; ?>page_lightning.png" align="absmiddle" border="0" alt="Import <?php echo $row_log['brewName']; ?> to BrewBlog" title="Import <?php echo $row_log['brewName']; ?> to BrewBlog"></a></td>
   <?php if (!checkmobile()) { ?>
-  <td class="data-icon_list"><a href="#" onclick="window.open('../includes/output_beer_xml.inc.php?id=<?php echo $row_log['id']; ?>&source=recipe&brewStyle=<?php echo $row_log['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a>    
+  <td class="data-icon_list"><a href="#" onclick="window.open('../includes/output_beer_xml.inc.php?id=<?php echo $row_log['id']; ?>&source=recipe&brewStyle=<?php echo $row_log['brewStyle']; ?>','','height=1,width=1, scrollbars=no, toolbar=no, resizable==no, menubar=no'); return false;"><img src="<?php echo $imageSrc; ?>page_white_code.png" title="Download BeerXML" align="absmiddle" border="0" /></a>
   <?php } ?>
  </tr>
   <?php if ($color == $color1) { $color = $color2; } else { $color = $color1; } ?>
-<?php } while ($row_log = mysql_fetch_assoc($log)); ?>
+<?php } while ($row_log = mysqli_fetch_assoc($log)); ?>
 </table>
 <?php } ?>
 

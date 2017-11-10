@@ -5,7 +5,8 @@
 	<select  class="text_area" name="theme">
 	  <?php do { ?>
    	    <option value="<?php echo $row_theme['theme']; ?>" <?php if ($action == "edit") { if (!(strcmp($row_theme['theme'], $row_pref['theme']))) {echo "SELECTED";} } ?>><?php echo $row_theme['themeName']; ?></option>
-	  <?php } while ($row_theme = mysql_fetch_assoc($theme)); $rows = mysql_num_rows($theme); if ($rows > 0) { mysql_data_seek($theme, 0); $row_theme = mysql_fetch_assoc($grains); }	?>
+	  <?php } while ($row_theme = mysqli_fetch_assoc($theme)); $rows = mysqli_num_rows($theme); if ($rows > 0) {
+mysqli_data_seek($theme, 0); $row_theme = mysqli_fetch_assoc($grains); }	?>
 	</select>
 	</td>
     <td class="data"><span class="data-icon"><img src="<?php echo $imageSrc; ?>add.png" border="0" align="absbottom" alt="Add Themes?" title="Add Themes?"></span><span class="data"><a href="index.php?action=add&dbTable=brewingcss">Add Themes?</a></span></td>
@@ -93,7 +94,7 @@
 	<select class="text_area"  name="measWaterGrainRatio">
 	  <option value="qt/lb" <?php if (!(strcmp("qt/lb", $row_log['measWaterGrainRatio']))) {echo "SELECTED";} ?>>qt/lb</option>
       <option value="li/kg" <?php if (!(strcmp("li/kg", $row_log['measWaterGrainRatio']))) {echo "SELECTED";} ?>>li/kg</option>
-    </select>      
+    </select>
     </td>
     <td class="data">Strike water added to the mash per pound or kilogram of grain.</td>
 </tr>
@@ -128,7 +129,7 @@
       <td class="dataLabelLeft">Pellet Factor:</td>
       <td class="data"><input name="pelletFactor" type="text" value="<?php echo $row_log['hopPelletFactor']; ?>" size="5" /></td>
       <td class="data">Represents increased utilization vs. whole or plug hops. A value of 1.06 is recommended as this reflects a 6% increase over whole hops.</td>
-</tr>    
+</tr>
 </table>
 
 <div class="headerContentAdmin">Water and Mash Profiles</div>
@@ -353,7 +354,7 @@
         <input name="allowProfile" type="radio" class="radiobutton" value="N" <?php if (!(strcmp("N", $row_log['allowProfile']))) {echo "CHECKED";} ?>> No
 	  </td>
 </tr>
-<?php } 
+<?php }
 if ($row_pref['mode'] == "1") {  ?>
 <input type="hidden" name="allowNews" value="<?php echo $row_log['allowNews']; ?>">
 <input type="hidden" name="allowProfile" value="<?php echo $row_log['allowProfile']; ?>">

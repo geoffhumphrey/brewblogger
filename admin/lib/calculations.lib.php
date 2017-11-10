@@ -25,8 +25,8 @@ $mcu            = 0;
 // Style
 $brewStyle    = $_POST['brewStyle'];
 $query_style1 = "SELECT * FROM styles WHERE brewStyle='$brewStyle'";
-$style1       = mysql_query($query_style1, $brewing);
-$row_style1   = mysql_fetch_array($style1);
+$style1       = mysqli_query($connection,$query_style1);
+$row_style1   = mysqli_fetch_array($style1);
 
 
 // ------------------------------ Extracts -------------------------------
@@ -35,8 +35,8 @@ for ($i = 0; $i < MAX_EXT; $i++) {
   $extWeight[$i]  = $_POST['extWeight'][$i];
 
   $query          = "SELECT extractPPG, extractLovibondLow, extractLovibondHigh FROM extract where extractName='$extName[$i]'";
-  $result         = mysql_query($query, $brewing) or die(mysql_error());
-  $row            = mysql_fetch_array($result);
+  $result         = mysqli_query($connection,$query);
+  $row            = mysqli_fetch_array($result);
   $extPPG[$i]     = $row['extractPPG'];
   $extLovLow[$i]  = $row['extractLovibondLow'];
   $extLovHigh[$i] = $row['extractLovibondHigh'];
@@ -60,8 +60,8 @@ for ($i = 0; $i < MAX_GRAINS; $i++) {
   $grainWeight[$i]  = $_POST['grainWeight'][$i];
 
   $query            = "SELECT maltPPG, maltLovibondLow, maltLovibondHigh FROM malt WHERE maltName='$grainName[$i]'";
-  $result           = mysql_query($query, $brewing) or die(mysql_error());
-  $row              = mysql_fetch_array($result);
+  $result           = mysqli_query($connection,$query);
+  $row              = mysqli_fetch_array($result);
   $grainPPG[$i]     = $row['maltPPG'];
   $grainLovLow[$i]  = $row['maltLovibondLow'];
   $grainLovHigh[$i] = $row['maltLovibondHigh'];
@@ -85,8 +85,8 @@ for ($i = 0; $i < MAX_ADJ; $i++) {
   $adjWeight[$i]  = $_POST['adjWeight'][$i];
 
   $query          = "SELECT adjunctPPG, adjunctLovibondLow, adjunctLovibondHigh FROM adjuncts WHERE adjunctName='$adjName[$i]'";
-  $result         = mysql_query($query, $brewing) or die(mysql_error());
-  $row            = mysql_fetch_array($result);
+  $result         = mysqli_query($connection,$query);
+  $row            = mysqli_fetch_array($result);
   $adjPPG[$i]     = $row['adjunctPPG'];
   $adjLovLow[$i]  = $row['adjunctLovibondLow'];
   $adjLovHigh[$i] = $row['adjunctLovibondHigh'];

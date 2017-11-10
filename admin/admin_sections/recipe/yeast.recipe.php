@@ -5,11 +5,11 @@
 <tr>
 	<td width="5%" class="dataLabelLeft">Keep Current?</td>
     <td class="data">
-    <?php 
-  	if ($row_log['brewYeastMan'] != "" ) echo $row_log['brewYeastMan']."&nbsp;"; 
-  	if ($row_log['brewYeast'] != "" ) echo $row_log['brewYeast']; 
-  	if ($row_log['brewYeastForm'] != "" ) echo "&nbsp;&mdash;&nbsp;".$row_log['brewYeastForm']; 
-  	if ($row_log['brewYeastAmount'] != "" ) echo "&nbsp;&mdash;&nbsp;".$row_log['brewYeastAmount']; 
+    <?php
+  	if ($row_log['brewYeastMan'] != "" ) echo $row_log['brewYeastMan']."&nbsp;";
+  	if ($row_log['brewYeast'] != "" ) echo $row_log['brewYeast'];
+  	if ($row_log['brewYeastForm'] != "" ) echo "&nbsp;&mdash;&nbsp;".$row_log['brewYeastForm'];
+  	if ($row_log['brewYeastAmount'] != "" ) echo "&nbsp;&mdash;&nbsp;".$row_log['brewYeastAmount'];
   	?>
     <input name="yeastKeep" type="radio" value="Yes" />Yes&nbsp;<input name="yeastKeep" type="radio" value="No" checked="checked"/>No
     </td>
@@ -27,7 +27,8 @@
    	<option value=""></option>
    	<?php do {  ?>
    	<option value="<?php echo $row_yeast_profiles['id']?>" <?php if (($action == "edit") || ($action=="import") || ($action == "importRecipe") || ($action=="reuse")) {  if (!(strcmp($row_yeast_profiles['id'], $row_log['brewYeastProfile']))) {echo "SELECTED";} } if ($action == "importCalc") {  if (!(strcmp($row_yeast_profiles['yeastName'], $brewYeast))) {echo "SELECTED";} } ?>><?php echo $row_yeast_profiles['yeastLab']." ".$row_yeast_profiles['yeastName']; if ($row_yeast_profiles['yeastProdID'] != "") echo " (".$row_yeast_profiles['yeastProdID'].")"; ?></option>
-   	<?php } while ($row_yeast_profiles = mysql_fetch_assoc($yeast_profiles)); $rows = mysql_num_rows($yeast_profiles); if($rows > 0) { mysql_data_seek($yeast_profiles, 0); $row_yeast_profiles = mysql_fetch_assoc($yeast_profiles); } ?>
+   	<?php } while ($row_yeast_profiles = mysqli_fetch_assoc($yeast_profiles)); $rows = mysqli_num_rows($yeast_profiles); if($rows > 0) {
+mysqli_data_seek($yeast_profiles, 0); $row_yeast_profiles = mysqli_fetch_assoc($yeast_profiles); } ?>
    	</select>
    </td>
 </tr>

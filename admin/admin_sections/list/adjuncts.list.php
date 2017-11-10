@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Module: adjuncts.list.php
  * Description: Display a list of all adjuncts in the database. Provide the opportunity to add or edit
@@ -39,8 +39,8 @@ if ($confirm == "true") {
       <td class="dataHeadingList"><?php if (!checkmobile()) { ?><div id="helpInline"><a href="includes/admin_icons.inc.php?dbTable=<?php echo $dbTable; ?>&KeepThis=true&TB_iframe=true&height=450&width=800" title="Administration Icon Reference" class="thickbox"><img src="<?php echo $imageSrc; ?>information.png" align="absmiddle" border="0" alt="Admin Icon Reference" title="Administration Icon Reference"></a></div><?php } else echo "&nbsp;"; ?></td>
     <?php } ?>
   </tr>
-  <?php 
-  do { 
+  <?php
+  do {
     echo '<tr style="background-color:' . $color . '">' . "\n";
     echo '<td class="dataList">' . $row_adjuncts['adjunctName'] . '</td>' . "\n";
     $lovHigh = $row_adjuncts['adjunctLovibondHigh'] > 0 ? $row_adjuncts['adjunctLovibondHigh'] : $row_adjuncts['adjunctLovibondLow'];
@@ -56,8 +56,8 @@ if ($confirm == "true") {
     echo '</tr>' . "\n";
     if ($color == $color1) {
       $color = $color2;
-    } else { 
+    } else {
       $color = $color1;
     }
-  } while ($row_adjuncts = mysql_fetch_assoc($adjuncts)); ?>
+  } while ($row_adjuncts = mysqli_fetch_assoc($adjuncts)); ?>
 </table>
