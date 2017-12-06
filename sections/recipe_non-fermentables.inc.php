@@ -36,7 +36,7 @@
         <?php } ?>
         <?php if ($action == "scale") { ?>
         <tr>
-        	<td colspan="3"><p class="text-danger small">* Amounts are NOT scaled in this section. Original yield is <?php echo $row_log['brewYield']."&nbsp;".$row_pref['measFluid2']; ?>. Adjust accordingly.</p></td>
+        	<td colspan="3"><p class="text-danger small">* Amounts are NOT scaled in this section. Original yield is <?php echo $row_log['brewYield']."&nbsp;".$_SESSION['measFluid2']; ?>. Adjust accordingly.</p></td>
         </tr>
         <?php } ?>
 </table>

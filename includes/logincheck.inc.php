@@ -49,7 +49,7 @@ $password = md5($password);
 
 // $loginUsername = strtolower($loginUsername);
 
-$query_login = sprintf("SELECT * FROM users WHERE user_name = '%s'",$loginUsername);
+$query_login = sprintf("SELECT user_name,password FROM users WHERE user_name = '%s'",$loginUsername);
 $login = mysqli_query($connection,$query_login) or die (mysqli_error($connection));
 $row_login = mysqli_fetch_assoc($login);
 $totalRows_login = mysqli_num_rows($login);
@@ -64,24 +64,9 @@ if ($totalRows_login > 0) {
 else $check = 0;
 
 // If the username/password combo is valid, register a session, register a session cookie
-// perform certain tasks and redirect
+// perform certain tasks, and redirect
 if ($check == 1) {
-
-  // Register session variables
   $_SESSION['loginUsername'] = $loginUsername;
-  $_SESSION['userLevel'] = $row_login['userLevel'];
-  $_SESSION['userEmail'] = $row_login['userEmail'];
-  $_SESSION['realFirstName'] = $row_login['realFirstName'];
-  $_SESSION['realLastName'] = $row_login['realLastName'];
-  $_SESSION['defaultBoilTime'] = $row_login['defaultBoilTime'];
-  $_SESSION['defaultEquipProfile'] = $row_login['defaultEquipProfile'];
-  $_SESSION['defaultMashProfile'] = $row_login['defaultMashProfile'];
-  $_SESSION['defaultWaterProfile'] = $row_login['defaultWaterProfile'];
-  $_SESSION['defaultBitternessFormula'] = $row_login['defaultBitternessFormula'];
-  $_SESSION['defaultMethod'] = $row_login['defaultMethod'];
-  $_SESSION['defaultBatchSize'] = $row_login['defaultBatchSize'];
-  $_SESSION['defaultWaterRatio'] = $row_login['defaultWaterRatio'];
-
   $location = $base_url."index.php?page=admin";
 }
 

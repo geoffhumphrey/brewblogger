@@ -14,12 +14,12 @@ $FILE_EXTS  = array('.xml','.txt');
 //Allow file delete? no, if only allow upload only
 $DELETABLE  = false;
 
-$recipe-list = "";
+$recipe_list = "";
 function formatInsertedRecipes($recipes) {
     foreach($recipes as $id=>$name){
-        $recipe-list .= "<tr><td><a href=\"index.php?action=edit&dbTable=recipes&id=" .$id . "\">".$name."</a></td></tr>";
+        $recipe_list .= "<tr><td><a href=\"index.php?action=edit&dbTable=recipes&id=" .$id . "\">".$name."</a></td></tr>";
     }
-    return $recipe-list;
+    return $recipe_list;
 }
 
 //$site_name = $_SERVER['HTTP_HOST'];

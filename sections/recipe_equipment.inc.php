@@ -1,17 +1,17 @@
 <?php if ($row_log['brewEquipProfile'] != "") { ?>
 <h3>Equipment Profile <small><em><?php echo $row_equip_profiles['equipProfileName']; ?></em></small></h3>
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <?php if (!empty($row_equip_profiles['equipBatchSize'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Batch Size:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBatchSize'], "liters"); else echo $row_equip_profiles['equipBatchSize']; echo " ".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($_SESSION['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBatchSize'], "liters"); else echo $row_equip_profiles['equipBatchSize']; echo " ".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
         <?php if (!empty($row_equip_profiles['equipBoilVolume'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Boil Volume:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipBoilVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBoilVolume'], "liters"); else echo $row_equip_profiles['equipBoilVolume']; echo " ".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipBoilVolume'] !="") && ($_SESSION['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipBoilVolume'], "liters"); else echo $row_equip_profiles['equipBoilVolume']; echo " ".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
         <?php if (!empty($row_equip_profiles['equipEvapRate'])) { ?>
@@ -37,13 +37,13 @@
         <?php if (!empty($row_equip_profiles['equipMashTunVolume'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Volume:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunVolume'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunVolume'], "liters"); else echo $row_equip_profiles['equipMashTunVolume']; echo " ".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunVolume'] !="") && ($_SESSION['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunVolume'], "liters"); else echo $row_equip_profiles['equipMashTunVolume']; echo " ".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
         <?php if (!empty($row_equip_profiles['equipMashTunWeight'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Weight:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunWeight'] != "") && ($row_pref['measWeight2'] == "kilograms") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo weightconvert($row_equip_profiles['equipMashTunWeight'], "kilograms"); else echo $row_equip_profiles['equipMashTunWeight']; echo " ".$row_pref['measWeight2'];  ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunWeight'] != "") && ($_SESSION['measWeight2'] == "kilograms") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo weightconvert($row_equip_profiles['equipMashTunWeight'], "kilograms"); else echo $row_equip_profiles['equipMashTunWeight']; echo " ".$_SESSION['measWeight2'];  ?></div>
         </div>
         <?php } ?>
         <?php if (!empty($row_equip_profiles['equipMashTunSpecificHeat'])) { ?>
@@ -55,13 +55,13 @@
         <?php if (!empty($row_equip_profiles['equipMashTunDeadspace'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Mash Tun Dead Space:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunDeadspace'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunDeadspace'], "liters"); else echo $row_equip_profiles['equipMashTunDeadspace']; echo " ".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipMashTunDeadspace'] !="") && ($_SESSION['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipMashTunDeadspace'], "liters"); else echo $row_equip_profiles['equipMashTunDeadspace']; echo " ".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
         <?php if (!empty($row_equip_profiles['equipLoss'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Loss:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipLoss'] !="") && ($row_pref['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipLoss'], "liters"); else echo $row_equip_profiles['equipLoss']; echo " ".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($row_equip_profiles['equipLoss'] !="") && ($_SESSION['measFluid2'] == "liters") && ($row_equip_profiles['equipBrewerID'] == "brewblogger")) echo volumeconvert($row_equip_profiles['equipLoss'], "liters"); else echo $row_equip_profiles['equipLoss']; echo " ".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
     </div><!-- /column 2 -->

@@ -5,30 +5,30 @@ $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connecti
 $row_styles = mysqli_fetch_assoc($styles);
 $totalRows_styles = mysqli_num_rows($styles);
 
-if (($page == "current") || ($page == "brewblog")) $blog_type = "BrewBlog"; else $blog_type = "Recipe"; 
+if (($page == "current") || ($page == "brewblog")) $blog_type = "BrewBlog"; else $blog_type = "Recipe";
 
 $SRM = "";
 if (!empty($row_log['brewLovibond'])) {
 	if ($page == "logPrint" || $page == "recipePrint") $SRM .= round($row_log['brewLovibond'], 1);
 	else {
 		$brewLov   = $row_log['brewLovibond'];
-		if ($row_pref['measColor'] == "EBC") $brewLov = ebc_to_srm($brewLov);
+		if ($_SESSION['measColor'] == "EBC") $brewLov = ebc_to_srm($brewLov);
 		$fontColor = ($brewLov >= 15) ? "#ffffff" : "#000000";
 		$bkColor   = get_display_color($brewLov);
 		$SRM .= round($row_log['brewLovibond'], 1);
-		$SRM .= " <span class=\"text-muted small\"><em>".$row_pref['measColor']."</em></span>";
+		$SRM .= " <span class=\"text-muted small\"><em>".$_SESSION['measColor']."</em></span>";
 		$SRM .= " <span class=\"badge\" style=\"background: ". $bkColor ."; color: ".$fontColor.";\">&nbsp;&nbsp;&nbsp;";
 		$SRM .= "</span>\n";
-		
+
 	}
-} 
+}
 
 
 
 ?>
 
 <!--
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>XXX:</strong></div>
 	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
 </div>
@@ -37,7 +37,7 @@ if (!empty($row_log['brewLovibond'])) {
 <h3><?php echo $row_log['brewStyle']; if (!empty($row_log['brewMethod'])) echo " &ndash; ".$row_log['brewMethod']; if (!empty($row_log['brewStatus'])) echo " <small><em>".$row_log['brewStatus']."</em></small>"; ?></h3>
 
 
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		<?php if (!empty($row_log['brewBatchNum'])) { ?>
         <div class="row">
@@ -48,7 +48,7 @@ if (!empty($row_log['brewLovibond'])) {
         <?php if (!empty($row_log['brewYield'])) { ?>
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Batch Size:</strong></div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if (($action == "default") || ($action == "print") || ($action == "reset")) echo $row_log['brewYield']; if ($action == "scale") echo $amt; echo "&nbsp;".$row_pref['measFluid2']; ?></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php if ($action == "scale") echo $amt; else echo $row_log['brewYield']; echo "&nbsp;".$_SESSION['measFluid2']; ?></div>
         </div>
         <?php } ?>
         <?php if ($row_log['brewBoilTime'] != "") { ?>
@@ -91,7 +91,7 @@ if (!empty($row_log['brewLovibond'])) {
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo $row_log['brewSource']; ?></div>
         </div>
         <?php } ?>
-        
+
      </div><!-- /column 2 -->
 
 </div><!-- /row -->
@@ -104,7 +104,7 @@ if (!empty($row_log['brewLovibond'])) {
 
 
 <h3>Statistics</h3>
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
 	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <?php if (!empty($row_log['brewTargetOG'])) { ?>
         <div class="row">
@@ -153,9 +153,9 @@ if (!empty($row_log['brewLovibond'])) {
         </div>
         <?php } ?>
     </div><!-- /column 1 -->
-    
-    
-    
+
+
+
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     	<?php if (!empty($SRM)) { ?>
         <div class="row">
@@ -189,7 +189,7 @@ if (!empty($row_log['brewLovibond'])) {
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><?php echo calc_calories($row_log['brewOG'],$row_log['brewFG'])." <span class=\"text-muted small\"><em>12 oz</em></span>"; ?></div>
         </div>
         <?php } ?>
-    
+
     </div><!-- /column 2 -->
 
 </div><!-- /row -->

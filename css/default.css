@@ -1,9 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 /* @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800|Droid+Sans:400,100,300,700); */
-@import url(http://fonts.googleapis.com/css?family=Raleway:300,500,800|Source+Sans+Pro:300,400,600,700);
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:700|Hind+Siliguri:300,400,500,700);
 
-/** 
+/**
 ----------------------------------------------------------------------
 Customized Bootstrap Classes for Default Theme
 This theme is based upon Google Materials color palettes
@@ -108,10 +108,10 @@ html {
 	position: relative;
 	min-height: 100%;
 }
-		
+
 body {
-  	 
-	font-family: "Source Sans Pro", Arial, sans-serif;
+
+	font-family: "Hind Siliguri", Arial, sans-serif;
 	font-weight: 400;
 	font-size: 16px;
 	position: relative;
@@ -126,21 +126,21 @@ body {
   	a[href]:after {
     	content: none !important;
 	  }
-	 
+
 	body {
-		 
+
 		font-family: Arial, sans-serif;
 		font-weight: 400;
-		font-size: 14px;		
+		font-size: 14px;
 		position: relative;
 		min-height: 100%;
 	}
 }
 
-@page  
-{ 
-    size: auto;   /* auto is the initial value */ 
-	margin: 1.25cm .75cm 1.25cm .75cm; 
+@page
+{
+    size: auto;   /* auto is the initial value */
+	margin: 1.25cm .75cm 1.25cm .75cm;
 }
 
 a,
@@ -157,10 +157,11 @@ a:active {
 
 
 h1, h2, h3, h4, h5, h6 {
-	
-	font-family: "Raleway", Arial, sans-serif;
-	font-weight: 800;
+
+	font-family: "Vollkorn", Arial, sans-serif;
+	font-weight: 700;
 	margin: 0;
+  /* font-variant: small-caps; */
 }
 
 h1 {
@@ -173,20 +174,20 @@ h2, h2, h3, h4, h5, h6 {
 
 @media print {
 	h1, h2, h3, h4, h5, h6 {
-		 
+
 		font-family: Arial, sans-serif;
 		font-weight: 800;
 		margin: 0;
 	}
-	
+
 	h1 {
 		padding: 0 0 25px 0;
 	}
-	
+
 	h2, h2, h3, h4, h5, h6 {
 		padding: 0 0 20px 0;
 	}
-	
+
 	.page-header {
 		margin: 0;
 		padding: 0;
@@ -1286,15 +1287,15 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 	color: #E0E0E0 !important;
 }
 
-.navmenu { 
+.navmenu {
 	font-size: .9em;
 }
 
-.dropdown-backdrop { 
+.dropdown-backdrop {
 	position: static;
 }
 
-.navmenu-nav.dropdown-menu { 
+.navmenu-nav.dropdown-menu {
 	position:relative;
 }
 
@@ -1325,40 +1326,39 @@ footer .navbar {
 
 /** Other **/
 
-.btn-group { 
-	padding: 0 0 3px 0; 
+.btn-group {
+	padding: 0 0 3px 0;
 }
 
 @media (min-width: 768px) {
-  
+
   .dl-horizontal dt, dl {
 	  padding: 0 0 10px 0;
   }
-  
+
   .dl-horizontal dt {
     width: 250px;
   }
-  
+
   .dl-horizontal dd {
     margin-left: 270px;
   }
-   
+
 }
 
 /** --------------------------------------------------- **/
-/** Custom Classes for BCOEM                            **/
+/** Custom Classes                                      **/
 /** Custom Colors Based on Google Materials             **/
 /**	https://www.google.com/design/spec/style/color.html **/
 /** --------------------------------------------------- **/
 
-
-.sidebar .bcoem-comp-logo {
+.sidebar .bb-comp-logo {
 	margin: 0 0 10px 0;
 }
 
 .sidebar .panel h4 {
 	padding: 5px 0 5px 0;
-	margin: 0;	
+	margin: 0;
 }
 .sidebar .bcoem-sidebar-panel {
 	padding: 0;
@@ -1366,12 +1366,12 @@ footer .navbar {
 }
 
 @media (max-width: 989px) {
-	
+
 	.sidebar .bcoem-sidebar-panel {
 		padding: 0;
 		margin: 15px 0;
 	}
-	
+
 }
 
 .sidebar .bcoem-sidebar-panel .small {
@@ -1379,144 +1379,184 @@ footer .navbar {
 	margin: 0;
 }
 
-.bcoem-warning-container {
+.bb-warning-container {
 	padding-top: 30px;
 }
 
 /** Info and Entries **/
 
-.bcoem-user-info-table th {
+.bb-user-info-table th {
 	border-top: none !important;
 }
 
-.bcoem-user-info-table td {
+.bb-user-info-table td {
 	border-top: none !important;
 }
 
-.bcoem-account-info {
-	
+.bb-account-info {
 	padding: 0 0 10px 0;
 }
 
 /** Sponsors **/
 
-.bcoem-sponsor-container {
+.bb-sponsor-container {
 	padding: 15px;
 }
 
-.bcoem-sponsor-name h5 {
+.bb-sponsor-name h5 {
 	font-size: 1.15em;
 	padding: 0;
 }
 
-.bcoem-sponsor-name {
+.bb-sponsor-name {
 }
 
-.bcoem-sponsor-location {
+.bb-sponsor-location {
 	padding: 0 0 15px 0;
 }
 
-.bcoem-sponsor-text {
+.bb-sponsor-text {
 	padding: 10px 0;
 }
 
 /** Forms **/
 
-.bcoem-form-info {
+.bb-form-info {
 	word-break: keep-all;
 	margin-top: 10px;
 }
 
-.bcoem-form-accordion {
-	
+.bb-form-accordion {
+
 }
 
-.bcoem-form-accordion h4 {
+.bb-form-accordion h4 {
 	padding: 0;
 	margin: 0;
 }
 
 /* Winner Display */
 
-.bcoem-winner-table {
+.bb-winner-table {
 	margin-bottom: 45px;
 }
 
 /** Admin **/
 
-.bcoem-admin-dashboard-accordion .panel-default {
+.bb-admin-dashboard-accordion .panel-default {
   background-color: #f7f8f9;
 }
 
-.bcoem-admin-dashboard-accordion h5 {
+.bb-admin-dashboard-accordion h5 {
 	font-weight: bold;
 	font-size: 1.1em;
 	color: #757575;
 	padding: 20px 0;
 }
 
-.bcoem-admin-dashboard-accordion .panel-default .panel-title  a ,
-.bcoem-admin-dashboard-accordion .panel-default .panel-title  a:visited {
+.bb-admin-dashboard-accordion .panel-default .panel-title  a ,
+.bb-admin-dashboard-accordion .panel-default .panel-title  a:visited {
   color: #757575;
   text-decoration: none;
 }
-.bcoem-admin-dashboard-accordion .panel-default .panel-title  a:hover,
-.bcoem-admin-dashboard-accordion .panel-default .panel-title  a:focus,
-.bcoem-admin-dashboard-accordion .panel-default .panel-title  a:active {
+.bb-admin-dashboard-accordion .panel-default .panel-title  a:hover,
+.bb-admin-dashboard-accordion .panel-default .panel-title  a:focus,
+.bb-admin-dashboard-accordion .panel-default .panel-title  a:active {
   color: #90A4AE;
   text-decoration: none;
 }
 
-.bcoem-admin-dashboard-accordion .glyphicon,
-.bcoem-admin-dashboard-accordion .fa {
-	
+.bb-admin-dashboard-accordion .glyphicon,
+.bb-admin-dashboard-accordion .fa {
+
 }
 
-.bcoem-admin-dashboard-accordion h4 {
+.bb-admin-dashboard-accordion h4 {
 	padding: 0;
 	margin: 0;
 }
 
-.bcoem-admin-dashboard-accordion hr {
+.bb-admin-dashboard-accordion hr {
 	padding: 0;
 	margin: 15px 0 0 0;
 }
 
-.bcoem-admin-dashboard-accordion .bcoem-admin-dashboard-select {
+.bb-admin-dashboard-accordion .bb-admin-dashboard-select {
 	margin: 3px 0 10px 0;
 }
 
-.bcoem-admin-modal {
+.bb-admin-modal {
 	color: 000;
 }
 
-.bcoem-admin-modal h4 {
+.bb-admin-modal h4 {
 	padding: 0;
 	margin: 0;
 	color: 000;
 }
 
-.bcoem-admin-element {
-	padding: 0 0 15px 0;	
+.bb-admin-element {
+	padding: 0 0 15px 0;
 }
 
-.bcoem-admin-element-bottom {
-	padding: 15px 0 0 0;	
+.bb-admin-element-bottom {
+	padding: 15px 0 0 0;
+}
+
+.bb-account-info {
+
 }
 
 .panel-group .panel {
   overflow: visible;
 }
 
-.accordion-body.in:hover { 
-	overflow:visible; 
-	}
-	
-.table {
-	font-size: 14px;	
+.accordion-body.in:hover {
+	overflow:visible;
 }
 
-/* ---------- Gold, Silver, Bronze for Winner Displays ---------- */
+.table {
+	font-size: 14px;
+}
+
+/* Calendar */
+.calendar       {
+  border-collapse: collapse; width: 100%;
+}
+
+.none {
+
+}
+
+.today          {
+  border: 1px solid #ccc; padding: 2px;
+}
+
+.monthdays      {
+  border: 1px solid #ccc; padding: 2px; height: 100px;
+}
+
+.nonmonthdays   {
+  border: 1px solid #ccc; padding: 2px; height: 100px; background-color: #eee;
+}
+
+.day            {
+  vertical-align:top; height: 50px;
+}
+
+.header         {
+  border: 1px solid #ccc; padding: 2px;
+}
+
+.weekdays       {
+  border: 1px solid #ccc; padding: 2px; width: 14%;
+}
+
+.calInfo        {
+  padding-left: 2px;
+}
+
+/* ---------- Gold, Silver, Bronze for Award Displays ---------- */
 
 /* Gold */
 .text-gold {
@@ -1539,13 +1579,13 @@ footer .navbar {
 .bg-forest-green {
 	background-color: #a6d0a6;
 }
-	
+
 a.bg-forest-green:focus, a.bg-forest-green:hover {
 	background-color: #279f27;
-}	
+}
 
-.text-forest-green { 
-	color: #228b22; 
+.text-forest-green {
+	color: #228b22;
 }
 
 a.forest-green:focus, a.forest-green:hover {
@@ -1562,15 +1602,15 @@ a.forest-green:focus, a.forest-green:hover {
 .bg-purple {
 	background-color: #EDE7F6; /* 50 Shade */
 }
-	
+
 a.bg-purple:focus, a.bg-purple:hover {
 	background-color: #B39DBB; /* 200 Shade */
-}	
+}
 
 .text-purple {
 	color: #311B92; /* 900 Shade */
 }
-	
+
 a.text-purple:focus, a.text-purple:hover {
 	color: #651FFF; /* A400 Shade */
 }
@@ -1585,15 +1625,15 @@ a.text-purple:focus, a.text-purple:hover {
 .bg-yellow {
 	background-color: #FFFDE7;
 }
-	
+
 a.bg-yellow:focus, a.bg-yellow:hover {
 	background-color: #FFF9C4;
 }
-	
+
 .text-yellow {
 	color: #F57F17;
 }
-	
+
 a.text-yellow:focus, a.text-yellow:hover {
 	color: #FFD600;
 }
@@ -1608,15 +1648,15 @@ a.text-yellow:focus, a.text-yellow:hover {
 .bg-teal {
 	background-color: #E0F2F1;  /* 50 Shade */
 }
-	
+
 a.bg-teal:focus, a.bg-teal:hover {
 	background-color: #80CBC4;  /* 200 Shade */
 }
-	
+
 .text-teal {
 	color: #004D40; /* 900 Shade */
 }
-	
+
 a.text-teal:focus, a.text-teal:hover {
 	color: #26A69A; /* 400 Shade */
 }
@@ -1631,15 +1671,15 @@ a.text-teal:focus, a.text-teal:hover {
 .bg-orange {
 	background-color: #FFF3E0;  /* 50 Shade */
 }
-	
+
 a.bg-orange:focus, a.bg-orange:hover {
 	background-color: #FFCC80;  /* 200 Shade */
 }
-	
+
 .text-orange {
 	color: #E65100;  /* 900 Shade */
 }
-	
+
 a.text-orange:focus, a.text-orange:hover {
 	color: #FF9100;  /* A400 Shade */
 }
@@ -1648,15 +1688,15 @@ a.text-orange:focus, a.text-orange:hover {
 .bg-indigo {
 	background-color: #E8EAF6;  /* 50 Shade */
 }
-	
+
 a.bg-indigo:focus, a.bg-indigo:hover {
 	background-color: #9FA8DA;  /* 200 Shade */
 }
-	
+
 .text-indigo {
 	color: #1A237E;  /* 900 Shade */
 }
-	
+
 a.text-indigo:focus, a.text-indigo:hover {
 	color: #3D5AFE;  /* A400 Shade */
 }
@@ -1671,15 +1711,15 @@ a.text-indigo:focus, a.text-indigo:hover {
 .bg-amber {
 	background-color: #FFF8E1;  /* 50 Shade */
 }
-	
+
 a.bg-amber:focus, a.bg-amber:hover {
 	background-color: #FFE082;  /* 200 Shade */
 }
-	
+
 .text-v {
 	color: #FF6F00;  /* 900 Shade */
 }
-	
+
 a.text-amber:focus, a.text-amber:hover {
 	color: #FFAB00;  /* A400 Shade */
 }
@@ -1710,7 +1750,7 @@ table.dataTable thead th.sorting:after {
 }
 
 .dataTables_paginate .paginate_button .active {
-  
+
   background-color: #F5F5F5;
   border-color: #E0E0E0;
 }

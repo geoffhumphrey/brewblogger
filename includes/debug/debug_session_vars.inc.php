@@ -1,5 +1,5 @@
 <?php
-echo "<div class=\"container\">";
+echo "<div class=\"container hidden-print\">";
 $table_body = "";
 foreach ($_SESSION as $key => $value) {
     if (is_array($value)) {

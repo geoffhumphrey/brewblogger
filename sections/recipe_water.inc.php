@@ -1,7 +1,6 @@
-<?php if (($row_pref['waterDisplayMethod'] == "1") && ($row_log['brewWaterProfile'] != "")) { // Use water profiles tables ?>
+<?php if (($_SESSION['waterDisplayMethod'] == "1") && ($row_log['brewWaterProfile'] != "")) { // Use water profiles tables ?>
 <h3>Water Profile <small><em><?php echo $row_water_profiles['waterName']; ?></em></small></h3>
-
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     	<div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Calcium:</strong></div>
@@ -36,21 +35,16 @@
     </div><!-- /column 1 -->
 </div><!-- /row -->
 <?php if ($row_water_profiles['waterNotes'] != "") { ?>
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><strong>Notes:</strong></div>
     <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6"><?php echo $row_water_profiles['waterNotes']; ?></div>
 </div>
 <?php } ?>
 <?php } ?>
-
-
-
-
-
-<?php if ($row_pref['waterDisplayMethod'] == "2") { ?>
+<?php if ($_SESSION['waterDisplayMethod'] == "2") { ?>
 <?php if ($row_log['brewWaterName'] != "" ) { // (1) hide entire water rows if name not present ?>
 <h3>Water Profile <small><em><?php echo $row_log['brewWaterName'];  ?></em></small></h3>
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 		<div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><strong>Calcium:</strong></div>
@@ -85,7 +79,7 @@
 	</div><!-- /column 1 -->
 </div><!-- /row -->
 <?php if ($row_log['brewWaterNotes'] != "") { ?>
-<div class="row bcoem-account-info">
+<div class="row bb-account-info">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6"><strong>Notes:</strong></div>
     <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6"><?php echo $row_log['brewWaterNotes']; ?></div>
 </div>

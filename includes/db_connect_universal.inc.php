@@ -1,17 +1,13 @@
 <?php
 // Get server's PHP version
 $phpVersion = phpversion();
-//echo $phpVersion;
-if (!isset($_SESSION)) {
-	session_start();
-}
 
-// if (DEBUG) $_SESSION['loginUsername'] = "geoff";
+require (INCLUDES.'session_init.inc.php');
 
 $currentPage = "http://".$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'];
 if (!empty($_SERVER["QUERY_STRING"])) $currentPage .= "?".$_SERVER['QUERY_STRING'];
 $loginUsername = NULL;
-if (isset($_SESSION['loginUsername']) && !empty($_SESSION["loginUsername"])) $loginUsername = $_SESSION["loginUsername"];
+if (isset($_SESSION['loginUsername']) && !empty($_SESSION['loginUsername'])) $loginUsername = $_SESSION['loginUsername'];
 
 // Universal DB Connections
 
@@ -19,6 +15,7 @@ if (isset($_SESSION['loginUsername']) && !empty($_SESSION["loginUsername"])) $lo
 // Name
 
 $query_name = "SELECT * FROM brewer";
+if ((isset($_SESSION['uid'])) && (!empty($_SESSION['uid']))) $query_name .= sprintf(" WHERE uid=%s",$_SESSION['uid']);
 $name = mysqli_query($connection,$query_name) or die (mysqli_error($connection));
 $row_name = mysqli_fetch_assoc($name);
 $totalRows_name = mysqli_num_rows($name);
@@ -42,13 +39,14 @@ $totalRows_theme = mysqli_num_rows($theme);
 // -----------------------------------------------------------------------------------------------
 // Alternating Color Choice
 
-$query_colorChoose = sprintf("SELECT * FROM brewingcss WHERE theme='%s'", $row_pref['theme']);
+$query_colorChoose = sprintf("SELECT * FROM brewingcss WHERE theme='%s'", $_SESSION['theme']);
 $colorChoose = mysqli_query($connection,$query_colorChoose) or die (mysqli_error($connection));
 $row_colorChoose = mysqli_fetch_assoc($colorChoose);
 $totalRows_colorChoose = mysqli_num_rows($colorChoose);
 
 // -----------------------------------------------------------------------------------------------
 // User Info
+
 if (isset($_SESSION['loginUsername'])) {
 	$query_user = sprintf("SELECT * FROM users WHERE user_name = '%s'", $_SESSION['loginUsername']);
 	$user = mysqli_query($connection,$query_user) or die (mysqli_error($connection));

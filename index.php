@@ -1,25 +1,24 @@
 <?php
 
 require ('paths.php');
+
+if ((TESTING) || (DEBUG)) {
+    $mtime = microtime();
+    $mtime = explode(" ",$mtime);
+    $mtime = $mtime[1] + $mtime[0];
+    $starttime = $mtime;
+    $totaltime = "";
+}
+
 require (CONFIG.'config.php');
+require (ADMIN_INCLUDES.'constants.inc.php');
 require (INCLUDES.'authentication_nav.inc.php');
-session_start();
 include (INCLUDES.'db_connect_universal.inc.php');
 include (INCLUDES.'url_variables.inc.php');
 include (INCLUDES.'db_connect_log.inc.php');
 include (LIB.'common.lib.php');
-
-//figure out SRM and a hex value for displaying beer color
-//include (INCLUDES.'color.inc.php');
-
-// Load color library functions
 require_once (ADMIN_LIBRARY.'color.lib.php');
-
-//determine if club edition or personal edition is in use
 include (INCLUDES.'version.inc.php');
-
-// Load constants
-require_once (ADMIN_INCLUDES.'constants.inc.php');
 
 $imageSrc = "images/";
 
@@ -58,10 +57,12 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
     <!-- Load Bootstrap / http://www.getbootsrap.com -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+-->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -72,6 +73,7 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
 	<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/plug-ins/1.10.10/integration/font-awesome/dataTables.fontAwesome.css" />
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.16/sorting/natural.js"></script>
 
     <!-- Load Fancybox / http://www.fancyapps.com -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
@@ -136,11 +138,13 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
         </div>
     	<?php
             if (isset($_SESSION['loginUsername'])) {
+
                 if (($section == "default") || ($section == "dashboard")) include(ADMIN.'dashboard.admin.php');
-                /*
-                // Have not been built yet
                 if ($section == "brewblogs") include(ADMIN.'brewblogs.admin.php');
                 if ($section == "recipes") include(ADMIN.'recipes.admin.php');
+                /*
+                // Have not been built yet
+
                 if ($section == "settings") include(ADMIN.'settings.admin.php');
                 if ($section == "profiles") include(ADMIN.'profiles.admin.php');
                 if ($section == "ingredients") include(ADMIN.'ingredients.admin.php');
@@ -162,51 +166,53 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
             <?php } else { ?>
             <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<?php } ?>
-            <div class="page-header">
-        		<h1><?php echo $header_output; ?></h1>
-        	</div>
-            <small>
-                <ol class="breadcrumb">
+           	<small>
+                <ol class="breadcrumb hidden-print">
                     <?php echo $breadcrumb; ?>
                 </ol>
             </small>
+            <div class="page-header">
+        		<h1><?php echo $header_output; ?></h1>
+        	</div>
         	<?php
+                if (isset($_POST['amt'])) $amt = $_POST['amt'];
+                else $amt = $amt;
 				if (($page == "current") || ($page == "brewblog")) {
-					if ($row_pref['allowSpecifics'] == "Y") 		include (SECTIONS.'recipe_specifics.inc.php');
-					if ($row_pref['allowGeneral'] == "Y")			include (SECTIONS.'recipe_general.inc.php');
-					if ($row_pref['allowComments'] == "Y")			include (SECTIONS.'recipe_comments.inc.php');
-					if ($row_pref['allowRecipe'] == "Y")			include (SECTIONS.'recipe.inc.php');
+					if ($_SESSION['allowSpecifics'] == "Y") 		include (SECTIONS.'recipe_specifics.inc.php');
+					if ($_SESSION['allowGeneral'] == "Y")			include (SECTIONS.'recipe_general.inc.php');
+					if ($_SESSION['allowComments'] == "Y")			include (SECTIONS.'recipe_comments.inc.php');
+					if ($_SESSION['allowRecipe'] == "Y")			include (SECTIONS.'recipe.inc.php');
 					include (SECTIONS.'recipe_equipment.inc.php');
-					if ($row_pref['allowMash'] == "Y")				include (SECTIONS.'recipe_mash.inc.php');
-					if ($row_pref['allowWater'] == "Y")				include (SECTIONS.'recipe_water.inc.php');
-					if ($row_pref['allowProcedure'] == "Y")			include (SECTIONS.'recipe_procedure.inc.php');
-					if ($row_pref['allowSpecialProcedure'] == "Y")	include (SECTIONS.'recipe_special_procedure.inc.php');
-					if ($row_pref['allowFermentation'] == "Y")		include (SECTIONS.'recipe_fermentation.inc.php');
-				  	if ($row_pref['allowReviews'] == "Y")		  	include (SECTIONS.'recipe_reviews.inc.php');
+					if ($_SESSION['allowMash'] == "Y")				include (SECTIONS.'recipe_mash.inc.php');
+					if ($_SESSION['allowWater'] == "Y")				include (SECTIONS.'recipe_water.inc.php');
+					if ($_SESSION['allowProcedure'] == "Y")			include (SECTIONS.'recipe_procedure.inc.php');
+					if ($_SESSION['allowSpecialProcedure'] == "Y")	include (SECTIONS.'recipe_special_procedure.inc.php');
+					if ($_SESSION['allowFermentation'] == "Y")		include (SECTIONS.'recipe_fermentation.inc.php');
+				  	if ($_SESSION['allowReviews'] == "Y")		  	include (SECTIONS.'recipe_reviews.inc.php');
 					include (SECTIONS.'brew_day_data.inc.php');
 				}
 
 				elseif ($page == "recipe") {
-					if ($row_pref['allowSpecifics'] == "Y") 		include (SECTIONS.'recipe_specifics.inc.php');
-					if ($row_pref['allowGeneral'] == "Y") 			include (SECTIONS.'recipe_general.inc.php');
-					if ($row_pref['allowRecipe'] == "Y") 			include (SECTIONS.'recipe.inc.php');
-					if ($row_pref['allowProcedure'] == "Y") 		include (SECTIONS.'recipe_procedure.inc.php');
-					if ($row_pref['allowFermentation'] == "Y") 		include (SECTIONS.'recipe_fermentation.inc.php');
-					if ($row_pref['allowComments'] == "Y") 			include (SECTIONS.'recipe_notes.inc.php');
+					if ($_SESSION['allowSpecifics'] == "Y") 		include (SECTIONS.'recipe_specifics.inc.php');
+					if ($_SESSION['allowGeneral'] == "Y") 			include (SECTIONS.'recipe_general.inc.php');
+					if ($_SESSION['allowRecipe'] == "Y") 			include (SECTIONS.'recipe.inc.php');
+					if ($_SESSION['allowProcedure'] == "Y") 		include (SECTIONS.'recipe_procedure.inc.php');
+					if ($_SESSION['allowFermentation'] == "Y") 		include (SECTIONS.'recipe_fermentation.inc.php');
+					if ($_SESSION['allowComments'] == "Y") 			include (SECTIONS.'recipe_notes.inc.php');
 				}
 
 				elseif ($page == "brewblog-list") 					include (SECTIONS.'brewblog_list.inc.php');
 				elseif ($page == "recipe-list") 					include (SECTIONS.'recipe_list.inc.php');
 				elseif ($page == "awards-list") 					include (SECTIONS.'awards_list.inc.php');
 				elseif ($page == "login") 							include (SECTIONS.'login.inc.php');
-				elseif ($page == "tools") 							include (SECTIONS.'tools.inc.php');
+				// elseif ($page == "tools") 							include (SECTIONS.'tools.inc.php');
 				elseif ($page == "about") 							include (SECTIONS.'about.inc.php');
 				elseif ($page == "reference") 						include (SECTIONS.'reference.inc.php');
-				elseif (($row_pref['allowCalendar'] == "Y") && ($page == "calendar")) 	include (SECTIONS.'calendar.inc.php');
-				elseif (($row_pref['allowCalendar'] == "N") && ($page == "calendar")) 	echo "<p class=\"error\">This feature has been disabled by the site administrator.</p>";
-				elseif (($row_pref['mode'] == "2") && ($page == "members")) 				include(SECTIONS.'memberList.inc.php');
-				elseif (($row_pref['mode'] == "2") && ($page == "profile")) 				include (SECTIONS.'profile.inc.php');
-				elseif (($row_pref['mode'] == "2") && ($page == "news"))  				include (SECTIONS.'news.inc.php');
+				elseif (($_SESSION['allowCalendar'] == "Y") && ($page == "calendar")) 	include (SECTIONS.'calendar.inc.php');
+				elseif (($_SESSION['allowCalendar'] == "N") && ($page == "calendar")) 	echo "<p class=\"error\">This feature has been disabled by the site administrator.</p>";
+				elseif (($_SESSION['mode'] == "2") && ($page == "members")) 				include(SECTIONS.'memberList.inc.php');
+				elseif (($_SESSION['mode'] == "2") && ($page == "profile")) 				include (SECTIONS.'profile.inc.php');
+				elseif (($_SESSION['mode'] == "2") && ($page == "news"))  				include (SECTIONS.'news.inc.php');
 
 
 			?>
@@ -231,21 +237,14 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
     <!-- ./Public Pages -->
     <?php } ?>
 
-
-
-
-
-
-
-
     <!-- Footer -->
     <footer class="footer hidden-xs hidden-sm hidden-md">
-    	<div class="navbar <?php echo $nav_container; ?> navbar-fixed-bottom bcoem-footer">
+    	<div class="navbar <?php echo $nav_container; ?> navbar-fixed-bottom bb-footer">
             <div class="<?php echo $container_main; ?> text-center">
                 <p class="navbar-text col-md-12 col-sm-12 col-xs-12 text-muted small"><?php include (INCLUDES.'footer.inc.php'); ?></p>
             </div>
     	</div>
-    </footer><!-- ./footer -->
+    </footer>
 	<!-- ./ Footer -->
 
 </body>

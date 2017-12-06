@@ -1,48 +1,55 @@
 <script>
 $(document).ready(function() {
     $('#carbChart').DataTable( {
-        //"scrollY": "300px",
-  		//"scrollCollapse": true,
-  		"scrollX": true,
-		"paging": false, 
-		"lengthChange": false, 
-		"ordering": false,
-		"dom": 't'
+      "scrollX": true,
+	"paging": false,
+	"lengthChange": false,
+	"ordering": false,
+	"dom": 't'
     } );
 } );
-
 </script>
-
-<h2>Typical CO<sub>2</sub> Saturation by Style (in volumes)</h2>
-<table class="dataTable">
-<tr>
-    <td class="dataLabelLeft">English Ales</td>
-    <td class="data" nowrap>1.5 - 2.0</td>
-    <td class="data" nowrap>&nbsp;</td>
-    <td class="dataLabel">European Lagers</td>
-    <td class="data" nowrap>2.2 - 2.7</td>
-</tr>
-<tr>
-    <td class="dataLabelLeft">Stout/Porter</td>
-    <td class="data" nowrap>1.7 - 2.3</td>
-    <td class="data" nowrap>&nbsp;</td>
-    <td class="dataLabel">American Ales/Lagers</td>
-    <td class="data" nowrap>2.2 - 2.7</td>
-</tr>
-<tr>
-    <td class="dataLabelLeft">Belgian Ales</td>
-    <td class="data" nowrap>1.9 - 2.4</td>
-    <td class="data" nowrap>&nbsp;</td>
-    <td class="dataLabel">Lambic</td>
-    <td class="data" nowrap>2.4 - 2.8</td>
-</tr>
-<tr>
-    <td class="dataLabelLeft">Wheat Beer</td>
-    <td class="data" nowrap>3.3 - 4.5</td>
-    <td class="data" nowrap>&nbsp;</td>
-    <td class="dataLabel">Fruit Lambic</td>
-    <td class="data" nowrap>3.0 - 4.5</td>
-</tr>
+<h2>Carbonation Chart</h2>
+<table class="table">
+      <thead>
+            <tr>
+                  <th width="30%">Type</th>
+                  <th width="15%">CO2 (Vols)</th>
+                  <th width="10%"></th>
+                  <th width="30%">Type</th>
+                  <th width="15%">CO2 (Vols)</th>
+            </tr>
+      </thead>
+      <tbody>
+            <tr>
+                <td>English Ales</td>
+                <td>1.5 - 2.0</td>
+                <td>&nbsp;</td>
+                <td>European Lagers</td>
+                <td>2.2 - 2.7</td>
+            </tr>
+            <tr>
+                <td>Stout/Porter</td>
+                <td>1.7 - 2.3</td>
+                <td>&nbsp;</td>
+                <td>American Ales/Lagers</td>
+                <td>2.2 - 2.7</td>
+            </tr>
+            <tr>
+                <td>Belgian Ales</td>
+                <td>1.9 - 2.4</td>
+                <td>&nbsp;</td>
+                <td>Lambic</td>
+                <td>2.4 - 2.8</td>
+            </tr>
+            <tr>
+                <td>Wheat Beer</td>
+                <td>3.3 - 4.5</td>
+                <td>&nbsp;</td>
+                <td>Fruit Lambic</td>
+                <td>3.0 - 4.5</td>
+            </tr>
+      </tbody>
 </table>
 <table id="carbChart" class="table table-striped table-bordered small">
     <thead>
@@ -478,7 +485,7 @@ $(document).ready(function() {
       <td>4.04</td>
     </tr>
     <tr>
-      <td>42</td>
+      <th>42&deg;F</th>
       <td>1.39</td>
       <td>1.48</td>
       <td>1.57</td>
@@ -511,7 +518,7 @@ $(document).ready(function() {
       <td>3.97</td>
     </tr>
     <tr>
-      <td>43</td>
+      <th>43&deg;F</th>
       <td>1.37</td>
       <td>1.46</td>
       <td>1.54</td>
@@ -544,7 +551,7 @@ $(document).ready(function() {
       <td>3.91</td>
     </tr>
     <tr>
-      <td>44</td>
+      <th>44&deg;F</th>
       <td>1.35</td>
       <td>1.43</td>
       <td>1.52</td>
@@ -577,7 +584,7 @@ $(document).ready(function() {
       <td>3.84</td>
     </tr>
     <tr>
-      <td>45</td>
+      <th>45&deg;F</th>
       <td>1.32</td>
       <td>1.41</td>
       <td>1.49</td>
@@ -610,7 +617,7 @@ $(document).ready(function() {
       <td>3.79</td>
     </tr>
     <tr>
-      <td>46</td>
+      <th>46&deg;F</th>
       <td>1.28</td>
       <td>1.37</td>
       <td>1.45</td>
@@ -643,7 +650,7 @@ $(document).ready(function() {
       <td>3.74</td>
     </tr>
     <tr>
-      <td>47</td>
+      <th>47&deg;F</th>
       <td>1.26</td>
       <td>1.34</td>
       <td>1.42</td>
@@ -676,7 +683,7 @@ $(document).ready(function() {
       <td>3.68</td>
     </tr>
     <tr>
-      <td>48</td>
+      <th>48&deg;F</th>
       <td>1.23</td>
       <td>1.31</td>
       <td>1.39</td>
@@ -709,7 +716,7 @@ $(document).ready(function() {
       <td>3.63</td>
     </tr>
     <tr>
-      <td>49</td>
+      <th>49&deg;F</th>
       <td>1.21</td>
       <td>1.29</td>
       <td>1.37</td>
@@ -742,7 +749,7 @@ $(document).ready(function() {
       <td>3.56</td>
     </tr>
     <tr>
-      <td>50</td>
+      <th>50&deg;F</th>
       <td>1.18</td>
       <td>1.26</td>
       <td>1.34</td>
@@ -775,7 +782,7 @@ $(document).ready(function() {
       <td>3.49</td>
     </tr>
     <tr>
-      <td>51</td>
+      <th>51&deg;F</th>
       <td>1.18</td>
       <td>1.26</td>
       <td>1.34</td>
@@ -808,7 +815,7 @@ $(document).ready(function() {
       <td>3.42</td>
     </tr>
     <tr>
-      <td>52</td>
+      <th>52&deg;F</th>
       <td>1.16</td>
       <td>1.23</td>
       <td>1.31</td>
@@ -841,7 +848,7 @@ $(document).ready(function() {
       <td>3.37</td>
     </tr>
     <tr>
-      <td>53</td>
+      <th>53&deg;F</th>
       <td>1.14</td>
       <td>1.21</td>
       <td>1.29</td>
@@ -874,7 +881,7 @@ $(document).ready(function() {
       <td>3.31</td>
     </tr>
     <tr>
-      <td>54</td>
+      <th>54&deg;F</th>
       <td>1.12</td>
       <td>1.19</td>
       <td>1.27</td>
@@ -907,7 +914,7 @@ $(document).ready(function() {
       <td>3.24</td>
     </tr>
     <tr>
-      <td>55</td>
+      <th>55&deg;F</th>
       <td>1.10</td>
       <td>1.17</td>
       <td>1.24</td>
@@ -940,7 +947,7 @@ $(document).ready(function() {
       <td>3.18</td>
     </tr>
     <tr>
-      <td>56</td>
+      <th>56&deg;F</th>
       <td>1.07</td>
       <td>1.15</td>
       <td>1.22</td>
@@ -973,7 +980,7 @@ $(document).ready(function() {
       <td>3.13</td>
     </tr>
     <tr>
-      <td>57</td>
+      <th>57&deg;F</th>
       <td>1.05</td>
       <td>1.12</td>
       <td>1.19</td>
@@ -1006,7 +1013,7 @@ $(document).ready(function() {
       <td>3.08</td>
     </tr>
     <tr>
-      <td>58</td>
+      <th>58&deg;F</th>
       <td>1.03</td>
       <td>1.10</td>
       <td>1.17</td>
@@ -1039,7 +1046,7 @@ $(document).ready(function() {
       <td>3.02</td>
     </tr>
     <tr>
-      <td>59</td>
+      <th>59&deg;F</th>
       <td>1.02</td>
       <td>1.09</td>
       <td>1.16</td>
@@ -1072,7 +1079,7 @@ $(document).ready(function() {
       <td>2.97</td>
     </tr>
     <tr>
-      <td>60</td>
+      <th>60&deg;F</th>
       <td>1.01</td>
       <td>1.08</td>
       <td>1.15</td>
@@ -1105,7 +1112,7 @@ $(document).ready(function() {
       <td>2.92</td>
     </tr>
     <tr>
-      <td>61</td>
+      <th>61&deg;F</th>
       <td>0.99</td>
       <td>1.05</td>
       <td>1.12</td>
@@ -1138,7 +1145,7 @@ $(document).ready(function() {
       <td>2.85</td>
     </tr>
     <tr>
-      <td>62</td>
+      <th>62&deg;F</th>
       <td>0.96</td>
       <td>1.02</td>
       <td>1.09</td>
@@ -1171,7 +1178,7 @@ $(document).ready(function() {
       <td>2.78</td>
     </tr>
     <tr>
-      <td>63</td>
+      <th>63&deg;F</th>
       <td>0.93</td>
       <td>0.99</td>
       <td>1.06</td>
@@ -1204,7 +1211,7 @@ $(document).ready(function() {
       <td>2.71</td>
     </tr>
     <tr>
-      <td>64</td>
+      <th>64&deg;F</th>
       <td>0.91</td>
       <td>0.97</td>
       <td>1.03</td>
@@ -1237,7 +1244,7 @@ $(document).ready(function() {
       <td>2.64</td>
     </tr>
     <tr>
-      <td>65</td>
+      <th>65&deg;F</th>
       <td>0.88</td>
       <td>0.94</td>
       <td>1.00</td>
@@ -1270,7 +1277,7 @@ $(document).ready(function() {
       <td>2.58</td>
     </tr>
     <tr>
-      <td>66</td>
+      <th>66&deg;F</th>
       <td>0.85</td>
       <td>0.91</td>
       <td>0.97</td>
@@ -1303,7 +1310,7 @@ $(document).ready(function() {
       <td>2.51</td>
     </tr>
     <tr>
-      <td>67</td>
+      <th>67&deg;F</th>
       <td>0.83</td>
       <td>0.88</td>
       <td>0.94</td>
@@ -1336,7 +1343,7 @@ $(document).ready(function() {
       <td>2.44</td>
     </tr>
     <tr>
-      <td>68</td>
+      <th>68&deg;F</th>
       <td>0.80</td>
       <td>0.85</td>
       <td>0.91</td>
@@ -1369,7 +1376,7 @@ $(document).ready(function() {
       <td>2.37</td>
     </tr>
     <tr>
-      <td>69</td>
+      <th>69&deg;F</th>
       <td>0.77</td>
       <td>0.83</td>
       <td>0.88</td>
@@ -1402,7 +1409,7 @@ $(document).ready(function() {
       <td>2.30</td>
     </tr>
     <tr>
-      <td>70</td>
+      <th>70&deg;F</th>
       <td>0.75</td>
       <td>0.80</td>
       <td>0.85</td>

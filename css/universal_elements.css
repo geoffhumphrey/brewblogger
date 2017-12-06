@@ -6,39 +6,39 @@
 	margin: 0;
 }
 
-#LeftAlign 	{ 
-	float: left; 
+#LeftAlign 	{
+	float: left;
 }
 
-#RightAlign { 
-	float: right; 
-} 
-
-.left {								
-	text-align: left;					
+#RightAlign {
+	float: right;
 }
 
-.right {						
-	text-align: right;					
+.left {
+	text-align: left;
 }
 
-.center {						
-	text-align: center;				
+.right {
+	text-align: right;
 }
 
-.submit { 
-	font-family: inherit; 
-	font-size: 1em; 
+.center {
+	text-align: center;
 }
 
-.radiobutton { 
-	border: none; 
+.submit {
+	font-family: inherit;
+	font-size: 1em;
+}
+
+.radiobutton {
+	border: none;
 	padding-bottom:	2px;
 }
 
-.text_area	{ 
+.text_area	{
 	font-family: inherit;
-	font-size: 1em; 
+	font-size: 1em;
 }
 
 /* ***************************** Universal Nav Elements ***************************** */
@@ -47,7 +47,7 @@
 	margin-top: 0px;
 	font-size: 90%;
 }
-#nav ul 
+#nav ul
 {
 	padding: 0;
 	margin: 0;
@@ -68,13 +68,13 @@
 	width: 100%;
 	margin: 0 0 20px 0;
 	display: block;
-	
+
 }
 .split-left-two-column {
 	float: left;
 	width: 280px;
 	padding: 10px 0 10px 0;
-	
+
 }
 
 .split-right-two-column {
@@ -84,24 +84,24 @@
 }
 
 .data-item-container {
-	padding: 0 0 1.2em 0;	
+	padding: 0 0 1.2em 0;
 }
 
 .data-label {
-	margin-right: 10px; 
+	margin-right: 10px;
 	min-width: 100px;
 	white-space: nowrap;
-	display: block; 
-	float: left; 
-	text-align: left; 
+	display: block;
+	float: left;
+	text-align: left;
 	position: relative;
 	font-weight: bold;
 	vertical-align: middle;
 }
 
-.data-regular {	
-	display: block; 
-	text-align: left; 
+.data-regular {
+	display: block;
+	text-align: left;
 	position: relative;
 	vertical-align: middle;
 }
@@ -144,7 +144,7 @@
 	white-space: nowrap;
 }
 
-.dataLeft {					/* use in conjunction with the .data class  */			
+.dataLeft {					/* use in conjunction with the .data class  */
 	padding: 5px 0px 5px 0px;
 }
 
@@ -162,7 +162,7 @@
 	padding: 5px 3px 5px 0px;
 }
 
-.data-icon {				/* use in conjunction with the .data class  */	
+.data-icon {				/* use in conjunction with the .data class  */
 	padding: 5px 0px 5px 0px;
 	width: 1%;
 	white-space: nowrap;
@@ -310,26 +310,24 @@ div.menu div.menuItemSep {
 	width: 100%;
 	height: auto;
 	border-collapse: collapse;
-	margin: 2px 0px 1px 0px;
-	padding: 10px;
-	text-align: center;
+	border: 1px solid #000;
 }
 
-.colorTableRef2 {				/* UNIVERSAL */	
-	height: 25px;
+.colorTableRef2, .colorTableRef3 {				/* UNIVERSAL */
+	display: table-cell;
+	width: 20%;
+	height: 85px;
 	padding: 10px;
 	text-align: center;
+	vertical-align: middle; !important;
 }
 
-.colorTableRef3 {				/* UNIVERSAL */	
-	height: 25px;
-	padding: 10px;
-	text-align: center;
+.colorTableRef3 {				/* UNIVERSAL */
 	color: #FFFFFF;
 }
 
 
-#colorDisplay {					/* UNIVERSAL */	
+#colorDisplay {					/* UNIVERSAL */
 	float: right;
 	position: absolute;
 	margin-left: 75px;
@@ -346,7 +344,7 @@ div.menu div.menuItemSep {
 /* ***************************** Help Elements *****************************  */
 
 
-#help {						
+#help {
 	float: left;
 	position: absolute;
 	margin-left: -18px;
@@ -355,13 +353,13 @@ div.menu div.menuItemSep {
 	font-size: 80%;
 }
 
-#helpInline {				
+#helpInline {
 	width: 1%;
 	white-space: nowrap;
 	padding: 3px;
 }
 
-#icon {						
+#icon {
 	float: left;
 	position: absolute;
 	margin-top: 5px;
@@ -376,7 +374,7 @@ div.menu div.menuItemSep {
 	margin-bottom: 10px;
 }
 
-.labelImage {			
+.labelImage {
 	width: 225px;
 	border: 1px solid #000000;
 }
@@ -384,27 +382,27 @@ div.menu div.menuItemSep {
 /* ***************************** Error Elements *****************************  */
 
 .red { 					/* UNIVERSAL */
-	color: #FF0000 
+	color: #FF0000
 }
 
-.error { 				
-	padding-bottom: 10px; 
-	text-align: left; 
-	font-weight: bold; 
-	font-size: 1.1em; 
-	color: #FF0000; 
-} 
+.error {
+	padding-bottom: 10px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #FF0000;
+}
 
 #hide {
 	display: none;
 }
 
-.bdr1L_black { 
-	border-left: 1px solid #000000; 
+.bdr1L_black {
+	border-left: 1px solid #000000;
 }
 
-.bdr1B_black { 
-	border-bottom: 1px solid #000000; 
+.bdr1B_black {
+	border-bottom: 1px solid #000000;
 }
 
 #quickEdit  { padding: 5px; width: 229px; }
@@ -445,22 +443,22 @@ div.menu div.menuItemSep {
 
 /* Add Elemnet Buttons - First used in the Bitterness calculator, v 2.3.2 */
 
-.button, 
-.button:link, 
-.button:visited, 
-.button:hover, 
-.button:active, 
+.button,
+.button:link,
+.button:visited,
+.button:hover,
+.button:active,
 .button:focus  {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
 }
 
-.add-button, 
-.add-button:link, 
-.add-button:visited, 
-.add-button:hover, 
-.add-button:active, 
+.add-button,
+.add-button:link,
+.add-button:visited,
+.add-button:hover,
+.add-button:active,
 .add-button:focus  {
 	border: none;
 	background-color: transparent;
@@ -471,11 +469,11 @@ div.menu div.menuItemSep {
 	cursor: pointer;
 }
 
-.update-button, 
-.update-button:link, 
-.update-button:visited, 
-.update-button:hover, 
-.update-button:active, 
+.update-button,
+.update-button:link,
+.update-button:visited,
+.update-button:hover,
+.update-button:active,
 .update-button:focus  {
 	border: none;
 	background-color: transparent;
@@ -486,8 +484,8 @@ div.menu div.menuItemSep {
 	cursor: pointer;
 }
 
-.webcalSubscribe { 
-    float: right; 
+.webcalSubscribe {
+    float: right;
     background-image: url(../images/calendar.png);
     background-repeat: no-repeat;
     padding-left: 20px;

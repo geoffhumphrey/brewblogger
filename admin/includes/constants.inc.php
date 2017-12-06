@@ -4,7 +4,13 @@
  * Description: Collection of constants used throughout BB.
  */
 
-defined('MAX_HOPS') or define('MAX_HOPS', 15);
-defined('MAX_ADJ') or define('MAX_ADJ', 9);
-defined('MAX_GRAINS') or define('MAX_GRAINS', 15);
-defined('MAX_EXT') or define('MAX_EXT', 5);
+define('MAX_HOPS', 15);
+define('MAX_ADJ', 9);
+define('MAX_GRAINS', 15);
+define('MAX_EXT', 5);
+define('MAX_SIDEBAR_BLOGS', 50);
+define('MAX_SIDEBAR_ALPHA', 20);
+
+$admin_enable = FALSE;
+
+?>

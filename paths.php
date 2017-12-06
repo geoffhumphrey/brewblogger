@@ -35,7 +35,7 @@ define('MAINT', FALSE);
 define('TESTING', FALSE);
 define('SINGLE', FALSE);
 define('DEBUG', TRUE);
-define('DEBUG_SESSION_VARS', TRUE);
+define('DEBUG_SESSION_VARS', FALSE);
 define('FORCE_UPDATE', FALSE);
 define('SEF', FALSE);
 

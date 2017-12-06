@@ -1,5 +1,5 @@
-<?php 
-if ($row_pref['measColor'] == "EBC") {
+<?php
+if ($_SESSION['measColor'] == "EBC") {
   $srm = ebc_to_srm($row_featured['brewLovibond']);
 } else {
   $srm = ltrim($row_featured['brewLovibond'], "0");

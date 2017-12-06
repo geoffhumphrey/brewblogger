@@ -25,7 +25,7 @@
 		</a>
 		<div class="collapse" id="brewblogsMenu">
 			<div class="well">
-				<p>Manage</p>
+				<p><a href="<?php echo build_public_url("admin", "brewblogs", "manage", "brewing", "all", "default", $base_url); ?>">Manage</a></p>
 				<p>Add</p>
 				<p>Import</p>
 				<p>Review</p>
@@ -39,7 +39,7 @@
 		</a>
 		<div class="collapse" id="recipesMenu">
 			<div class="well">
-				<p>Manage</p>
+				<p><a href="<?php echo build_public_url("admin", "recipes", "manage", "recipes", "all", "default", $base_url); ?>">Manage</a></p>
 				<p>Add</p>
 				<p>Import</p>
 			</div>
@@ -53,8 +53,8 @@
 		</a>
 		<div class="collapse" id="profileMenu">
 			<div class="well">
-				<p>Edit</p>
-				<p>Add/Change Profile Pic</p>
+				<p>Manage</p>
+				<p>Personal Defaults</p>
 			</div>
 		</div>
 	</div>
@@ -85,12 +85,30 @@
 		</a>
 		<div class="collapse" id="profilesMenu">
 			<div class="well">
-				<p>Equipment</p>
-				<p>Mash</p>
-				<p>Water</p>
-				<p>Fermentation</p>
-				<p>Carbonation</p>
-				<p>Style</p>
+				<p><a role="button" data-toggle="collapse" href="#profileEquip" aria-expanded="false" aria-controls="profileEquip">Equipment</a></p>
+				<div class="collapse bb-account-info" id="profileEquip">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#profileMash" aria-expanded="false" aria-controls="profileMash">Mash</a></p>
+				<div class="collapse bb-account-info" id="profileMash">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#profileFerm" aria-expanded="false" aria-controls="profileFerm">Fermentation</a></p>
+				<div class="collapse bb-account-info" id="profileFerm">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#profileWater" aria-expanded="false" aria-controls="profileWater">Water</a></p>
+				<div class="collapse bb-account-info" id="profileWater">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#profileCarb" aria-expanded="false" aria-controls="profileCarb">Carbonation</a></p>
+				<div class="collapse bb-account-info" id="profileCarb">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#profileStyles" aria-expanded="false" aria-controls="profileStyles">Styles</a></p>
+				<div class="collapse bb-account-info" id="profileStyles">
+					<small>Manage | Add</small>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -102,11 +120,34 @@
 		</a>
 		<div class="collapse" id="ingredientsMenu">
 			<div class="well">
-				<p>Malts and Grains</p>
-				<p>Hops</p>
-				<p>Water</p>
-				<p>Yeast</p>
-				<p>Miscellaneous</p>
+				<p><a role="button" data-toggle="collapse" href="#ingMalts" aria-expanded="false" aria-controls="ingMalts">Malts and Grains</a></p>
+				<div class="collapse bb-account-info" id="ingMalts">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingExtracts" aria-expanded="false" aria-controls="ingExtracts">Extracts</a></p>
+				<div class="collapse bb-account-info" id="ingExtracts">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingHops" aria-expanded="false" aria-controls="ingHops">Hops</a></p>
+				<div class="collapse bb-account-info" id="ingHops">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingWater" aria-expanded="false" aria-controls="ingWater">Water</a></p>
+				<div class="collapse bb-account-info" id="ingWater">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingYeast" aria-expanded="false" aria-controls="ingYeast">Yeast</a></p>
+				<div class="collapse bb-account-info" id="ingYeast">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingAdjuncts" aria-expanded="false" aria-controls="ingAdjuncts">Adjuncts</a></p>
+				<div class="collapse bb-account-info" id="ingAdjuncts">
+					<small>Manage | Add</small>
+				</div>
+				<p><a role="button" data-toggle="collapse" href="#ingMisc" aria-expanded="false" aria-controls="ingMisc">Miscellaneous</a></p>
+				<div class="collapse bb-account-info" id="ingMisc">
+					<small>Manage | Add</small>
+				</div>
 			</div>
 		</div>
 	</div>

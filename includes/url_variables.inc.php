@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 ---------------------------------------------
 Post-UI Conversion Pattern for public pages
@@ -30,7 +30,7 @@ if (isset($_GET['page'])) {
 
 $section = "default";
 if (isset($_GET['section'])) {
-  	$section = (get_magic_quotes_gpc()) ? $_GET['section'] : addslashes($_GET['section']);
+  $section = (get_magic_quotes_gpc()) ? $_GET['section'] : addslashes($_GET['section']);
 }
 
 $filter = "all";

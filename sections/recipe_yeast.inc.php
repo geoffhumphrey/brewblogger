@@ -21,6 +21,7 @@
 </table>
 <?php }
 if (!empty($row_log['brewYeastProfile'])) { ?>
+<!-- If yeast profile specified -->
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -48,57 +49,57 @@ if (!empty($row_log['brewYeastProfile'])) { ?>
         <h4 class="modal-title" id="yeastModalLabel"><?php echo $row_yeast_profiles['yeastName']; ?></h4>
       </div>
       <div class="modal-body">
-            <?php 
+            <?php
 			if (!empty($row_yeast_profiles['yeastLab'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Manufacturer:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastLab']; ?></div>
             </div>
-            <?php } 
-            if (!empty($row_yeast_profiles['yeastProdID'])) { ?>            
-            <div class="row bcoem-account-info">
+            <?php }
+            if (!empty($row_yeast_profiles['yeastProdID'])) { ?>
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Product ID:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastProdID']; ?></div>
             </div>
-            <?php } 
-            if (!empty($row_yeast_profiles['yeastType'])) { ?>            
-            <div class="row bcoem-account-info">
+            <?php }
+            if (!empty($row_yeast_profiles['yeastType'])) { ?>
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Type:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastType']; ?></div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_yeast_profiles['yeastFloc'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Flocculation:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastFloc']; ?></div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_yeast_profiles['yeastAtten'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Attenuation:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastAtten']; ?>%</div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_yeast_profiles['yeastTolerance'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Alcohol Tolerance:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastTolerance']; ?></div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_yeast_profiles['yeastMinTemp'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Temperature Range:</strong></div>
-                <div class="col-xs-12 col-sm-9 col-md-9"><?php if ($row_pref['measTemp'] == "C") { echo round(((($row_yeast_profiles['yeastMinTemp'] - 32) / 9) * 5), 0)."&ndash;"; echo round(((($row_yeast_profiles['yeastMaxTemp'] - 32) / 9) * 5), 0); } else { echo $row_yeast_profiles['yeastMinTemp']."&ndash;".$row_yeast_profiles['yeastMaxTemp']; } ?>&deg;<?php echo $row_pref['measTemp']; ?></div>
+                <div class="col-xs-12 col-sm-9 col-md-9"><?php if ($_SESSION['measTemp'] == "C") { echo round(((($row_yeast_profiles['yeastMinTemp'] - 32) / 9) * 5), 0)."&ndash;"; echo round(((($row_yeast_profiles['yeastMaxTemp'] - 32) / 9) * 5), 0); } else { echo $row_yeast_profiles['yeastMinTemp']."&ndash;".$row_yeast_profiles['yeastMaxTemp']; } ?>&deg;<?php echo $_SESSION['measTemp']; ?></div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_log['brewYeastAmount'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Amount:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_log['brewYeastAmount']; ?></div>
             </div>
-            <?php } 
+            <?php }
             if (!empty($row_yeast_profiles['yeastNotes'])) { ?>
-            <div class="row bcoem-account-info">
+            <div class="row bb-account-info">
                 <div class="col-xs-12 col-sm-3 col-md-3"><strong>Notes:</strong></div>
                 <div class="col-xs-12 col-sm-9 col-md-9"><?php echo $row_yeast_profiles['yeastNotes']; ?></div>
             </div>

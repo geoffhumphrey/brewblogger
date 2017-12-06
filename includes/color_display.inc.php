@@ -1,16 +1,11 @@
 <?php
 
-$brewColor = ($page == "recipe-list") ? $row_recipeList['brewLovibond'] : $row_log['brewLovibond'];
+$brewColor = ($page == "recipe-list") ? $row_log['brewLovibond'] : $row_log['brewLovibond'];
+$color        = $row_log['brewLovibond'];
+$colorFormula = ($row_log['brewColorFormula'] != "") ? $row_log['brewColorFormula'] : "formula unknown";
 
-if ($page == "recipe-list") {
-  $color        = $row_recipeList['brewLovibond'];
-  $colorFormula = ($row_recipeList['brewColorFormula'] != "") ? $row_recipeList['brewColorFormula'] : "formula unknkown";
-} else {
-  $color        = $row_log['brewLovibond'];
-  $colorFormula = ($row_log['brewColorFormula'] != "") ? $row_log['brewColorFormula'] : "formula unknown";
-}
 
-if ($row_pref['measColor'] == "EBC") {
+if ($_SESSION['measColor'] == "EBC") {
   $srm = ebc_to_srm($color);
 } else {
   $srm = ltrim($color, "0");

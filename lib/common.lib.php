@@ -8,7 +8,7 @@
 
 
 include (INCLUDES.'titles.inc.php');
-include (INCLUDES.'messages.inc.php');
+//include (INCLUDES.'messages.inc.php');
 include (INCLUDES.'scrubber.inc.php');
 
 $agent = $_SERVER['HTTP_USER_AGENT'];
@@ -27,6 +27,35 @@ else {
 	$color2 = $row_colorChoose['themeColor2'];
 	$color = $color1;
 }
+
+function check_setup($tablename, $database) {
+
+	require(CONFIG.'config.php');
+	mysqli_select_db($connection,$database);
+
+	$query_log = sprintf("SELECT COUNT(*) AS count FROM information_schema.tables WHERE table_schema = '%s' AND table_name = '%s'",$database, $tablename);
+	$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+	$row_log = mysqli_fetch_assoc($log);
+
+	if ($row_log['count'] == 0) return FALSE;
+	else return TRUE;
+
+}
+
+function check_update($column_name, $table_name) {
+
+	require(CONFIG.'config.php');
+	mysqli_select_db($connection,$database);
+
+	$query_log = sprintf("SHOW COLUMNS FROM `%s` LIKE '%s'",$table_name,$column_name);
+	$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+	$row_log_exists = mysqli_num_rows($log);
+
+    if ($row_log_exists) return TRUE;
+	else return FALSE;
+
+}
+
 
 // ---------------------------- Check for mobile browsers ----------------------------------
 // DEPRECATED
@@ -409,17 +438,17 @@ function display_place($place,$method) {
 	}
 	if ($method == "2") {
 		switch($place){
-			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "4": $place = "<span class=\"fa fa-lg fa-trophy text-purple hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "4": $place = "<span class=\"fa fa-lg fa-trophy text-purple\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "honMen": $place = "<span class=\"fa fa-lg fa-trophy text-teal hidden-xs\"></span> HM";
+			case "honMen": $place = "<span class=\"fa fa-lg fa-trophy text-teal\"></span> HM";
 			break;
-			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold hidden-xs\"></span> Best of Show";
+			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold\"></span> Best of Show";
 			break;
 			default: $place = "Entry Only";
 			}
@@ -427,17 +456,17 @@ function display_place($place,$method) {
 
 	if ($method == "3") {
 		switch($place){
-			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze hidden-xs\"></span> ".addOrdinalNumberSuffix($place);
+			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "honMen":  $place = "<span class=\"fa fa-lg fa-trophy text-teal hidden-xs\"></span> HM";
+			case "honMen":  $place = "<span class=\"fa fa-lg fa-trophy text-teal\"></span> HM";
 			break;
-			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold hidden-xs\"></span> BOS";
+			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold\"></span> BOS";
 			break;
-			default: $place = "<span class=\"fa fa-lg fa-trophy text-forest-green hidden-xs\"></span> EO";
+			default: $place = "<span class=\"fa fa-lg fa-trophy text-forest-green\"></span> EO";
 			}
 	}
 
@@ -573,4 +602,38 @@ function build_public_url($page, $section, $action, $dbTable, $filter, $id, $bas
 	}
 }
 
+function award_count($source,$id) {
+
+	require(CONFIG.'config.php');
+	mysqli_select_db($connection,$database);
+
+	if ($source == "brewblog-list") $awardBrewID = "b".$id;
+	if ($source == "recipe-list") $awardBrewID = "r".$id;
+	$query_awards = sprintf("SELECT COUNT(*) as 'count' FROM awards WHERE awardBrewID='%s'", $awardBrewID);
+	$awards = mysqli_query($connection,$query_awards) or die (mysqli_error($connection));
+	$row_awards = mysqli_fetch_assoc($awards);
+
+	return $row_awards['count'];
+
+	//return $query_awards;
+
+}
+
+function get_session_array_values($haystack,$needle,$needle_value) {
+    $arrIt = new RecursiveIteratorIterator(new RecursiveArrayIterator($haystack));
+    $return = "";
+    foreach ($arrIt as $sub) {
+        $subArray = $arrIt->getSubIterator();
+        if ($subArray[$needle] === $needle_value) {
+            $return[] = iterator_to_array($subArray);
+        }
+    }
+    return $return;
+}
+
+// print_r($_SESSION['adjuncts']);
+// $outputArray = get_session_array_values($_SESSION['adjuncts'],"adjunctName","Grits");
+// $outputArray = get_session_array_values($_SESSION['adjuncts'],"id","4");
+// if (isset($outputArray)) print_r($outputArray);
+// if (is_array($outputArray)) echo $outputArray[0]['id'];
 ?>

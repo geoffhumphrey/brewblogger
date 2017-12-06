@@ -72,7 +72,7 @@ require_once(VENDORS_DIR . 'icalcreator' . DIRECTORY_SEPARATOR . 'iCalcreator.cl
 $cal = new vcalendar();
 $cal->setMethod('PUBLISH');
 
-mysql_select_db($database_brewing, $brewing);
+
 // This is a fun one, we add all the dates together to find out if the beer is going to have any upcoming dates in the future:
 $query_brewLogs =<<<EOSQL
 SELECT id, brewBrewerId, brewName, brewDate, brewPrimary, brewSecondary, brewTertiary, brewLager, brewAge
