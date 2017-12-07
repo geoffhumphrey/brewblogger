@@ -49,6 +49,7 @@ else $base_url .= "http://";
 // ONLY alter this line if needed (see above):
 $base_url .= $_SERVER['SERVER_NAME'].$sub_directory."/";
 
+<<<<<<< HEAD
 // Set session expiration variable (minutes)
 $session_expire_after = 30;
 
