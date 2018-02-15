@@ -48,7 +48,7 @@ function calc_srm_morey($mcu) {
 
 function srm_color($srm,$method) {
 	if ($method == "ebc") $srm = (1.97 * $srm); else $srm = $srm;
-	
+
     if ($srm >= 1 && $srm < 2) $return = "#f3f993";
 	elseif ($srm >= 2 && $srm < 3) $return = "#f5f75c";
 	elseif ($srm >= 3 && $srm < 4) $return = "#f6f513";
@@ -118,7 +118,7 @@ function get_display_color($srm) {
   elseif ($srm >= 28 && $srm < 29) { $displayColor = "#120d0c"; }
   elseif ($srm >= 29 && $srm < 30) { $displayColor = "#100b0a"; }
   elseif ($srm >= 30 && $srm < 31) { $displayColor = "#050b0a"; }
-  elseif ($srm > 31) { $displayColor = "#000000"; }
+  elseif ($srm >= 31) { $displayColor = "#000000"; }
   else { $displayColor = "#ffffff"; }
 
   return $displayColor;

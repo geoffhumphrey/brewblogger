@@ -3,7 +3,7 @@ $thead = "";
 $tbody = "";
 
 $thead .= "<tr>";
-$thead .= "<th>Set</th>";
+if ($filter == "all") $thead .= "<th>Set</th>";
 $thead .= "<th>#</th>";
 $thead .= "<th class=\"min-15\">Style</th>";
 $thead .= "<th class=\"min-15 hidden-xs hidden-sm\">Category</th>";
@@ -15,8 +15,11 @@ $thead .= "<th class=\"hidden-xs hidden-sm\">FG</th>";
 $thead .= "<th class=\"max-30\">Description</th>";
 $thead .= "</tr>";
 
+
 if ($filter == "bjcp2008") $style_set = $_SESSION['styles2008'];
 if ($filter == "bjcp2015") $style_set = $_SESSION['styles2015'];
+if ($filter == "all") $style_set_display = "BJCP Styles";
+else $style_set_display = " ".str_replace("bjcp","BJCP ",$filter)." Styles";
 if ($filter == "all") $style_set = array_merge($_SESSION['styles2008'],$_SESSION['styles2015']);
 
 foreach ($style_set as $row_styles) {
@@ -66,25 +69,26 @@ foreach ($style_set as $row_styles) {
     if (!empty($row_styles['brewStyleEntry'])) $entryReq = "<strong class=\"text-danger\">Entry Instructions:</strong> ".str_replace($replacement1,$replacement2,$row_styles['brewStyleEntry']); else $entryReq = "";
 
     $tbody .= "<tr>";
-    $tbody .= "<td class=\"min-15\">".str_replace("BJCP","BJCP ",$row_styles['brewStyleVersion'])."</td>";
+    if ($filter == "all") $tbody .= "<td class=\"min-15\">".str_replace("BJCP","BJCP ",$row_styles['brewStyleVersion'])."</td>";
     $tbody .= "<td>".$row_styles['brewStyleGroup'].$row_styles['brewStyleNum']."</td>";
     $tbody .= "<td class=\"min-15\">".$row_styles['brewStyle']."</td>";
-    $tbody .= "<td class=\"min-15\">".$categoryName."</td>";
+    $tbody .= "<td class=\"min-15 hidden-xs hidden-sm\">".$categoryName."</td>";
     $tbody .= "<td class=\"hidden-xs hidden-sm\" nowrap>".$ABV."</td>";
     $tbody .= "<td class=\"hidden-xs hidden-sm\" nowrap>".$IBU."</td>";
     $tbody .= "<td class=\"hidden-xs hidden-sm\" nowrap>".$SRM."</td>";
     $tbody .= "<td class=\"hidden-xs hidden-sm\" nowrap>".$OG."</td>";
     $tbody .= "<td class=\"hidden-xs hidden-sm\" nowrap>".$FG."</td>";
-    $tbody .= "<td>";
+    $tbody .= "<td class=\"max-30\">";
     $tbody .= $info;
     if (!empty($comEx)) $tbody .= "<br>".$comEx;
     if (!empty($entryReq)) $tbody .= "<br>".$entryReq;
     $tbody .= "</td>";
     $tbody .= "</tr>";
-}
+
+} // end foreach
 
 ?>
-<h2>BJCP Styles</h2>
+<h2><?php echo $style_set_display; ?></h2>
 <script>
 $(document).ready( function () {
     $('#styles').DataTable({
@@ -94,7 +98,7 @@ $(document).ready( function () {
 		 "pageLength": 50,
 		 "dom": 'fptp',
 		 "columns": [
-			null,
+			<?php if ($filter == "all") { ?>null,<?php } ?>
             null,
             null,
 			{ "type": "natural", targets: 0 },

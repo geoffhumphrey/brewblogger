@@ -14,21 +14,23 @@ if ($section == "styles") {
 
 // ------------------------------- Hops -------------------------------
 if ($section == "hops") {
-
+/*
     $query_styles = "SELECT * FROM hops";
     $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
     $row_styles = mysqli_fetch_assoc($styles);
     $totalRows_styles = mysqli_num_rows($styles);
+*/
 }
 
 // ------------------------------- Grains -------------------------------
 if ($section == "grains") {
 
+/*
     $query_grains = "SELECT * FROM malt";
     $grains = mysqli_query($connection,$query_grains) or die (mysqli_error($connection));
     $row_grains = mysqli_fetch_assoc($grains);
     $totalRows_grains = mysqli_num_rows($grains);
-
+*/
 }
 
 // ------------------------------- Yeast -------------------------------
@@ -65,7 +67,7 @@ if ($section == "yeast") {
 if ($section == "carbonation") include (REFERENCE.'carbonation.inc.php');
 if ($section == "styles") include (REFERENCE.'styles.inc.php');
 if ($section == "color") include (REFERENCE.'color.inc.php');
-if ($section == "hops") { do { include (REFERENCE.'hops.inc.php'); } while ($row_styles = mysqli_fetch_assoc($styles)); }
-if ($section == "grains") { do { include (REFERENCE.'grains.inc.php'); } while ($row_grains = mysqli_fetch_assoc($grains)); }
-if ($section == "yeast") { do { include (REFERENCE.'yeast.inc.php'); } while ($row_yeast = mysqli_fetch_assoc($yeast)); }
+if ($section == "hops") include (REFERENCE.'hops.inc.php');
+if ($section == "grains") include (REFERENCE.'grains.inc.php');
+if ($section == "yeast") include (REFERENCE.'yeast.inc.php');
 ?>

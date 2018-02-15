@@ -2,7 +2,9 @@
 *.xml
 brewblogger.sublime-project
 brewblogger.sublime-workspace
+*.sublime-workspace
 sftp-config.json
 *.sublime-workspace
 sftp-config.json
-sftp-config.json
+ssh-agent.exe.stackdump
+brewblogger.sublime-workspace

@@ -6,7 +6,6 @@ $sqlSelect = "";
 $msgName = "";
 $sourceName = "";
 $icon = "";
-$dbTable = "";
 $source = "";
 $destination = "";
 $action_name = "";
@@ -20,7 +19,6 @@ if (($dbTable == "recipes") || ($source == "recipes") || ($page == "recipe-list"
 	$msgName = "recipe";
 	$sourceName = $_SESSION['menuRecipes'];
 	$icon = "script";
-	$dbTable = "recipes";
 	if ($page != "admin") $source = "recipe";
 	$destination = "recipe";
 }
@@ -31,7 +29,6 @@ if (($dbTable == "brewing") || ($source == "brewing") || ($page == "brewblog-lis
 	$msgName = "log";
 	$sourceName = $_SESSION['menuBrewBlogs'];
 	$icon = "book";
-	$dbTable = "brewing";
 	if ($page != "admin") $source = "brewLog";
 	$destination = "brewblog";
 }
@@ -492,10 +489,9 @@ if (($page == "brewblog") || ($page == "recipe")) {
 
 	$admin_enable_link = "";
 
-	if ($admin_enable) {
-		$admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\"><span class=\"fa fa-cog hidden-print\"></span></a>";
-		include(INCLUDES.'admin_actions.inc.php');
-	}
+	include(INCLUDES.'admin_actions.inc.php');
+
+	if ($admin_enable) $admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\" data-tooltip=\"true\" data-placement=\"bottom\" title=\"Admin Actions\"><span class=\"fa fa-cog hidden-print\"></span></a>";
 
 }
 
@@ -507,9 +503,8 @@ elseif ($page == "brewblog") {
    	else $header_output = "BrewBlog: " . $row_log['brewName'];
 
    	$header_output .= " <small>";
-	$export_beerXML = $base_url."includes/output_beer_xml.inc.php?id=".$row_log['id']."&source=brewLog&brewStyle=".$row_log['brewStyle'];
-	$header_output .= "<a href=\"".$export_beerXML."\"><span class=\"fa fa-file-code-o hidden-print\"></span></a> ";
-	$header_output .= "<a href=\"javascript:window.print()\"><span class=\"fa fa-print hidden-print\"></span></a> ";
+	$header_output .= $actions_links_export_beerXML;
+	$header_output .= $actions_links_print;
 	$header_output .= $admin_enable_link;
 	$header_output .= "</small>";
 
@@ -525,8 +520,8 @@ elseif ($page == "recipe") {
 	if ($_SESSION['mode'] == "1") $header_output = $row_log['brewName'];
     else $header_output =  "Recipe: " . $row_log['brewName'];
     $header_output .= " <small>";
-	$export_beerXML = $base_url."includes/output_beer_xml.inc.php?id=".$row_log['id']."&source=recipe&brewStyle=".$row_log['brewStyle'];
-	$header_output .= "<a href=\"".$export_beerXML."\"><span class=\"fa fa-file-code-o hidden-print\"></span></a> ";
+	$header_output .= $actions_links_export_beerXML;
+	$header_output .= $actions_links_print;
 	$header_output .= $admin_enable_link;
 	$header_output .= "</small>";
 

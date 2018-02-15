@@ -101,6 +101,20 @@ if (isset($_SESSION['loginUsername'])) {
             }
         }
 
+        $query_brewer = sprintf("SELECT * FROM brewer WHERE uid = '%s'", $row_user['id']);
+        $brewer = mysqli_query($connection,$query_brewer) or die (mysqli_error($connection));
+        $row_brewer = mysqli_fetch_assoc($brewer);
+        $totalRows_brewer = mysqli_num_rows($brewer);
+
+        $brewer_columns = array_keys($row_brewer);
+
+        foreach ($brewer_columns as $brewer_column_name) {
+            if (($brewer_column_name != "password") && ($brewer_column_name != "id")) {
+                if (isset($row_brewer[$brewer_column_name])) $_SESSION[$brewer_column_name] = $row_brewer[$brewer_column_name];
+                else $_SESSION[$brewer_column_name] = "";
+            }
+        }
+
         $_SESSION['uid'] = $row_user['id'];
         $_SESSION['user_info_'.$prefix_session] = $prefix_session;
 

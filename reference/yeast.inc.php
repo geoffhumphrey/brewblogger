@@ -37,13 +37,13 @@ $(document).ready(function(){
     <thead>
         <tr>
             <th>Name</th>
-            <th>Type</th>
-            <th>Form</th>
-            <th>Flocculation</th>
-            <th>Attenuation</th>
-            <th>Temperature Range</th>
-            <th>Alcohol Tolerance</th>
-            <th>Max Reuse</th>
+            <th class="hidden-xs hidden-sm hidden-md">Type</th>
+            <th class="hidden-xs hidden-sm hidden-md">Form</th>
+            <th class="hidden-xs">Flocc<span class="hidden-xs hidden-sm hidden-md">ulation</span></th>
+            <th>Atten<span class="hidden-xs hidden-sm hidden-md">uation</span></th>
+            <th class="hidden-xs">Temp<span class="hidden-xs hidden-sm hidden-md">erature</span> Range</th>
+            <th class="hidden-xs">Alc<span class="hidden-xs hidden-sm hidden-md">ohol</span> Tol<span class="hidden-xs hidden-sm hidden-md">erance</span></th>
+            <th class="hidden-xs hidden-sm hidden-md">Max Reuse</th>
             <th>Best For</th>
         </tr>
     </thead>
@@ -51,13 +51,13 @@ $(document).ready(function(){
         <?php do { ?>
         <tr>
             <td><?php echo $row_yeast['yeastLab']." ".$row_yeast['yeastName']; if ($row_yeast['yeastProdID'] != "") echo " - ".$row_yeast['yeastProdID']; ?></td>
-            <td><?php echo $row_yeast['yeastType']; ?></td>
-            <td><?php echo $row_yeast['yeastForm']; ?></td>
-            <td><?php echo $row_yeast['yeastFloc']; ?></td>
+            <td class="hidden-xs hidden-sm hidden-md"><?php echo $row_yeast['yeastType']; ?></td>
+            <td class="hidden-xs hidden-sm hidden-md"><?php echo $row_yeast['yeastForm']; ?></td>
+            <td class="hidden-xs"><?php echo $row_yeast['yeastFloc']; ?></td>
             <td><?php if ($row_yeast['yeastAtten'] != "") echo $row_yeast['yeastAtten']."%"; ?></td>
-            <td><?php if ($row_yeast['yeastMinTemp'] != "") { if ($row_pref['measTemp'] == "C") echo tempconvert($row_yeast['yeastMinTemp'], "C"); else echo $row_yeast['yeastMinTemp']; } if ($row_yeast['yeastMaxTemp'] != "") { echo "-"; if ($row_pref['measTemp'] == "C") echo tempconvert($row_yeast['yeastMaxTemp'], "C"); else echo $row_yeast['yeastMaxTemp']; } echo "&deg;".$row_pref['measTemp']; ?></td>
-            <td><?php echo $row_yeast['yeastTolerance']; ?></td>
-            <td><?php echo $row_yeast['yeastMaxReuse']; ?></td>
+            <td class="hidden-xs"><?php if ($row_yeast['yeastMinTemp'] != "") { if ($_SESSION['measTemp'] == "C") echo tempconvert($row_yeast['yeastMinTemp'], "C"); else echo $row_yeast['yeastMinTemp']; } if ($row_yeast['yeastMaxTemp'] != "") { echo "-"; if ($_SESSION['measTemp'] == "C") echo tempconvert($row_yeast['yeastMaxTemp'], "C"); else echo $row_yeast['yeastMaxTemp']; } echo "&deg;".$_SESSION['measTemp']; ?></td>
+            <td class="hidden-xs"><?php echo $row_yeast['yeastTolerance']; ?></td>
+            <td class="hidden-xs hidden-sm hidden-md"><?php echo $row_yeast['yeastMaxReuse']; ?></td>
             <td><?php echo $row_yeast['yeastBestFor']; ?></td>
         </tr>
         <?php } while ($row_yeast = mysqli_fetch_assoc($yeast)); ?>

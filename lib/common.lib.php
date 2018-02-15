@@ -15,7 +15,7 @@ $agent = $_SERVER['HTTP_USER_AGENT'];
 if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 // ---------------------------- Alternating Table Row Colors ----------------------------
-// May be deprecated with inclusion of DataTables functionality.
+// DEPRECATED with inclusion of DataTables functionality.
 if (checkmobile()) {
 	$color1 = "#dddddd";
 	$color2 = "#cecece";
@@ -339,6 +339,7 @@ function truncate_string ($str, $length, $trailing) {
       return $res;
 }
 
+// DEPRECATED
 function output_beer_xml($id, $source, $style, $imageSrc, $theme) {
 
 	$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -353,6 +354,7 @@ function output_beer_xml($id, $source, $style, $imageSrc, $theme) {
 
 }
 
+// DEPRECATED
 function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
 	$agent = $_SERVER['HTTP_USER_AGENT'];
@@ -375,6 +377,7 @@ function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt
 	return $output;
 }
 
+// DEPRECATED
 function output_print_log($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
 	$agent = $_SERVER['HTTP_USER_AGENT'];

@@ -174,7 +174,7 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
             <div class="page-header">
         		<h1><?php echo $header_output; ?></h1>
         	</div>
-        	<?php
+        	<?phphttp://fontawesome.io/icon/exclamation-triangle
                 if (isset($_POST['amt'])) $amt = $_POST['amt'];
                 else $amt = $amt;
 				if (($page == "current") || ($page == "brewblog")) {
@@ -213,8 +213,6 @@ if (FORCE_UPDATE) include(UPDATE.'update_3.0.0.php');
 				elseif (($_SESSION['mode'] == "2") && ($page == "members")) 				include(SECTIONS.'memberList.inc.php');
 				elseif (($_SESSION['mode'] == "2") && ($page == "profile")) 				include (SECTIONS.'profile.inc.php');
 				elseif (($_SESSION['mode'] == "2") && ($page == "news"))  				include (SECTIONS.'news.inc.php');
-
-
 			?>
             </div><!-- ./left column -->
 

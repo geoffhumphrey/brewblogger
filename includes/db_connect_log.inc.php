@@ -114,6 +114,15 @@ if (($page == "brewblog") || ($page == "logPrint") || (($page == "recipePrint") 
 
 }
 
+if (($page == "admin") && ($section == "brewblogs") && ($action == "edit")) {
+
+	$query_log = sprintf("SELECT * FROM brewing WHERE id = '%s'", $id);
+	$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
+	$row_log = mysqli_fetch_assoc($log);
+	$totalRows_log = mysqli_num_rows($log);
+
+}
+
 // -----------------------------------------------------------------------------------------------
 // BrewBlog List
 

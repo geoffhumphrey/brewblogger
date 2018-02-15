@@ -1,3 +1,13 @@
+<?php
+//$_SESSION['measTemp'] = "C";
+function f_to_c($temp_pref,$temp) {
+      if ($temp_pref == "C") {
+            return number_format((($temp - 32) / (9/5)),1);
+      }
+      else return $temp;
+}
+?>
+
 <script>
 $(document).ready(function() {
     $('#carbChart').DataTable( {
@@ -10,12 +20,12 @@ $(document).ready(function() {
 } );
 </script>
 <h2>Carbonation Chart</h2>
-<table class="table">
+<table class="table table-striped">
       <thead>
             <tr>
                   <th width="30%">Type</th>
                   <th width="15%">CO2 (Vols)</th>
-                  <th width="10%"></th>
+
                   <th width="30%">Type</th>
                   <th width="15%">CO2 (Vols)</th>
             </tr>
@@ -24,28 +34,26 @@ $(document).ready(function() {
             <tr>
                 <td>English Ales</td>
                 <td>1.5 - 2.0</td>
-                <td>&nbsp;</td>
+
                 <td>European Lagers</td>
                 <td>2.2 - 2.7</td>
             </tr>
             <tr>
                 <td>Stout/Porter</td>
                 <td>1.7 - 2.3</td>
-                <td>&nbsp;</td>
+
                 <td>American Ales/Lagers</td>
                 <td>2.2 - 2.7</td>
             </tr>
             <tr>
                 <td>Belgian Ales</td>
                 <td>1.9 - 2.4</td>
-                <td>&nbsp;</td>
                 <td>Lambic</td>
                 <td>2.4 - 2.8</td>
             </tr>
             <tr>
                 <td>Wheat Beer</td>
                 <td>3.3 - 4.5</td>
-                <td>&nbsp;</td>
                 <td>Fruit Lambic</td>
                 <td>3.0 - 4.5</td>
             </tr>
@@ -89,7 +97,7 @@ $(document).ready(function() {
     </thead>
     <tbody>
     <tr>
-      <th>30&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],30)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.82</td>
       <td>1.92</td>
       <td>2.03</td>
@@ -122,7 +130,7 @@ $(document).ready(function() {
       <td>4.98</td>
     </tr>
     <tr>
-      <th>31&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],31)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.78</td>
       <td>1.88</td>
       <td>2.00</td>
@@ -155,7 +163,7 @@ $(document).ready(function() {
       <td>4.89</td>
     </tr>
     <tr>
-      <th>32&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],32)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.75</td>
       <td>1.85</td>
       <td>1.95</td>
@@ -188,7 +196,7 @@ $(document).ready(function() {
       <td>4.77</td>
     </tr>
     <tr>
-      <th>33&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],33)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.71</td>
       <td>1.81</td>
       <td>1.91</td>
@@ -221,7 +229,7 @@ $(document).ready(function() {
       <td>4.69</td>
     </tr>
     <tr>
-      <th>34&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],34)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.68</td>
       <td>1.78</td>
       <td>1.86</td>
@@ -254,7 +262,7 @@ $(document).ready(function() {
       <td>4.60</td>
     </tr>
     <tr>
-      <th>35&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],35)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.63</td>
       <td>1.73</td>
       <td>1.83</td>
@@ -287,7 +295,7 @@ $(document).ready(function() {
       <td>4.51</td>
     </tr>
     <tr>
-      <th>36&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],36)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.60</td>
       <td>1.69</td>
       <td>1.79</td>
@@ -320,7 +328,7 @@ $(document).ready(function() {
       <td>4.40</td>
     </tr>
     <tr>
-      <th>37&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],37)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.55</td>
       <td>1.65</td>
       <td>1.74</td>
@@ -353,7 +361,7 @@ $(document).ready(function() {
       <td>4.32</td>
     </tr>
     <tr>
-      <th>38&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],38)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.52</td>
       <td>1.61</td>
       <td>1.71</td>
@@ -386,7 +394,7 @@ $(document).ready(function() {
       <td>4.24</td>
     </tr>
     <tr>
-      <th>39&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],39)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.49</td>
       <td>1.58</td>
       <td>1.67</td>
@@ -419,7 +427,7 @@ $(document).ready(function() {
       <td>4.18</td>
     </tr>
     <tr>
-      <th>40&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],40)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.47</td>
       <td>1.56</td>
       <td>1.65</td>
@@ -452,7 +460,7 @@ $(document).ready(function() {
       <td>4.10</td>
     </tr>
     <tr>
-      <th>41&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],41)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.43</td>
       <td>1.52</td>
       <td>1.61</td>
@@ -485,7 +493,7 @@ $(document).ready(function() {
       <td>4.04</td>
     </tr>
     <tr>
-      <th>42&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],42)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.39</td>
       <td>1.48</td>
       <td>1.57</td>
@@ -518,7 +526,7 @@ $(document).ready(function() {
       <td>3.97</td>
     </tr>
     <tr>
-      <th>43&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],43)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.37</td>
       <td>1.46</td>
       <td>1.54</td>
@@ -551,7 +559,7 @@ $(document).ready(function() {
       <td>3.91</td>
     </tr>
     <tr>
-      <th>44&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],44)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.35</td>
       <td>1.43</td>
       <td>1.52</td>
@@ -584,7 +592,7 @@ $(document).ready(function() {
       <td>3.84</td>
     </tr>
     <tr>
-      <th>45&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],45)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.32</td>
       <td>1.41</td>
       <td>1.49</td>
@@ -617,7 +625,7 @@ $(document).ready(function() {
       <td>3.79</td>
     </tr>
     <tr>
-      <th>46&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],46)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.28</td>
       <td>1.37</td>
       <td>1.45</td>
@@ -650,7 +658,7 @@ $(document).ready(function() {
       <td>3.74</td>
     </tr>
     <tr>
-      <th>47&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],47)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.26</td>
       <td>1.34</td>
       <td>1.42</td>
@@ -683,7 +691,7 @@ $(document).ready(function() {
       <td>3.68</td>
     </tr>
     <tr>
-      <th>48&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],48)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.23</td>
       <td>1.31</td>
       <td>1.39</td>
@@ -716,7 +724,7 @@ $(document).ready(function() {
       <td>3.63</td>
     </tr>
     <tr>
-      <th>49&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],49)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.21</td>
       <td>1.29</td>
       <td>1.37</td>
@@ -749,7 +757,7 @@ $(document).ready(function() {
       <td>3.56</td>
     </tr>
     <tr>
-      <th>50&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],50)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.18</td>
       <td>1.26</td>
       <td>1.34</td>
@@ -782,7 +790,7 @@ $(document).ready(function() {
       <td>3.49</td>
     </tr>
     <tr>
-      <th>51&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],51)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.18</td>
       <td>1.26</td>
       <td>1.34</td>
@@ -815,7 +823,7 @@ $(document).ready(function() {
       <td>3.42</td>
     </tr>
     <tr>
-      <th>52&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],52)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.16</td>
       <td>1.23</td>
       <td>1.31</td>
@@ -848,7 +856,7 @@ $(document).ready(function() {
       <td>3.37</td>
     </tr>
     <tr>
-      <th>53&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],53)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.14</td>
       <td>1.21</td>
       <td>1.29</td>
@@ -881,7 +889,7 @@ $(document).ready(function() {
       <td>3.31</td>
     </tr>
     <tr>
-      <th>54&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],54)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.12</td>
       <td>1.19</td>
       <td>1.27</td>
@@ -914,7 +922,7 @@ $(document).ready(function() {
       <td>3.24</td>
     </tr>
     <tr>
-      <th>55&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],55)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.10</td>
       <td>1.17</td>
       <td>1.24</td>
@@ -947,7 +955,7 @@ $(document).ready(function() {
       <td>3.18</td>
     </tr>
     <tr>
-      <th>56&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],56)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.07</td>
       <td>1.15</td>
       <td>1.22</td>
@@ -980,7 +988,7 @@ $(document).ready(function() {
       <td>3.13</td>
     </tr>
     <tr>
-      <th>57&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],57)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.05</td>
       <td>1.12</td>
       <td>1.19</td>
@@ -1013,7 +1021,7 @@ $(document).ready(function() {
       <td>3.08</td>
     </tr>
     <tr>
-      <th>58&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],58)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.03</td>
       <td>1.10</td>
       <td>1.17</td>
@@ -1046,7 +1054,7 @@ $(document).ready(function() {
       <td>3.02</td>
     </tr>
     <tr>
-      <th>59&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],59)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.02</td>
       <td>1.09</td>
       <td>1.16</td>
@@ -1079,7 +1087,7 @@ $(document).ready(function() {
       <td>2.97</td>
     </tr>
     <tr>
-      <th>60&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],60)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>1.01</td>
       <td>1.08</td>
       <td>1.15</td>
@@ -1112,7 +1120,7 @@ $(document).ready(function() {
       <td>2.92</td>
     </tr>
     <tr>
-      <th>61&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],61)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.99</td>
       <td>1.05</td>
       <td>1.12</td>
@@ -1145,7 +1153,7 @@ $(document).ready(function() {
       <td>2.85</td>
     </tr>
     <tr>
-      <th>62&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],62)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.96</td>
       <td>1.02</td>
       <td>1.09</td>
@@ -1178,7 +1186,7 @@ $(document).ready(function() {
       <td>2.78</td>
     </tr>
     <tr>
-      <th>63&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],63)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.93</td>
       <td>0.99</td>
       <td>1.06</td>
@@ -1211,7 +1219,7 @@ $(document).ready(function() {
       <td>2.71</td>
     </tr>
     <tr>
-      <th>64&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],64)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.91</td>
       <td>0.97</td>
       <td>1.03</td>
@@ -1244,7 +1252,7 @@ $(document).ready(function() {
       <td>2.64</td>
     </tr>
     <tr>
-      <th>65&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],65)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.88</td>
       <td>0.94</td>
       <td>1.00</td>
@@ -1277,7 +1285,7 @@ $(document).ready(function() {
       <td>2.58</td>
     </tr>
     <tr>
-      <th>66&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],66)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.85</td>
       <td>0.91</td>
       <td>0.97</td>
@@ -1310,7 +1318,7 @@ $(document).ready(function() {
       <td>2.51</td>
     </tr>
     <tr>
-      <th>67&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],67)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.83</td>
       <td>0.88</td>
       <td>0.94</td>
@@ -1343,7 +1351,7 @@ $(document).ready(function() {
       <td>2.44</td>
     </tr>
     <tr>
-      <th>68&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],68)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.80</td>
       <td>0.85</td>
       <td>0.91</td>
@@ -1376,7 +1384,7 @@ $(document).ready(function() {
       <td>2.37</td>
     </tr>
     <tr>
-      <th>69&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],69)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.77</td>
       <td>0.83</td>
       <td>0.88</td>
@@ -1409,7 +1417,7 @@ $(document).ready(function() {
       <td>2.30</td>
     </tr>
     <tr>
-      <th>70&deg;F</th>
+      <th><?php echo f_to_c($_SESSION['measTemp'],70)."&deg;".$_SESSION['measTemp']; ?></th>
       <td>0.75</td>
       <td>0.80</td>
       <td>0.85</td>

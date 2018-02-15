@@ -32,11 +32,22 @@ if ($show_awards) {
         else $destination = "brewblog";
         $brewID = ltrim ($row_awardsList['awardBrewID'], "rb");
 
+        $query_brewblog = sprintf("SELECT brewName,brewDate FROM brewing WHERE id = '%s'", $brewID);
+        $brewblog = mysqli_query($connection,$query_brewblog);
+        $row_brewblog = mysqli_fetch_assoc($brewblog);
+        $totalRows_brewblog = mysqli_num_rows($brewblog);
+
+        $real_brewblog_name = FALSE;
+
+        if ($row_awardsList['awardBrewName'] != $row_brewblog['brewName']) $real_brewblog_name = TRUE;
+
         if (SEF) $award_link = build_public_url($destination, urlencode(strtolower(strtr($row_awardsList['awardBrewName'],$prettify_url))), urlencode(strtolower(strtr($row_awardsList['awardStyle'],$prettify_url))), "detail", strtolower($row_awardsList['brewBrewerID']), $brewID, $base_url);
         else $award_link = build_public_url($destination, "default", "default", "default", $row_awardsList['brewBrewerID'], $brewID, $base_url);
 
         $tbody .= "<tr>";
-        $tbody .= "<td><a href=\"".$award_link."\">".$row_awardsList['awardBrewName']."</a></td>";
+        $tbody .= "<td><a href=\"".$award_link."\">".$row_awardsList['awardBrewName']."</a>";
+        if ($real_brewblog_name) $tbody .= " <a href=\"".$award_link."\" role=\"button\" data-toggle=\"popover\" data-placement=\"auto right\" data-animation=\"true\" data-trigger=\"hover\" data-content=\"BrewBlog name is ".$row_brewblog['brewName']."\"><small><span class=\"fa fa-asterisk\"></span><small></a>";
+        $tbody .= "</td>";
         $tbody .= "<td class=\"hidden-xs hidden-sm\">".$row_awardsList['awardStyle']."</td>";
         $tbody .= "<td>";
         if (!empty($row_awardsList['awardContestURL'])) $tbody .= "<a href=\"".$row_awardsList['awardContestURL']."\" target=\"_blank\">".$row_awardsList['awardContest']."</a>";

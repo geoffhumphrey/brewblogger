@@ -1,5 +1,5 @@
 <?php
-$grainWeight = $totalGrain;
+$grainWeight = $total_grain;
 
 if (isset($_SESSION["loginUsername"])) {
 	if (($row_user['defaultWaterRatio'] != "") && ($row_log['brewWaterRatio'] == "")) $thickness = $row_user['defaultWaterRatio'];
@@ -19,8 +19,8 @@ elseif ((isset($_SESSION["loginUsername"])) && ($row_log['brewBoilTime'] == "") 
 else $boilTime = 60;
 
 $finalBoilVol = $row_log['brewYield']; if ($action == "scale") $finalBoilVol = $row_log['brewYield'] * $scale;
-$grainRetain = ($grainWeight * 0.213); if ($action == "scale") $grainRetain = (($totalGrain * $scale) * 0.213);
-$grainRetainMet = ((($grainWeight * 2.204) * 0.213) * 3.78); if ($action == "scale") $grainRetainMet = (((($totalGrain * $scale) * 2.204) * 0.213) * 3.78);
+$grainRetain = ($grainWeight * 0.213); if ($action == "scale") $grainRetain = (($total_grain * $scale) * 0.213);
+$grainRetainMet = ((($grainWeight * 2.204) * 0.213) * 3.78); if ($action == "scale") $grainRetainMet = (((($total_grain * $scale) * 2.204) * 0.213) * 3.78);
 $shrinkage = ($finalBoilVol / 0.96);
 $evaporation = ($shrinkage / 0.95);
 $evapVol = ($evapRate / 60 * $boilTime);
@@ -34,8 +34,8 @@ $spargeWaterMet = ($totalWaterMet - $mashWaterMet);
 $runoffVol = $evaporation;
 $totalWater = ($runoffVol + $grainRetain);
 $totalWaterMet = ($runoffVol + $grainRetainMet);
-if (($action == "default") || ($action == "reset")) $mashWater = (($totalGrain * $thickness) / 4); if ($action == "scale") $mashWater = ((($totalGrain * $scale) * $thickness) / 4);
-if (($action == "default") || ($action == "reset")) $mashWaterMet = ($totalGrain * 2.5); if ($action == "scale") $mashWaterMet = (($totalGrain * $scale) * 2.5);
+if (($action == "default") || ($action == "reset")) $mashWater = (($total_grain * $thickness) / 4); if ($action == "scale") $mashWater = ((($total_grain * $scale) * $thickness) / 4);
+if (($action == "default") || ($action == "reset")) $mashWaterMet = ($total_grain * 2.5); if ($action == "scale") $mashWaterMet = (($total_grain * $scale) * 2.5);
 $spargeWater = ($totalWater - $mashWater);
 $spargeWaterMet = ($totalWaterMet - $mashWaterMet);
 
@@ -43,8 +43,9 @@ if ($row_log['brewOG'] != "") $OG = $row_log['brewOG']." / ".round((-463.37) + (
 elseif ($row_log['brewTargetOG'] != "") $OG = $row_log['brewTargetOG']." / ".round((-463.37) + (668.72 * $row_log['brewTargetOG']) - (205.35 * (pow($row_log['brewTargetOG'],2))), 1)."&deg; P";
 
 ?>
+<div style="page-break-after:always;"></div>
 <div class="visible-print-inline-block">
-<div style="page-break-before:always;"><h2><?php echo $row_log['brewName']; ?></h2></div>
+<h2><?php echo $row_log['brewName']; ?></h2>
 <table class="table table-bordered">
 	<tbody>
 	<tr>

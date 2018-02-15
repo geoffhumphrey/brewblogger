@@ -1,5 +1,5 @@
 <?php
-$help_icon = TRUE;
+$help_icon = FALSE;
 $print_icon = TRUE;
 $logged_in = FALSE;
 $admin_user = FALSE;
@@ -27,9 +27,69 @@ if (isset($_SESSION['loginUsername'])) {
 
 //build_public_url($page, $section, $action, $dbTable, $filter, $id, $base_url)
 
+$nav_elements = "";
+
+if ($page != $_SESSION['home']) $nav_link_home = $base_url;
+elseif ($page == $_SESSION['home']) $nav_link_home = "#";
+
+$nav_elements .= "<li><a href=\"".$nav_link_home."\">".$_SESSION['menuHome']."</a></li>";
+
+if ($_SESSION['mode'] == "1") {
+  if (($_SESSION['home'] != "brewblog-list") && ($page != "brewblog-list")) $nav_elements .= "<li><a href=\"".build_public_url("brewblog-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuBrewBlogs']."</a></li>"; elseif (($_SESSION['home'] != "brewblog-list") && ($page == "brewblog-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuBrewBlogs']."</a></li>";
+}
+
+if ($_SESSION['mode'] == "2") {
+
+  if (($_SESSION['home'] != "members") && ($page != "members")) $nav_elements .= "<li><a href=\"".build_public_url("members", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuMembers']."</a></li>"; elseif (($_SESSION['home'] != "members") && ($page == "members")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuMembers']."</a></li>";
+  else $nav_elements .= "";
+
+  if (($_SESSION['home'] != "brewblog-list") && ($page != "brewblog-list")) $nav_elements .= "<li><a href=\"".build_public_url("brewblog-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuBrewBlogs']."</a></li>";
+  elseif (($_SESSION['home'] != "brewblog-list") && ($page == "brewblog-list")) $nav_elements .= "<li class=\"active\">".$_SESSION['menuBrewBlogs']."</li>";
+
+  if (($_SESSION['home'] != "recipe-list") && ($page != "recipe-list")) $nav_elements .= "<li><a href=\"".build_public_url("recipe-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuRecipes']."</a></li>";
+  elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
+}
+
+if ($_SESSION['mode'] == "1") {
+  if (($_SESSION['home'] != "recipe-list") && ($page != "recipe-list")) $nav_elements .= "<li><a href=\"".build_public_url("recipe-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuRecipes']."</a></li>";
+  elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
+}
+
+if ($_SESSION['mode'] == "2") {
+  if (($_SESSION['home'] != "awards-list") && ($page != "awards-list")) $nav_elements .= "<li><a href=\"".build_public_url("awards-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAwards']."</a></li>";
+  elseif (($_SESSION['home'] != "awards-list") && ($page == "awards-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAwards']."</a></li>";
+}
+
+if ($_SESSION['mode'] == "1") {
+  if (($_SESSION['home'] != "awards-list") && ($page != "awards-list")) $nav_elements .= "<li><a href=\"".build_public_url("awards-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAwards']."</a></li>";
+  elseif (($_SESSION['home'] != "awards-list") && ($page == "awards-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAwards']."</a></li>";
+}
+
+if (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page != "about")) $nav_elements .= "<li><a href=\"".build_public_url("about", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAbout']."</a></li>";
+elseif (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page == "about")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAbout']."</a></li>";
+
+if ($_SESSION['allowCalendar'] == "Y") {
+  if (($_SESSION['home'] != "calendar") && ($page != "calendar")) $nav_elements .= "<li><a href=\"".build_public_url("calendar", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuCalendar']."</a></li>";
+  elseif (($_SESSION['home'] != "calendar") && ($page == "calendar")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuCalendar']."</a></li>";
+}
+
+// Reference Links
+$bjcp2008_link = build_public_url("reference", "styles", "view", "current", "bjcp2008", $id, $base_url);
+$bjcp2015_link = build_public_url("reference", "styles", "view", "current", "bjcp2015", $id, $base_url);
+$bjcp_all_link = build_public_url("reference", "styles", "view", "current", "all", $id, $base_url);
+$carbonation_link = build_public_url("reference", "carbonation", "default", "default", "default", $id, $base_url);
+$color_link = build_public_url("reference", "color", "default", "default", "default", $id, $base_url);
+$hops_link = build_public_url("reference", "hops", "default", "default", "default", $id, $base_url);
+$grains_link = build_public_url("reference", "grains", "default", "default", "default", $id, $base_url);
+$yeast_link = build_public_url("reference", "yeast", "default", "default", "default", $id, $base_url);
 ?>
 <!-- Fixed navbar -->
     <div class="navbar <?php echo $nav_container; ?> navbar-fixed-top">
+      <div class="<?php echo $container_main; ?> hidden-xs hidden-sm">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<?php echo $nav_link_home; ?>"><strong><span class="fa fa-beer"></span> <?php echo $row_name['brewerLogName']; ?></strong> <small><?php echo $row_name['brewerTagline']; ?></small></a>
+        </div>
+      </div>
       <div class="<?php echo $container_main; ?>">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bcoem-navbar-collapse" aria-expanded="false">
@@ -41,75 +101,7 @@ if (isset($_SESSION['loginUsername'])) {
         </div>
         <div class="collapse navbar-collapse" id="bcoem-navbar-collapse">
               <ul class="nav navbar-nav">
-				<?php
-				if ($page != $_SESSION['home']) echo "<li><a href=\"".$base_url."\">".$_SESSION['menuHome']."</a></li>";
-				elseif ($page == $_SESSION['home']) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuHome']."</a></li>";
-
-				if ($_SESSION['mode'] == "1") {
-					if (($_SESSION['home'] != "brewblog-list") && ($page != "brewblog-list")) echo "<li><a href=\"".build_public_url("brewblog-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuBrewBlogs']."</a></li>"; elseif (($_SESSION['home'] != "brewblog-list") && ($page == "brewblog-list")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuBrewBlogs']."</a></li>";
-				}
-
-				if ($_SESSION['mode'] == "2") {
-
-					if (($_SESSION['home'] != "members") && ($page != "members")) echo "<li><a href=\"".build_public_url("members", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuMembers']."</a></li>"; elseif (($_SESSION['home'] != "members") && ($page == "members")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuMembers']."</a></li>";
-					else echo "";
-
-					if (($_SESSION['home'] != "brewblog-list") && ($page != "brewblog-list")) echo "<li><a href=\"".build_public_url("brewblog-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuBrewBlogs']."</a></li>";
-					elseif (($_SESSION['home'] != "brewblog-list") && ($page == "brewblog-list")) echo "<li class=\"active\">".$_SESSION['menuBrewBlogs']."</li>";
-
-					if (($_SESSION['home'] != "recipe-list") && ($page != "recipe-list")) echo "<li><a href=\"".build_public_url("recipe-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuRecipes']."</a></li>";
-					elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
-				}
-
-				if ($_SESSION['mode'] == "1") {
-					if (($_SESSION['home'] != "recipe-list") && ($page != "recipe-list")) echo "<li><a href=\"".build_public_url("recipe-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuRecipes']."</a></li>";
-					elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
-				}
-
-				if ($_SESSION['mode'] == "2") {
-					if (($_SESSION['home'] != "awards-list") && ($page != "awards-list")) echo "<li><a href=\"".build_public_url("awards-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAwards']."</a></li>";
-					elseif (($_SESSION['home'] != "awards-list") && ($page == "awards-list")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAwards']."</a></li>";
-				}
-
-				if ($_SESSION['mode'] == "1") {
-					if (($_SESSION['home'] != "awards-list") && ($page != "awards-list")) echo "<li><a href=\"".build_public_url("awards-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAwards']."</a></li>";
-					elseif (($_SESSION['home'] != "awards-list") && ($page == "awards-list")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAwards']."</a></li>";
-				}
-
-				if (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page != "about")) echo "<li><a href=\"".build_public_url("about", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAbout']."</a></li>";
-				elseif (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page == "about")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAbout']."</a></li>";
-
-				if ($_SESSION['allowCalendar'] == "Y") {
-					if (($_SESSION['home'] != "calendar") && ($page != "calendar")) echo "<li><a href=\"".build_public_url("calendar", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuCalendar']."</a></li>";
-					elseif (($_SESSION['home'] != "calendar") && ($page == "calendar")) echo "<li class=\"active\"><a href=\"#\">".$_SESSION['menuCalendar']."</a></li>";
-				}
-
-        // Reference Links
-        if (SEF) $bjcp2008_link = build_public_url("reference", "styles", "view", "current", "bjcp2008", $id, $base_url);
-        else $bjcp2008_link = $base_url."index.php?page=reference&amp;section=styles&amp;action=view&amp;filter=bjcp2008";
-
-        if (SEF) $bjcp2015_link = build_public_url("reference", "styles", "view", "current", "bjcp2015", $id, $base_url);
-        else $bjcp2015_link = $base_url."index.php?page=reference&amp;section=styles&amp;action=view&amp;filter=bjcp2015";
-
-        if (SEF) $bjcp_all_link = build_public_url("reference", "styles", "view", "current", "all", $id, $base_url);
-        else $bjcp_all_link = $base_url."index.php?page=reference&amp;section=styles&amp;action=view&amp;filter=all";
-
-        if (SEF) $carbonation_link = build_public_url("reference", "carbonation", "default", "default", "default", $id, $base_url);
-        else $carbonation_link = $base_url."index.php?page=reference&section=carbonation";
-
-        if (SEF) $color_link = build_public_url("reference", "color", "default", "default", "default", $id, $base_url);
-        else $color_link = $base_url."index.php?page=reference&section=color";
-
-        if (SEF) $hops_link = build_public_url("reference", "hops", "default", "default", "default", $id, $base_url);
-        else $hops_link = $base_url."index.php?page=reference&section=hops";
-
-        if (SEF) $grains_link = build_public_url("reference", "grains", "default", "default", "default", $id, $base_url);
-        else $grains_link = $base_url."index.php?page=reference&section=grains";
-
-        if (SEF) $yeast_link = build_public_url("reference", "yeast", "default", "default", "default", $id, $base_url);
-        else $yeast_link = $base_url."index.php?page=reference&section=yeast";
-
-				?>
+                <?php echo $nav_elements; ?>
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown">Reference <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -126,14 +118,14 @@ if (isset($_SESSION['loginUsername'])) {
               </ul>
           <ul class="nav navbar-nav navbar-right">
           	<?php if ($help_icon) { ?>
-            <li><a href="#" role="button" data-tooltip="true" data-toggle="modal" data-placement="left" title="Help" data-target="#helpModal"><span class="fa fa-question-circle"></span></a></li>
+            <li><a href="#" role="button" data-tooltip="true" data-toggle="modal" data-placement="bottom" title="Help" data-target="#helpModal"><span class="fa fa-question-circle"></span></a></li>
             <?php } ?>
           	<?php if ($print_icon) { ?>
-          	<li><a href="javascript:window.print()" role="button" data-toggle="tooltip" data-placement="bottom" title="Print"><span class="fa fa-print"></span></a></li>
+          	<li><a href="javascript:window.print()" role="button" data-toggle="tooltip" data-placement="bottom" title="Print page"><span class="fa fa-print"></span></a></li>
             <?php } ?>
           	<?php if ($logged_in) { ?>
             <li class="dropdown">
-                <a href="#" title="Account" class="my-dropdown" data-toggle="dropdown" data-placement="right"><span class="fa fa-user"></span> <span class="caret"></span></a>
+                <a href="#" title="My account" class="my-dropdown" data-toggle="dropdown" data-placement="bottom"><span class="fa fa-user"></span> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                 	<li class="dropdown-header">Logged in as:<br><strong><?php echo $_SESSION['loginUsername']; ?></strong></li>
                     <li role="separator" class="divider"></li>
@@ -146,9 +138,6 @@ if (isset($_SESSION['loginUsername'])) {
                     <li><a href="<?php echo $base_url; ?>includes/logout.inc.php"><?php echo $_SESSION['menuLogout']; ?></a></li>
                 </ul>
             </li>
-            <?php if ($admin_user) { ?>
-            <!-- <li id="admin-arrow"><a href="<?php if ($go == "error_page") echo $base_url."index.php?section=admin"; else echo "#"; ?>" class="admin-offcanvas" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body" title="<?php echo $admin_tooltip; ?>"><i class="fa fa-chevron-circle-left"></i> Admin</a></li> -->
-            <?php } ?>
             <?php } else { ?>
             <li<?php if ($section == "login") echo $active_class; ?>><a href="<?php echo $link_login; ?>" role="button"><?php echo $_SESSION['menuLogin']; ?></a></li>
             <?php } ?>
