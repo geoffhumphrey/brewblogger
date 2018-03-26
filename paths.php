@@ -32,7 +32,7 @@ define('DEBUG_SCRIPTS', ROOT.'includes'.DIRECTORY_SEPARATOR.'debug'.DIRECTORY_SE
 // --------------------------------------------------------
 define('HOSTED', FALSE);
 define('MAINT', FALSE);
-define('TESTING', FALSE);
+define('TESTING', TRUE);
 define('SINGLE', FALSE);
 define('DEBUG', TRUE);
 define('DEBUG_SESSION_VARS', TRUE);

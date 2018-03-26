@@ -366,8 +366,7 @@ if (($action == "edit") && ($dbTable == "brewing")) {
   }
 
   $updateSQL = "UPDATE brewing SET $data WHERE id=" . GetSQLValueString($id, "int");
-
-  // echo $updateSQL;
+  // echo $updateSQL; exit;
 
   mysqli_real_escape_string($connection,$updateSQL);
   $result = mysqli_query($connection,$updateSQL) or die (mysqli_error($connection));
@@ -470,7 +469,7 @@ if (($action == "edit") && ($dbTable == "recipes")) {
   }
 
   $updateSQL = "UPDATE recipes SET $data WHERE id=" . GetSQLValueString($id, "int");
-
+  //echo $updateSQL; exit;
   mysqli_real_escape_string($connection,$updateSQL);
 $result = mysqli_query($connection,$updateSQL) or die (mysqli_error($connection));
 

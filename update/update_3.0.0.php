@@ -1,7 +1,7 @@
 <?php
 
-include (UPDATE.'update_3.0.0_brewing_table_conversion.php');
-include (UPDATE.'update_3.0.0_recipe_table_conversion.php');
+// include (UPDATE.'update_3.0.0_brewing_table_conversion.php');
+// include (UPDATE.'update_3.0.0_recipe_table_conversion.php');
 // include (UPDATE.'update_3.0.0_utf8mb4_fields_conversion.php');
 
 if (!check_update("prefsLanguage", $prefix."preferences")) {
