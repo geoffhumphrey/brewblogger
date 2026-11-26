@@ -2,20 +2,8 @@
 // Minify at http://jscompress.com/
 
 // -------------------------------- Enable Bootsrap Tooltips -------------------------------- 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
 
-// Enable for modal links too
-$(function() {
-	$('[data-tooltip="true"]').tooltip();
-});
-
-$(document).ready(function() {
-	$('.my-dropdown').dropdown();
-	$('.my-dropdown').tooltip();
-});
-
+/*
 $(document).ready(function() {
 	$('#admin-arrow').click(function(){
 		$(this).find('i').toggleClass("fa-chevron-circle-left fa-chevron-circle-right");
@@ -343,3 +331,5 @@ $(function () {
 	});
 	
 });
+
+*/

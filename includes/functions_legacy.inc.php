@@ -10,7 +10,7 @@ include ('titles.inc.php');
 include ('messages.inc.php');
 include ('scrubber.inc.php');
 
-$agent = $_SERVER['HTTP_USER_AGENT'];
+$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 // ---------------------------- Alternating Table Row Colors ----------------------------
@@ -312,7 +312,7 @@ function truncate_string ($str, $length, $trailing) {
 
 function output_beer_xml($id, $source, $style, $imageSrc, $theme) {
 
-$agent = $_SERVER['HTTP_USER_AGENT'];
+$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
     if ($printBrowser == "IE") $output = '<a href="includes/output_beer_xml.inc.php?id='.$id.'&source='.$source.'&brewStyle='.$style.'">';
@@ -326,7 +326,7 @@ if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
-$agent = $_SERVER['HTTP_USER_AGENT'];
+$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
     if ($printBrowser == "IE") {
@@ -348,7 +348,7 @@ if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 function output_print_log($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
-    $agent = $_SERVER['HTTP_USER_AGENT'];
+    $agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
     if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
     if ($printBrowser == "IE") {

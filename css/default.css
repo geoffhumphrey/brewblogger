@@ -1,8 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
-/* @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800|Droid+Sans:400,100,300,700); */
-@import url(http://fonts.googleapis.com/css?family=Vollkorn:700|Hind+Siliguri:300,400,500,700);
-
+/* @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800|Droid+Sans:400,100,300,700); */
+@import url(https://fonts.googleapis.com/css?family=Vollkorn:700|Hind+Siliguri:300,400,500,700);
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 /**
 ----------------------------------------------------------------------
 Customized Bootstrap Classes for Default Theme
@@ -111,9 +112,9 @@ html {
 
 body {
 
-	font-family: "Hind Siliguri", Arial, sans-serif;
+	font-family: "Lato", Arial, sans-serif;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 15px;
 	position: relative;
 	margin-top: 120px;
 	min-height: 100%;
@@ -173,7 +174,7 @@ a:active {
 
 h1, h2, h3, h4, h5, h6 {
 
-	font-family: "Vollkorn", Arial, sans-serif;
+	font-family: "Montserrat", Arial, sans-serif;
 	font-weight: 700;
 	margin: 0;
   /* font-variant: small-caps; */
@@ -184,7 +185,7 @@ h1 {
 }
 
 h2, h2, h3, h4, h5, h6 {
-	padding: 10px 0 20px 0;
+  margin: 25px 0 15px 0;
 }
 
 @media print {
@@ -1741,7 +1742,7 @@ a.bg-amber:focus, a.bg-amber:hover {
 	background-color: #FFE082;  /* 200 Shade */
 }
 
-.text-v {
+.text-amber {
 	color: #FF6F00;  /* 900 Shade */
 }
 

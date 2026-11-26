@@ -1,17 +1,6 @@
 <?php
 session_start();
 
-// **PREVENTING SESSION HIJACKING**
-// Prevents javascript XSS attacks aimed to steal the session ID
-ini_set('session.cookie_httponly', 1);
-
-// **PREVENTING SESSION FIXATION**
-// Session ID cannot be passed through URLs
-ini_set('session.use_only_cookies', 1);
-
-// Uses a secure connection (HTTPS) if possible
-ini_set('session.cookie_secure', 1);
-
 $installation_id = "";
 
 if (empty($installation_id)) $prefix_session = md5(__FILE__);
@@ -129,7 +118,7 @@ if ((empty($_SESSION['adjuncts_'.$prefix_session])) || ($_SESSION['adjuncts_'.$p
     $query_adjuncts = "SELECT * FROM adjuncts ORDER BY id ASC";
     $adjuncts = mysqli_query($connection,$query_adjuncts) or die (mysqli_error($connection));
     $adjuncts_array = array();
-    while ($row_adjuncts = mysqli_fetch_array($adjuncts, MYSQL_ASSOC)) {
+    while ($row_adjuncts = mysqli_fetch_array($adjuncts, MYSQLI_ASSOC)) {
         $adjuncts_array[] = $row_adjuncts;
     }
 
@@ -143,7 +132,7 @@ if ((empty($_SESSION['extracts_'.$prefix_session])) || ($_SESSION['extracts_'.$p
     $query_extracts = "SELECT * FROM extract ORDER BY id ASC";
     $extracts = mysqli_query($connection,$query_extracts) or die (mysqli_error($connection));
     $extracts_array = array();
-    while ($row_extracts = mysqli_fetch_array($extracts, MYSQL_ASSOC)) {
+    while ($row_extracts = mysqli_fetch_array($extracts, MYSQLI_ASSOC)) {
         $extracts_array[] = $row_extracts;
     }
 
@@ -157,7 +146,7 @@ if ((empty($_SESSION['misc_'.$prefix_session])) || ($_SESSION['misc_'.$prefix_se
     $query_misc = "SELECT * FROM misc ORDER BY id ASC";
     $misc = mysqli_query($connection,$query_misc) or die (mysqli_error($connection));
     $misc_array = array();
-    while ($row_misc = mysqli_fetch_array($misc, MYSQL_ASSOC)) {
+    while ($row_misc = mysqli_fetch_array($misc, MYSQLI_ASSOC)) {
         $misc_array[] = $row_misc;
     }
 
@@ -172,7 +161,7 @@ if ((empty($_SESSION['yeast_'.$prefix_session])) || ($_SESSION['yeast_'.$prefix_
     $query_yeast = "SELECT * FROM yeast_profiles ORDER BY id ASC";
     $yeast = mysqli_query($connection,$query_yeast) or die (mysqli_error($connection));
     $yeast_array = array();
-    while ($row_yeast = mysqli_fetch_array($yeast, MYSQL_ASSOC)) {
+    while ($row_yeast = mysqli_fetch_array($yeast, MYSQLI_ASSOC)) {
         $yeast_array[] = $row_yeast;
     }
 
@@ -187,7 +176,7 @@ if ((empty($_SESSION['hops_'.$prefix_session])) || ($_SESSION['hops_'.$prefix_se
     $query_hops = "SELECT * FROM hops ORDER BY id ASC";
     $hops = mysqli_query($connection,$query_hops) or die (mysqli_error($connection));
     $hops_array = array();
-    while ($row_hops = mysqli_fetch_array($hops, MYSQL_ASSOC)) {
+    while ($row_hops = mysqli_fetch_array($hops, MYSQLI_ASSOC)) {
         $hops_array[] = $row_hops;
     }
 
@@ -201,7 +190,7 @@ if ((empty($_SESSION['grains_'.$prefix_session])) || ($_SESSION['grains_'.$prefi
     $query_grains = "SELECT * FROM malt ORDER BY id ASC";
     $grains = mysqli_query($connection,$query_grains) or die (mysqli_error($connection));
     $grains_array = array();
-    while ($row_grains = mysqli_fetch_array($grains, MYSQL_ASSOC)) {
+    while ($row_grains = mysqli_fetch_array($grains, MYSQLI_ASSOC)) {
         $grains_array[] = $row_grains;
     }
 
@@ -212,10 +201,10 @@ if ((empty($_SESSION['grains_'.$prefix_session])) || ($_SESSION['grains_'.$prefi
 // BJCP 2008 styles
 if ((empty($_SESSION['styles2008_'.$prefix_session])) || ($_SESSION['styles2008_'.$prefix_session] != $prefix_session)) {
 
-    $query_styles = "SELECT * FROM styles WHERE brewStyleVersion='BJCP2008' ORDER BY brewStyleGroup,brewStyleNum ASC";
+    $query_styles = "SELECT * FROM reference_styles WHERE brewStyleVersion='BJCP2008' ORDER BY brewStyleGroup,brewStyleNum ASC";
     $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
     $styles_array = array();
-    while ($row_styles = mysqli_fetch_array($styles, MYSQL_ASSOC)) {
+    while ($row_styles = mysqli_fetch_array($styles, MYSQLI_ASSOC)) {
         $styles_array[] = $row_styles;
     }
 
@@ -223,19 +212,50 @@ if ((empty($_SESSION['styles2008_'.$prefix_session])) || ($_SESSION['styles2008_
     $_SESSION['styles2008_'.$prefix_session] = $prefix_session;
 }
 
+
 // BJCP 2015 styles
 if ((empty($_SESSION['styles2015_'.$prefix_session])) || ($_SESSION['styles2015_'.$prefix_session] != $prefix_session)) {
 
-    $query_styles = "SELECT * FROM styles WHERE brewStyleVersion='BJCP2015' ORDER BY brewStyleGroup,brewStyleNum ASC";
+    $query_styles = "SELECT * FROM reference_styles WHERE brewStyleVersion='BJCP2015' ORDER BY brewStyleGroup,brewStyleNum ASC";
     $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
     $styles_array = array();
-    while ($row_styles = mysqli_fetch_array($styles, MYSQL_ASSOC)) {
+    while ($row_styles = mysqli_fetch_array($styles)) {
         $styles_array[] = $row_styles;
     }
 
     $_SESSION['styles2015'] = $styles_array;
     $_SESSION['styles2015_'.$prefix_session] = $prefix_session;
 }
+
+// BJCP 2021 styles
+if ((empty($_SESSION['styles2021_'.$prefix_session])) || ($_SESSION['styles2021_'.$prefix_session] != $prefix_session)) {
+
+    $query_styles = "SELECT * FROM reference_styles WHERE brewStyleVersion='BJCP2021' ORDER BY brewStyleGroup,brewStyleNum ASC";
+    $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
+    $styles_array = array();
+    while ($row_styles = mysqli_fetch_array($styles)) {
+        $styles_array[] = $row_styles;
+    }
+
+    $_SESSION['styles2021'] = $styles_array;
+    $_SESSION['styles2021_'.$prefix_session] = $prefix_session;
+}
+
+// BA styles
+if ((empty($_SESSION['stylesBA_'.$prefix_session])) || ($_SESSION['stylesBA_'.$prefix_session] != $prefix_session)) {
+
+    $query_styles = "SELECT * FROM reference_styles WHERE brewStyleVersion='BA' ORDER BY brewStyleGroup,brewStyleNum ASC";
+    $styles = mysqli_query($connection,$query_styles) or die (mysqli_error($connection));
+    $styles_array = array();
+    while ($row_styles = mysqli_fetch_array($styles)) {
+        $styles_array[] = $row_styles;
+    }
+
+    $_SESSION['stylesBA'] = $styles_array;
+    $_SESSION['stylesBA_'.$prefix_session] = $prefix_session;
+}
+
+$_SESSION['allStyles'] = array_merge($_SESSION['styles2008'],$_SESSION['styles2015'],$_SESSION['styles2021'],$_SESSION['stylesBA']);
 
 // Close session writing.
 session_write_close();

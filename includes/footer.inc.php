@@ -1,6 +1,6 @@
 <?php
 
-$footer = "Content &copy; ".date ('Y')." ".$row_name['brewerFirstName']." ".$row_name['brewerLastName']." &mdash; BrewBlogger ".$version.$version_extend;
+$footer = "Content &copy; ".date ('Y')." ".h($row_name['brewerFirstName'])." ".h($row_name['brewerLastName'])." &mdash; BrewBlogger ".$version.$version_extend;
 
 if (((TESTING) || (DEBUG)) && (isset($starttime))) {
     $mtime = microtime();

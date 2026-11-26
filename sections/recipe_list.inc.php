@@ -50,14 +50,14 @@ do {
         $method = "&nbsp;";
         $actions_links = "";
         $admin_enable_link = "";
-        if ($admin_enable) $admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\"><span class=\"fa fa-cog\"></span></a>";
+        if ($admin_enable) $admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\"><span class=\"fa fa-lg fa-cog\"></span></a>";
 
         if ($row_log['brewMethod'] != "") $method = $row_log['brewMethod'];
 
         if ($page == "recipe-list") {
             // Awards
             $award_count = award_count($page,$row_log['id']);
-            if ($admin_enable) $admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\"><span class=\"fa fa-cog\"></span></a>";
+            if ($admin_enable) $admin_enable_link = "<a role=\"button\" data-toggle=\"collapse\" data-target=\"#collapseAdminMenu".$row_log['id']."\" aria-expanded=\"false\" aria-controls=\"collapseAdminMenu".$row_log['id']."\"><span class=\"fa fa-lg fa-cog\"></span></a>";
         }
 
         else {
@@ -87,7 +87,7 @@ do {
         if ($_SESSION['measFluid2'] == "gallons") $meas_fluid = "gal";
         if ($_SESSION['measFluid2'] == "liters") $meas_fluid = "li";
 
-        include(INCLUDES.'admin_actions.inc.php');
+        include(INCLUDES.'admin_actions_new.inc.php');
 
         $tbody .= "<tr>";
         $tbody .= "<td width=\"30%\">";

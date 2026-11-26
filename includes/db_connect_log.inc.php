@@ -14,7 +14,8 @@ $totalRows_recipes = mysqli_num_rows($recipes);
 
 $query_brewBlogs = "SELECT * FROM brewing";
 if (($page == "admin") && ($_SESSION['mode'] == "2") && ($row_user['userLevel'] == "2")) $query_brewBlogs .= " WHERE brewBrewerID = '$loginUsername'";
-$query_brewBlogs .= " ORDER BY brewName ASC";
+if ($page == "taplist") $query_brewBlogs .= " WHERE brewStatus = 'On Tap'";
+// $query_brewBlogs .= " ORDER BY brewName ASC";
 $brewBlogs = mysqli_query($connection,$query_brewBlogs) or die (mysqli_error($connection));
 $row_brewBlogs = mysqli_fetch_assoc($brewBlogs);
 $totalRows_brewBlogs = mysqli_num_rows($brewBlogs);
@@ -144,6 +145,8 @@ if ($page == "brewblog-list") {
 
 	}
 
+	$query_log .= " ORDER BY brewDate ASC";
+
 	$log = mysqli_query($connection,$query_log) or die (mysqli_error($connection));
 	$row_log = mysqli_fetch_assoc($log);
 	$totalRows_log = mysqli_num_rows($log);
@@ -156,7 +159,9 @@ if ($page == "brewblog-list") {
 if (($page == "current") || ($page == "brewblog") || ($page == "profile")) {
 
 	if ($_SESSION['mode'] == "1") {
-		$query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewDate <= '%s' ORDER BY brewDate DESC LIMIT %s",$row_log['brewDate'],MAX_SIDEBAR_BLOGS);
+		// $query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewDate <= '%s' ORDER BY brewDate DESC LIMIT %s",$row_log['brewDate'],MAX_SIDEBAR_BLOGS);
+
+		$query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' ORDER BY brewDate DESC LIMIT %s",MAX_SIDEBAR_BLOGS);
 	}
 
 	if (($_SESSION['mode'] == "2") && ($filter == "all")) {
@@ -164,7 +169,9 @@ if (($page == "current") || ($page == "brewblog") || ($page == "profile")) {
 	}
 
 	if (($_SESSION['mode'] == "2") && ($filter != "all")) {
-		$query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewBrewerID = '%s' AND brewDate <= '%s' ORDER BY brewDate DESC LIMIT %s",$filter, $row_log['brewDate'],MAX_SIDEBAR_BLOGS);
+		// $query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewBrewerID = '%s' AND brewDate <= '%s' ORDER BY brewDate DESC LIMIT %s",$filter, $row_log['brewDate'],MAX_SIDEBAR_BLOGS);
+
+		$query_list = sprintf("SELECT * FROM brewing WHERE brewArchive='' OR brewArchive='N' AND brewBrewerID = '%s' ORDER BY brewDate DESC LIMIT %s",$filter,MAX_SIDEBAR_BLOGS);
 	}
 
 	if ($page == "about") {
@@ -280,7 +287,7 @@ if ($page == "awards-list") {
 		$query_awardsList = sprintf("SELECT * FROM %s WHERE brewBrewerID='%s'", "awards",$filter);
 	}
 
-	$awardsList = mysqli_query($connection,$query_awardsList) or die(mysql_error());
+	$awardsList = mysqli_query($connection,$query_awardsList) or die(mysqli_error($connection));
 	$row_awardsList = mysqli_fetch_assoc($awardsList);
 	$totalRows_awardsList = mysqli_num_rows($awardsList);
 
@@ -452,4 +459,3 @@ if (($page == "brewblog-list") || ($page == "recipe-list")) {
 }
 */
 ?>
-

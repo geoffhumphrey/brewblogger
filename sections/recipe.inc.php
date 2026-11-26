@@ -50,7 +50,7 @@ $total_grain = $totalGrain;
  * -----------------------------------------------
  */
 
-if ($amt != 0) {
+if (($amt != 0) && ($amt != "default")) {
   $scale = $amt / $row_log['brewYield'];
 }
 
@@ -65,7 +65,10 @@ $weightMultiplier = ($row_pref['measWeight1'] == "grams") ? 0.035 : 1;
 
 for ($i = 1; $i <= MAX_HOPS; $i++) {
   $hopPer  = 'hop' . $i . 'Per';
-  $$hopPer = (($row_log['brewHops' . $i . 'Weight'] * $weightMultiplier) * $row_log['brewHops' . $i . 'IBU']);
+  if ((is_numeric($row_log['brewHops' . $i . 'Weight'])) && (is_numeric($row_log['brewHops' . $i . 'IBU']))) {
+    $$hopPer = (($row_log['brewHops' . $i . 'Weight'] * $weightMultiplier) * $row_log['brewHops' . $i . 'IBU']);
+  }
+  else $$hopPer = 0;
 }
 
 $totalAAU = array_sum(array($hop1Per,$hop2Per,$hop3Per,$hop4Per,$hop5Per,$hop6Per,$hop7Per,$hop8Per,$hop9Per,$hop10Per,$hop11Per,$hop12Per,$hop13Per,$hop14Per,$hop15Per));

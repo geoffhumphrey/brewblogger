@@ -1,2 +1,0 @@
-<?php if (($page == "current") || ($page == "brewblog") || ($page == "brewblog-list") || (($action == "list") && ($dbTable == "brewing"))) $source = "brewLog"; if (($page == "recipe") || ($page == "recipe-list") || (($action == "list") && ($dbTable == "recipes"))) $source = "recipe"; echo output_beer_xml($row_log['id'], $source, $row_log['brewStyle'], $imageSrc, $row_colorChoose['themeName']); ?>
-

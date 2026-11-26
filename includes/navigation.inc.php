@@ -7,11 +7,15 @@ $link_login = $base_url."index.php?page=login";
 $admin_tooltip = "";
 $user_account_link = "#";
 $edit_user_prefs_link = "#";
-$edit_user_email_link = "#";
+$edit_user_email_link = "#"; 
 $edit_user_password_link = "#";
-$admin_dashboard_link = $base_url."index.php?page=admin";
 
+if (SEF) $admin_dashboard_link = build_public_url("admin", "default", "default", "default", "default", "default", $base_url);
+else $admin_dashboard_link = $base_url."index.php?page=admin";
 if (($page == "admin") && ($section == "default")) $admin_dashboard_link = "#";
+
+if (SEF) $manage_brewblogs_link = build_public_url("admin", "brewblogs", "manage", "brewblogs", "all", "new", $base_url);
+else $manage_brewblogs_link = $base_url."index.php?page=admin&amp;section=brewblogs&action=manage&amp;dbTable=brewblogs&amp;filter=all";
 
 // REVISIT
 if (isset($_SESSION['uid'])) {
@@ -39,7 +43,6 @@ if ($_SESSION['mode'] == "1") {
 }
 
 if ($_SESSION['mode'] == "2") {
-
   if (($_SESSION['home'] != "members") && ($page != "members")) $nav_elements .= "<li><a href=\"".build_public_url("members", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuMembers']."</a></li>"; elseif (($_SESSION['home'] != "members") && ($page == "members")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuMembers']."</a></li>";
   else $nav_elements .= "";
 
@@ -50,10 +53,13 @@ if ($_SESSION['mode'] == "2") {
   elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
 }
 
+/*
 if ($_SESSION['mode'] == "1") {
   if (($_SESSION['home'] != "recipe-list") && ($page != "recipe-list")) $nav_elements .= "<li><a href=\"".build_public_url("recipe-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuRecipes']."</a></li>";
   elseif (($_SESSION['home'] != "recipe-list") && ($page == "recipe-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuRecipes']."</a></li>";
 }
+*/
+
 
 if ($_SESSION['mode'] == "2") {
   if (($_SESSION['home'] != "awards-list") && ($page != "awards-list")) $nav_elements .= "<li><a href=\"".build_public_url("awards-list", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAwards']."</a></li>";
@@ -65,6 +71,8 @@ if ($_SESSION['mode'] == "1") {
   elseif (($_SESSION['home'] != "awards-list") && ($page == "awards-list")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAwards']."</a></li>";
 }
 
+
+/*
 if (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page != "about")) $nav_elements .= "<li><a href=\"".build_public_url("about", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuAbout']."</a></li>";
 elseif (($_SESSION['mode'] == "1") && ($_SESSION['home'] != "about") && ($page == "about")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuAbout']."</a></li>";
 
@@ -72,11 +80,12 @@ if ($_SESSION['allowCalendar'] == "Y") {
   if (($_SESSION['home'] != "calendar") && ($page != "calendar")) $nav_elements .= "<li><a href=\"".build_public_url("calendar", "default", "default", "default", "default", "default", $base_url)."\">".$_SESSION['menuCalendar']."</a></li>";
   elseif (($_SESSION['home'] != "calendar") && ($page == "calendar")) $nav_elements .= "<li class=\"active\"><a href=\"#\">".$_SESSION['menuCalendar']."</a></li>";
 }
+*/
 
 // Reference Links
-$bjcp2008_link = build_public_url("reference", "styles", "view", "current", "bjcp2008", $id, $base_url);
-$bjcp2015_link = build_public_url("reference", "styles", "view", "current", "bjcp2015", $id, $base_url);
-$bjcp_all_link = build_public_url("reference", "styles", "view", "current", "all", $id, $base_url);
+// $bjcp2008_link = build_public_url("reference", "styles", "view", "current", "bjcp2008", $id, $base_url);
+// $bjcp2015_link = build_public_url("reference", "styles", "view", "current", "bjcp2015", $id, $base_url);
+// $bjcp_all_link = build_public_url("reference", "styles", "view", "current", "all", $id, $base_url);
 $carbonation_link = build_public_url("reference", "carbonation", "default", "default", "default", $id, $base_url);
 $color_link = build_public_url("reference", "color", "default", "default", "default", $id, $base_url);
 $hops_link = build_public_url("reference", "hops", "default", "default", "default", $id, $base_url);
@@ -87,7 +96,7 @@ $yeast_link = build_public_url("reference", "yeast", "default", "default", "defa
     <div class="navbar <?php echo $nav_container; ?> navbar-fixed-top">
       <div class="<?php echo $container_main; ?> hidden-xs hidden-sm">
         <div class="navbar-header">
-          <a class="navbar-brand" href="<?php echo $nav_link_home; ?>"><strong><span class="fa fa-beer"></span> <?php echo $row_name['brewerLogName']; ?></strong> <small><?php echo $row_name['brewerTagline']; ?></small></a>
+          <a class="navbar-brand" href="<?php echo $nav_link_home; ?>"><strong><span class="fa fa-beer fa-sm"></span> <?php echo $row_name['brewerLogName']; ?></strong> <small><?php echo $row_name['brewerTagline']; ?></small></a>
         </div>
       </div>
       <div class="<?php echo $container_main; ?>">
@@ -105,9 +114,6 @@ $yeast_link = build_public_url("reference", "yeast", "default", "default", "defa
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown">Reference <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo $bjcp2008_link; ?>">BJCP 2008 Styles Only</a></li>
-                            <li><a href="<?php echo $bjcp2015_link; ?>">BJCP 2015 Styles Only</a></li>
-                            <li><a href="<?php echo $bjcp_all_link; ?>">BJCP 2008 and 2015 Styles</a></li>
                             <li><a href="<?php echo $carbonation_link; ?>">Carbonation Chart</a></li>
                             <li><a href="<?php echo $color_link; ?>">Color Chart</a></li>
                             <li><a href="<?php echo $hops_link; ?>">Hops</a></li>
@@ -130,10 +136,13 @@ $yeast_link = build_public_url("reference", "yeast", "default", "default", "defa
                 	<li class="dropdown-header">Logged in as:<br><strong><?php echo $_SESSION['loginUsername']; ?></strong></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="<?php echo $admin_dashboard_link; ?>">Admin Dashboard</a></li>
+                    <li><a href="<?php echo $manage_brewblogs_link; ?>" tabindex="-1">Manage BrewBlogs</a></li>
+                    <!--
                     <li><a href="<?php echo $user_account_link; ?>" tabindex="-1">Edit Account</a></li>
                     <li><a href="<?php echo $edit_user_prefs_link; ?>" tabindex="-1">Edit Personal Preferences</a></li>
-                    <!-- <li><a href="<?php echo $edit_user_email_link; ?>" tabindex="-1">Change Email</a></li> -->
+                    <li><a href="<?php echo $edit_user_email_link; ?>" tabindex="-1">Change Email</a></li>
                     <li><a href="<?php echo $edit_user_password_link; ?>" tabindex="-1">Change Password</a></li>
+                    -->
                     <li role="separator" class="divider"></li>
                     <li><a href="<?php echo $base_url; ?>includes/logout.inc.php"><?php echo $_SESSION['menuLogout']; ?></a></li>
                 </ul>

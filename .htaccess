@@ -9,6 +9,8 @@ RewriteEngine on
 # RewriteBase /[subfolder]
 # $page, $section, $action, $dbTable, $filter, $id
 RewriteRule ^$ index.php [L]
+# "admin" is also a real folder, so Apache adds a trailing slash to /admin before routing it
+RewriteRule ^admin/$ index.php?page=admin [L]
 RewriteRule ^([A-Za-z0-9-]+)?$ index.php?page=$1 [L]
 RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?page=$1&section=$2 [L]
 RewriteRule ^([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ index.php?page=$1&section=$2&action=$3 [L]
@@ -111,10 +113,15 @@ deny from all
 </Files>
 
 # Prevent directory listings
-Options All -Indexes
+# For security reasons, Option all cannot be overridden.
+#Options All -Indexes
+Options +ExecCGI +Includes +IncludesNOEXEC +SymLinksIfOwnerMatch -Indexes
 
 # Caching schema
 <FilesMatch "\.(css|js)$">
 Header set Cache-Control "max-age=3600"
 </FilesMatch>
 
+# php -- BEGIN cPanel-generated handler, do not edit
+# This domain inherits the “PHP” package.
+# php -- END cPanel-generated handler, do not edit

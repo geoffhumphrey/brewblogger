@@ -11,8 +11,33 @@ include (INCLUDES.'titles.inc.php');
 //include (INCLUDES.'messages.inc.php');
 include (INCLUDES.'scrubber.inc.php');
 
-$agent = $_SERVER['HTTP_USER_AGENT'];
+$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
+
+/**
+ * Escape a value for safe output in an HTML text node or attribute.
+ * Centralizes htmlspecialchars() calls so DB-sourced/session values are
+ * consistently encoded at the point of output.
+ *
+ * Legacy data is stored HTML-encoded (e.g., "M&auml;rzen"), so decode first;
+ * this displays both encoded and raw UTF-8 values correctly and never
+ * double-encodes.
+ */
+function h($value) {
+	return htmlspecialchars(html_entity_decode((string) $value, ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+}
+
+/**
+ * For a <select> with a fixed option list: if the stored value isn't one of the
+ * options (e.g., an imported "Liquid Extract"), output it as an extra selected
+ * option so saving the form keeps it instead of silently replacing it.
+ */
+function select_stored_option($stored, $options) {
+	if ((!isset($stored)) || (trim((string) $stored) === "") || (in_array($stored, $options))) return "";
+	return "<option value=\"".h($stored)."\" selected>".h($stored)."</option>";
+}
+
+/*
 
 // ---------------------------- Alternating Table Row Colors ----------------------------
 // DEPRECATED with inclusion of DataTables functionality.
@@ -79,6 +104,40 @@ function checkmobile(){
 			}
 	}
 	return false;
+}
+
+*/
+
+function convert_to_abbrev($string) {
+
+	switch ($string) {
+
+		case "ounces": return "oz";
+		break;
+		case "gallons": return "gal";
+		break;
+		case "volume": 
+		case "volumes":
+		return "vol";
+		break;
+		case "minutes": return "min";
+		break;
+		case "pounds": return "lbs";
+		break;
+		case "pound": return "lb";
+		break;
+		case "kilograms":
+		case "kilogram": return "kg";
+		break;
+		case "grams":
+		case "gram": return "g";
+		break;
+
+		default: return $string;
+		break;
+		
+	}
+
 }
 
 // ---------------------------- Calculations used in the "Specifics" section of a log or recipe ----------------------------------
@@ -342,7 +401,7 @@ function truncate_string ($str, $length, $trailing) {
 // DEPRECATED
 function output_beer_xml($id, $source, $style, $imageSrc, $theme) {
 
-	$agent = $_SERVER['HTTP_USER_AGENT'];
+	$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 	if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 	if ($printBrowser == "IE") $output = '<a href="includes/output_beer_xml.inc.php?id='.$id.'&source='.$source.'&brewStyle='.$style.'">';
@@ -357,7 +416,7 @@ function output_beer_xml($id, $source, $style, $imageSrc, $theme) {
 // DEPRECATED
 function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
-	$agent = $_SERVER['HTTP_USER_AGENT'];
+	$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 	if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 	if ($printBrowser == "IE") {
@@ -380,7 +439,7 @@ function output_print_recipe($id, $source, $dbTable, $page, $style, $scale, $amt
 // DEPRECATED
 function output_print_log($id, $source, $dbTable, $page, $style, $scale, $amt, $name, $imageSrc, $theme) {
 
-	$agent = $_SERVER['HTTP_USER_AGENT'];
+	$agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 	if (strstr($agent, "MSIE")) $printBrowser = "IE"; else $printBrowser = "notIE";
 
 	if ($printBrowser == "IE") {
@@ -436,22 +495,42 @@ function display_place($place,$method) {
 			break;
 			case "best": $place = "BOS";
 			break;
+			case "best1": $place = "BOS 2nd";
+			break;
+			case "best2": $place = "BOS 3rd";
+			break;
+			case "best3": $place = "BOS HM";
+			break;
+			case "pro-am": $place = "Pro-Am";
+			break;
+			case "scale-up": $place = "Scale-Up";
+			break;
 		default: $place = "N/A";
 		}
 	}
 	if ($method == "2") {
 		switch($place){
-			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> ".addOrdinalNumberSuffix($place);
+			case "1": $place = "<span class=\"fa fa-lg fa-medal text-gold\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> ".addOrdinalNumberSuffix($place);
+			case "2": $place = "<span class=\"fa fa-lg fa-medal text-silver\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> ".addOrdinalNumberSuffix($place);
+			case "3": $place = "<span class=\"fa fa-lg fa-medal text-bronze\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "4": $place = "<span class=\"fa fa-lg fa-trophy text-purple\"></span> ".addOrdinalNumberSuffix($place);
+			case "4": $place = "<span class=\"fa fa-lg fa-medal text-purple\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "honMen": $place = "<span class=\"fa fa-lg fa-trophy text-teal\"></span> HM";
+			case "honMen": $place = "<span class=\"fa fa-lg fa-certificate text-teal\"></span> HM";
 			break;
-			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold\"></span> Best of Show";
+			case "best": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> Best of Show";
+			break;
+			case "best1": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> BOS - First Runner Up";
+			break;
+			case "best2": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> BOS - Second Runner Up";
+			break;
+			case "best3": $place = "<span class=\"fa fa-lg fa-trophy text-forest-green\"></span> BOS - Honorable Mention";
+			break;
+			case "pro-am": $place = "<span class=\"fa fa-lg fa-beer text-gold\"></span> Pro-Am";
+			break;
+			case "scale-up": $place = "<span class=\"fa fa-lg fa-beer text-silver\"></span> Scale-Up";
 			break;
 			default: $place = "Entry Only";
 			}
@@ -459,17 +538,27 @@ function display_place($place,$method) {
 
 	if ($method == "3") {
 		switch($place){
-			case "1": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> ".addOrdinalNumberSuffix($place);
+			case "1": $place = "<span class=\"fa fa-lg fa-medal text-gold\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "2": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> ".addOrdinalNumberSuffix($place);
+			case "2": $place = "<span class=\"fa fa-lg fa-medal text-silver\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "3": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> ".addOrdinalNumberSuffix($place);
+			case "3": $place = "<span class=\"fa fa-lg fa-medal text-bronze\"></span> ".addOrdinalNumberSuffix($place);
 			break;
-			case "honMen":  $place = "<span class=\"fa fa-lg fa-trophy text-teal\"></span> HM";
+			case "honMen":  $place = "<span class=\"fa fa-lg fa-certificate text-teal\"></span> HM";
 			break;
-			case "best": $place = "<span class=\"fa fa-lg fa-certificate text-gold\"></span> BOS";
+			case "best": $place = "<span class=\"fa fa-lg fa-trophy text-gold\"></span> BOS";
 			break;
-			default: $place = "<span class=\"fa fa-lg fa-trophy text-forest-green\"></span> EO";
+			case "best1": $place = "<span class=\"fa fa-lg fa-trophy text-silver\"></span> BOS 2nd";
+			break;
+			case "best2": $place = "<span class=\"fa fa-lg fa-trophy text-bronze\"></span> BOS 3rd";
+			break;
+			case "best3": $place = "<span class=\"fa fa-lg fa-trophy text-forest-green\"></span> BOS HM";
+			break;
+			case "pro-am": $place = "<span class=\"fa fa-lg fa-beer text-gold\"></span> Pro-Am";
+			break;
+			case "scale-up": $place = "<span class=\"fa fa-lg fa-beer text-silver\"></span> Scale-Up";
+			break;
+			default: $place = "<span class=\"fa fa-lg fa-certificate text-forest-green\"></span> EO";
 			}
 	}
 
@@ -577,8 +666,54 @@ function hop_more_info($name) {
 
 }
 
+function removeAccents($str) {
+  $replace = array(
+        'ъ'=>'-', 'Ь'=>'-', 'Ъ'=>'-', 'ь'=>'-',
+        'Ă'=>'A', 'Ą'=>'A', 'À'=>'A', 'Ã'=>'A', 'Á'=>'A', 'Æ'=>'A', 'Â'=>'A', 'Å'=>'A', 'Ä'=>'A',
+        'Þ'=>'B',
+        'Ć'=>'C', 'ץ'=>'C', 'Ç'=>'C',
+        'È'=>'E', 'Ę'=>'E', 'É'=>'E', 'Ë'=>'E', 'Ê'=>'E',
+        'Ğ'=>'G',
+        'İ'=>'I', 'Ï'=>'I', 'Î'=>'I', 'Í'=>'I', 'Ì'=>'I',
+        'Ł'=>'L',
+        'Ñ'=>'N', 'Ń'=>'N',
+        'Ø'=>'O', 'Ó'=>'O', 'Ò'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O',
+        'Ş'=>'S', 'Ś'=>'S', 'Ș'=>'S', 'Š'=>'S',
+        'Ț'=>'T',
+        'Ù'=>'U', 'Û'=>'U', 'Ú'=>'U', 'Ü'=>'U',
+        'Ý'=>'Y',
+        'Ź'=>'Z', 'Ž'=>'Z', 'Ż'=>'Z',
+        'â'=>'a', 'ǎ'=>'a', 'ą'=>'a', 'á'=>'a', 'ă'=>'a', 'ã'=>'a', 'Ǎ'=>'a', 'а'=>'a', 'А'=>'a', 'å'=>'a', 'à'=>'a', 'א'=>'a', 'Ǻ'=>'a', 'Ā'=>'a', 'ǻ'=>'a', 'ā'=>'a', 'ä'=>'a', 'æ'=>'ae', 'Ǽ'=>'ae', 'ǽ'=>'ae',
+        'б'=>'b', 'ב'=>'b', 'Б'=>'b', 'þ'=>'b',
+        'ĉ'=>'c', 'Ĉ'=>'c', 'Ċ'=>'c', 'ć'=>'c', 'ç'=>'c', 'ц'=>'c', 'צ'=>'c', 'ċ'=>'c', 'Ц'=>'c', 'Č'=>'c', 'č'=>'c', 'Ч'=>'ch', 'ч'=>'ch',
+        'ד'=>'d', 'ď'=>'d', 'Đ'=>'d', 'Ď'=>'d', 'đ'=>'d', 'д'=>'d', 'Д'=>'D', 'ð'=>'d',
+        'є'=>'e', 'ע'=>'e', 'е'=>'e', 'Е'=>'e', 'Ə'=>'e', 'ę'=>'e', 'ĕ'=>'e', 'ē'=>'e', 'Ē'=>'e', 'Ė'=>'e', 'ė'=>'e', 'ě'=>'e', 'Ě'=>'e', 'Є'=>'e', 'Ĕ'=>'e', 'ê'=>'e', 'ə'=>'e', 'è'=>'e', 'ë'=>'e', 'é'=>'e',
+        'ф'=>'f', 'ƒ'=>'f', 'Ф'=>'f',
+        'ġ'=>'g', 'Ģ'=>'g', 'Ġ'=>'g', 'Ĝ'=>'g', 'Г'=>'g', 'г'=>'g', 'ĝ'=>'g', 'ğ'=>'g', 'ג'=>'g', 'Ґ'=>'g', 'ґ'=>'g', 'ģ'=>'g',
+        'ח'=>'h', 'ħ'=>'h', 'Х'=>'h', 'Ħ'=>'h', 'Ĥ'=>'h', 'ĥ'=>'h', 'х'=>'h', 'ה'=>'h',
+        'î'=>'i', 'ï'=>'i', 'í'=>'i', 'ì'=>'i', 'į'=>'i', 'ĭ'=>'i', 'ı'=>'i', 'Ĭ'=>'i', 'И'=>'i', 'ĩ'=>'i', 'ǐ'=>'i', 'Ĩ'=>'i', 'Ǐ'=>'i', 'и'=>'i', 'Į'=>'i', 'י'=>'i', 'Ї'=>'i', 'Ī'=>'i', 'І'=>'i', 'ї'=>'i', 'і'=>'i', 'ī'=>'i', 'ĳ'=>'ij', 'Ĳ'=>'ij',
+        'й'=>'j', 'Й'=>'j', 'Ĵ'=>'j', 'ĵ'=>'j', 'я'=>'ja', 'Я'=>'ja', 'Э'=>'je', 'э'=>'je', 'ё'=>'jo', 'Ё'=>'jo', 'ю'=>'ju', 'Ю'=>'ju',
+        'ĸ'=>'k', 'כ'=>'k', 'Ķ'=>'k', 'К'=>'k', 'к'=>'k', 'ķ'=>'k', 'ך'=>'k',
+        'Ŀ'=>'l', 'ŀ'=>'l', 'Л'=>'l', 'ł'=>'l', 'ļ'=>'l', 'ĺ'=>'l', 'Ĺ'=>'l', 'Ļ'=>'l', 'л'=>'l', 'Ľ'=>'l', 'ľ'=>'l', 'ל'=>'l',
+        'מ'=>'m', 'М'=>'m', 'ם'=>'m', 'м'=>'m',
+        'ñ'=>'n', 'н'=>'n', 'Ņ'=>'n', 'ן'=>'n', 'ŋ'=>'n', 'נ'=>'n', 'Н'=>'n', 'ń'=>'n', 'Ŋ'=>'n', 'ņ'=>'n', 'ŉ'=>'n', 'Ň'=>'n', 'ň'=>'n',
+        'о'=>'o', 'О'=>'o', 'ő'=>'o', 'õ'=>'o', 'ô'=>'o', 'Ő'=>'o', 'ŏ'=>'o', 'Ŏ'=>'o', 'Ō'=>'o', 'ō'=>'o', 'ø'=>'o', 'ǿ'=>'o', 'ǒ'=>'o', 'ò'=>'o', 'Ǿ'=>'o', 'Ǒ'=>'o', 'ơ'=>'o', 'ó'=>'o', 'Ơ'=>'o', 'œ'=>'oe', 'Œ'=>'oe', 'ö'=>'o',
+        'פ'=>'p', 'ף'=>'p', 'п'=>'p', 'П'=>'p',
+        'ק'=>'q',
+        'ŕ'=>'r', 'ř'=>'r', 'Ř'=>'r', 'ŗ'=>'r', 'Ŗ'=>'r', 'ר'=>'r', 'Ŕ'=>'r', 'Р'=>'r', 'р'=>'r',
+        'ș'=>'s', 'с'=>'s', 'Ŝ'=>'s', 'š'=>'s', 'ś'=>'s', 'ס'=>'s', 'ş'=>'s', 'С'=>'s', 'ŝ'=>'s', 'Щ'=>'sch', 'щ'=>'sch', 'ш'=>'sh', 'Ш'=>'sh', 'ß'=>'ss',
+        'т'=>'t', 'ט'=>'t', 'ŧ'=>'t', 'ת'=>'t', 'ť'=>'t', 'ţ'=>'t', 'Ţ'=>'t', 'Т'=>'t', 'ț'=>'t', 'Ŧ'=>'t', 'Ť'=>'t', '™'=>'tm',
+        'ū'=>'u', 'у'=>'u', 'Ũ'=>'u', 'ũ'=>'u', 'Ư'=>'u', 'ư'=>'u', 'Ū'=>'u', 'Ǔ'=>'u', 'ų'=>'u', 'Ų'=>'u', 'ŭ'=>'u', 'Ŭ'=>'u', 'Ů'=>'u', 'ů'=>'u', 'ű'=>'u', 'Ű'=>'u', 'Ǖ'=>'u', 'ǔ'=>'u', 'Ǜ'=>'u', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'У'=>'u', 'ǚ'=>'u', 'ǜ'=>'u', 'Ǚ'=>'u', 'Ǘ'=>'u', 'ǖ'=>'u', 'ǘ'=>'u', 'ü'=>'u',
+        'в'=>'v', 'ו'=>'v', 'В'=>'v',
+        'ש'=>'w', 'ŵ'=>'w', 'Ŵ'=>'w',
+        'ы'=>'y', 'ŷ'=>'y', 'ý'=>'y', 'ÿ'=>'y', 'Ÿ'=>'y', 'Ŷ'=>'y',
+        'Ы'=>'y', 'ž'=>'z', 'З'=>'z', 'з'=>'z', 'ź'=>'z', 'ז'=>'z', 'ż'=>'z', 'ſ'=>'z', 'Ж'=>'zh', 'ж'=>'zh'
+    );
+    return strtr($str, $replace);
+}
+
 // $page / $section / $action / $dbTable / $filter / $id
-function build_public_url($page, $section, $action, $dbTable, $filter, $id, $base_url) {
+function build_public_url($page, $section, $action, $dbTable, $filter, $id, $base_url, $msg="default") {
 	if (SEF) {
 		$url = $base_url;
 		if ($page != "default") {
@@ -588,7 +723,9 @@ function build_public_url($page, $section, $action, $dbTable, $filter, $id, $bas
 			if ($dbTable != "default") $url .= $dbTable."/";
 			if ($filter != "default") $url .= $filter."/";
 			if ($id != "default") $url .= $id."/";
+			if ($msg != "default") $url .= $msg."/";
 		}
+		$url = removeAccents($url);
 		return rtrim($url,"/");
 	}
 	else {
@@ -601,7 +738,7 @@ function build_public_url($page, $section, $action, $dbTable, $filter, $id, $bas
 			if ($filter != "default") $url .= "&amp;filter=".$filter;
 			if ($id != "default") $url .= "&amp;id=".$id;
 		}
-		return $url;
+		return removeAccents($url);
 	}
 }
 
@@ -610,7 +747,7 @@ function award_count($source,$id) {
 	require(CONFIG.'config.php');
 	mysqli_select_db($connection,$database);
 
-	if ($source == "brewblog-list") $awardBrewID = "b".$id;
+	if (($source == "brewblog-list") || ($source == "admin")) $awardBrewID = "b".$id;
 	if ($source == "recipe-list") $awardBrewID = "r".$id;
 	$query_awards = sprintf("SELECT COUNT(*) as 'count' FROM awards WHERE awardBrewID='%s'", $awardBrewID);
 	$awards = mysqli_query($connection,$query_awards) or die (mysqli_error($connection));
@@ -623,8 +760,8 @@ function award_count($source,$id) {
 }
 
 function get_session_array_values($haystack,$needle,$needle_value) {
-    $arrIt = new RecursiveIteratorIterator(new RecursiveArrayIterator($haystack));
-    $return = "";
+	$arrIt = new RecursiveIteratorIterator(new RecursiveArrayIterator($haystack));
+    $return = array();
     foreach ($arrIt as $sub) {
         $subArray = $arrIt->getSubIterator();
         if ($subArray[$needle] === $needle_value) {
@@ -634,9 +771,221 @@ function get_session_array_values($haystack,$needle,$needle_value) {
     return $return;
 }
 
-// print_r($_SESSION['adjuncts']);
-// $outputArray = get_session_array_values($_SESSION['adjuncts'],"adjunctName","Grits");
-// $outputArray = get_session_array_values($_SESSION['adjuncts'],"id","4");
-// if (isset($outputArray)) print_r($outputArray);
-// if (is_array($outputArray)) echo $outputArray[0]['id'];
+function pathauto_cleanstring($string) {
+    // Names are stored HTML-encoded (e.g., "M&auml;rzen"); decode before transliterating
+    $url = removeAccents(html_entity_decode((string) $string, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    $url = preg_replace('~[^\\pL0-9]+~u', '-', $url); // substitutes anything but letters and numbers with the '-' separator 
+    $url = trim($url, "-");
+    // intl handles non-Latin scripts (e.g., Greek); iconv's TRANSLIT fails on those, so IGNORE drops what it can't convert
+    if (function_exists('transliterator_transliterate')) $url = transliterator_transliterate('Any-Latin; Latin-ASCII', $url);
+    else $url = iconv("utf-8", "us-ascii//TRANSLIT//IGNORE", $url);
+    $url = strtolower((string) $url);
+    $url = preg_replace('~[^-a-z0-9-]+~', '', $url); // keep only letters, numbers, '-' and separator
+    return trim($url, "-");
+}
+
+// Remove accents, etc. from strings using built-in intl extension class
+// From https://stackoverflow.com/questions/26185163/mysql-matching-latin-english-form-input-to-utf8-non-english-data/26186456#26186456
+// $transliterator = Transliterator::createFromRules(':: Any-Latin; :: Latin-ASCII; :: NFD; :: [:Nonspacing Mark:] Remove; :: NFC;', \Transliterator::FORWARD);
+
+function get_timezone($offset) {
+	
+	$offset = number_format($offset,3);
+	
+	$timezones = array(
+    '-12.000' => 'Pacific/Kwajalein',
+    '-11.000' => 'Pacific/Midway',
+    '-10.000' => 'Pacific/Honolulu',
+    '-9.500' => 'Pacific/Marquesas',
+    '-9.000' => 'America/Anchorage',
+    '-8.000' => 'America/Los_Angeles',
+		'-7.000' => 'America/Denver',
+    '-7.001' => 'America/Phoenix', // No DST for Arizona
+    '-6.000' => 'America/Chicago',
+		'-6.001' => 'America/Hermosillo', // No DST in this area of Mexico
+		'-6.002' => 'America/Regina', // No DST in this area of Canada
+    '-5.000' => 'America/New_York',
+    '-4.000' => 'America/Virgin',
+    '-4.001' => 'America/Asuncion', // DST observed in Paraguay
+    '-3.500' => 'America/St_Johns',
+    '-3.000' => 'America/Argentina/Buenos_Aires',
+		'-3.001' => 'America/Sao_Paulo', // No DST for region of Brazil
+    '-2.000' => 'Atlantic/South_Georgia',
+    '-1.000' => 'Atlantic/Azores',
+    '0.000' => 'Europe/London',
+    '1.000' => 'Europe/Paris',
+    '2.000' => 'Europe/Helsinki',
+    '3.000' => 'Europe/Moscow',
+    '3.500' => 'Asia/Tehran',
+    '4.000' => 'Asia/Baku',
+    '4.500' => 'Asia/Kabul',
+    '5.000' => 'Asia/Karachi',
+    '5.500' => 'Asia/Calcutta',
+		'5.750' => 'Asia/Kathmandu',
+    '6.000' => 'Asia/Colombo',
+    '7.000' => 'Asia/Bangkok',
+    '8.000' => 'Asia/Singapore',
+		'8.001' => 'Australia/Perth', // No DST for this part of Australia
+    '9.000' => 'Asia/Tokyo',
+    '9.500' => 'Australia/Darwin',
+    '10.000' => 'Pacific/Guam',
+		'10.001' => 'Australia/Brisbane', // No DST for this part of Australia
+    '11.000' => 'Asia/Magadan',
+    '12.000' => 'Asia/Kamchatka',
+		'13.000' => 'Pacific/Tongatapu',
+  );
+
+	$timezone = $timezones[$offset];
+	
+	return $timezone;
+
+}
+
+function convert_timestamp($time_string, $timezone, $offset, $method) {
+
+	//$timezone = get_timezone($timezone);
+
+	// Method 1: convert to GMT for storage in DB
+	if ($method == 1) {
+
+		// 1. convert the time string specified in the current timezone to UTC (GMT) using built in PHP functions
+		date_default_timezone_set($timezone);
+		$timestamp = strtotime($time_string);
+
+		// 2. return the value
+		return $timestamp;
+
+	}
+
+	// Method 2: convert from GMT to selected timezone
+	if ($method == 2) {
+		
+		// GMT date/time is always stored in DB
+		// 1. make sure the timezone is UTC (GMT)
+		date_default_timezone_set('UTC');
+
+		// 2. convert the GMT timestamp to the desired timezone using the provided offset
+		$timestamp = $time_string += ($offset * 3600);
+
+		// 3. return the value
+		return $timestamp;
+
+	}
+
+}
+
+function getTimeZoneDateTime($timezone, $timestamp, $date_format, $time_format, $display_format, $return_format) {
+
+	//$tz = get_timezone($timezone_offset); // convert offset number to PHP timezone
+  date_default_timezone_set($timezone);
+
+	switch($display_format) {
+		
+		// Long Format
+		case "long":
+			if ($date_format == 1) $date = date('l, F j, Y', $timestamp);
+			else $date = date('l j F, Y', $timestamp);
+		break;
+
+		case "full":
+			if ($date_format == 1) $date = date('F j, Y', $timestamp);
+			else $date = date('j F, Y', $timestamp);
+		break;
+
+		// Short Format
+		case "short":
+			if ($date_format == 1) $date = date('m/d/Y', $timestamp);
+			elseif ($date_format == 2) $date = date('d/m/Y',$timestamp);
+			elseif ($date_format == 999) $date = date('Y-m-d H:i:s',$timestamp);
+			else $date = date('Y/m/d', $timestamp);
+		break;
+
+		// MySQL Format
+		case "system":
+			$date = date('Y-m-d', $timestamp);
+		break;
+
+		// XML Report Format
+		case "xml":
+			$date = date('l j F Y', $timestamp);
+		break;
+	}
+
+	if ($time_format == "1") $time = date('H:i',$timestamp);
+	else $time = date('g:i A',$timestamp);
+
+	switch($return_format) {
+		
+		case "date-time":
+			$return = $date." ".$time.", ".date('T',$timestamp);
+		break;
+		
+		case "date-time-no-gmt":
+			$return = $date." ".$time;
+		break;
+		
+		case "date-time-system":
+			$return = $date." ".$time;
+		break;
+		
+		case "date-no-gmt":
+			$return = $date;
+		break;
+		
+		case "time-gmt":
+			$return = $time.", ".date('T',$timestamp);
+		break;
+		
+		case "time":
+			$return = $time;
+		break;
+		
+		default: $return = $date;
+	
+	}
+
+	return $return;
+}
+
+function directory_contents_dropdown($directory,$file_name_selected,$method="1") {
+
+	$handle = opendir($directory);
+	$filelist = array();
+
+	while ($file = readdir($handle)) {
+
+	   if ((!is_dir($file)) && (!is_link($file))) {
+			$filelist[] = $file;
+	   }
+
+	}
+
+	sort($filelist, SORT_NATURAL | SORT_FLAG_CASE);
+
+	// Return dropdown options
+	// For one-time use
+	if ($method == "1") {
+		$return = "";
+		foreach ($filelist as $filename) {
+			$selected = "";
+			if ($file_name_selected == $filename) $selected = " selected";
+			$return .= "<option value=\"".$filename."\"".$selected.">";
+			$return .= $filename;
+			$return .= "</option>";
+		}
+	}
+
+	// Return an array of file names
+	if ($method == "2") {
+		$return = array();
+		foreach ($filelist as $filename) {
+			$return[] = $filename;
+		}
+	}
+
+	return $return;
+
+}
+
+
 ?>

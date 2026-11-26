@@ -14,3 +14,13 @@ sftp-config.json
 brewblogger.sublime-workspace
 brewblogger.sublime-workspace
 *.sublime-workspace
+/includes/unused
+/css/unused
+/js_includes/unused
+/reference/unused
+/unused
+
+# Holds real database credentials - copy site/config.sample.php to create it
+/site/config.php
+admin/includes/brewfather.inc.php
+update/update_3.0.0_utf8mb4_fileds_conversion.php

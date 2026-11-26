@@ -6,9 +6,6 @@
  * adding unlimited amounts of each type of ingredient.
  */
 
-// A carrot ^ separates each ingredient
-// Pipes | separate each ingredient's data points (weight, type, etc)
-
 $convert_all_brewblogs = "";
 $db_table = $prefix."brewing";
 $errors = "";
@@ -76,8 +73,7 @@ do {
             $convert_fermentables .= "e|";
             $convert_fermentables .= $extract_id."|";
             $key_weight = "brewExtract".$i."Weight";
-            $extract_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,
-    FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
+            $extract_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
             if ($row_brewBlogs[$key_weight] > 0) $convert_fermentables .= $extract_weight;
             else $convert_fermentables .= "0";
             $convert_fermentables .= "^";
@@ -126,8 +122,7 @@ do {
             $convert_fermentables .= "g|";
             $convert_fermentables .= $grain_id."|";
             $key_weight = "brewGrain".$i."Weight";
-            $grain_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,
-    FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
+            $grain_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
             if ($grain_weight > 0) $convert_fermentables .= $grain_weight;
             else $convert_fermentables .= "0";
             $convert_fermentables .= "^";
@@ -176,8 +171,7 @@ do {
             $convert_fermentables .= "a|";
             $convert_fermentables .= $adjunct_id."|";
             $key_weight = "brewAddition".$i."Amt";
-            $adjunct_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,
-    FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
+            $adjunct_weight = number_format(filter_var($row_brewBlogs[$key_weight],FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION|FILTER_FLAG_ALLOW_THOUSAND),2);
             if ($adjunct_weight > 0) $convert_fermentables .= $adjunct_weight;
             else $convert_fermentables .= "0";
             $convert_fermentables .= "^";
@@ -437,5 +431,5 @@ for ($i = 1; $i <= MAX_MISC; $i++) {
 
 if (DEBUG) echo $convert_all_brewblogs;
 else echo "<h3>Brewing Table</h3><p>The following updates were made in the brewing database table:</p><ul>".$convert_all_brewblogs."</ul>";
-if (!empty($errors)) echo "<div class=\"alert alert-danger\"><p><span class=\"fa fa-exclamation-triangle\"></span> <strong>The following errors occurred: </strong><ul>".$errors."</ul>";
+if (!empty($errors)) echo "<h4>Errors:</h4><ul>".$errors."</ul>";
 ?>

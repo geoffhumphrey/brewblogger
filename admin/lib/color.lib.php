@@ -86,17 +86,17 @@ return $return;
 
 // Convert SRM value to hex color code for web display.
 function get_display_color($srm) {
-  $srm = round($srm);
+  $srm = is_numeric($srm) ? round((float) $srm) : 0;
 
-  if ($srm >= 01 && $srm < 02) { $displayColor ="#f3f993"; }
-  elseif ($srm >= 02 && $srm < 03) { $displayColor = "#f5f75c"; }
-  elseif ($srm >= 03 && $srm < 04) { $displayColor = "#f6f513"; }
-  elseif ($srm >= 04 && $srm < 05) { $displayColor = "#eae615"; }
-  elseif ($srm >= 05 && $srm < 06) { $displayColor = "#e0d01b"; }
-  elseif ($srm >= 06 && $srm < 07) { $displayColor = "#d5bc26"; }
-  elseif ($srm >= 07 && $srm < 08) { $displayColor = "#cdaa37"; }
-  elseif ($srm >= 08 && $srm < 09) { $displayColor = "#c1963c"; }
-  elseif ($srm >= 09 && $srm < 10) { $displayColor = "#be8c3a"; }
+  if ($srm >= 1 && $srm < 2) { $displayColor ="#f3f993"; }
+  elseif ($srm >= 2 && $srm < 3) { $displayColor = "#f5f75c"; }
+  elseif ($srm >= 3 && $srm < 4) { $displayColor = "#f6f513"; }
+  elseif ($srm >= 4 && $srm < 5) { $displayColor = "#eae615"; }
+  elseif ($srm >= 5 && $srm < 6) { $displayColor = "#e0d01b"; }
+  elseif ($srm >= 6 && $srm < 7) { $displayColor = "#d5bc26"; }
+  elseif ($srm >= 7 && $srm < 8) { $displayColor = "#cdaa37"; }
+  elseif ($srm >= 8 && $srm < 9) { $displayColor = "#c1963c"; }
+  elseif ($srm >= 9 && $srm < 10) { $displayColor = "#be8c3a"; }
   elseif ($srm >= 10 && $srm < 11) { $displayColor = "#be823a"; }
   elseif ($srm >= 11 && $srm < 12) { $displayColor = "#c17a37"; }
   elseif ($srm >= 12 && $srm < 13) { $displayColor = "#bf7138"; }
