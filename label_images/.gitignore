@@ -1,0 +1,4 @@
+# Keep this folder in the repository but not its contents (recipe label images
+# are uploaded per install).
+*
+!.gitignore
